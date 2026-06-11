@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { Gift, ChevronUp, ChevronDown, Snowflake, Crown, Megaphone } from 'lucide-react';
+import { Gift, ChevronUp, ChevronDown, Snowflake, Crown, Megaphone, Trophy, Dices, LayoutGrid, Sparkles, Flame, Hexagon, TrendingUp, MonitorPlay, Headset } from 'lucide-react';
 
 export default function Sidebar() {
     const [openDropdown, setOpenDropdown] = useState<string | null>('casino');
@@ -38,84 +37,74 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            <div className="w-[232px] flex-1 bg-[#0C1F56] rounded-[16px] flex flex-col overflow-hidden p-[12px] gap-[8px]">
+            <div className="w-[232px] h-[596px] shrink-0 bg-[#0C1F56] rounded-[16px] flex flex-col p-[16px] gap-[16px]">
+                <NavItem icon={<Gift size={20} />} label="Promotions" />
+                <NavItem icon={<Crown size={20} />} label="VIP Program" />
+                <NavItem icon={<Trophy size={20} />} label="Tournaments" />
 
-               
-                <NavItem fallbackIcon={<Gift size={20} />} label="Promotions" />
-                <NavItem iconSrc="/vip.png" label="VIP Program" />
-                <NavItem iconSrc="/cup.png" label="Tournaments" />
-
-                <div className={`flex flex-col rounded-[12px] overflow-hidden ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
+                <div className={`flex flex-col rounded-[8px] overflow-hidden ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
                     <div
                         onClick={() => toggleDropdown('casino')}
-                        className={`flex items-center justify-between px-[16px] py-[14px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'casino' ? 'rounded-t-[12px]' : 'rounded-[12px]'}`}
+                        className={`flex items-center justify-between w-[200px] h-[44px] px-[10px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
                     >
-                        <div className="flex items-center gap-[12px]">
-                            <Image src="/casino.png" alt="Casino" width={20} height={20} className="object-contain shrink-0" />
-                            <span className="font-semibold text-[15px]">Casino</span>
+                        <div className="flex items-center gap-[8px]">
+                            <Dices size={20} className="shrink-0" />
+                            <span className="font-medium text-[15px]">Casino</span>
                         </div>
                         {openDropdown === 'casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </div>
 
                     {openDropdown === 'casino' && (
                         <div className="flex flex-col py-[8px]">
-                            <SubNavItem iconSrc="/allgame.png" label="All Games" />
-                            <SubNavItem iconSrc="/newgame.png" label="New Games" />
-                            <SubNavItem iconSrc="/populargame.png" label="Popular Games" />
-                            <SubNavItem iconSrc="/originalgame.png" label="Original Games" />
-                            <SubNavItem iconSrc="/crashgame.png" label="Crash Games" />
+                            <SubNavItem icon={<LayoutGrid size={18} />} label="All Games" />
+                            <SubNavItem icon={<Sparkles size={18} />} label="New Games" />
+                            <SubNavItem icon={<Flame size={18} />} label="Popular Games" />
+                            <SubNavItem icon={<Hexagon size={18} />} label="Original Games" />
+                            <SubNavItem icon={<TrendingUp size={18} />} label="Crash Games" />
                         </div>
                     )}
                 </div>
 
-                <div className={`flex flex-col rounded-[12px] overflow-hidden ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
+                <div className={`flex flex-col rounded-[8px] overflow-hidden ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
                     <div
                         onClick={() => toggleDropdown('live-casino')}
-                        className={`flex items-center justify-between px-[16px] py-[14px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'live-casino' ? 'rounded-t-[12px]' : 'rounded-[12px]'}`}
+                        className={`flex items-center justify-between w-[200px] h-[44px] px-[10px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'live-casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
                     >
-                        <div className="flex items-center gap-[12px]">
-                            <Image src="/livecasino.png" alt="Live Casino" width={20} height={20} className="object-contain shrink-0" />
-                            <span className="font-semibold text-[15px]">Live Casino</span>
+                        <div className="flex items-center gap-[8px]">
+                            <MonitorPlay size={20} className="shrink-0" />
+                            <span className="font-medium text-[15px]">Live Casino</span>
                         </div>
                         {openDropdown === 'live-casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </div>
 
                     {openDropdown === 'live-casino' && (
                         <div className="flex flex-col py-[8px]">
-                            <SubNavItem iconSrc="/allgame.png" label="All Live Games" />
+                            <SubNavItem icon={<LayoutGrid size={18} />} label="All Live Games" />
                         </div>
                     )}
                 </div>
 
                 <div className="mt-auto">
-                    <NavItem iconSrc="/livesupport.png" label="Live Support" />
+                    <NavItem icon={<Headset size={20} />} label="Live Support" />
                 </div>
             </div>
         </aside>
     );
 }
 
-function NavItem({ iconSrc, fallbackIcon, label }: { iconSrc?: string, fallbackIcon?: React.ReactNode, label: string }) {
+function NavItem({ icon, label }: { icon: React.ReactNode, label: string }) {
     return (
-        <div className="flex items-center gap-[12px] px-[16px] py-[14px] cursor-pointer bg-[#112F82]  rounded-[12px] transition-colors text-[#D2DCF7] hover:text-white">
-            {iconSrc ? (
-                <Image src={iconSrc} alt={label} width={20} height={20} className="object-contain shrink-0" />
-            ) : (
-                fallbackIcon
-            )}
+        <div className="flex items-center gap-[8px] w-[200px] h-[44px] px-[10px] cursor-pointer bg-[#112F82] rounded-[8px] transition-colors text-[#D2DCF7] hover:text-white">
+            {icon}
             <span className="font-medium text-[15px]">{label}</span>
         </div>
     );
 }
 
-function SubNavItem({ iconSrc, fallbackIcon, label }: { iconSrc?: string, fallbackIcon?: React.ReactNode, label: string }) {
+function SubNavItem({ icon, label }: { icon: React.ReactNode, label: string }) {
     return (
-        <div className="flex items-center gap-[12px] px-[24px] py-[10px] cursor-pointer  transition-colors text-[#D2DCF7] hover:text-white">
-            {iconSrc ? (
-                <Image src={iconSrc} alt={label} width={18} height={18} className="object-contain shrink-0" />
-            ) : (
-                fallbackIcon
-            )}
+        <div className="flex items-center gap-[8px] w-[200px] h-[40px] px-[10px] pl-[32px] cursor-pointer transition-colors text-[#D2DCF7] hover:text-white">
+            {icon}
             <span className="font-medium text-[15px]">{label}</span>
         </div>
     );
