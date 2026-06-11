@@ -11,6 +11,7 @@ import tableGamesData from "@/data/tableGamesData.json";
 import bonusBuysData from "@/data/bonusBuysData.json";
 import WhyJoin from "@/components/sections/WhyJoin";
 import ProviderSection from "@/components/sections/ProviderSection";
+import CollectionSection from "@/components/sections/CollectionSection";
 
 export default function Home() {
   return (
@@ -54,6 +55,8 @@ export default function Home() {
             icon={<CircleDollarSign className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
             games={bonusBuysData}
           />
+
+          <CollectionSection />
         </main>
       </div>
     </Container>
