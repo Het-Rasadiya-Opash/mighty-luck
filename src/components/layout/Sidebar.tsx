@@ -13,9 +13,7 @@ export default function Sidebar() {
 
     return (
         <aside className="w-[232px] h-[740px] flex flex-col gap-[10px] shrink-0">
-            {/* Top Promotional Banners Block */}
             <div className="w-[232px] h-[134px] bg-[#2A0B3E] rounded-[16px] p-[16px] flex flex-col gap-[10px]">
-                {/* Row 1: Two small banners */}
                 <div className="flex gap-[10px] h-[44px]">
                     <div className="w-[98px] h-[44px] bg-gradient-to-r from-[#B42FF4] to-[#3B005F] rounded-[8px] flex items-center justify-start px-[6px] gap-[2px]">
                         <Megaphone className="w-[24px] h-[24px] text-[#FFC727] shrink-0" strokeWidth={1.5} />
@@ -31,7 +29,6 @@ export default function Sidebar() {
                         </span>
                     </div>
                 </div>
-                {/* Row 2: Winter Rush */}
                 <div className="w-[200px] h-[50px] bg-gradient-to-r from-[#3F31FF] to-[#1D0072] rounded-[8px] flex items-center justify-start px-[12px] gap-[8px]">
                     <Snowflake className="w-[32px] h-[32px] text-[#FFC727] shrink-0" strokeWidth={1.5} />
                     <div className="flex flex-col items-start">
@@ -41,15 +38,13 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            {/* Main Navigation Block */}
             <div className="w-[232px] flex-1 bg-[#2A0B3E] rounded-[16px] flex flex-col overflow-hidden p-[12px] gap-[8px]">
 
-                {/* We don't have a specific gift icon in the provided list so fallback to Lucide Gift if needed, or maybe Rectangle is Promotions. We used Rectangle for Refer a friend. We will fallback to Lucide. */}
+               
                 <NavItem fallbackIcon={<Gift size={20} />} label="Promotions" />
                 <NavItem iconSrc="/vip.png" label="VIP Program" />
                 <NavItem iconSrc="/cup.png" label="Tournaments" />
 
-                {/* Casino Dropdown */}
                 <div className={`flex flex-col rounded-[12px] overflow-hidden ${openDropdown === 'casino' ? 'bg-[#3B1257]' : ''}`}>
                     <div
                         onClick={() => toggleDropdown('casino')}
@@ -73,7 +68,6 @@ export default function Sidebar() {
                     )}
                 </div>
 
-                {/* Live Casino Dropdown */}
                 <div className={`flex flex-col rounded-[12px] overflow-hidden ${openDropdown === 'live-casino' ? 'bg-[#3B1257]' : ''}`}>
                     <div
                         onClick={() => toggleDropdown('live-casino')}
@@ -93,7 +87,6 @@ export default function Sidebar() {
                     )}
                 </div>
 
-                {/* Live Support */}
                 <div className="mt-auto">
                     <NavItem iconSrc="/livesupport.png" label="Live Support" />
                 </div>

@@ -7,9 +7,9 @@ export default function Home() {
     <Container>
       <div className="flex gap-[24px] w-full">
         <Sidebar />
-        <main className="flex-1">
-          {/* Main content will go here */}
-        </main>
+        <main className="w-[1184px] h-[4687px] flex flex-col gap-[100px] px-[24px]">
+            
+          </main>
       </div>
     </Container>
   );
