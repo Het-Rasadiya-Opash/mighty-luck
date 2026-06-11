@@ -17,11 +17,11 @@ export function Search({ className = '', ...props }: SearchProps) {
         ${className}
       `}
     >
-      <SearchIcon size={18} className="text-white shrink-0" />
+      <SearchIcon size={18} className="text-[#FFFFFF] shrink-0" />
       <input
         type="text"
         placeholder="What are you looking for?"
-        className="bg-transparent border-none outline-none text-white placeholder:text-[#BBCAF3] w-full text-sm"
+        className="bg-transparent border-none outline-none text-[#BBCAF3] placeholder:text-[#BBCAF3] w-full text-sm"
         {...props}
       />
     </div>
