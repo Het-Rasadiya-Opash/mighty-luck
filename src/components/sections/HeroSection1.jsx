@@ -37,7 +37,7 @@ export default function HeroSection1() {
       </div>
 
       {/* Middle Icons Area */}
-      <div className="relative z-10 flex items-center gap-[28px] w-[461.68px] h-[19px] justify-center overflow-hidden">
+      <div className="relative z-10 flex items-center gap-[28px] w-[462px] h-[19px] justify-center overflow-hidden">
          <Bitcoin width={13.38} height={18.39} className="text-white shrink-0" />
         <Gem width={13.38} height={18.39} className="text-white shrink-0" />
         <CircleDollarSign width={13.38} height={18.39} className="text-white shrink-0" />

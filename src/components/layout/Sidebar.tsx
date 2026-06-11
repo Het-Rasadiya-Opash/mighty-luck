@@ -13,7 +13,7 @@ export default function Sidebar() {
 
     return (
         <aside className="w-[232px] h-[740px] flex flex-col gap-[10px] shrink-0">
-            <div className="w-[232px] h-[134px] bg-[#2A0B3E] rounded-[16px] p-[16px] flex flex-col gap-[10px]">
+            <div className="w-[232px] h-[134px] bg-[#0C1F56] rounded-[16px] p-[16px] flex flex-col gap-[10px]">
                 <div className="flex gap-[10px] h-[44px]">
                     <div className="w-[98px] h-[44px] bg-gradient-to-r from-[#B42FF4] to-[#3B005F] rounded-[8px] flex items-center justify-start px-[6px] gap-[2px]">
                         <Megaphone className="w-[24px] h-[24px] text-[#FFC727] shrink-0" strokeWidth={1.5} />
@@ -38,7 +38,7 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            <div className="w-[232px] flex-1 bg-[#2A0B3E] rounded-[16px] flex flex-col overflow-hidden p-[12px] gap-[8px]">
+            <div className="w-[232px] flex-1 bg-[#0C1F56] rounded-[16px] flex flex-col overflow-hidden p-[12px] gap-[8px]">
 
                
                 <NavItem fallbackIcon={<Gift size={20} />} label="Promotions" />

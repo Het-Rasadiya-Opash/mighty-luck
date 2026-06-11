@@ -38,7 +38,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${jost.variable} ${manrope.variable}`}
     >
-      <body className="min-h-screen bg-[#20082E] flex flex-col items-center w-full overflow-x-hidden font-sans">
+      <body className="min-h-screen bg-[#091741] flex flex-col items-center w-full overflow-x-hidden font-sans">
         <Header/>
         {children}
       </body>

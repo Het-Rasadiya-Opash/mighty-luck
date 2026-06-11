@@ -13,7 +13,7 @@ export function Search({ className = '', ...props }: SearchProps) {
         w-[280px] h-[40px]
         px-[20px] py-[10px]
         rounded-[8px]
-        bg-[#40105C]
+        bg-[#112F82]
         ${className}
       `}
     >
@@ -21,7 +21,7 @@ export function Search({ className = '', ...props }: SearchProps) {
       <input
         type="text"
         placeholder="What are you looking for?"
-        className="bg-transparent border-none outline-none text-white placeholder:text-[#a68bb6] w-full text-sm"
+        className="bg-transparent border-none outline-none text-white placeholder:text-[#BBCAF3] w-full text-sm"
         {...props}
       />
     </div>
