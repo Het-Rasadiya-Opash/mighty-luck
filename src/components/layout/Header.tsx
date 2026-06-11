@@ -1,7 +1,6 @@
 "use client";
 
 import Image from 'next/image';
-import { Button } from '../ui/Button';
 import { Search } from '../ui/Search';
 
 export default function Header() {
@@ -22,8 +21,13 @@ export default function Header() {
         </div>
 
         <div className="flex items-center w-[199px] h-[40px] gap-[10px]">
-          <Button variant="primary">Login</Button>
-          <Button variant="secondary">Join</Button>
+          <button className='flex items-center justify-center gap-[10px] h-[40px] px-[30px] py-[10px] rounded-[8px] font-semibold text-sm transition-colors bg-[#1463FF] text-[#FFFFFF] w-[99px]'>
+            Login
+          </button>
+
+          <button className='flex items-center justify-center gap-[10px] h-[40px] px-[30px] py-[10px] rounded-[8px] font-semibold text-sm transition-colors bg-[#FFC83D] text-[#1A1404]  w-[90px]'>
+            Join
+          </button>
         </div>
 
       </div>
