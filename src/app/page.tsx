@@ -8,6 +8,7 @@ import slotsData from "@/data/slotsData.json";
 import originalsData from "@/data/originalsData.json";
 import crashGamesData from "@/data/crashGamesData.json";
 import WhyJoin from "@/components/sections/WhyJoin";
+import ProviderSection from "@/components/sections/ProviderSection";
 
 export default function Home() {
   return (
@@ -37,6 +38,8 @@ export default function Home() {
             icon={<Rocket className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />} 
             games={crashGamesData} 
           />
+
+          <ProviderSection />
         </main>
       </div>
     </Container>
