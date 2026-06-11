@@ -3,13 +3,10 @@ import Image from "next/image";
 export default function HeroBanner() {
     return (
         <div className="relative w-[1136px] h-[356px] shrink-0">
-            {/* Background Image Container */}
             <div className="absolute w-[1136px] h-[356px] left-0 top-0 rounded-[16px] overflow-hidden">
-                {/* Note: hero-banner.jpg has a white background baked into it. 
-            To get the pop-out crown/coins effect against the dark page, 
-            you MUST upload a transparent PNG version of this asset! */}
+
                 <Image
-                    src="/hero-banner.png"
+                    src="/new-banner.jpg"
                     alt="Hero Background"
                     fill
                     className="object-cover object-bottom"
@@ -17,9 +14,8 @@ export default function HeroBanner() {
                 />
             </div>
 
-            {/* Ambient glow behind text */}
             <div
-                className="absolute bg-[#1F0C21]"
+                className="absolute bg-[#06102B]"
                 style={{
                     width: '231px',
                     height: '231px',
@@ -30,14 +26,13 @@ export default function HeroBanner() {
                 }}
             />
 
-            {/* Content Block */}
             <div
                 className="absolute flex flex-col items-start gap-[24px] z-10"
                 style={{
                     width: '457px',
                     height: '204px',
                     left: '40px',
-                    top: '101px' // calc(50% - 204px/2 + 25px) -> 178 - 102 + 25 = 101
+                    top: '101px'
                 }}
             >
                 <div className="flex flex-col items-start gap-[4px] w-[457px] h-[140px] shrink-0">
