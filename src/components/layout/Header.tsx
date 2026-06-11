@@ -14,7 +14,7 @@ export default function Header() {
               <Image src="/heade-menu-icons.png" alt="Menu Icon" width={24} height={24} className="object-contain" />
             </button>
             <div className="flex items-center shrink-0">
-              <Image src="/Horizontal logo.png" alt="Mighty Luck" width={160} height={32} className="object-contain" />
+              <Image src="/Horizontal logo.png" alt="Mighty Luck" width={190} height={34.66} className="object-contain" />
             </div>
           </div>
           <Search />
