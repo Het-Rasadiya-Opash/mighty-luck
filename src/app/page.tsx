@@ -5,6 +5,7 @@ import HeroSection1 from "@/components/sections/HeroSection1";
 import GameSlider from "@/components/sections/GameSlider";
 import { Cherry, Zap } from "lucide-react";
 import slotsData from "@/data/slotsData.json";
+import originalsData from "@/data/originalsData.json";
 
 export default function Home() {
   return (
@@ -24,7 +25,7 @@ export default function Home() {
           <GameSlider 
             title="ORIGINALS (14)" 
             icon={<Zap className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />} 
-            games={slotsData} 
+            games={originalsData} 
           />
         </main>
       </div>
