@@ -28,7 +28,6 @@ export default function CollectionSection() {
     };
     return (
         <section className="w-[1136px] flex flex-col gap-[20px]">
-            {/* Header */}
             <div className="w-[1136px] h-[30px] flex items-center justify-between">
                 <div className="flex items-center gap-[12px]">
                     <Sun className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />
@@ -60,7 +59,6 @@ export default function CollectionSection() {
                 </div>
             </div>
 
-            {/* List Wrapper - 1300px overflowing */}
             <div className="relative w-[1136px] overflow-hidden">
                 <div 
                     className="flex gap-[12px] h-[100px] transition-transform duration-300 ease-in-out"
@@ -74,7 +72,6 @@ export default function CollectionSection() {
                             <div className="w-[76px] h-[76px] rounded-[8px] bg-[#0E1B3D] overflow-hidden flex-none shrink-0 flex items-center justify-center relative z-0">
                                 <div className="absolute inset-0 bg-[#173EAD] opacity-0 group-hover:opacity-20 transition-opacity z-10" />
                                 
-                                {/* Ellipse 7 Glow */}
                                 <div className="absolute w-[70px] h-[70px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1463FF] blur-[22px] rounded-full z-0" />
                                 
                                 <Image

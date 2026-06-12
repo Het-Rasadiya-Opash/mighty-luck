@@ -34,7 +34,6 @@ export default function WhyJoin() {
     return (
         <section className="flex h-[278px] w-[1136px] flex-none flex-col items-start gap-[28px]">
 
-            {/* Header */}
             <div className="flex items-center justify-between w-[1136px] h-[30px] shrink-0">
                 <div className="flex items-center h-[30px] gap-[12px] shrink-0">
                     <Trophy className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />

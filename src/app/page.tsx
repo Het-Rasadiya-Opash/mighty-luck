@@ -13,6 +13,7 @@ import WhyJoin from "@/components/sections/WhyJoin";
 import ProviderSection from "@/components/sections/ProviderSection";
 import CollectionSection from "@/components/sections/CollectionSection";
 import RecentWinnerSection from "@/components/sections/RecentWinnerSection";
+import AboutSection from "@/components/sections/AboutSection";
 
 export default function Home() {
   return (
@@ -59,6 +60,7 @@ export default function Home() {
 
           <CollectionSection />
           <RecentWinnerSection />
+          <AboutSection />
         </main>
       </div>
     </Container>

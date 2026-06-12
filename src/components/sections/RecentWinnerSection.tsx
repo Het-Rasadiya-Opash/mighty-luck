@@ -62,7 +62,6 @@ const recentWinners = [
 export default function RecentWinnerSection() {
     return (
         <section className="w-[1136px] flex flex-col gap-[20px]">
-            {/* Header */}
             <div className="w-[1136px] h-[30px] flex items-center justify-between">
                 <div className="flex items-center gap-[12px] h-[30px]">
                     <div className="w-[30px] h-[30px] flex items-center justify-center">
@@ -74,10 +73,8 @@ export default function RecentWinnerSection() {
                 </div>
             </div>
 
-            {/* List Container */}
             <div className="w-[1136px] flex flex-col gap-[8px]">
                 
-                {/* Table Header */}
                 <div className="flex items-center px-[24px] w-full h-[20px] font-['Jost'] font-bold text-[14px] leading-[20px] tracking-[0.02em] uppercase text-white/50 mb-[4px]">
                     <div className="flex-1">GAME</div>
                     <div className="w-[624px] flex gap-[12px]">
@@ -87,15 +84,12 @@ export default function RecentWinnerSection() {
                     </div>
                 </div>
 
-                {/* List Rows */}
                 {recentWinners.map((winner) => (
                     <div 
                         key={winner.id}
                         className="w-[1136px] h-[60px] bg-[#0C1F56] rounded-[8px] px-[24px] flex items-center justify-between shrink-0"
                     >
-                        {/* Game Column */}
                         <div className="flex items-center gap-[12px]">
-                            {/* Game Thumbnail */}
                             <div className="w-[22px] h-[30px] rounded-[1.8px] shrink-0 relative overflow-hidden bg-[#CDCDCD]">
                                 <Image
                                     src={winner.image}
