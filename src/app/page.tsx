@@ -31,42 +31,62 @@ export default async function Home() {
           <HeroBanner />
           {session ? <TabSection /> : <HeroSection1 />}
 
-          <GameSlider
-            title="SLOTS (1,487)"
-            icon={<Cherry className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />}
-            games={slotsData}
-          />
+          <div id="tab-content-container" className="flex flex-col gap-6 md:gap-8 lg:gap-10">
+            <div id="slots" className="tab-content">
+            <GameSlider
+              title="SLOTS (1,487)"
+              icon={<Cherry className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />}
+              games={slotsData}
+            />
+          </div>
 
-          <GameSlider
-            title="ORIGINALS (14)"
-            icon={<Zap className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
-            games={originalsData}
-          />
+          <div id="originals" className="tab-content">
+            <GameSlider
+              title="ORIGINALS (14)"
+              icon={<Zap className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+              games={originalsData}
+            />
+          </div>
 
-          <WhyJoin />
+          <div id="why-join" className="tab-content">
+            <WhyJoin />
+          </div>
 
-          <GameSlider
-            title="CRASH GAMES (723)"
-            icon={<Rocket className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
-            games={crashGamesData}
-          />
+          <div id="crash-games" className="tab-content">
+            <GameSlider
+              title="CRASH GAMES (723)"
+              icon={<Rocket className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+              games={crashGamesData}
+            />
+          </div>
 
-          <ProviderSection />
+          <div id="providers" className="tab-content">
+            <ProviderSection />
+          </div>
 
-          <GameSlider
-            title="TABLE GAMES (51)"
-            icon={<Dices className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
-            games={tableGamesData}
-          />
+          <div id="table-games" className="tab-content">
+            <GameSlider
+              title="TABLE GAMES (51)"
+              icon={<Dices className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+              games={tableGamesData}
+            />
+          </div>
 
-          <GameSlider
-            title="BONUS BUYS (145)"
-            icon={<CircleDollarSign className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
-            games={bonusBuysData}
-          />
+          <div id="bonus-buys" className="tab-content">
+            <GameSlider
+              title="BONUS BUYS (145)"
+              icon={<CircleDollarSign className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+              games={bonusBuysData}
+            />
+          </div>
 
-          <CollectionSection />
-          <RecentWinnerSection />
+          <div id="collection" className="tab-content">
+            <CollectionSection />
+          </div>
+          <div id="recent-winners" className="tab-content">
+            <RecentWinnerSection />
+          </div>
+          </div>
           <AboutSection />
           <CryptoIconSection />
           <Footer />

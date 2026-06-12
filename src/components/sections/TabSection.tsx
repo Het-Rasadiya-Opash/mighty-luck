@@ -28,7 +28,31 @@ export default function TabSection() {
                         return (
                             <button
                                 key={index}
-                                onClick={() => setActiveTab(tab.name)}
+                                onClick={() => {
+                                    setActiveTab(tab.name);
+                                    
+                                    // Get all tab content sections
+                                    const allSections = document.querySelectorAll('.tab-content');
+                                    
+                                    if (tab.name === 'Lobby') {
+                                        // Reset order for all sections
+                                        allSections.forEach((el) => {
+                                            (el as HTMLElement).style.order = '0';
+                                        });
+                                    } else {
+                                        // Reset order for all sections
+                                        allSections.forEach((el) => {
+                                            (el as HTMLElement).style.order = '0';
+                                        });
+                                        
+                                        // Move the requested section to the top
+                                        const id = tab.name.toLowerCase().replace(' ', '-');
+                                        const targetEl = document.getElementById(id);
+                                        if (targetEl) {
+                                            targetEl.style.order = '-1';
+                                        }
+                                    }
+                                }}
                                 className={`flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[135px] h-[50px] rounded-[6px] shrink-0 transition-colors ${isActive
                                     ? 'bg-[#1463FF]'
                                     : 'bg-[#0C1F56] hover:bg-[#112F82]'

@@ -11,12 +11,13 @@ export interface Game {
 }
 
 export interface GameSliderProps {
+    id?: string;
     title: string;
     icon: React.ReactNode;
     games: Game[];
 }
 
-export default function GameSlider({ title, icon, games }: GameSliderProps) {
+export default function GameSlider({ id, title, icon, games }: GameSliderProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(7);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export default function GameSlider({ title, icon, games }: GameSliderProps) {
     }, [maxIndex]);
 
     return (
-        <div ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
+        <div id={id} ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
             <div className="flex items-center justify-between w-full h-[30px]">
                 <div className="flex items-center gap-[12px]">
                     {icon}
