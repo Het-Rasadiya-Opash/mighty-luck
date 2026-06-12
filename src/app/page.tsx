@@ -20,9 +20,9 @@ import Footer from "@/components/layout/Footer";
 export default function Home() {
   return (
     <Container>
-      <div className="flex gap-[24px] w-full">
+      <div className="flex gap-4 lg:gap-6 w-full">
         <Sidebar />
-        <main className="w-[1136px] flex flex-col gap-[40px]">
+        <main className="flex-1 min-w-0 flex flex-col gap-6 md:gap-8 lg:gap-10">
           <HeroBanner />
           <HeroSection1 />
 
@@ -64,7 +64,7 @@ export default function Home() {
           <RecentWinnerSection />
           <AboutSection />
           <CryptoIconSection />
-<Footer/>
+          <Footer />
         </main>
       </div>
     </Container>

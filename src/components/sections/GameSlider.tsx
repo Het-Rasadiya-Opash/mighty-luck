@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import Image from 'next/image';
 
@@ -18,30 +18,49 @@ export interface GameSliderProps {
 
 export default function GameSlider({ title, icon, games }: GameSliderProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [visibleCount, setVisibleCount] = useState(7);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    // Width of one card (152) + gap (12)
-    const cardWidth = 164;
-    // Show about 7 cards in the 1136px container
-    const maxIndex = Math.max(0, games.length - 7);
+    const cardWidth = 152;
+    const cardGap = 12;
+    const cardStep = cardWidth + cardGap;
 
-    const handlePrev = () => {
-        setCurrentIndex((prev) => Math.max(prev - 1, 0));
-    };
+    useEffect(() => {
+        const updateVisible = () => {
+            if (containerRef.current) {
+                const w = containerRef.current.offsetWidth;
+                const count = Math.floor((w + cardGap) / cardStep);
+                setVisibleCount(Math.max(2, count));
+            }
+        };
+        updateVisible();
+        const ro = new ResizeObserver(updateVisible);
+        if (containerRef.current) ro.observe(containerRef.current);
+        return () => ro.disconnect();
+    }, [cardStep]);
 
-    const handleNext = () => {
-        setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
-    };
+    const maxIndex = Math.max(0, games.length - visibleCount);
+
+    const handlePrev = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    const handleNext = () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+
+    // Clamp index when visibleCount changes
+    useEffect(() => {
+        setCurrentIndex((prev) => Math.min(prev, maxIndex));
+    }, [maxIndex]);
 
     return (
-        <div className="flex flex-col gap-[20px] w-[1136px] overflow-hidden shrink-0">
-            <div className="flex items-center justify-between w-[1136px] h-[30px] shrink-0">
-                <div className="flex items-center w-[186px] h-[30px] gap-[12px] shrink-0">
+        <div ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
+            {/* Header row */}
+            <div className="flex items-center justify-between w-full h-[30px]">
+                <div className="flex items-center gap-[12px]">
                     {icon}
-                    <span className="font-['Jost'] text-[20px] font-extrabold leading-[100%] tracking-[0.01em] text-white uppercase whitespace-nowrap">{title}</span>
+                    <span className="font-['Jost'] text-[16px] md:text-[18px] lg:text-[20px] font-extrabold leading-[100%] tracking-[0.01em] text-white uppercase whitespace-nowrap">
+                        {title}
+                    </span>
                 </div>
-
-                <div className="flex items-center justify-end gap-[20px] w-[133px] h-[30px] shrink-0">
-                    <span className="flex items-center justify-center w-[45px] h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[100%] tracking-[0.02em] text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap shrink-0">
+                <div className="flex items-center gap-3 md:gap-[20px]">
+                    <span className="font-['Manrope'] font-semibold text-[12px] leading-[100%] tracking-[0.02em] text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap hidden sm:flex">
                         View all
                     </span>
                     <div className="flex items-center gap-[4px]">
@@ -63,21 +82,30 @@ export default function GameSlider({ title, icon, games }: GameSliderProps) {
                 </div>
             </div>
 
-            <div className="w-[1300px] h-[200px] shrink-0 overflow-visible">
+            {/* Slider viewport */}
+            <div className="w-full overflow-hidden">
                 <div
-                    className="flex gap-[12px] h-[200px] transition-transform duration-300 ease-out"
-                    style={{ transform: `translateX(-${currentIndex * cardWidth}px)` }}
+                    className="flex gap-[12px] transition-transform duration-300 ease-out"
+                    style={{ transform: `translateX(-${currentIndex * cardStep}px)` }}
                 >
                     {games.map((game) => (
-                        <div key={game.id} className="w-[152px] h-[200px] bg-[#0C1F56] rounded-[16px] flex flex-col items-center justify-center overflow-hidden relative group shrink-0 cursor-pointer hover:z-10">
-                            <Image src={game.image} alt={game.title} fill className="object-cover z-0" />
-
+                        <div
+                            key={game.id}
+                            className="w-[130px] sm:w-[140px] md:w-[152px] h-[180px] md:h-[200px] bg-[#0C1F56] rounded-[16px] flex flex-col items-center justify-center overflow-hidden relative group shrink-0 cursor-pointer hover:z-10"
+                        >
+                            <Image
+                                src={game.image}
+                                alt={game.title}
+                                fill
+                                className="object-cover z-0"
+                                sizes="(max-width: 640px) 130px, (max-width: 1024px) 140px, 152px"
+                            />
                             <div className="absolute inset-0 bg-black/60 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button className="absolute w-[24px] h-[24px] top-[12px] left-[114px] text-white hover:text-[#FFC83D] transition-colors flex items-center justify-center">
-                                    <Heart size={24} strokeWidth={2} />
+                                <button className="absolute w-[24px] h-[24px] top-[12px] right-[12px] text-white hover:text-[#FFC83D] transition-colors flex items-center justify-center">
+                                    <Heart size={20} strokeWidth={2} />
                                 </button>
-                                <button className="absolute w-[48px] h-[48px] top-[76px] left-[52px] bg-[#FFC83D] rounded-full flex items-center justify-center hover:scale-105 transition-transform">
-                                    <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-[#0C1F56] border-b-[8px] border-b-transparent ml-[4px]"></div>
+                                <button className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[44px] h-[44px] bg-[#FFC83D] rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                                    <div className="w-0 h-0 border-t-[7px] border-t-transparent border-l-[11px] border-l-[#0C1F56] border-b-[7px] border-b-transparent ml-[3px]" />
                                 </button>
                             </div>
                         </div>
