@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Search } from '../ui/Search';
 
 export default function Header() {
@@ -35,8 +35,13 @@ export default function Header() {
             onClick={() => setIsOpen(true)}
             aria-label="Open menu"
           >
-            <Menu size={22} />
-          </button>
+            <Image 
+              src="/men-icons.png" 
+              alt="Menu" 
+              width={22} 
+              height={22} 
+              className="object-contain"
+            />          </button>
 
           {/* Logo */}
           <div className="flex items-center shrink-0">
