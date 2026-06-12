@@ -52,7 +52,10 @@ export default function SignInPage() {
             className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px] bg-cover bg-center"
             style={{ backgroundImage: 'url(/login-loin.png)' }}
           />
-          <div className="absolute left-0 top-[327px] w-[340px] h-[219px] bg-gradient-to-b from-[rgba(0,12,36,0)] to-[#000C24]" />
+          <div 
+            className="absolute left-0 top-[327px] w-[340px] h-[219px]" 
+            style={{ background: 'linear-gradient(180deg, rgba(0, 12, 36, 0) 6.85%, #000C24 45.66%)' }} 
+          />
           <div className="absolute bottom-[-129px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
           
           <div className="absolute top-[359px] left-[calc(50%-150px)] w-[300px] h-[160px] flex flex-col items-center gap-[20px]">
