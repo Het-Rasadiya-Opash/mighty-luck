@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info, Gift, Award, Coins, Ban, CreditCard, Crown } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -32,7 +32,28 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [selectedPayment, setSelectedPayment] = useState(payments[1]);
   const [isPending, setIsPending] = useState(false);
   const [fiatStep, setFiatStep] = useState<'address' | 'payment'>('address');
+  const [activeTab, setActiveTab] = useState<'deposit' | 'bonuses' | 'withdraw' | 'transactions'>('deposit');
   const [fiatAmount, setFiatAmount] = useState<number | 'custom'>(30);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [promoCode, setPromoCode] = useState('');
+  const [isPromoApplied, setIsPromoApplied] = useState(false);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const slideWidth = 308; // width (300px) + gap (8px)
+    const newIndex = Math.round(e.currentTarget.scrollLeft / slideWidth);
+    if (newIndex !== activeSlide) setActiveSlide(newIndex);
+  };
+
+  const scrollToSlide = (index: number) => {
+    setActiveSlide(index);
+    if (sliderRef.current) {
+      sliderRef.current.scrollTo({
+        left: index * 308,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const countries = [
     { id: 'us', name: 'United States', flag: '🇺🇸' },
@@ -53,6 +74,9 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setIsPending(false);
       setFiatStep('address');
       setFiatAmount(30);
+      setPromoCode('');
+      setIsPromoApplied(false);
+      setActiveTab('deposit');
     } else {
       document.body.style.overflow = "";
     }
@@ -75,15 +99,16 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
         onClick={onClose}
       />
 
-      <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-[90vw] max-w-[500px] p-[24px] px-[20px] pb-[32px] gap-[24px] overflow-hidden shadow-2xl">
-        <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none" />
-
+      <div className="relative w-[90vw] max-w-[500px]">
         <button
           onClick={onClose}
-          className="absolute top-[20px] right-[20px] sm:fixed sm:top-[calc(50%-302px)] sm:right-[calc(50%-250px-40px)] z-10 text-white hover:opacity-80 transition-opacity"
+          className="absolute -top-[40px] right-0 sm:-right-[40px] sm:top-0 z-10 text-white hover:opacity-80 transition-opacity"
         >
           <X size={24} />
         </button>
+
+        <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-full p-[24px] px-[20px] pb-[32px] gap-[24px] overflow-hidden shadow-2xl">
+          <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none" />
 
         <div className="flex flex-row items-center gap-[12px] z-10">
           <Wallet size={20} className="text-[#FFC83D]" />
@@ -92,22 +117,33 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </h2>
         </div>
 
-        <div className="flex flex-row items-center gap-[8px] w-full z-10 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#1463FF] rounded-[6px]">
-            <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white">Deposit</span>
+        <div className="flex flex-col gap-[16px] w-full z-10">
+          <div className="flex flex-row items-center gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden">
+          <button 
+            onClick={() => setActiveTab('deposit')}
+            className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'deposit' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+            <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'deposit' ? 'text-white' : 'text-[#A5B8EF]'}`}>Deposit</span>
           </button>
-          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[6px]">
-            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">Bonuses</span>
+          <button 
+            onClick={() => setActiveTab('bonuses')}
+            className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'bonuses' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+            <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'bonuses' ? 'text-white' : 'text-[#A5B8EF]'}`}>Bonuses</span>
           </button>
-          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[6px]">
-            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">Withdraw</span>
+          <button 
+            onClick={() => setActiveTab('withdraw')}
+            className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'withdraw' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+            <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'withdraw' ? 'text-white' : 'text-[#A5B8EF]'}`}>Withdraw</span>
           </button>
-          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[6px]">
-            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">Transactions</span>
+          <button 
+            onClick={() => setActiveTab('transactions')}
+            className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'transactions' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+            <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'transactions' ? 'text-white' : 'text-[#A5B8EF]'}`}>Transactions</span>
           </button>
         </div>
 
-        {isPending ? (
+        {activeTab === 'deposit' && (
+          <>
+            {isPending ? (
           <div className="flex flex-col items-start p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[287px]">
             <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] w-full">
               Your transaction in progress and pending confirmation from the blockchain.
@@ -419,9 +455,106 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </>
             )}
           </div>
+            )}
+          </>
         )}
 
-        {isPending ? (
+        {activeTab === 'bonuses' && (
+          <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[363px] overflow-hidden">
+             <div className="flex flex-col items-start gap-[8px] w-full">
+               <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">If you have a Bonus Code — enter it here</label>
+               <div className="flex flex-row items-center gap-[8px] w-full h-[40px]">
+                 <div className={`flex-1 h-full bg-[#112F82] rounded-[8px] px-[16px] flex flex-row items-center justify-between border transition-colors ${isPromoApplied ? 'border-transparent' : 'border-transparent focus-within:border-[#1463FF]'}`}>
+                   <input 
+                     type="text" 
+                     placeholder="Promo Code" 
+                     spellCheck="false"
+                     value={promoCode}
+                     onChange={(e) => setPromoCode(e.target.value)}
+                     disabled={isPromoApplied}
+                     className={`w-full h-full bg-transparent font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#7795E8] outline-none disabled:opacity-100 disabled:text-white ${isPromoApplied ? 'font-bold' : 'font-semibold'}`}
+                   />
+                   {isPromoApplied && (
+                     <Info size={16} className="text-[#A5B8EF] shrink-0 ml-[8px]" />
+                   )}
+                 </div>
+                 <button 
+                   onClick={() => {
+                     if (isPromoApplied) {
+                       setIsPromoApplied(false);
+                       setPromoCode('');
+                     } else {
+                       if (promoCode.trim()) {
+                         setIsPromoApplied(true);
+                         toast.success('Coupon applied');
+                       }
+                     }
+                   }}
+                   className={`flex flex-row justify-center items-center h-full bg-[#FFC83D] hover:bg-[#F2B926] rounded-[8px] transition-colors shrink-0 ${isPromoApplied ? 'w-[109px]' : 'w-[100px]'}`}
+                 >
+                   <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
+                     {isPromoApplied ? 'Cancel' : 'Apply'}
+                   </span>
+                 </button>
+               </div>
+             </div>
+
+             <div className="flex flex-col items-start gap-[12px] w-[428px]">
+               <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">Available bonuses for you</span>
+               
+               <div 
+                 ref={sliderRef}
+                 onScroll={handleScroll}
+                 className="flex flex-row items-start gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth"
+               >
+                 {[0, 1, 2].map((item, idx) => (
+                   <div key={item} className="flex flex-col justify-center items-start p-[20px] gap-[12px] w-[300px] h-[205px] bg-[#112F82] rounded-[12px] shrink-0 snap-center">
+                      <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white truncate w-full">150% Reload Bonus + 30 Free Spins</span>
+                      <div className="flex flex-col gap-[9px] w-full">
+                        <div className="flex flex-row gap-[12px] w-full">
+                           <div className="flex flex-col gap-[2px] w-[124px]">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Min. Deposit</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">$30</span>
+                           </div>
+                           <div className="flex flex-col gap-[2px] w-[124px]">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Max. Cashout</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">40x</span>
+                           </div>
+                        </div>
+                        <div className="flex flex-row gap-[12px] w-full">
+                           <div className="flex flex-col gap-[2px] w-[124px]">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Max. Amount</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">$30</span>
+                           </div>
+                           <div className="flex flex-col gap-[2px] w-[124px]">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Wager (dep. + bonus)</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">10x</span>
+                           </div>
+                        </div>
+                      </div>
+                      <button className="flex flex-row justify-center items-center py-[10px] w-full h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] rounded-[6px] transition-colors mt-[4px]">
+                         <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#1A1404]">Activate</span>
+                      </button>
+                   </div>
+                 ))}
+               </div>
+
+               <div className="flex flex-row justify-center items-center gap-[4px] w-full h-[6px]">
+                 {[0, 1, 2].map((idx) => (
+                   <button
+                     key={idx}
+                     onClick={() => scrollToSlide(idx)}
+                     className={`h-[6px] bg-[#BBCAF3] rounded-full transition-all duration-300 ${activeSlide === idx ? 'w-[12px]' : 'w-[6px]'}`}
+                   />
+                 ))}
+               </div>
+             </div>
+          </div>
+        )}
+
+        {activeTab === 'deposit' && (
+          <>
+            {isPending ? (
           <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
             <button
               onClick={() => {
@@ -465,10 +598,26 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   : "I've completed my deposit"}
               </span>
             </button>
+            </div>
+            )}
+          </>
+        )}
 
-
+        {(activeTab === 'withdraw' || activeTab === 'transactions') && (
+          <div className="flex flex-col items-center justify-center p-[24px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[363px]">
+            <Crown size={48} className="text-[#FFC83D]" fill="currentColor" />
+            <div className="flex flex-col items-center gap-[8px]">
+              <h3 className="font-[family-name:var(--font-jost)] font-bold text-[24px] leading-[32px] tracking-[0.02em] text-white">
+                Coming Soon
+              </h3>
+              <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] max-w-[80%]">
+                This feature is currently under development. Stay tuned for updates!
+              </p>
+            </div>
           </div>
         )}
+        </div>
+        </div>
       </div>
     </div>
   );
