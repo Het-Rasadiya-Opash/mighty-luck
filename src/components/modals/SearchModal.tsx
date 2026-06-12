@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { 
   X, Search, Gamepad2, Clock, Heart, Sparkles, Zap, Cherry, 
   Dices, Rocket, Grid, MonitorPlay, Coins, Spade, Flame, LayoutGrid 
 } from 'lucide-react';
 import gamesData from '@/data/games.json';
+import providerData from '@/data/providerData.json';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -16,6 +17,41 @@ interface SearchModalProps {
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [activeCategory, setActiveCategory] = useState('All Games');
   const [searchQuery, setSearchQuery] = useState('');
+  const providersScrollRef = useRef<HTMLDivElement>(null);
+  const [activeProviderPage, setActiveProviderPage] = useState(0);
+
+  const handleProviderScroll = () => {
+    if (providersScrollRef.current) {
+      const scrollLeft = providersScrollRef.current.scrollLeft;
+      const scrollWidth = providersScrollRef.current.scrollWidth;
+      const clientWidth = providersScrollRef.current.clientWidth;
+      const maxScrollLeft = scrollWidth - clientWidth;
+      
+      if (maxScrollLeft <= 0) {
+        setActiveProviderPage(0);
+        return;
+      }
+      
+      const page = Math.round((scrollLeft / maxScrollLeft) * 2); // 3 dots = indices 0, 1, 2
+      setActiveProviderPage(page);
+    }
+  };
+
+  const scrollToProviderPage = (pageIndex: number) => {
+    if (providersScrollRef.current) {
+      const scrollWidth = providersScrollRef.current.scrollWidth;
+      const clientWidth = providersScrollRef.current.clientWidth;
+      const maxScrollLeft = scrollWidth - clientWidth;
+      
+      const targetScrollLeft = (pageIndex / 2) * maxScrollLeft;
+      
+      providersScrollRef.current.scrollTo({
+        left: targetScrollLeft,
+        behavior: 'smooth'
+      });
+      setActiveProviderPage(pageIndex);
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -189,24 +225,39 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </div>
 
                   <div className="flex flex-col gap-[16px] w-full relative">
-                    <div className="flex flex-row gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory">
-                      {['BELATRA', 'B GAMING', 'TADA GAMING', 'ENDORPHINA', 'NOLIMIT CITY'].map((provider, index) => (
-                        <div key={index} className="flex flex-col justify-center items-center p-[12px_24px] gap-[8px] w-[152px] h-[100px] bg-[#0C1F56] rounded-[12px] shrink-0 snap-start">
-                          <span className="font-[family-name:var(--font-jost)] font-bold text-[16px] text-white uppercase text-center w-full truncate">
-                            {provider}
-                          </span>
-                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] text-[#FFC83D]">
-                            226 Games
-                          </span>
+                    <div 
+                      ref={providersScrollRef}
+                      onScroll={handleProviderScroll}
+                      className="flex flex-row gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth"
+                    >
+                      {providerData.map((provider) => (
+                        <div key={provider.id} className="flex flex-col justify-center items-center p-[12px_24px] gap-[8px] w-[152px] h-[100px] bg-[#0C1F56] rounded-[12px] shrink-0 snap-start cursor-pointer group">
+                          <div className="w-[80px] h-[40px] relative transition-transform duration-300 group-hover:scale-105">
+                            <Image unoptimized src={provider.image} alt={provider.name} fill className="object-contain" />
+                          </div>
+                          <div className="flex flex-row justify-center items-center gap-[10px] w-[104px] h-[14px]">
+                            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] text-center text-[#FFC83D]">
+                              {provider.gamesCount} Games
+                            </span>
+                          </div>
                         </div>
                       ))}
                     </div>
 
                     {/* Pagination Dots */}
                     <div className="flex flex-row justify-center items-center gap-[4px] w-full mt-[4px]">
-                      <div className="w-[12px] h-[6px] bg-[#BBCAF3] rounded-[150px]" />
-                      <div className="w-[6px] h-[6px] bg-[#BBCAF3]/50 rounded-[150px]" />
-                      <div className="w-[6px] h-[6px] bg-[#BBCAF3]/50 rounded-[150px]" />
+                      {[0, 1, 2].map((dotIndex) => (
+                        <button
+                          key={dotIndex}
+                          onClick={() => scrollToProviderPage(dotIndex)}
+                          className={`${
+                            activeProviderPage === dotIndex 
+                              ? 'w-[12px] h-[6px] bg-[#BBCAF3]' 
+                              : 'w-[6px] h-[6px] bg-[#BBCAF3]/50'
+                          } rounded-[150px] transition-all duration-300 hover:bg-[#BBCAF3]/80`}
+                          aria-label={`Scroll to page ${dotIndex + 1}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
