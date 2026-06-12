@@ -7,9 +7,11 @@ import { X, Wallet, Bell, Gift } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { Search } from '../ui/Search';
 import { SidebarNav } from '@/components/layout/Sidebar';
+import { DepositModal } from '@/components/modals/DepositModal';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDepositModalOpen, setIsDepositModalOpen] = useState(false);
   const { data: session, status } = useSession();
 
   useEffect(() => {
@@ -67,7 +69,10 @@ export default function Header() {
                 </span>
               </div>
 
-              <button className="flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors">
+              <button 
+                className="flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors"
+                onClick={() => setIsDepositModalOpen(true)}
+              >
                 <Wallet size={16} color="#1A1404" fill="#1A1404" />
                 <span className="font-manrope font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
                   Deposit
@@ -75,7 +80,10 @@ export default function Header() {
               </button>
             </div>
 
-            <button className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[32px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors">
+            <button 
+              className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[32px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
+              onClick={() => setIsDepositModalOpen(true)}
+            >
               <Wallet size={16} color="#1A1404" fill="#1A1404" />
             </button>
 
@@ -147,6 +155,11 @@ export default function Header() {
           </div>
         </>
       )}
+
+      <DepositModal 
+        isOpen={isDepositModalOpen} 
+        onClose={() => setIsDepositModalOpen(false)} 
+      />
     </header>
   );
 }

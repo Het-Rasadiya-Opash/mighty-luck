@@ -1,0 +1,426 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info } from "lucide-react";
+import Image from "next/image";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
+interface DepositModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function DepositModal({ isOpen, onClose }: DepositModalProps) {
+  const [isBonusOpen, setIsBonusOpen] = useState(false);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+
+  const bonuses = [
+    { id: 1, title: '150% Reload Bonus + 30 Free Spins', desc: '(Min. Deposit $10)', iconType: 'gift' },
+    { id: 2, title: '350% Welcome Bonus', desc: '45x PT - Min. Dep. $20', iconType: 'badge' },
+    { id: 3, title: '500% Crypto Bonus', desc: '45x PT - Min. Dep. $20', iconType: 'coins' },
+    { id: 4, title: 'I will deposit without bonus', desc: '', iconType: 'ban' }
+  ];
+
+  const payments = [
+    { id: 'fiat', titleExpanded: 'Credit Card (Visa/Mastercard)', titleClosed: 'Credit Card', descClosed: '(Min. Deposit $30 - Max. Deposit $2,500)' },
+    { id: 'crypto', titleExpanded: 'Bitcoin (BTC)', titleClosed: 'Bitcoin', descClosed: '(Min. Deposit $10)', symbol: '₿' }
+  ];
+
+  const router = useRouter();
+  const [selectedBonus, setSelectedBonus] = useState(bonuses[0]);
+  const [selectedPayment, setSelectedPayment] = useState(payments[1]);
+  const [isPending, setIsPending] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      setIsBonusOpen(false);
+      setIsPaymentOpen(false);
+      setIsPending(false);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  const handleCompleteDeposit = () => {
+    toast.success("Bitcoin Transection Completed!");
+    setIsPending(true);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
+        onClick={onClose}
+      />
+
+      {/* Modal Container */}
+      <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-[90vw] max-w-[500px] p-[24px] px-[20px] pb-[32px] gap-[24px] overflow-hidden shadow-2xl">
+        {/* Glow */}
+        <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none" />
+
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-[20px] right-[20px] sm:fixed sm:top-[calc(50%-302px)] sm:right-[calc(50%-250px-40px)] z-10 text-white hover:opacity-80 transition-opacity"
+        >
+          <X size={24} />
+        </button>
+
+        {/* Header */}
+        <div className="flex flex-row items-center gap-[12px] z-10">
+          <Wallet size={20} className="text-[#FFC83D]" />
+          <h2 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] text-white">
+            Wallet
+          </h2>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex flex-row items-center gap-[8px] w-full z-10 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#1463FF] rounded-[6px]">
+            <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white">Deposit</span>
+          </button>
+          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[6px]">
+            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">Bonuses</span>
+          </button>
+          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[6px]">
+            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">Withdraw</span>
+          </button>
+          <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[6px]">
+            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">Transactions</span>
+          </button>
+        </div>
+
+        {/* Form Container */}
+        {isPending ? (
+          <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-10">
+            <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF]">
+              Your transaction in progress and pending confirmation from the blockchain.
+            </p>
+
+            <div className="flex flex-row justify-center items-center gap-[10px] w-full h-[120px]">
+              <CrownLightningIcon className="text-[#A5B8EF] w-[28px] h-[21px]" />
+              <CrownLightningIcon className="text-[#A5B8EF] w-[28px] h-[21px]" />
+              <CrownLightningIcon className="text-[#112F82] w-[28px] h-[21px]" />
+            </div>
+
+            <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF]">
+              1 confirmation is required for deposits to be credited.<br />Want to know how many confirmations this transaction has?<br />Please <span className="text-[#FFC83D] cursor-pointer hover:underline">click here</span>.
+            </p>
+          </div>
+        ) : (
+          <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-10">
+
+            {/* 1. Select a Bonus */}
+            <div className="relative flex flex-col gap-[8px] w-full z-30">
+              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                1.Select a Bonus
+              </label>
+              <button
+                onClick={() => { setIsBonusOpen(!isBonusOpen); setIsPaymentOpen(false); }}
+                className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isBonusOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+              >
+                <div className="flex flex-row items-center gap-[8px]">
+                  <div className="w-[16px] h-[16px] bg-[#FFC83D] flex items-center justify-center rounded-[2px] overflow-hidden shrink-0">
+                    <RenderBonusIcon type={selectedBonus.iconType} className="w-[12px] h-[12px] text-[#1A1404]" />
+                  </div>
+                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                    {selectedBonus.title}
+                  </span>
+                </div>
+                <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isBonusOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isBonusOpen && (
+                <div className="absolute top-[64px] left-0 w-full bg-[#112F82] border border-[#1A3FA6] rounded-b-[8px] flex flex-col overflow-hidden shadow-xl">
+                  <div className="px-[16px] py-[12px] border-b border-[#1A3FA6]">
+                    <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] text-white">Choose one bonus on next deposits</span>
+                  </div>
+
+                  {bonuses.map((bonus) => {
+                    const isSelected = selectedBonus.id === bonus.id;
+                    return (
+                      <button
+                        key={bonus.id}
+                        className={`flex flex-row items-start gap-[12px] px-[16px] py-[12px] text-left transition-colors ${isSelected ? 'bg-[#1463FF]' : 'hover:bg-[#1A3FA6]'}`}
+                        onClick={() => { setSelectedBonus(bonus); setIsBonusOpen(false); }}
+                      >
+                        <div className="mt-[2px] shrink-0">
+                          <RenderBonusIcon
+                            type={bonus.iconType}
+                            className={`w-[16px] h-[16px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.title}</span>
+                          {bonus.desc && (
+                            <span className={`font-[family-name:var(--font-manrope)] font-medium text-[12px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.desc}</span>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* 2. Select a payment method */}
+            <div className="relative flex flex-col gap-[8px] w-full z-20">
+              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                2.Select a payment method
+              </label>
+              <button
+                onClick={() => { setIsPaymentOpen(!isPaymentOpen); setIsBonusOpen(false); }}
+                className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isPaymentOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+              >
+                <div className="flex flex-row items-center gap-[8px]">
+                  {selectedPayment.id === 'crypto' ? (
+                    <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center shrink-0">
+                      <span className="text-[#1A1404] font-bold text-[10px]">{selectedPayment.symbol}</span>
+                    </div>
+                  ) : (
+                    <FiatIcons />
+                  )}
+                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                    {selectedPayment.titleClosed}
+                  </span>
+                  <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                    {selectedPayment.descClosed}
+                  </span>
+                </div>
+                <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isPaymentOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isPaymentOpen && (
+                <div className="absolute top-[64px] left-0 w-full bg-[#112F82] border border-[#1A3FA6] rounded-b-[8px] flex flex-col overflow-hidden shadow-xl">
+                  {payments.map((payment) => {
+                    const isSelected = selectedPayment.id === payment.id;
+                    return (
+                      <button
+                        key={payment.id}
+                        className={`flex flex-row items-center gap-[12px] px-[16px] py-[12px] text-left transition-colors ${isSelected ? 'bg-[#1463FF]' : 'hover:bg-[#1A3FA6]'}`}
+                        onClick={() => { setSelectedPayment(payment); setIsPaymentOpen(false); }}
+                      >
+                        {payment.id === 'crypto' ? (
+                          <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? 'border-[1.5px] border-white' : 'bg-[#FFC83D]'}`}>
+                            <span className={`${isSelected ? 'text-white' : 'text-[#1A1404]'} font-bold text-[12px]`}>{payment.symbol}</span>
+                          </div>
+                        ) : (
+                          <FiatIcons className={isSelected ? 'opacity-100' : 'opacity-80'} />
+                        )}
+                        <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>
+                          {payment.titleExpanded}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              <div className="flex flex-row items-start gap-[8px] mt-[4px]">
+                <Info size={12} className="text-[#7795E8] mt-[2px] shrink-0" />
+                <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                  Only deposit BC via the Bitcoin network. Deposit of other assets or from other networks will be lost.
+                </p>
+              </div>
+            </div>
+
+            {/* 3. Calculate the amount you want to deposit */}
+            <div className="flex flex-col gap-[8px] w-full">
+              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                3.Calculate the amount you want to deposit
+              </label>
+              <div className="flex flex-row items-center gap-[8px] w-full">
+                {/* USD Input */}
+                <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
+                    <span className="text-[#1A1404] font-bold text-[10px]">$</span>
+                  </div>
+                  <input
+                    type="text"
+                    defaultValue="100"
+                    className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                  />
+                </div>
+
+                {/* Exchange Icon */}
+                <div className="w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
+                  <ArrowRightLeft size={16} className="text-white" />
+                </div>
+
+                {/* Crypto Input */}
+                <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
+                    <span className="text-[#1A1404] font-bold text-[10px]">₿</span>
+                  </div>
+                  <input
+                    type="text"
+                    defaultValue="0.00954"
+                    className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 4. BTC Deposit Address */}
+            <div className="flex flex-col gap-[8px] w-full">
+              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                4.BTC Deposit Address
+              </label>
+              <div className="flex flex-row items-center justify-between px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] truncate mr-[12px]">
+                  bc1q7ndh47hf93rdhuhef873hheufhe447...
+                </span>
+                <div className="flex flex-row items-center gap-[12px] shrink-0">
+                  <button className="text-[#BBCAF3] hover:text-white transition-colors">
+                    <Copy size={16} />
+                  </button>
+                  <button className="text-[#BBCAF3] hover:text-white transition-colors">
+                    <QrCode size={16} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* CTA */}
+        {isPending ? (
+          <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
+            <button
+              onClick={() => {
+                onClose();
+                router.push('/');
+              }}
+              className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[350px] max-w-[90vw] h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+            >
+              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
+                Go to games
+              </span>
+            </button>
+
+            <div className="flex flex-row justify-center items-center gap-[8px]">
+              <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center text-[#7795E8] text-[8px] font-bold">
+                ?
+              </div>
+              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
+            <button
+              onClick={handleCompleteDeposit}
+              className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[350px] max-w-[90vw] h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+            >
+              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
+                I've completed my deposit
+              </span>
+            </button>
+
+            <div className="flex flex-row justify-center items-center gap-[8px]">
+              <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center text-[#7795E8] text-[8px] font-bold">
+                ?
+              </div>
+              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function GiftIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect x="3" y="8" width="18" height="4" rx="1" />
+      <path d="M12 8v13" />
+      <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
+      <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5" />
+    </svg>
+  );
+}
+
+export function RenderBonusIcon({ type, className }: { type: string, className?: string }) {
+  if (type === 'gift') return <GiftIcon className={className} />;
+  if (type === 'badge') return <BadgeIcon className={className} />;
+  if (type === 'coins') return <CoinsIcon className={className} />;
+  if (type === 'ban') return <BanIcon className={className} />;
+  return null;
+}
+
+function BadgeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H6v-4l-3-3 3-3V5h4z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+function CoinsIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="9" cy="9" r="7" />
+      <path d="M14 9a7 7 0 1 1-5 5" />
+      <circle cx="14" cy="14" r="2" />
+      <circle cx="9" cy="9" r="2" />
+    </svg>
+  );
+}
+
+function BanIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="12" cy="12" r="10" />
+      <path d="m4.9 4.9 14.2 14.2" />
+    </svg>
+  );
+}
+
+function FiatIcons({ className }: { className?: string }) {
+  return (
+    <div className={`flex flex-row items-center gap-[4px] shrink-0 ${className || ''}`}>
+      {/* Visa */}
+      <div className="flex items-center justify-center w-[22px] h-[14px] bg-[#A5B8EF] rounded-[2px]">
+        <span className="text-[#112F82] font-[family-name:var(--font-manrope)] font-extrabold text-[6px] italic tracking-tighter">VISA</span>
+      </div>
+      {/* Mastercard */}
+      <div className="relative w-[22px] h-[14px] flex items-center justify-center">
+        <svg viewBox="0 0 24 16" fill="none" className="w-full h-full text-[#A5B8EF]">
+          <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1" />
+          <circle cx="16" cy="8" r="7" stroke="currentColor" strokeWidth="1" />
+          <text x="12" y="10" fontSize="4" fill="currentColor" textAnchor="middle" className="font-sans font-bold" letterSpacing="-0.05em">MasterCard</text>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function CrownLightningIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 29 21" fill="currentColor" className={className}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M14.5 11.5L24 2L29 21H0L5 2L14.5 11.5Z" />
+      <path d="M16.5 8.5L12.5 13H15.5L13.5 17L18.5 11H14.5L16.5 8.5Z" fill="#0C1F56" />
+    </svg>
+  );
+}
