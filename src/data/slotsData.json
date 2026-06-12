@@ -32,21 +32,21 @@
   {
     "id": 7,
     "title": "DOUBLE WIN COLLECTION",
-    "image": "/games/2.jfif"
+    "image": "/games/7.png"
   },
   {
     "id": 8,
     "title": "WILD WEST BOUNTY",
-    "image": "/games/1.jfif"
+    "image": "/games/4.jfif"
   },
   {
     "id": 9,
     "title": "NEON RUSH",
-    "image": "/games/2.jfif"
+    "image": "/games/2.png"
   },
   {
     "id": 10,
     "title": "DRAGON'S HOARD",
-    "image": "/games/1.jfif"
+    "image": "/games/6.png"
   }
 ]
