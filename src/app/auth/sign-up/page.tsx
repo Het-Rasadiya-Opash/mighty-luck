@@ -46,7 +46,7 @@ export default function SignUpPage() {
         <div className="relative w-[340px] h-full rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
           <div 
             className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px] bg-cover bg-center"
-            style={{ backgroundImage: 'url(/lion.png)' }} 
+            style={{ backgroundImage: 'url(/login-loin.png)' }} 
           />
           <div 
             className="absolute left-0 top-[327px] w-[340px] h-[219px]" 
