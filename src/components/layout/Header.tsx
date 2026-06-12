@@ -45,7 +45,7 @@ export default function Header() {
               alt="Mighty Luck"
               width={150}
               height={28}
-              className="object-contain w-[120px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto"
+              className="object-contain w-[90px] min-[375px]:w-[110px] min-[425px]:w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto"
             />
           </div>
 
@@ -56,11 +56,11 @@ export default function Header() {
         </div>
 
         {/* Right: auth buttons */}
-        <div className="flex items-center gap-2 shrink-0">
-          <button className="flex items-center justify-center min-h-[44px] h-[40px] px-4 sm:px-6 md:px-[30px] rounded-[8px] font-semibold text-sm transition-colors bg-[#1463FF] text-white whitespace-nowrap">
+        <div className="flex items-center gap-1.5 min-[375px]:gap-2 shrink-0">
+          <button className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[44px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#1463FF] text-white whitespace-nowrap">
             Login
           </button>
-          <button className="flex items-center justify-center min-h-[44px] h-[40px] px-4 sm:px-6 md:px-[30px] rounded-[8px] font-semibold text-sm transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
+          <button className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[44px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
             Join
           </button>
         </div>
@@ -104,6 +104,14 @@ export default function Header() {
                 </div>
               ))}
             </nav>
+            <div className="px-4 pb-6 flex flex-col gap-3 mt-auto">
+              <button className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] font-semibold text-[15px] transition-colors bg-[#1463FF] text-white">
+                Login
+              </button>
+              <button className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] font-semibold text-[15px] transition-colors bg-[#FFC83D] text-[#1A1404]">
+                Join
+              </button>
+            </div>
           </div>
         </>
       )}
