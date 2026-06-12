@@ -53,7 +53,7 @@ export default function Header() {
             />
           </div>
 
-          <div className="hidden md:flex">
+          <div className="hidden lg:flex">
             <Search />
           </div>
         </div>
@@ -131,7 +131,7 @@ export default function Header() {
               </button>
             </div>
             <div className="p-4">
-              <Search className="w-full" />
+              <Search className="w-full md:w-full" />
             </div>
             <nav className="flex flex-col px-4 pb-6 w-full">
               <SidebarNav />
