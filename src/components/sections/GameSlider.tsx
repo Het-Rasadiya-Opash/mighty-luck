@@ -44,7 +44,6 @@ export default function GameSlider({ title, icon, games }: GameSliderProps) {
     const handlePrev = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
     const handleNext = () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
 
-    // Clamp index when visibleCount changes
     useEffect(() => {
         setCurrentIndex((prev) => Math.min(prev, maxIndex));
     }, [maxIndex]);

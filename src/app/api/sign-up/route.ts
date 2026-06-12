@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       email,
       password: hashedPassword,
       phoneNumber,
-      isVerified: true, // For this demo, let's assume auto-verified
+      isVerified: true, 
     });
 
     await newUser.save();

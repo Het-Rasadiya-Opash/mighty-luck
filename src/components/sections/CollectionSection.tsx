@@ -22,7 +22,6 @@ export default function CollectionSection() {
         const updateVisible = () => {
             if (!containerRef.current) return;
             const w = containerRef.current.offsetWidth;
-            // Cards are ~(w - gap*(n-1)) / n — use 3 on lg, 2 on md, 1 on sm
             const count = w >= 900 ? 3 : w >= 560 ? 2 : 1;
             setVisibleCount(count);
         };
