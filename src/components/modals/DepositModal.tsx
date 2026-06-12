@@ -329,7 +329,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
                     </div>
                     <div className="flex-1 relative">
-                      <div 
+                      <div
                         onClick={() => setIsCountryOpen(!isCountryOpen)}
                         className={`flex flex-row items-center justify-between px-[16px] h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
                       >
@@ -339,7 +339,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </div>
                         <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
                       </div>
-                      
+
                       {isCountryOpen && (
                         <div className="absolute top-[40px] left-0 w-full bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg">
                           {countries.map(country => (
@@ -400,7 +400,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-row items-start gap-[8px] w-full">
                     <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center shrink-0 mt-[1px]">
                       <Info size={8} className="text-[#7795E8]" />
@@ -429,14 +429,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </span>
             </button>
 
-            <div className="flex flex-row justify-center items-center gap-[8px]">
-              <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center text-[#7795E8] text-[8px] font-bold">
-                ?
-              </div>
-              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
-                Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
-              </span>
-            </div>
+
           </div>
         ) : (
           <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
@@ -454,20 +447,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[350px] max-w-[90vw] h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
             >
               <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
-                {selectedPayment.id === 'fiat' 
+                {selectedPayment.id === 'fiat'
                   ? (fiatStep === 'address' ? 'Continue' : `Deposit ${fiatAmount === 'custom' ? '' : '$' + fiatAmount}`)
                   : "I've completed my deposit"}
               </span>
             </button>
 
-            <div className="flex flex-row justify-center items-center gap-[8px]">
-              <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center text-[#7795E8] text-[8px] font-bold">
-                ?
-              </div>
-              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
-                Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
-              </span>
-            </div>
+
           </div>
         )}
       </div>
