@@ -51,7 +51,6 @@ export default function GameSlider({ title, icon, games }: GameSliderProps) {
 
     return (
         <div ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
-            {/* Header row */}
             <div className="flex items-center justify-between w-full h-[30px]">
                 <div className="flex items-center gap-[12px]">
                     {icon}
@@ -82,7 +81,6 @@ export default function GameSlider({ title, icon, games }: GameSliderProps) {
                 </div>
             </div>
 
-            {/* Slider viewport */}
             <div className="w-full overflow-hidden">
                 <div
                     className="flex gap-[12px] transition-transform duration-300 ease-out"

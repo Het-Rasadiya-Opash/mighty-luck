@@ -13,11 +13,9 @@ export default function HeroBanner() {
                 priority
             />
 
-            {/* Dark overlay blobs — scaled for responsiveness */}
             <div className="absolute -left-[80px] sm:-left-[120px] lg:-left-[161px] -top-[60px] sm:-top-[80px] lg:-top-[102px] z-[1] h-[300px] w-[300px] sm:h-[420px] sm:w-[420px] lg:h-[575px] lg:w-[575px] rounded-full bg-[#06102B] blur-[75px]" />
             <div className="absolute right-0 bottom-0 z-[1] h-[80px] w-[80px] lg:h-[129px] lg:w-[129px] rounded-full bg-[#010A25] blur-[25px]" />
 
-            {/* Text content */}
             <div className="absolute left-[16px] sm:left-[28px] md:left-[40px] top-[20px] sm:top-[40px] md:top-[60px] lg:top-[101px] z-10 flex flex-col items-start gap-3 md:gap-[24px] max-w-[85%] sm:max-w-[60%] lg:max-w-[457px]">
 
                 <div className="flex flex-col items-start gap-[4px]">

@@ -28,6 +28,10 @@ export const metadata: Metadata = {
   description: "Play your favorite games",
 };
 
+import AuthProvider from "@/context/AuthProvider";
+import AuthModal from "@/components/modals/AuthModal";
+import { Toaster } from 'sonner';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,8 +43,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${jost.variable} ${manrope.variable}`}
     >
       <body className="min-h-screen bg-[#091741] flex flex-col items-center w-full overflow-x-hidden font-sans" suppressHydrationWarning>
-        <Header />
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+          <AuthModal />
+          <Toaster richColors position="top-center" />
+        </AuthProvider>
       </body>
     </html>
   );

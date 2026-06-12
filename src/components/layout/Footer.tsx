@@ -13,10 +13,8 @@ export default function Footer() {
     return (
         <footer className="flex flex-col items-start gap-8 md:gap-[48px] w-full mt-10 mb-6">
 
-            {/* Top row: logo + nav columns */}
             <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-[49px] w-full">
 
-                {/* Logo + copyright */}
                 <div className="flex flex-col items-start gap-[16px] shrink-0">
                     <div className="w-[132px] h-[50px] relative">
                         <Image src="/Horizontal logo.png" alt="Mighty Luck" fill className="object-contain object-left" />
@@ -26,7 +24,6 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Nav link columns */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-8 w-full md:w-auto">
                     {Object.entries(footerLinks).map(([heading, links]) => (
                         <div key={heading} className="flex flex-col items-start gap-[12px]">
@@ -45,7 +42,6 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Bottom row: legal text + badges */}
             <div className="box-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-[10px] w-full pt-6 md:pt-[48px] border-t border-[#112F82]">
 
                 <p className="max-w-full sm:max-w-[445px] font-['Manrope'] font-semibold text-[10px] leading-[14px] text-justify tracking-[0.01em] text-[#D2DCF7]">

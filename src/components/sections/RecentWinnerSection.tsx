@@ -21,7 +21,6 @@ export default function RecentWinnerSection() {
                 </h2>
             </div>
 
-            {/* Desktop table header — hidden on mobile */}
             <div className="hidden md:flex items-center px-[24px] w-full h-[20px] font-['Jost'] font-bold text-[14px] leading-[20px] tracking-[0.02em] uppercase text-white/50 mb-[4px]">
                 <div className="flex-1">GAME</div>
                 <div className="flex gap-[12px]">
@@ -37,7 +36,6 @@ export default function RecentWinnerSection() {
                         key={winner.id}
                         className="w-full bg-[#0C1F56] rounded-[8px] px-4 md:px-[24px] py-3 md:py-0 md:h-[60px] flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0"
                     >
-                        {/* Game info */}
                         <div className="flex items-center gap-[12px] min-w-0">
                             <div className="w-[22px] h-[30px] rounded-[1.8px] shrink-0 relative overflow-hidden bg-[#CDCDCD]">
                                 <Image src={winner.image} alt={winner.game} fill className="object-cover" sizes="22px" />
@@ -47,14 +45,12 @@ export default function RecentWinnerSection() {
                             </span>
                         </div>
 
-                        {/* Mobile: user + time + payout in a row */}
                         <div className="flex md:hidden items-center justify-between text-[12px] font-['Manrope'] font-semibold tracking-[0.02em] pl-[34px]">
                             <span className="text-white/70">{winner.user}</span>
                             <span className="text-white/50">{winner.time}</span>
                             <span className={winner.payoutColor}>{winner.payout}</span>
                         </div>
 
-                        {/* Desktop: columns */}
                         <div className="hidden md:flex items-center gap-[12px] shrink-0">
                             <span className="w-[180px] lg:w-[300px] font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white truncate">
                                 {winner.user}
