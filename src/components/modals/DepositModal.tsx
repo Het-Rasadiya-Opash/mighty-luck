@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info, Gift, Award, Coins, Ban, CreditCard, Crown } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -66,7 +67,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     if (isOpen) {
       document.body.style.overflow = "hidden";
       setIsBonusOpen(false);
@@ -78,10 +82,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setIsPromoApplied(false);
       setActiveTab('deposit');
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
@@ -90,17 +94,17 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     setIsPending(true);
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
-  return (
-    <div className="fixed inset-0 z-[100] overflow-y-auto">
+  return createPortal(
+    <div className="fixed inset-0 z-[100] sm:overflow-y-auto">
       <div
         className="fixed inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
         onClick={onClose}
       />
 
-      <div className="relative min-h-full flex items-center justify-center py-[16px] pointer-events-none">
-        <div className="relative w-[calc(100vw-24px)] max-w-[500px] pointer-events-auto">
+      <div className="relative h-full sm:min-h-full flex items-center justify-center p-0 sm:py-[16px] pointer-events-none">
+        <div className="relative w-full h-[100dvh] sm:h-auto sm:w-[calc(100vw-24px)] max-w-[500px] pointer-events-auto">
           {/* Desktop Close Button */}
         <button
           onClick={onClose}
@@ -109,7 +113,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           <X size={24} />
         </button>
 
-        <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-full pt-[24px] px-[20px] pb-[32px] gap-[24px] overflow-hidden">
+        <div className="relative flex flex-col items-center bg-[#091741] rounded-none sm:rounded-[16px] w-full h-full sm:h-auto pt-[48px] sm:pt-[24px] px-[20px] pb-[32px] gap-[24px] overflow-x-hidden overflow-y-auto sm:overflow-hidden">
           <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none z-0" />
 
           {/* Mobile Close Button */}
@@ -629,8 +633,9 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </div>
         </div>
       </div>
-      </div>
     </div>
+    </div>,
+    document.body
   );
 }
 export function RenderBonusIcon({ type, className }: { type: string, className?: string }) {
