@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, BadgePercent } from "lucide-react";
 
 const promos = [
   {
@@ -53,24 +54,17 @@ export default function PromotionSection() {
   return (
     <div className="flex flex-col items-start gap-5 w-full flex-none">
 
-      {/* Section Header Row */}
       <div className="flex flex-row justify-between items-center w-full h-[30px] flex-none pr-[20px] md:pr-0">
 
-        {/* Title */}
         <div className="flex flex-row items-center gap-[12px] h-[30px]">
           <div className="relative w-[30px] h-[30px] flex-none">
-            {/* Promo tag icon */}
-            <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M28.5 14.5L14.75 0.75H1V14.5L14.75 28.25L28.5 14.5Z" fill="#FFC83D" stroke="#FFC83D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="8" cy="8.5" r="2.5" fill="#091741"/>
-            </svg>
+            <BadgePercent className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />
           </div>
           <span className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white select-none">
             Promotions
           </span>
         </div>
 
-        {/* Navigation arrows */}
         <div className="flex flex-row items-center gap-[8px]">
           <button
             onClick={scrollLeft}
@@ -80,9 +74,7 @@ export default function PromotionSection() {
             }`}
             aria-label="Previous promotion"
           >
-            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 1L1 5L5 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <ChevronLeft size={16} color="white" />
           </button>
           <button
             onClick={scrollRight}
@@ -92,15 +84,12 @@ export default function PromotionSection() {
             }`}
             aria-label="Next promotion"
           >
-            <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L5 5L1 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <ChevronRight size={16} color="white" />
           </button>
         </div>
 
       </div>
 
-      {/* Cards Row */}
       <div
         ref={scrollRef}
         onScroll={handleScroll}
@@ -111,19 +100,16 @@ export default function PromotionSection() {
             key={promo.id}
             className="relative w-[85vw] sm:w-[400px] md:w-[560px] h-[220px] rounded-[16px] flex-none overflow-hidden"
           >
-            {/* Background image */}
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url('${promo.bg}')` }}
             />
 
-            {/* Gradient overlay */}
             <div
               className="absolute inset-0"
               style={{ background: promo.gradient }}
             />
 
-            {/* Blue glow ellipse */}
             <div
               className="absolute w-[160px] h-[160px] rounded-full pointer-events-none"
               style={{
@@ -135,9 +121,7 @@ export default function PromotionSection() {
               }}
             />
 
-            {/* Content Container */}
             <div className="relative z-[2] w-full h-full p-[24px] flex flex-col justify-center items-start pointer-events-none">
-              {/* Inner Frame */}
               <div className="flex flex-col items-start gap-[16px] w-[290px] h-[114px] flex-none pointer-events-auto">
                 <h3
                   className="font-[family-name:var(--font-jost)] font-extrabold text-[24px] leading-[120%] tracking-[0.01em] text-white w-[290px] h-[58px] flex-none"
