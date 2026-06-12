@@ -27,19 +27,19 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0C1F56] h-[60px]">
-      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-6">
+      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-2 min-[375px]:px-3 sm:px-6 md:px-8 lg:px-12 xl:px-6">
 
-        <div className="flex items-center gap-3 md:gap-6 min-w-0">
+        <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-6 min-w-0">
           <button
-            className="flex lg:hidden items-center justify-center min-h-[44px] min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
+            className="flex lg:hidden items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => setIsOpen(true)}
             aria-label="Open menu"
           >
-            <Image 
-              src="/men-icons.png" 
-              alt="Menu" 
-              width={22} 
-              height={22} 
+            <Image
+              src="/men-icons.png"
+              alt="Menu"
+              width={22}
+              height={22}
               className="object-contain"
             />          </button>
 
@@ -49,7 +49,7 @@ export default function Header() {
               alt="Mighty Luck"
               width={150}
               height={28}
-              className="object-contain w-[90px] min-[375px]:w-[110px] min-[425px]:w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto"
+              className="object-contain w-[105px] min-[375px]:w-[100px] min-[425px]:w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto"
             />
           </div>
 
@@ -59,14 +59,14 @@ export default function Header() {
         </div>
 
         {status === 'authenticated' ? (
-          <div className="flex flex-row justify-end items-center gap-2 sm:gap-4 shrink-0 z-[2]">
+          <div className="flex flex-row justify-end items-center gap-1.5 min-[375px]:gap-2 sm:gap-4 shrink-0 z-[2]">
             <div className="hidden min-[600px]:flex flex-row items-center gap-1">
               <div className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-[116px] h-[40px] bg-[#112F82] rounded-[8px]">
                 <span className="font-manrope font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
                   $105,98
                 </span>
               </div>
-              
+
               <button className="flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors">
                 <Wallet size={16} color="#1A1404" fill="#1A1404" />
                 <span className="font-manrope font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
@@ -75,22 +75,22 @@ export default function Header() {
               </button>
             </div>
 
-            <button className="flex min-[600px]:hidden flex-row justify-center items-center px-[12px] h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors">
-              <Wallet size={16} color="#1A1404" />
+            <button className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[32px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors">
+              <Wallet size={16} color="#1A1404" fill="#1A1404" />
             </button>
 
-            <div className="flex flex-row items-center gap-[8px]">
-              <button className="flex flex-row justify-center items-center w-[36px] h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
-                <Bell size={16} color="#D2DCF7" fill="#D2DCF7" />
-                <div className="absolute right-0 top-0 w-[8px] h-[8px] bg-[#FF0E0E] rounded-full"></div>
-              </button>
-              
-              <button className="flex flex-row justify-center items-center w-[36px] h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
-                <Gift size={16} color="#D2DCF7" fill="#D2DCF7" />
-                <div className="absolute right-0 top-0 w-[8px] h-[8px] bg-[#FF0E0E] rounded-full"></div>
+            <div className="flex flex-row items-center gap-[4px] min-[375px]:gap-[8px]">
+              <button className="flex flex-row justify-center items-center w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
+                <Bell size={16} color="#D2DCF7" fill="#D2DCF7" className="scale-90 min-[375px]:scale-100" />
+                <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
               </button>
 
-              <button className="w-[40px] h-[40px] rounded-full overflow-hidden shrink-0">
+              <button className="flex flex-row justify-center items-center w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
+                <Gift size={16} color="#D2DCF7" fill="#D2DCF7" className="scale-90 min-[375px]:scale-100" />
+                <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
+              </button>
+
+              <button className="w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] rounded-full overflow-hidden shrink-0">
                 <Image src="/user.png" alt="User" width={40} height={40} className="object-cover w-full h-full" />
               </button>
             </div>
