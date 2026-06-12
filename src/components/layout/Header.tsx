@@ -11,7 +11,7 @@ export default function Header() {
   // Close drawer on resize to desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) setIsOpen(false);
+      if (window.innerWidth >= 1024) setIsOpen(false);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -31,7 +31,7 @@ export default function Header() {
         <div className="flex items-center gap-3 md:gap-6 min-w-0">
           {/* Mobile hamburger */}
           <button
-            className="flex md:hidden items-center justify-center min-h-[44px] min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
+            className="flex lg:hidden items-center justify-center min-h-[44px] min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => setIsOpen(true)}
             aria-label="Open menu"
           >
@@ -70,10 +70,10 @@ export default function Header() {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/60 z-40 md:hidden"
+            className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             onClick={() => setIsOpen(false)}
           />
-          <div className="fixed top-0 left-0 h-full w-[280px] bg-[#0C1F56] z-50 md:hidden flex flex-col transform transition-transform duration-300 translate-x-0 overflow-y-auto">
+          <div className="fixed top-0 left-0 h-full w-[280px] bg-[#0C1F56] z-50 lg:hidden flex flex-col transform transition-transform duration-300 translate-x-0 overflow-y-auto">
             <div className="flex items-center justify-between p-4 border-b border-[#112F82]">
               <Image
                 src="/Horizontal logo.png"
