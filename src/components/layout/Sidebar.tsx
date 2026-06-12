@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Gift, ChevronUp, ChevronDown, Snowflake, Crown, Megaphone, Trophy, Dices, LayoutGrid, Sparkles, Flame, Hexagon, TrendingUp, MonitorPlay, Headset } from 'lucide-react';
+import { SearchModal } from '@/components/modals/SearchModal';
 
 export default function Sidebar() {
     const [openDropdown, setOpenDropdown] = useState<string | null>('casino');
@@ -45,6 +46,7 @@ export default function Sidebar() {
 
 export function SidebarNav() {
     const [openDropdown, setOpenDropdown] = useState<string | null>('casino');
+    const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
     const toggleDropdown = (name: string) => {
         setOpenDropdown(openDropdown === name ? null : name);
@@ -69,7 +71,7 @@ export function SidebarNav() {
                 </div>
                 {openDropdown === 'casino' && (
                     <div className="flex flex-col py-[8px]">
-                        <SubNavItem icon={<LayoutGrid size={18} />} label="All Games" />
+                        <SubNavItem icon={<LayoutGrid size={18} />} label="All Games" onClick={() => setIsSearchModalOpen(true)} />
                         <SubNavItem icon={<Sparkles size={18} />} label="New Games" />
                         <SubNavItem icon={<Flame size={18} />} label="Popular Games" />
                         <SubNavItem icon={<Hexagon size={18} />} label="Original Games" />
@@ -99,6 +101,11 @@ export function SidebarNav() {
             <div className="mt-auto pt-4">
                 <NavItem icon={<Headset size={20} />} label="Live Support" />
             </div>
+
+            <SearchModal 
+              isOpen={isSearchModalOpen} 
+              onClose={() => setIsSearchModalOpen(false)} 
+            />
         </div>
     );
 }
@@ -112,9 +119,12 @@ function NavItem({ icon, label }: { icon: React.ReactNode; label: string }) {
     );
 }
 
-function SubNavItem({ icon, label }: { icon: React.ReactNode; label: string }) {
+function SubNavItem({ icon, label, onClick }: { icon: React.ReactNode; label: string; onClick?: () => void }) {
     return (
-        <div className="flex items-center gap-[8px] w-full h-[40px] px-[10px] pl-[32px] cursor-pointer transition-colors text-[#D2DCF7] hover:text-white">
+        <div 
+          onClick={onClick}
+          className="flex items-center gap-[8px] w-full h-[40px] px-[10px] pl-[32px] cursor-pointer transition-colors text-[#D2DCF7] hover:text-white"
+        >
             {icon}
             <span className="font-medium text-[15px]">{label}</span>
         </div>
