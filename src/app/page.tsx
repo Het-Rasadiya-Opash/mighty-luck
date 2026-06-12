@@ -14,6 +14,7 @@ import ProviderSection from "@/components/sections/ProviderSection";
 import CollectionSection from "@/components/sections/CollectionSection";
 import RecentWinnerSection from "@/components/sections/RecentWinnerSection";
 import AboutSection from "@/components/sections/AboutSection";
+import CryptoIconSection from "@/components/sections/CryptoIconSection";
 
 export default function Home() {
   return (
@@ -61,6 +62,8 @@ export default function Home() {
           <CollectionSection />
           <RecentWinnerSection />
           <AboutSection />
+          <CryptoIconSection />
+
         </main>
       </div>
     </Container>
