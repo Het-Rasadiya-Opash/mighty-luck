@@ -44,8 +44,8 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="fixed inset-0 w-full h-full min-h-screen bg-[#0C1733]/70 backdrop-blur-[8px] flex items-center justify-center z-50 mx-auto overflow-y-auto py-8">
-      <div className="relative w-[95%] max-w-[400px] md:max-w-[730px] h-auto md:h-[546px] rounded-[16px] flex flex-row shadow-2xl shrink-0 overflow-hidden my-auto">
+    <div className="fixed inset-0 w-full h-full min-h-screen bg-[#0C1733]/70 backdrop-blur-[8px] flex items-center justify-center z-50 mx-auto md:overflow-y-auto py-0 md:py-8">
+      <div className="relative w-full md:w-[95%] max-w-none md:max-w-[730px] h-[100dvh] md:h-auto md:min-h-[546px] rounded-none md:rounded-[16px] flex flex-row shadow-none md:shadow-2xl shrink-0 overflow-hidden md:my-auto">
         
         <div className="relative w-[340px] h-full rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
           <div 
@@ -79,8 +79,16 @@ export default function SignInPage() {
           </div>
         </div>
 
-        <div className="relative w-full md:w-[390px] h-auto md:h-full bg-[#091741] rounded-[16px] md:rounded-l-none md:rounded-r-[16px] flex flex-col items-center md:items-start px-[20px] py-[32px] md:py-[24px] gap-[32px] shrink-0 overflow-hidden">
+        <div className="relative w-full md:w-[390px] h-full md:h-auto min-h-[100dvh] md:min-h-full bg-[#091741] rounded-none md:rounded-l-none md:rounded-r-[16px] flex flex-col items-center md:items-start px-[20px] py-[40px] md:py-[24px] gap-[32px] shrink-0 overflow-y-auto md:overflow-hidden">
           <div className="absolute top-[-145px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
+          
+          {/* Mobile Close / Back Button (Optional, but good for fullscreen) */}
+          <button
+            onClick={() => router.push('/')}
+            className="absolute top-[16px] right-[16px] w-[28px] h-[28px] rounded-full bg-[#112F82]/80 hover:bg-[#1463FF] flex items-center justify-center text-white transition-colors md:hidden z-50"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
           
           <div className="relative w-full max-w-[350px] flex flex-col items-center md:items-start gap-[16px] z-10 mt-[10px] md:mt-[24px]">
             <div className="w-full flex justify-center items-start mb-[9px]">
