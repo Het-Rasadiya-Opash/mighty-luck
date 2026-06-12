@@ -19,7 +19,6 @@ export default function TabSection() {
 
     return (
         <div className="w-full relative overflow-hidden">
-            {/* Scrollable container */}
             <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="flex flex-row items-center gap-[8px] w-max min-w-full">
                     {tabs.map((tab, index) => {

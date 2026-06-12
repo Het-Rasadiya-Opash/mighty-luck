@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info } from "lucide-react";
+import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info, Gift, Award, Coins, Ban } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -34,6 +34,17 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [fiatStep, setFiatStep] = useState<'address' | 'payment'>('address');
   const [fiatAmount, setFiatAmount] = useState<number | 'custom'>(30);
 
+  const countries = [
+    { id: 'us', name: 'United States', flag: '🇺🇸' },
+    { id: 'gb', name: 'United Kingdom', flag: '🇬🇧' },
+    { id: 'ca', name: 'Canada', flag: '🇨🇦' },
+    { id: 'au', name: 'Australia', flag: '🇦🇺' },
+    { id: 'de', name: 'Germany', flag: '🇩🇪' },
+    { id: 'fr', name: 'France', flag: '🇫🇷' },
+  ];
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -59,18 +70,14 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
         onClick={onClose}
       />
 
-      {/* Modal Container */}
       <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-[90vw] max-w-[500px] p-[24px] px-[20px] pb-[32px] gap-[24px] overflow-hidden shadow-2xl">
-        {/* Glow */}
         <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none" />
 
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-[20px] right-[20px] sm:fixed sm:top-[calc(50%-302px)] sm:right-[calc(50%-250px-40px)] z-10 text-white hover:opacity-80 transition-opacity"
@@ -78,7 +85,6 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           <X size={24} />
         </button>
 
-        {/* Header */}
         <div className="flex flex-row items-center gap-[12px] z-10">
           <Wallet size={20} className="text-[#FFC83D]" />
           <h2 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] text-white">
@@ -86,7 +92,6 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </h2>
         </div>
 
-        {/* Tabs */}
         <div className="flex flex-row items-center gap-[8px] w-full z-10 overflow-x-auto [&::-webkit-scrollbar]:hidden">
           <button className="flex-1 min-w-[100px] h-[30px] flex items-center justify-center bg-[#1463FF] rounded-[6px]">
             <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white">Deposit</span>
@@ -102,9 +107,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </button>
         </div>
 
-        {/* Form Container */}
         {isPending ? (
-          <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-10">
+          <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative">
             <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF]">
               Your transaction in progress and pending confirmation from the blockchain.
             </p>
@@ -120,9 +124,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             </p>
           </div>
         ) : (
-          <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-10">
+          <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative">
 
-            {/* 1. Select a Bonus */}
             <div className="relative flex flex-col gap-[8px] w-full z-30">
               <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                 1.Select a Bonus
@@ -175,7 +178,6 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               )}
             </div>
 
-            {/* 2. Select a payment method */}
             <div className="relative flex flex-col gap-[8px] w-full z-20">
               <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                 2.Select a payment method
@@ -240,13 +242,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
             {selectedPayment.id === 'crypto' ? (
               <>
-                {/* 3. Calculate the amount you want to deposit */}
                 <div className="flex flex-col gap-[8px] w-full">
                   <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                     3.Calculate the amount you want to deposit
                   </label>
                   <div className="flex flex-row items-center gap-[8px] w-full">
-                    {/* USD Input */}
                     <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
                       <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
                         <span className="text-[#1A1404] font-bold text-[10px]">$</span>
@@ -258,12 +258,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       />
                     </div>
 
-                    {/* Exchange Icon */}
                     <div className="w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
                       <ArrowRightLeft size={16} className="text-white" />
                     </div>
 
-                    {/* Crypto Input */}
                     <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
                       <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
                         <span className="text-[#1A1404] font-bold text-[10px]">₿</span>
@@ -277,7 +275,6 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   </div>
                 </div>
 
-                {/* 4. BTC Deposit Address */}
                 <div className="flex flex-col gap-[8px] w-full">
                   <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                     4.BTC Deposit Address
@@ -331,12 +328,32 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
                       <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
                     </div>
-                    <div className="flex-1 flex flex-row items-center justify-between px-[16px] h-[40px] bg-[#112F82] rounded-[8px] cursor-pointer">
-                      <div className="flex flex-row items-center gap-[10px]">
-                        <span className="text-[16px] leading-none">🇺🇸</span>
-                        <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white">United States</span>
+                    <div className="flex-1 relative">
+                      <div 
+                        onClick={() => setIsCountryOpen(!isCountryOpen)}
+                        className={`flex flex-row items-center justify-between px-[16px] h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+                      >
+                        <div className="flex flex-row items-center gap-[10px]">
+                          <span className="text-[16px] leading-none">{selectedCountry.flag}</span>
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white">{selectedCountry.name}</span>
+                        </div>
+                        <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
                       </div>
-                      <ChevronDown size={14} className="text-[#A5B8EF]" />
+                      
+                      {isCountryOpen && (
+                        <div className="absolute top-[40px] left-0 w-full bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg">
+                          {countries.map(country => (
+                            <button
+                              key={country.id}
+                              onClick={() => { setSelectedCountry(country); setIsCountryOpen(false); }}
+                              className="w-full px-[16px] py-[10px] flex flex-row items-center gap-[10px] hover:bg-[#112F82] transition-colors text-left"
+                            >
+                              <span className="text-[16px] leading-none">{country.flag}</span>
+                              <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white">{country.name}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -398,7 +415,6 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </div>
         )}
 
-        {/* CTA */}
         {isPending ? (
           <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
             <button
@@ -458,71 +474,20 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     </div>
   );
 }
-
-function GiftIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <rect x="3" y="8" width="18" height="4" rx="1" />
-      <path d="M12 8v13" />
-      <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
-      <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5" />
-    </svg>
-  );
-}
-
 export function RenderBonusIcon({ type, className }: { type: string, className?: string }) {
-  if (type === 'gift') return <GiftIcon className={className} />;
-  if (type === 'badge') return <BadgeIcon className={className} />;
-  if (type === 'coins') return <CoinsIcon className={className} />;
-  if (type === 'ban') return <BanIcon className={className} />;
+  if (type === 'gift') return <Gift className={className} />;
+  if (type === 'badge') return <Award className={className} />;
+  if (type === 'coins') return <Coins className={className} />;
+  if (type === 'ban') return <Ban className={className} />;
   return null;
-}
-
-function BadgeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <path d="M12 2l3 3h4v4l3 3-3 3v4h-4l-3 3-3-3H6v-4l-3-3 3-3V5h4z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  );
-}
-
-function CoinsIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <circle cx="9" cy="9" r="7" />
-      <path d="M14 9a7 7 0 1 1-5 5" />
-      <circle cx="14" cy="14" r="2" />
-      <circle cx="9" cy="9" r="2" />
-    </svg>
-  );
-}
-
-function BanIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <circle cx="12" cy="12" r="10" />
-      <path d="m4.9 4.9 14.2 14.2" />
-    </svg>
-  );
 }
 
 function FiatIcons({ className }: { className?: string }) {
   return (
     <div className={`flex flex-row items-center gap-[4px] shrink-0 ${className || ''}`}>
-      {/* Visa */}
       <div className="flex items-center justify-center w-[22px] h-[14px] bg-[#A5B8EF] rounded-[2px]">
         <span className="text-[#112F82] font-[family-name:var(--font-manrope)] font-extrabold text-[6px] italic tracking-tighter">VISA</span>
       </div>
-      {/* Mastercard */}
       <div className="relative w-[22px] h-[14px] flex items-center justify-center">
         <svg viewBox="0 0 24 16" fill="none" className="w-full h-full text-[#A5B8EF]">
           <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1" />
