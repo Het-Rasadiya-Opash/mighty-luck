@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info, Gift, Award, Coins, Ban } from "lucide-react";
+import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info, Gift, Award, Coins, Ban, CreditCard, Crown } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -108,18 +108,24 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
         </div>
 
         {isPending ? (
-          <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative">
-            <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF]">
+          <div className="flex flex-col items-start p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[287px]">
+            <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] w-full">
               Your transaction in progress and pending confirmation from the blockchain.
             </p>
 
             <div className="flex flex-row justify-center items-center gap-[10px] w-full h-[120px]">
-              <CrownLightningIcon className="text-[#A5B8EF] w-[28px] h-[21px]" />
-              <CrownLightningIcon className="text-[#A5B8EF] w-[28px] h-[21px]" />
-              <CrownLightningIcon className="text-[#112F82] w-[28px] h-[21px]" />
+              <div className="w-[40px] h-[40px] flex items-center justify-center relative">
+                <CrownLightningIcon className="text-[#A5B8EF] w-[29px] h-[21px]" />
+              </div>
+              <div className="w-[40px] h-[40px] flex items-center justify-center relative">
+                <CrownLightningIcon className="text-[#A5B8EF] w-[29px] h-[21px]" />
+              </div>
+              <div className="w-[40px] h-[40px] flex items-center justify-center relative">
+                <CrownLightningIcon className="text-[#112F82] w-[29px] h-[21px]" />
+              </div>
             </div>
 
-            <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF]">
+            <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] w-full">
               1 confirmation is required for deposits to be credited.<br />Want to know how many confirmations this transaction has?<br />Please <span className="text-[#FFC83D] cursor-pointer hover:underline">click here</span>.
             </p>
           </div>
@@ -128,11 +134,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
             <div className="relative flex flex-col gap-[8px] w-full z-30">
               <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                1.Select a Bonus
+                Select a Bonus
               </label>
               <button
                 onClick={() => { setIsBonusOpen(!isBonusOpen); setIsPaymentOpen(false); }}
-                className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isBonusOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+                className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isBonusOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
               >
                 <div className="flex flex-row items-center gap-[8px]">
                   <div className="w-[16px] h-[16px] bg-[#FFC83D] flex items-center justify-center rounded-[2px] overflow-hidden shrink-0">
@@ -146,8 +152,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </button>
 
               {isBonusOpen && (
-                <div className="absolute top-[64px] left-0 w-full bg-[#112F82] border border-[#1A3FA6] rounded-b-[8px] flex flex-col overflow-hidden shadow-xl">
-                  <div className="px-[16px] py-[12px] border-b border-[#1A3FA6]">
+                <div className="absolute top-[64px] left-0 w-full bg-[#112F82] border border-[#1463FF] border-t-0 rounded-b-[8px] flex flex-col overflow-hidden shadow-xl z-50">
+                  <div className="px-[16px] py-[10px]">
                     <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] text-white">Choose one bonus on next deposits</span>
                   </div>
 
@@ -156,19 +162,19 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     return (
                       <button
                         key={bonus.id}
-                        className={`flex flex-row items-start gap-[12px] px-[16px] py-[12px] text-left transition-colors ${isSelected ? 'bg-[#1463FF]' : 'hover:bg-[#1A3FA6]'}`}
+                        className={`flex flex-row items-center gap-[12px] px-[16px] py-[10px] text-left transition-colors ${isSelected ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}
                         onClick={() => { setSelectedBonus(bonus); setIsBonusOpen(false); }}
                       >
-                        <div className="mt-[2px] shrink-0">
+                        <div className="shrink-0 flex items-center justify-center">
                           <RenderBonusIcon
                             type={bonus.iconType}
                             className={`w-[16px] h-[16px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}
                           />
                         </div>
-                        <div className="flex flex-col">
-                          <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.title}</span>
+                        <div className="flex flex-col justify-center">
+                          <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.title}</span>
                           {bonus.desc && (
-                            <span className={`font-[family-name:var(--font-manrope)] font-medium text-[12px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.desc}</span>
+                            <span className={`font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.desc}</span>
                           )}
                         </div>
                       </button>
@@ -180,11 +186,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
             <div className="relative flex flex-col gap-[8px] w-full z-20">
               <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                2.Select a payment method
+                Select a payment method
               </label>
               <button
                 onClick={() => { setIsPaymentOpen(!isPaymentOpen); setIsBonusOpen(false); }}
-                className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isPaymentOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+                className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isPaymentOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
               >
                 <div className="flex flex-row items-center gap-[8px]">
                   {selectedPayment.id === 'crypto' ? (
@@ -205,7 +211,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </button>
 
               {isPaymentOpen && (
-                <div className="absolute top-[64px] left-0 w-full bg-[#112F82] border border-[#1A3FA6] rounded-b-[8px] flex flex-col overflow-hidden shadow-xl">
+                <div className="absolute top-[64px] left-0 w-full bg-[#112F82] border border-[#1463FF] border-t-0 rounded-b-[8px] flex flex-col overflow-hidden shadow-xl z-50">
                   {payments.map((payment) => {
                     const isSelected = selectedPayment.id === payment.id;
                     return (
@@ -244,7 +250,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               <>
                 <div className="flex flex-col gap-[8px] w-full">
                   <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                    3.Calculate the amount you want to deposit
+                    Calculate the amount you want to deposit
                   </label>
                   <div className="flex flex-row items-center gap-[8px] w-full">
                     <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
@@ -277,7 +283,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
                 <div className="flex flex-col gap-[8px] w-full">
                   <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                    4.BTC Deposit Address
+                    BTC Deposit Address
                   </label>
                   <div className="flex flex-row items-center justify-between px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                     <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] truncate mr-[12px]">
@@ -359,7 +365,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col gap-[12px] w-full">
+              <>
                 <div className="flex flex-col gap-[8px] w-full">
                   <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                     Select an amount
@@ -369,14 +375,14 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       <button
                         key={amt}
                         onClick={() => setFiatAmount(amt)}
-                        className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === amt ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
+                        className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === amt ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] border-2 border-transparent text-[#A5B8EF] font-semibold hover:text-white'}`}
                       >
                         ${amt}
                       </button>
                     ))}
                     <button
                       onClick={() => setFiatAmount('custom')}
-                      className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === 'custom' ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
+                      className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === 'custom' ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] border-2 border-transparent text-[#A5B8EF] font-semibold hover:text-white'}`}
                     >
                       Custom...
                     </button>
@@ -387,7 +393,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                     Enter your payment details
                   </label>
-                  <div className="flex flex-col gap-[8px] w-full">
+                  <div className="flex flex-col gap-[12px] w-full">
                     <div className="flex flex-row items-center px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                       <input type="text" placeholder="Credit Card Number" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
                     </div>
@@ -410,7 +416,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </p>
                   </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
         )}
@@ -429,7 +435,14 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </span>
             </button>
 
-
+            <div className="flex flex-row justify-center items-center gap-[8px]">
+              <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center shrink-0">
+                <Info size={8} className="text-[#7795E8]" />
+              </div>
+              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
+              </span>
+            </div>
           </div>
         ) : (
           <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
@@ -444,7 +457,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   router.push('/');
                 }
               } : handleCompleteDeposit}
-              className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[350px] max-w-[90vw] h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+              className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[300px] max-w-[90vw] h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
             >
               <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
                 {selectedPayment.id === 'fiat'
@@ -474,12 +487,8 @@ function FiatIcons({ className }: { className?: string }) {
       <div className="flex items-center justify-center w-[22px] h-[14px] bg-[#A5B8EF] rounded-[2px]">
         <span className="text-[#112F82] font-[family-name:var(--font-manrope)] font-extrabold text-[6px] italic tracking-tighter">VISA</span>
       </div>
-      <div className="relative w-[22px] h-[14px] flex items-center justify-center">
-        <svg viewBox="0 0 24 16" fill="none" className="w-full h-full text-[#A5B8EF]">
-          <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1" />
-          <circle cx="16" cy="8" r="7" stroke="currentColor" strokeWidth="1" />
-          <text x="12" y="10" fontSize="4" fill="currentColor" textAnchor="middle" className="font-sans font-bold" letterSpacing="-0.05em">MasterCard</text>
-        </svg>
+      <div className="relative flex items-center justify-center">
+        <CreditCard size={18} className="text-[#A5B8EF]" />
       </div>
     </div>
   );
@@ -487,9 +496,6 @@ function FiatIcons({ className }: { className?: string }) {
 
 function CrownLightningIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 29 21" fill="currentColor" className={className}>
-      <path fillRule="evenodd" clipRule="evenodd" d="M14.5 11.5L24 2L29 21H0L5 2L14.5 11.5Z" />
-      <path d="M16.5 8.5L12.5 13H15.5L13.5 17L18.5 11H14.5L16.5 8.5Z" fill="#0C1F56" />
-    </svg>
+    <Crown className={className} fill="currentColor" />
   );
 }
