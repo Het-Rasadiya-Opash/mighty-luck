@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Search } from '../ui/Search';
+import { SidebarNav } from '@/components/layout/Sidebar';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,16 +94,8 @@ export default function Header() {
             <div className="p-4">
               <Search className="w-full" />
             </div>
-            <nav className="flex flex-col gap-1 px-4 pb-6">
-              {['Promotions', 'VIP Program', 'Tournaments', 'Casino', 'Live Casino', 'Live Support'].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center h-[44px] px-3 rounded-[8px] text-[#D2DCF7] hover:text-white hover:bg-[#112F82] cursor-pointer transition-colors font-medium text-[15px]"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item}
-                </div>
-              ))}
+            <nav className="flex flex-col px-4 pb-6 w-full">
+              <SidebarNav />
             </nav>
             <div className="px-4 pb-6 flex flex-col gap-3 mt-auto">
               <Link href="?auth=login" className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] font-semibold text-[15px] transition-colors bg-[#1463FF] text-white">

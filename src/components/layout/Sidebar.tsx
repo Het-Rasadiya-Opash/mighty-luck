@@ -36,56 +36,70 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            <div className="w-full bg-[#0C1F56] rounded-[16px] flex flex-col p-[16px] gap-[16px]">
-                <NavItem icon={<Gift size={20} />} label="Promotions" />
-                <NavItem icon={<Crown size={20} />} label="VIP Program" />
-                <NavItem icon={<Trophy size={20} />} label="Tournaments" />
-
-                <div className={`flex flex-col rounded-[8px] overflow-hidden ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
-                    <div
-                        onClick={() => toggleDropdown('casino')}
-                        className={`flex items-center justify-between h-[44px] px-[10px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
-                    >
-                        <div className="flex items-center gap-[8px]">
-                            <Dices size={20} className="shrink-0" />
-                            <span className="font-medium text-[15px]">Casino</span>
-                        </div>
-                        {openDropdown === 'casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                    </div>
-                    {openDropdown === 'casino' && (
-                        <div className="flex flex-col py-[8px]">
-                            <SubNavItem icon={<LayoutGrid size={18} />} label="All Games" />
-                            <SubNavItem icon={<Sparkles size={18} />} label="New Games" />
-                            <SubNavItem icon={<Flame size={18} />} label="Popular Games" />
-                            <SubNavItem icon={<Hexagon size={18} />} label="Original Games" />
-                            <SubNavItem icon={<TrendingUp size={18} />} label="Crash Games" />
-                        </div>
-                    )}
-                </div>
-
-                <div className={`flex flex-col rounded-[8px] overflow-hidden ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
-                    <div
-                        onClick={() => toggleDropdown('live-casino')}
-                        className={`flex items-center justify-between h-[44px] px-[10px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'live-casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
-                    >
-                        <div className="flex items-center gap-[8px]">
-                            <MonitorPlay size={20} className="shrink-0" />
-                            <span className="font-medium text-[15px]">Live Casino</span>
-                        </div>
-                        {openDropdown === 'live-casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                    </div>
-                    {openDropdown === 'live-casino' && (
-                        <div className="flex flex-col py-[8px]">
-                            <SubNavItem icon={<LayoutGrid size={18} />} label="All Live Games" />
-                        </div>
-                    )}
-                </div>
-
-                <div className="mt-auto">
-                    <NavItem icon={<Headset size={20} />} label="Live Support" />
-                </div>
+            <div className="w-full bg-[#0C1F56] rounded-[16px] flex flex-col p-[16px]">
+                <SidebarNav />
             </div>
         </aside>
+    );
+}
+
+export function SidebarNav() {
+    const [openDropdown, setOpenDropdown] = useState<string | null>('casino');
+
+    const toggleDropdown = (name: string) => {
+        setOpenDropdown(openDropdown === name ? null : name);
+    };
+
+    return (
+        <div className="flex flex-col gap-[16px] w-full h-full">
+            <NavItem icon={<Gift size={20} />} label="Promotions" />
+            <NavItem icon={<Crown size={20} />} label="VIP Program" />
+            <NavItem icon={<Trophy size={20} />} label="Tournaments" />
+
+            <div className={`flex flex-col rounded-[8px] overflow-hidden ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
+                <div
+                    onClick={() => toggleDropdown('casino')}
+                    className={`flex items-center justify-between h-[44px] px-[10px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
+                >
+                    <div className="flex items-center gap-[8px]">
+                        <Dices size={20} className="shrink-0" />
+                        <span className="font-medium text-[15px]">Casino</span>
+                    </div>
+                    {openDropdown === 'casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </div>
+                {openDropdown === 'casino' && (
+                    <div className="flex flex-col py-[8px]">
+                        <SubNavItem icon={<LayoutGrid size={18} />} label="All Games" />
+                        <SubNavItem icon={<Sparkles size={18} />} label="New Games" />
+                        <SubNavItem icon={<Flame size={18} />} label="Popular Games" />
+                        <SubNavItem icon={<Hexagon size={18} />} label="Original Games" />
+                        <SubNavItem icon={<TrendingUp size={18} />} label="Crash Games" />
+                    </div>
+                )}
+            </div>
+
+            <div className={`flex flex-col rounded-[8px] overflow-hidden ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
+                <div
+                    onClick={() => toggleDropdown('live-casino')}
+                    className={`flex items-center justify-between h-[44px] px-[10px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'live-casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
+                >
+                    <div className="flex items-center gap-[8px]">
+                        <MonitorPlay size={20} className="shrink-0" />
+                        <span className="font-medium text-[15px]">Live Casino</span>
+                    </div>
+                    {openDropdown === 'live-casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </div>
+                {openDropdown === 'live-casino' && (
+                    <div className="flex flex-col py-[8px]">
+                        <SubNavItem icon={<LayoutGrid size={18} />} label="All Live Games" />
+                    </div>
+                )}
+            </div>
+
+            <div className="mt-auto pt-4">
+                <NavItem icon={<Headset size={20} />} label="Live Support" />
+            </div>
+        </div>
     );
 }
 
