@@ -31,6 +31,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [selectedBonus, setSelectedBonus] = useState(bonuses[0]);
   const [selectedPayment, setSelectedPayment] = useState(payments[1]);
   const [isPending, setIsPending] = useState(false);
+  const [fiatStep, setFiatStep] = useState<'address' | 'payment'>('address');
+  const [fiatAmount, setFiatAmount] = useState<number | 'custom'>(30);
 
   useEffect(() => {
     if (isOpen) {
@@ -38,6 +40,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setIsBonusOpen(false);
       setIsPaymentOpen(false);
       setIsPending(false);
+      setFiatStep('address');
+      setFiatAmount(30);
     } else {
       document.body.style.overflow = "";
     }
@@ -224,70 +228,173 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </div>
               )}
 
-              <div className="flex flex-row items-start gap-[8px] mt-[4px]">
-                <Info size={12} className="text-[#7795E8] mt-[2px] shrink-0" />
-                <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
-                  Only deposit BC via the Bitcoin network. Deposit of other assets or from other networks will be lost.
-                </p>
-              </div>
+              {selectedPayment.id === 'crypto' && (
+                <div className="flex flex-row items-start gap-[8px] mt-[4px]">
+                  <Info size={12} className="text-[#7795E8] mt-[2px] shrink-0" />
+                  <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                    Only deposit BC via the Bitcoin network. Deposit of other assets or from other networks will be lost.
+                  </p>
+                </div>
+              )}
             </div>
 
-            {/* 3. Calculate the amount you want to deposit */}
-            <div className="flex flex-col gap-[8px] w-full">
-              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                3.Calculate the amount you want to deposit
-              </label>
-              <div className="flex flex-row items-center gap-[8px] w-full">
-                {/* USD Input */}
-                <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                  <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
-                    <span className="text-[#1A1404] font-bold text-[10px]">$</span>
+            {selectedPayment.id === 'crypto' ? (
+              <>
+                {/* 3. Calculate the amount you want to deposit */}
+                <div className="flex flex-col gap-[8px] w-full">
+                  <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                    3.Calculate the amount you want to deposit
+                  </label>
+                  <div className="flex flex-row items-center gap-[8px] w-full">
+                    {/* USD Input */}
+                    <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                      <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
+                        <span className="text-[#1A1404] font-bold text-[10px]">$</span>
+                      </div>
+                      <input
+                        type="text"
+                        defaultValue="100"
+                        className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                      />
+                    </div>
+
+                    {/* Exchange Icon */}
+                    <div className="w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
+                      <ArrowRightLeft size={16} className="text-white" />
+                    </div>
+
+                    {/* Crypto Input */}
+                    <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                      <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
+                        <span className="text-[#1A1404] font-bold text-[10px]">₿</span>
+                      </div>
+                      <input
+                        type="text"
+                        defaultValue="0.00954"
+                        className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                      />
+                    </div>
                   </div>
-                  <input
-                    type="text"
-                    defaultValue="100"
-                    className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
-                  />
                 </div>
 
-                {/* Exchange Icon */}
-                <div className="w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
-                  <ArrowRightLeft size={16} className="text-white" />
-                </div>
-
-                {/* Crypto Input */}
-                <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                  <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
-                    <span className="text-[#1A1404] font-bold text-[10px]">₿</span>
+                {/* 4. BTC Deposit Address */}
+                <div className="flex flex-col gap-[8px] w-full">
+                  <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                    4.BTC Deposit Address
+                  </label>
+                  <div className="flex flex-row items-center justify-between px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                    <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] truncate mr-[12px]">
+                      bc1q7ndh47hf93rdhuhef873hheufhe447...
+                    </span>
+                    <div className="flex flex-row items-center gap-[12px] shrink-0">
+                      <button className="text-[#BBCAF3] hover:text-white transition-colors">
+                        <Copy size={16} />
+                      </button>
+                      <button className="text-[#BBCAF3] hover:text-white transition-colors">
+                        <QrCode size={16} />
+                      </button>
+                    </div>
                   </div>
-                  <input
-                    type="text"
-                    defaultValue="0.00954"
-                    className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
-                  />
                 </div>
-              </div>
-            </div>
+              </>
+            ) : fiatStep === 'address' ? (
+              <div className="flex flex-col gap-[12px] w-full">
+                <div className="flex flex-col gap-[8px] w-full">
+                  <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                    Enter your address
+                  </label>
+                  <div className="flex flex-row items-start gap-[8px] w-full">
+                    <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center shrink-0 mt-[1px]">
+                      <Info size={8} className="text-[#7795E8]" />
+                    </div>
+                    <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                      Please fill up your address details before completing your deposit. This information is required for credit card deposits.
+                    </p>
+                  </div>
+                </div>
 
-            {/* 4. BTC Deposit Address */}
-            <div className="flex flex-col gap-[8px] w-full">
-              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                4.BTC Deposit Address
-              </label>
-              <div className="flex flex-row items-center justify-between px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
-                <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] truncate mr-[12px]">
-                  bc1q7ndh47hf93rdhuhef873hheufhe447...
-                </span>
-                <div className="flex flex-row items-center gap-[12px] shrink-0">
-                  <button className="text-[#BBCAF3] hover:text-white transition-colors">
-                    <Copy size={16} />
-                  </button>
-                  <button className="text-[#BBCAF3] hover:text-white transition-colors">
-                    <QrCode size={16} />
-                  </button>
+                <div className="flex flex-col gap-[8px] w-full">
+                  <div className="flex flex-row items-center px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                    <input type="text" placeholder="Street" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                  </div>
+
+                  <div className="flex flex-row gap-[8px] w-full">
+                    <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                      <input type="text" placeholder="City" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                    </div>
+                    <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                      <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-row gap-[8px] w-full">
+                    <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                      <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                    </div>
+                    <div className="flex-1 flex flex-row items-center justify-between px-[16px] h-[40px] bg-[#112F82] rounded-[8px] cursor-pointer">
+                      <div className="flex flex-row items-center gap-[10px]">
+                        <span className="text-[16px] leading-none">🇺🇸</span>
+                        <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white">United States</span>
+                      </div>
+                      <ChevronDown size={14} className="text-[#A5B8EF]" />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex flex-col gap-[12px] w-full">
+                <div className="flex flex-col gap-[8px] w-full">
+                  <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                    Select an amount
+                  </label>
+                  <div className="flex flex-row gap-[8px] w-full">
+                    {[20, 30, 100].map((amt) => (
+                      <button
+                        key={amt}
+                        onClick={() => setFiatAmount(amt)}
+                        className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === amt ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
+                      >
+                        ${amt}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => setFiatAmount('custom')}
+                      className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === 'custom' ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
+                    >
+                      Custom...
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-[12px] w-full">
+                  <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                    Enter your payment details
+                  </label>
+                  <div className="flex flex-col gap-[8px] w-full">
+                    <div className="flex flex-row items-center px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                      <input type="text" placeholder="Credit Card Number" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                    </div>
+                    <div className="flex flex-row gap-[8px] w-full">
+                      <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                        <input type="text" placeholder="Exp." spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                      </div>
+                      <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                        <input type="text" placeholder="CCV" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-row items-start gap-[8px] w-full">
+                    <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center shrink-0 mt-[1px]">
+                      <Info size={8} className="text-[#7795E8]" />
+                    </div>
+                    <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                      Warning message about fees or anything else relevant at this stage.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -318,11 +425,22 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
         ) : (
           <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
             <button
-              onClick={handleCompleteDeposit}
+              onClick={selectedPayment.id === 'fiat' ? () => {
+                if (fiatStep === 'address') {
+                  toast.success("Address saved, proceeding to payment...");
+                  setFiatStep('payment');
+                } else {
+                  toast.success("Payment completed!");
+                  onClose();
+                  router.push('/');
+                }
+              } : handleCompleteDeposit}
               className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[350px] max-w-[90vw] h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
             >
               <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
-                I've completed my deposit
+                {selectedPayment.id === 'fiat' 
+                  ? (fiatStep === 'address' ? 'Continue' : `Deposit ${fiatAmount === 'custom' ? '' : '$' + fiatAmount}`)
+                  : "I've completed my deposit"}
               </span>
             </button>
 
