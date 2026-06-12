@@ -109,8 +109,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           <X size={24} />
         </button>
 
-        <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-full px-[14px] py-[20px] min-[375px]:px-[16px] min-[375px]:py-[22px] min-[425px]:px-[20px] min-[425px]:py-[24px] md:px-[24px] md:pb-[32px] gap-[24px] shadow-2xl">
-          <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none" />
+        <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-full pt-[24px] px-[20px] pb-[32px] gap-[24px] overflow-hidden">
+          <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none z-0" />
 
           {/* Mobile Close Button */}
           <button
