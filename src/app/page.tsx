@@ -15,6 +15,7 @@ import CollectionSection from "@/components/sections/CollectionSection";
 import RecentWinnerSection from "@/components/sections/RecentWinnerSection";
 import AboutSection from "@/components/sections/AboutSection";
 import CryptoIconSection from "@/components/sections/CryptoIconSection";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -63,7 +64,7 @@ export default function Home() {
           <RecentWinnerSection />
           <AboutSection />
           <CryptoIconSection />
-
+<Footer/>
         </main>
       </div>
     </Container>
