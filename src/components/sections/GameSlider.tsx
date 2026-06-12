@@ -33,7 +33,7 @@ export default function GameSlider({ title, icon, games }: GameSliderProps) {
     };
 
     return (
-        <div className="flex flex-col gap-[20px] w-[1136px] overflow-hidden">
+        <div className="flex flex-col gap-[20px] w-[1136px] overflow-hidden shrink-0">
             <div className="flex items-center justify-between w-[1136px] h-[30px] shrink-0">
                 <div className="flex items-center w-[186px] h-[30px] gap-[12px] shrink-0">
                     {icon}

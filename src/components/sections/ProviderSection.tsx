@@ -22,7 +22,7 @@ export default function ProviderSection() {
     };
 
     return (
-        <div className="flex flex-col gap-[20px] w-[1136px] overflow-hidden">
+        <div className="flex flex-col gap-[20px] w-[1136px] overflow-hidden shrink-0">
             <div className="flex items-center justify-between w-[1136px] h-[30px] shrink-0">
                 <div className="flex items-center h-[30px] gap-[12px] shrink-0">
                     <Gamepad2 className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />

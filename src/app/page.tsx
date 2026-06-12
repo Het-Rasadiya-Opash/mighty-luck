@@ -19,7 +19,7 @@ export default function Home() {
     <Container>
       <div className="flex gap-[24px] w-full">
         <Sidebar />
-        <main className="w-[1136px] h-[2644px] flex flex-col gap-[40px]">
+        <main className="w-[1136px] flex flex-col gap-[40px]">
           <HeroBanner />
           <HeroSection1 />
 
@@ -51,7 +51,7 @@ export default function Home() {
             games={tableGamesData}
           />
 
-           <GameSlider
+          <GameSlider
             title="BONUS BUYS (145)"
             icon={<CircleDollarSign className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
             games={bonusBuysData}
