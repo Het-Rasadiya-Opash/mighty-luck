@@ -124,23 +124,31 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
           </div>
 
           {/* Right Content Area */}
-          <div className="flex flex-col gap-[40px] w-full lg:w-[808px] overflow-hidden">
+          <div className="flex flex-col gap-[32px] w-full lg:w-[808px] overflow-hidden">
             {/* Search Bar */}
-            <div className="flex flex-row items-center px-[20px] py-[10px] gap-[10px] w-full h-[40px] bg-[#112F82] rounded-[8px] relative">
-              <Search size={16} className="text-white shrink-0" />
-              <input 
-                type="text" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Start typing a game name"
-                className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-[#BBCAF3] placeholder:text-[#BBCAF3] w-full pr-[80px]"
-              />
+            <div className={`flex flex-row items-center ${
+              searchQuery ? 'justify-between py-[10px] pl-[20px] pr-[10px] h-[50px] border border-[#1463FF] rounded-[12px]' : 'p-[10px_20px] h-[40px] rounded-[8px]'
+            } gap-[10px] w-full bg-[#112F82] shrink-0 box-border transition-all duration-200`}>
+              <div className="flex flex-row items-center gap-[10px] w-full">
+                <div className="flex flex-col items-center justify-center w-[16px] h-[16px]">
+                  <Search size={16} className="text-white" strokeWidth={2.5} />
+                </div>
+                <input 
+                  type="text" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Start typing a game name"
+                  className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] w-full transition-colors ${
+                    searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
+                  }`}
+                />
+              </div>
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-[6px] top-[6px] flex flex-row justify-center items-center px-[16px] py-[6px] bg-[#1463FF] rounded-[6px] hover:opacity-80 transition-opacity"
+                  className="flex flex-row justify-center items-center px-[16px] gap-[8px] w-[64px] h-[30px] bg-[#1463FF] rounded-[6px] hover:opacity-80 transition-opacity shrink-0 box-border"
                 >
-                  <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] text-white">
+                  <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFFFFF]">
                     Clear
                   </span>
                 </button>
@@ -204,12 +212,19 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
               </div>
             ) : searchResults.length > 0 ? (
-              <div className="flex flex-row flex-wrap gap-[12px] w-full content-start overflow-y-auto max-h-[500px] pb-4 [&::-webkit-scrollbar]:hidden">
-                {searchResults.map((game) => (
-                  <div key={game.id} className="w-[152px] h-[200px] shrink-0 rounded-[12px] overflow-hidden relative bg-[#0C1F56] group cursor-pointer">
-                    <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
-                  </div>
-                ))}
+              <div className="flex flex-col gap-[20px] w-full">
+                <div className="flex flex-row items-center w-full h-[29px]">
+                  <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white">
+                    {activeCategory}
+                  </h3>
+                </div>
+                <div className="flex flex-row flex-wrap gap-[12px] w-full content-start overflow-y-auto max-h-[500px] pb-4 [&::-webkit-scrollbar]:hidden">
+                  {searchResults.map((game) => (
+                    <div key={game.id} className="w-[152px] h-[200px] shrink-0 rounded-[12px] overflow-hidden relative bg-[#0C1F56] group cursor-pointer">
+                      <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="flex flex-col justify-center items-center py-[60px] gap-[16px] w-full mt-[40px]">
