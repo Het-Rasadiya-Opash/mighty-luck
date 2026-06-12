@@ -29,7 +29,7 @@ export default function HeroSection1() {
         </h3>
       </div>
 
-      <div className="relative z-10 flex items-center gap-3 md:gap-[28px] justify-center flex-wrap">
+      <div className="relative z-10 flex items-center gap-1.5 min-[375px]:gap-2 sm:gap-3 md:gap-4 lg:gap-4 xl:gap-[28px] justify-center flex-wrap">
         {cryptoIcons.map((Icon, i) => (
           <Icon key={i} width={14} height={18} className="text-[#FFFFFF] shrink-0" />
         ))}
