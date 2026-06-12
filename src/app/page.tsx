@@ -2,8 +2,11 @@ import Container from "@/components/layout/Container";
 import Sidebar from "@/components/layout/Sidebar";
 import HeroBanner from "@/components/sections/HeroBanner";
 import HeroSection1 from "@/components/sections/HeroSection1";
+import TabSection from "@/components/sections/TabSection";
 import GameSlider from "@/components/sections/GameSlider";
 import { Cherry, Zap, Rocket, Dices, CircleDollarSign } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import slotsData from "@/data/slotsData.json";
 import originalsData from "@/data/originalsData.json";
 import crashGamesData from "@/data/crashGamesData.json";
@@ -17,14 +20,16 @@ import AboutSection from "@/components/sections/AboutSection";
 import CryptoIconSection from "@/components/sections/CryptoIconSection";
 import Footer from "@/components/layout/Footer";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+
   return (
     <Container>
       <div className="flex gap-4 lg:gap-6 w-full">
         <Sidebar />
         <main className="flex-1 min-w-0 flex flex-col gap-6 md:gap-8 lg:gap-10">
           <HeroBanner />
-          <HeroSection1 />
+          {session ? <TabSection /> : <HeroSection1 />}
 
           <GameSlider
             title="SLOTS (1,487)"
