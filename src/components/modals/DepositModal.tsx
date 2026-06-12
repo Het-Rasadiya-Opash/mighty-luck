@@ -93,24 +93,34 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+    <div className="fixed inset-0 z-[100] overflow-y-auto">
       <div
-        className="absolute inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
+        className="fixed inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
         onClick={onClose}
       />
 
-      <div className="relative w-[90vw] max-w-[500px]">
+      <div className="relative min-h-full flex items-center justify-center py-[16px] pointer-events-none">
+        <div className="relative w-[calc(100vw-24px)] max-w-[500px] pointer-events-auto">
+          {/* Desktop Close Button */}
         <button
           onClick={onClose}
-          className="absolute -top-[40px] right-0 sm:-right-[40px] sm:top-0 z-10 text-white hover:opacity-80 transition-opacity"
+          className="absolute -right-[44px] top-0 z-10 text-white hover:opacity-70 transition-opacity hidden sm:block"
         >
           <X size={24} />
         </button>
 
-        <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-full p-[24px] px-[20px] pb-[32px] gap-[24px] overflow-hidden shadow-2xl">
+        <div className="relative flex flex-col items-center bg-[#091741] rounded-[16px] w-full px-[14px] py-[20px] min-[375px]:px-[16px] min-[375px]:py-[22px] min-[425px]:px-[20px] min-[425px]:py-[24px] md:px-[24px] md:pb-[32px] gap-[24px] shadow-2xl">
           <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none" />
 
-          <div className="flex flex-row items-center gap-[12px] z-10">
+          {/* Mobile Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-[16px] right-[16px] w-[28px] h-[28px] rounded-full bg-[#112F82]/80 hover:bg-[#1463FF] flex items-center justify-center text-white transition-colors sm:hidden z-50"
+          >
+            <X size={16} />
+          </button>
+
+          <div className="flex flex-row items-center gap-[12px] z-10 pr-[36px] sm:pr-0">
             <Wallet size={20} className="text-[#FFC83D]" />
             <h2 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] text-white">
               Wallet
@@ -118,26 +128,26 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </div>
 
           <div className="flex flex-col gap-[16px] w-full z-10">
-            <div className="flex flex-row items-center gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden">
+            <div className="flex flex-row items-center gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <button
                 onClick={() => setActiveTab('deposit')}
-                className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'deposit' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'deposit' ? 'text-white' : 'text-[#A5B8EF]'}`}>Deposit</span>
+                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'deposit' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'deposit' ? 'text-white' : 'text-[#A5B8EF]'}`}>Deposit</span>
               </button>
               <button
                 onClick={() => setActiveTab('bonuses')}
-                className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'bonuses' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'bonuses' ? 'text-white' : 'text-[#A5B8EF]'}`}>Bonuses</span>
+                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'bonuses' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'bonuses' ? 'text-white' : 'text-[#A5B8EF]'}`}>Bonuses</span>
               </button>
               <button
                 onClick={() => setActiveTab('withdraw')}
-                className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'withdraw' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'withdraw' ? 'text-white' : 'text-[#A5B8EF]'}`}>Withdraw</span>
+                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'withdraw' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'withdraw' ? 'text-white' : 'text-[#A5B8EF]'}`}>Withdraw</span>
               </button>
               <button
                 onClick={() => setActiveTab('transactions')}
-                className={`flex-1 min-w-[100px] h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'transactions' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'transactions' ? 'text-white' : 'text-[#A5B8EF]'}`}>Transactions</span>
+                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'transactions' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'transactions' ? 'text-white' : 'text-[#A5B8EF]'}`}>Transactions</span>
               </button>
             </div>
 
@@ -180,7 +190,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           <div className="w-[16px] h-[16px] bg-[#FFC83D] flex items-center justify-center rounded-[2px] overflow-hidden shrink-0">
                             <RenderBonusIcon type={selectedBonus.iconType} className="w-[12px] h-[12px] text-[#1A1404]" />
                           </div>
-                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] min-[375px]:text-[13px] min-[425px]:text-[14px] leading-[19px] tracking-[0.02em] text-white">
                             {selectedBonus.title}
                           </span>
                         </div>
@@ -239,7 +249,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
                             {selectedPayment.titleClosed}
                           </span>
-                          <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                          <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] hidden min-[375px]:inline">
                             {selectedPayment.descClosed}
                           </span>
                         </div>
@@ -288,8 +298,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                             Calculate the amount you want to deposit
                           </label>
-                          <div className="flex flex-row items-center gap-[8px] w-full">
-                            <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                          <div className="flex flex-row items-center gap-[6px] min-[375px]:gap-[8px] w-full">
+                            <div className="flex-1 flex flex-row items-center px-[10px] min-[375px]:px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
                               <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
                                 <span className="text-[#1A1404] font-bold text-[10px]">$</span>
                               </div>
@@ -300,11 +310,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                               />
                             </div>
 
-                            <div className="w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
+                            <div className="w-[36px] min-[375px]:w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
                               <ArrowRightLeft size={16} className="text-white" />
                             </div>
 
-                            <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                            <div className="flex-1 flex flex-row items-center px-[10px] min-[375px]:px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
                               <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
                                 <span className="text-[#1A1404] font-bold text-[10px]">₿</span>
                               </div>
@@ -499,7 +509,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start gap-[12px] w-[428px]">
+                <div className="flex flex-col items-start gap-[12px] w-full">
                   <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">Available bonuses for you</span>
 
                   <div
@@ -508,27 +518,27 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     className="flex flex-row items-start gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth"
                   >
                     {[0, 1, 2].map((item, idx) => (
-                      <div key={item} className="flex flex-col justify-center items-start p-[20px] gap-[12px] w-[300px] h-[205px] bg-[#112F82] rounded-[12px] shrink-0 snap-center">
+                      <div key={item} className="flex flex-col justify-center items-start p-[20px] gap-[12px] w-[calc(100vw-90px)] min-[425px]:w-[300px] max-w-[300px] h-[205px] bg-[#112F82] rounded-[12px] shrink-0 snap-center">
                         <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white truncate w-full">150% Reload Bonus + 30 Free Spins</span>
                         <div className="flex flex-col gap-[9px] w-full">
                           <div className="flex flex-row gap-[12px] w-full">
-                            <div className="flex flex-col gap-[2px] w-[124px]">
-                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Min. Deposit</span>
-                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">$30</span>
+                            <div className="flex flex-col gap-[2px] flex-1 min-w-0">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3] truncate">Min. Deposit</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white truncate">$30</span>
                             </div>
-                            <div className="flex flex-col gap-[2px] w-[124px]">
-                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Max. Cashout</span>
-                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">40x</span>
+                            <div className="flex flex-col gap-[2px] flex-1 min-w-0">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3] truncate">Max. Cashout</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white truncate">40x</span>
                             </div>
                           </div>
                           <div className="flex flex-row gap-[12px] w-full">
-                            <div className="flex flex-col gap-[2px] w-[124px]">
-                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Max. Amount</span>
-                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">$30</span>
+                            <div className="flex flex-col gap-[2px] flex-1 min-w-0">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3] truncate">Max. Amount</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white truncate">$30</span>
                             </div>
-                            <div className="flex flex-col gap-[2px] w-[124px]">
-                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">Wager (dep. + bonus)</span>
-                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white">10x</span>
+                            <div className="flex flex-col gap-[2px] flex-1 min-w-0">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3] truncate">Wager (dep. + bonus)</span>
+                              <span className="font-[family-name:var(--font-jost)] font-bold text-[14px] leading-[20px] tracking-[0.02em] text-white truncate">10x</span>
                             </div>
                           </div>
                         </div>
@@ -561,7 +571,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         onClose();
                         router.push('/');
                       }}
-                      className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[350px] max-w-[90vw] h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+                      className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[46px] min-[375px]:h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
                     >
                       <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
                         Go to games
@@ -590,7 +600,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           router.push('/');
                         }
                       } : handleCompleteDeposit}
-                      className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[300px] max-w-[90vw] h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+                      className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[46px] min-[375px]:h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
                     >
                       <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
                         {selectedPayment.id === 'fiat'
@@ -618,6 +628,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
