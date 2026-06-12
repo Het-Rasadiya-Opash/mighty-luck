@@ -40,10 +40,10 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="fixed inset-0 w-[1440px] max-w-full h-full min-h-screen bg-[#0C1733]/70 backdrop-blur-[8px] flex items-center justify-center z-50 mx-auto">
-      <div className="relative w-[730px] h-[546px] rounded-[16px] flex flex-row shadow-2xl shrink-0 overflow-hidden">
+    <div className="fixed inset-0 w-full h-full min-h-screen bg-[#0C1733]/70 backdrop-blur-[8px] flex items-center justify-center z-50 mx-auto overflow-y-auto py-8">
+      <div className="relative w-[95%] max-w-[400px] md:max-w-[730px] h-auto md:h-[546px] rounded-[16px] flex flex-row shadow-2xl shrink-0 overflow-hidden my-auto">
         
-        <div className="relative w-[340px] h-[546px] rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0">
+        <div className="relative w-[340px] h-full rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
           <div 
             className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px] bg-cover bg-center"
             style={{ backgroundImage: 'url(/lion.png)' }} 
@@ -75,78 +75,78 @@ export default function SignUpPage() {
           </div>
         </div>
 
-        <div className="relative w-[390px] h-[546px] bg-[#091741] rounded-r-[16px] flex flex-col items-start px-[20px] py-[24px] gap-[32px] shrink-0 overflow-hidden">
+        <div className="relative w-full md:w-[390px] h-auto md:h-full bg-[#091741] rounded-[16px] md:rounded-l-none md:rounded-r-[16px] flex flex-col items-center md:items-start px-[20px] py-[32px] md:py-[24px] gap-[32px] shrink-0 overflow-hidden">
           <div className="absolute top-[-145px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
           
-          <div className="relative w-[350px] flex flex-col items-start gap-[16px] z-10">
-            <div className="w-[350px] flex justify-center items-start mb-[9px]">
+          <div className="relative w-full max-w-[350px] flex flex-col items-center md:items-start gap-[16px] z-10">
+            <div className="w-full flex justify-center items-start mb-[9px]">
               <Image src="/Horizontal logo.png" alt="Mighty Luck" width={140} height={26} className="object-contain" />
             </div>
 
-            <div className="flex flex-row items-center gap-[8px] w-[350px] h-[40px]">
-              <Link href="/auth/sign-up" className="flex-1 flex justify-center items-center px-[30px] py-[10px] gap-[10px] bg-[#FFC83D] rounded-[8px] h-full">
+            <div className="flex flex-row items-center gap-[8px] w-full h-[40px]">
+              <Link href="/auth/sign-up" className="flex-1 flex justify-center items-center px-[10px] py-[10px] gap-[10px] bg-[#FFC83D] rounded-[8px] h-full">
                 <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#000000]">Join Now</span>
               </Link>
-              <Link href="/auth/sign-in" className="flex-1 flex justify-center items-center px-[30px] py-[10px] gap-[10px] bg-[#1463FF] rounded-[8px] h-full">
+              <Link href="/auth/sign-in" className="flex-1 flex justify-center items-center px-[10px] py-[10px] gap-[10px] bg-[#1463FF] rounded-[8px] h-full">
                 <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">Log In</span>
               </Link>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col items-start gap-[12px] w-[350px]">
-              <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[350px] h-[40px] bg-[#112F82] rounded-[8px]">
+            <form onSubmit={handleSubmit} className="flex flex-col items-start gap-[12px] w-full">
+              <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                 <input
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="User name"
-                  className="w-full bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
+                  className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                   required
                 />
               </div>
 
-              <div className="flex flex-row items-start gap-[8px] w-[350px] h-[40px]">
-                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[171px] h-[40px] bg-[#112F82] rounded-[8px]">
+              <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
+                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-[40px] bg-[#112F82] rounded-[8px]">
                   <input
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
                     placeholder="First Name"
-                    className="w-full bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
+                    className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                     required
                   />
                 </div>
-                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[171px] h-[40px] bg-[#112F82] rounded-[8px]">
+                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-[40px] bg-[#112F82] rounded-[8px]">
                   <input
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
                     placeholder="Last Name"
-                    className="w-full bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
+                    className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                     required
                   />
                 </div>
               </div>
 
-              <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[350px] h-[40px] bg-[#112F82] rounded-[8px]">
+              <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                 <input
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email"
-                  className="w-full bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
+                  className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                   required
                 />
               </div>
 
-              <div className="flex flex-row justify-between items-center px-[16px] py-[10px] gap-[10px] w-[350px] h-[40px] bg-[#112F82] rounded-[8px]">
+              <div className="flex flex-row justify-between items-center px-[16px] py-[10px] gap-[10px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                 <input
                   name="password"
                   type="password"
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Password"
-                  className="w-full bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
+                  className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                   required
                 />
                 <div className="w-[20px] h-[20px] shrink-0 flex justify-center items-center">
@@ -156,7 +156,7 @@ export default function SignUpPage() {
                 </div>
               </div>
 
-              <div className="flex flex-row items-start gap-[8px] w-[350px] h-[40px]">
+              <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
                 <div className="flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[121px] h-[40px] bg-[#112F82] rounded-[8px]">
                   <div className="w-[20px] h-[20px] shrink-0 rounded-full overflow-hidden flex items-center justify-center">
                     <img src="https://flagcdn.com/w40/us.png" alt="US" className="w-[20px] h-[20px] object-cover" />
@@ -166,34 +166,34 @@ export default function SignUpPage() {
                     <path d="M1 1L3.5 3L6 1" stroke="#A5B8EF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[221px] h-[40px] bg-[#112F82] rounded-[8px]">
+                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-[40px] bg-[#112F82] rounded-[8px]">
                   <input
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleChange}
                     placeholder="Phone Number"
-                    className="w-full bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
+                    className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                   />
                 </div>
               </div>
 
-              <div className="flex flex-row items-start gap-[10px] w-[350px] h-[28px]">
-                <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] text-justify tracking-[0.01em] text-[#BBCAF3] w-[300px]">
+              <div className="flex flex-row items-start gap-[10px] w-full h-auto min-h-[28px]">
+                <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] text-justify tracking-[0.01em] text-[#BBCAF3] w-full">
                   By clicking "Join Now" I confirm that I'm over 18 years old and agree to Mighty Luck' T&C along with the Privacy Policy
                 </p>
               </div>
 
-              <div className="flex flex-col items-start gap-[12px] w-[350px] h-[78px] mt-[4px]">
+              <div className="flex flex-col items-center md:items-start gap-[12px] w-full mt-[4px]">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-[350px] h-[50px] bg-[#FFC83D] rounded-[8px]"
+                  className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-full h-[50px] bg-[#FFC83D] rounded-[8px]"
                 >
                   <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
                     {isSubmitting ? 'Joining...' : 'Join with a 350% Bonus'}
                   </span>
                 </button>
-                <div className="flex flex-row justify-center items-center gap-[8px] w-[350px] h-[16px]">
+                <div className="flex flex-row justify-center items-center gap-[8px] w-full h-[16px] mt-2">
                   <div className="w-[16px] h-[16px] flex items-center justify-center border-[1.5px] border-[#7795E8] rounded-full text-[#7795E8] font-bold text-[10px]">?</div>
                   <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                     Having problems? <span className="font-bold cursor-pointer">Contact support</span>
