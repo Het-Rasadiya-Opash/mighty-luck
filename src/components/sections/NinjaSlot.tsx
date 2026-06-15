@@ -1,7 +1,11 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import { Maximize, Heart } from 'lucide-react';
 
 export default function NinjaSlot() {
+  const [isRealPlay, setIsRealPlay] = useState(true);
+
   return (
     <div className="w-full h-auto min-h-[100px] bg-[#0C1F56] rounded-[16px] p-[16px] sm:px-[30px] sm:py-0 flex flex-col sm:flex-row items-center justify-between mx-auto flex-none overflow-hidden gap-[16px] sm:gap-0">
       
@@ -42,22 +46,37 @@ export default function NinjaSlot() {
         
         {/* Icons */}
         <div className="flex flex-row items-center gap-[24px] h-[20px] flex-none">
-          <Maximize size={20} strokeWidth={2} className="text-white cursor-pointer hover:text-[#A5B8EF] transition-colors" />
-          <Heart size={20} strokeWidth={2} className="text-white cursor-pointer hover:text-[#FFC83D] transition-colors" />
+          <div 
+            className="w-[20px] h-[20px] bg-current text-white cursor-pointer hover:text-[#A5B8EF] transition-colors shrink-0" 
+            style={{ WebkitMaskImage: 'url(/open.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/open.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+          />
+          <div 
+            className="w-[20px] h-[20px] bg-current text-white cursor-pointer hover:text-[#FFC83D] transition-colors shrink-0" 
+            style={{ WebkitMaskImage: 'url(/heart.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/heart.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+          />
         </div>
 
         {/* Toggle Frame */}
         <div className="flex flex-row items-center justify-center gap-[8px] h-[24px] flex-none w-full sm:w-auto">
-          <span className="font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] whitespace-nowrap flex-none">
+          <span 
+            onClick={() => setIsRealPlay(false)}
+            className={`font-['Manrope'] text-[12px] leading-[16px] tracking-[0.02em] whitespace-nowrap flex-none cursor-pointer transition-colors ${!isRealPlay ? 'font-bold text-white' : 'font-semibold text-[#A5B8EF]'}`}
+          >
             Fun Play
           </span>
 
           {/* Toggle Switch */}
-          <div className="flex flex-row items-center justify-end w-[42px] h-[24px] bg-[#1463FF] rounded-[30px] p-[3px] cursor-pointer flex-none box-border">
+          <div 
+            onClick={() => setIsRealPlay(!isRealPlay)}
+            className={`flex flex-row items-center w-[42px] h-[24px] rounded-[30px] p-[3px] cursor-pointer flex-none box-border transition-colors ${isRealPlay ? 'bg-[#1463FF] justify-end' : 'bg-[#112F82] justify-start'}`}
+          >
             <div className="w-[18px] h-[18px] bg-white rounded-[30px] flex-none shadow-sm"></div>
           </div>
 
-          <span className="font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white whitespace-nowrap flex-none">
+          <span 
+            onClick={() => setIsRealPlay(true)}
+            className={`font-['Manrope'] text-[12px] leading-[16px] tracking-[0.02em] whitespace-nowrap flex-none cursor-pointer transition-colors ${isRealPlay ? 'font-bold text-white' : 'font-semibold text-[#A5B8EF]'}`}
+          >
             Real Play
           </span>
         </div>
