@@ -21,16 +21,36 @@ import CryptoIconSection from "@/components/sections/CryptoIconSection";
 import Footer from "@/components/layout/Footer";
 import PromotionSection from "@/components/sections/PromotionSection";
 
-export default async function Home() {
+import GameOpen from "@/components/sections/GameOpen";
+
+export default async function Home({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const session = await getServerSession(authOptions);
+  
+  // Await the searchParams Promise in Next.js 15
+  const resolvedParams = await searchParams;
+  const gameId = resolvedParams?.game as string | undefined;
 
   return (
     <Container>
       <div className="flex gap-4 lg:gap-6 w-full">
         <Sidebar />
         <main className="flex-1 min-w-0 flex flex-col gap-6 md:gap-8 lg:gap-10 overflow-hidden">
-          <HeroBanner />
-          {session ? <TabSection /> : <HeroSection1 />}
+          {gameId ? (
+            <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
+              <GameOpen gameId={gameId} />
+              
+              <div id="other-games">
+                <GameSlider
+                  title="OTHER GAMES YOU MIGHT LIKE"
+                  icon={<Rocket className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+                  games={slotsData.slice(0, 10)}
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              <HeroBanner />
+              {session ? <TabSection /> : <HeroSection1 />}
 
           <div id="tab-content-container" className="flex flex-col gap-6 md:gap-8 lg:gap-10">
             <div id="slots" className="tab-content">
@@ -87,7 +107,9 @@ export default async function Home() {
             <div id="recent-winners" className="tab-content">
               <RecentWinnerSection />
             </div>
-          </div>
+            </div>
+            </>
+          )}
           <AboutSection />
           <CryptoIconSection />
           <Footer />

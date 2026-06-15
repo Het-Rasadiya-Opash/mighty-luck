@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 export interface Game {
     id: number | string;
@@ -21,6 +22,15 @@ export default function GameSlider({ id, title, icon, games }: GameSliderProps) 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(7);
     const containerRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+
+    const handleGameClick = (gameId: string | number) => {
+        const params = new URLSearchParams(searchParams?.toString());
+        params.set('game', gameId.toString());
+        router.push(`${pathname}?${params.toString()}`);
+    };
 
     const cardWidth = 152;
     const cardGap = 12;
@@ -89,6 +99,7 @@ export default function GameSlider({ id, title, icon, games }: GameSliderProps) 
                     {games.map((game) => (
                         <div
                             key={game.id}
+                            onClick={() => handleGameClick(game.id)}
                             className="w-[130px] sm:w-[140px] md:w-[152px] h-[180px] md:h-[200px] bg-[#0C1F56] rounded-[16px] flex flex-col items-center justify-center overflow-hidden relative group shrink-0 cursor-pointer hover:z-10"
                         >
                             <Image
