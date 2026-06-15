@@ -23,6 +23,7 @@ import Footer from "@/components/layout/Footer";
 import PromotionSection from "@/components/sections/PromotionSection";
 import GameOpen from "@/components/sections/GameOpen";
 import ReferFriend from "@/components/sections/ReferFriend";
+import Why from "@/components/sections/Why";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const session = await getServerSession(authOptions);
@@ -74,7 +75,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
             </div>
 
             {
-              session ? <PromotionSection /> : <WhyJoin />
+              session ? <PromotionSection /> : <Why />
             }
 
             <div id="crash-games" className="tab-content">
