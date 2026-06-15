@@ -80,10 +80,12 @@ function AuthModalContent() {
         
         <div className="relative w-[340px] h-full rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
           <div className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px]">
-            <img
-              src="/hero-bg.png?v=1"
+            <Image
+              src="/login.png"
               alt="Welcome Image"
-              className="w-full h-full object-cover object-center"
+              fill
+              className="object-cover object-center"
+              priority
             />
           </div>
           <div 
