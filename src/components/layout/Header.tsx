@@ -54,7 +54,7 @@ export default function Header() {
             />
           </button>
 
-          <div className="flex items-center shrink-0">
+          <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/Horizontal logo.png"
               alt="Mighty Luck"
@@ -62,7 +62,7 @@ export default function Header() {
               height={28}
               className="object-contain w-[105px] min-[375px]:w-[100px] min-[425px]:w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto"
             />
-          </div>
+          </Link>
 
           <div className="hidden lg:flex">
             <Search />
@@ -168,13 +168,15 @@ export default function Header() {
           />
           <div className="fixed top-0 left-0 h-full w-[280px] bg-[#0C1F56] z-50 flex flex-col transform transition-transform duration-300 translate-x-0 overflow-y-auto">
             <div className="flex items-center justify-between p-4 border-b border-[#112F82]">
-              <Image
-                src="/Horizontal logo.png"
-                alt="Mighty Luck"
-                width={140}
-                height={26}
-                className="object-contain h-auto"
-              />
+              <Link href="/" onClick={() => setIsOpen(false)} className="shrink-0">
+                <Image
+                  src="/Horizontal logo.png"
+                  alt="Mighty Luck"
+                  width={140}
+                  height={26}
+                  className="object-contain h-auto"
+                />
+              </Link>
               <button
                 onClick={() => setIsOpen(false)}
                 className="flex items-center justify-center min-h-[44px] min-w-[44px] text-white hover:opacity-80"
