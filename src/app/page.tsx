@@ -46,7 +46,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
               <div id="other-games">
                 <GameSlider
                   title="OTHER GAMES YOU MIGHT LIKE"
-                  icon={<Rocket className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+                  icon={<img src="/other.svg" alt="Other" className="w-[30px] h-[30px] shrink-0" />}
                   games={slotsData.slice(0, 10)}
                 />
               </div>
