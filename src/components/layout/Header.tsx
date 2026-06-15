@@ -26,13 +26,7 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) setIsOpen(false);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -45,8 +39,10 @@ export default function Header() {
 
         <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-6 min-w-0">
           <button
-            className="flex lg:hidden items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
-            onClick={() => setIsOpen(true)}
+            className="flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
+            onClick={() => {
+              if (window.innerWidth < 1024) setIsOpen(true);
+            }}
             aria-label="Open menu"
           >
             <Image
@@ -55,7 +51,8 @@ export default function Header() {
               width={22}
               height={22}
               className="object-contain"
-            />          </button>
+            />
+          </button>
 
           <div className="flex items-center shrink-0">
             <Image
@@ -81,7 +78,7 @@ export default function Header() {
                 </span>
               </div>
 
-              <button 
+              <button
                 className="flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors"
                 onClick={() => setIsDepositModalOpen(true)}
               >
@@ -92,7 +89,7 @@ export default function Header() {
               </button>
             </div>
 
-            <button 
+            <button
               className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[32px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
               onClick={() => setIsDepositModalOpen(true)}
             >
@@ -111,7 +108,7 @@ export default function Header() {
               </button>
 
               <div className="relative" ref={profileRef}>
-                <button 
+                <button
                   className="w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                 >
@@ -127,7 +124,7 @@ export default function Header() {
                       </span>
                     </div>
                     <div className="flex flex-col p-2">
-                      <Link 
+                      <Link
                         href="?view=refer"
                         onClick={() => setIsProfileOpen(false)}
                         className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left"
@@ -135,7 +132,7 @@ export default function Header() {
                         <Users size={18} color="#D2DCF7" />
                         <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] text-[#D2DCF7] hover:text-white transition-colors">Refer a Friend</span>
                       </Link>
-                      <button 
+                      <button
                         className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left mt-1"
                         onClick={() => {
                           setIsProfileOpen(false);
@@ -166,10 +163,10 @@ export default function Header() {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/60 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="fixed top-0 left-0 h-full w-[280px] bg-[#0C1F56] z-50 lg:hidden flex flex-col transform transition-transform duration-300 translate-x-0 overflow-y-auto">
+          <div className="fixed top-0 left-0 h-full w-[280px] bg-[#0C1F56] z-50 flex flex-col transform transition-transform duration-300 translate-x-0 overflow-y-auto">
             <div className="flex items-center justify-between p-4 border-b border-[#112F82]">
               <Image
                 src="/Horizontal logo.png"
@@ -204,9 +201,9 @@ export default function Header() {
         </>
       )}
 
-      <DepositModal 
-        isOpen={isDepositModalOpen} 
-        onClose={() => setIsDepositModalOpen(false)} 
+      <DepositModal
+        isOpen={isDepositModalOpen}
+        onClose={() => setIsDepositModalOpen(false)}
       />
     </header>
   );
