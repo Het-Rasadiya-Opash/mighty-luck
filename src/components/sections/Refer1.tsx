@@ -1,7 +1,45 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useRef } from 'react';
 import { Users, DollarSign } from 'lucide-react';
 
 export default function Refer1() {
+  const [friends, setFriends] = useState(5);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const maxFriends = 50;
+  
+  // Calculation
+  const earningsPerFriend = 50;
+  const earnings = friends * earningsPerFriend;
+
+  // Visual calculations
+  const trackWidth = 390;
+  const thumbWidth = 54;
+  const maxTravel = trackWidth - thumbWidth;
+  const percentage = friends / maxFriends;
+  const thumbLeft = percentage * maxTravel;
+  const fillWidth = thumbLeft + thumbWidth / 2;
+
+  const updateSlider = (clientX: number) => {
+    if (!trackRef.current) return;
+    const rect = trackRef.current.getBoundingClientRect();
+    let newX = clientX - rect.left;
+    newX = Math.max(0, Math.min(newX, rect.width));
+    const newPercentage = newX / rect.width;
+    const newFriends = Math.round(newPercentage * maxFriends);
+    setFriends(newFriends);
+  };
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (!trackRef.current) return;
+    trackRef.current.setPointerCapture(e.pointerId);
+    updateSlider(e.clientX);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (e.buttons !== 1 || !trackRef.current) return;
+    updateSlider(e.clientX);
+  };
   return (
     <div 
       className="flex flex-col items-start p-[32px_40px] gap-[20px] w-[1136px] h-[533px] rounded-[16px] mx-auto flex-none overflow-hidden relative"
@@ -38,15 +76,26 @@ export default function Refer1() {
               <div className="w-[390px] h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] flex-none">
                 Invited Friends
               </div>
-              <div className="w-[390px] h-[40px] relative isolate flex flex-col justify-center flex-none">
+              <div 
+                ref={trackRef}
+                className="w-[390px] h-[40px] relative isolate flex flex-col justify-center flex-none cursor-pointer touch-none"
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+              >
                 {/* Track */}
-                <div className="absolute w-[390px] h-[6px] bg-[#112F82] rounded-[100px] top-[17px] left-0 z-0"></div>
+                <div className="absolute w-[390px] h-[6px] bg-[#112F82] rounded-[100px] top-[17px] left-0 z-0 pointer-events-none"></div>
                 {/* Fill */}
-                <div className="absolute w-[120px] h-[6px] bg-[#1463FF] rounded-l-[100px] top-[17px] left-0 z-10"></div>
+                <div 
+                  className="absolute h-[6px] bg-[#1463FF] rounded-l-[100px] top-[17px] left-0 z-10 pointer-events-none transition-all duration-75"
+                  style={{ width: `${fillWidth}px` }}
+                ></div>
                 {/* Thumb */}
-                <div className="absolute flex flex-row justify-center items-center p-[4px_12px] gap-[4px] w-[54px] h-[30px] bg-[#1463FF] rounded-[100px] top-[5px] left-[94px] z-20 cursor-pointer shadow-md">
+                <div 
+                  className="absolute flex flex-row justify-center items-center p-[4px_12px] gap-[4px] w-[54px] h-[30px] bg-[#1463FF] rounded-[100px] top-[5px] z-20 shadow-md pointer-events-none transition-all duration-75"
+                  style={{ left: `${thumbLeft}px` }}
+                >
                   <Users size={14} className="text-white" strokeWidth={2.5} />
-                  <span className="font-['Manrope'] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-white">5</span>
+                  <span className="font-['Manrope'] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-white select-none">{friends}</span>
                 </div>
               </div>
             </div>
@@ -58,7 +107,7 @@ export default function Refer1() {
                   Your monthly earnings:
                 </span>
                 <span className="font-['Manrope'] font-bold text-[24px] leading-[33px] tracking-[0.02em] text-white">
-                  $250
+                  ${earnings}
                 </span>
               </div>
               <div className="w-[390px] h-[28px] font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] flex-none">
