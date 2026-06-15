@@ -2,8 +2,7 @@
 
 import React from 'react';
 import GameFrame from './GameFrame';
-import { Maximize2, Heart } from 'lucide-react';
-import Image from 'next/image';
+import NinjaSlot from './NinjaSlot';
 
 interface GameOpenProps {
   gameId?: string;
@@ -11,8 +10,9 @@ interface GameOpenProps {
 
 export default function GameOpen({ gameId }: GameOpenProps) {
   return (
-    <div className="flex flex-col gap-4 w-full items-center">
+    <div>
       <GameFrame imageSrc="/game-frame.png" />
+      <NinjaSlot />
       
      
     </div>
