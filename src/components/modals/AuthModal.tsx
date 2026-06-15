@@ -169,7 +169,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
               <Image src="/Horizontal logo.png" alt="Mighty Luck" width={140} height={26} className="object-contain" />
             </div>
 
-            <div className="flex flex-row items-center gap-[8px] w-full h-[40px] mt-[16px]">
+            <div className="flex flex-row items-center gap-[8px] w-full h-[40px] mt-[2px]">
               <button 
                 onClick={() => handleTabSwitch('register')}
                 className={`flex-1 flex justify-center items-center px-[30px] py-[10px] gap-[10px] rounded-[8px] h-full transition-colors ${!isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
@@ -233,7 +233,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                         {isSubmitting ? 'Logging in...' : 'Log In'}
                       </span>
                     </button>
-                    <div className="flex flex-row justify-center items-center gap-[8px] w-full h-[16px] mt-[4px]">
+                    <div className="flex flex-row items-center gap-[8px] w-full h-[16px] mt-[4px]">
                       <div className="w-[16px] h-[16px] flex items-center justify-center border-[1.5px] border-[#7795E8] rounded-full text-[#7795E8] font-bold text-[10px]">?</div>
                       <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                         Having problems? <span className="font-bold cursor-pointer text-[#FFC83D]">Contact support</span>
@@ -255,8 +255,8 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     />
                   </div>
 
-                  <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
-                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="grid grid-cols-2 gap-[8px] w-full h-[40px]">
+                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                       <input
                         name="firstName"
                         value={formData.firstName}
@@ -266,7 +266,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                         required
                       />
                     </div>
-                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-[40px] bg-[#112F82] rounded-[8px]">
+                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                       <input
                         name="lastName"
                         value={formData.lastName}
@@ -345,7 +345,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                         {isSubmitting ? 'Joining...' : 'Join with a 350% Bonus'}
                       </span>
                     </button>
-                    <div className="flex flex-row justify-center items-center gap-[8px] w-full h-[16px] mt-[4px]">
+                    <div className="flex flex-row items-center gap-[8px] w-full h-[16px] mt-[4px]">
                       <div className="w-[16px] h-[16px] flex items-center justify-center border-[1.5px] border-[#7795E8] rounded-full text-[#7795E8] font-bold text-[10px]">?</div>
                       <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                         Having problems? <span className="font-bold cursor-pointer text-[#FFC83D]">Contact support</span>
