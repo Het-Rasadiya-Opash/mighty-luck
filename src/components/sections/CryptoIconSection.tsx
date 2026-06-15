@@ -17,8 +17,8 @@ export default function CryptoIconSection() {
             />
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-[28px] relative z-[1]">
                 {icons.map((icon, i) => (
-                    <div key={i} className="flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity cursor-pointer min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0">
-                        <Image src={`/${icon}`} alt={`Crypto ${i+1}`} width={19} height={19} className="w-auto h-[16px] md:h-[19px] shrink-0 object-contain" />
+                    <div key={i} className="flex items-center justify-center transition-opacity cursor-pointer min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0">
+                        <Image src={`/${icon}`} alt={`Crypto ${i + 1}`} width={19} height={19} className="w-auto h-[16px] md:h-[19px] shrink-0 object-contain" />
                     </div>
                 ))}
             </div>

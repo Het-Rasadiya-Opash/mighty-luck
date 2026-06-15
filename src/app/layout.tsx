@@ -48,7 +48,7 @@ export default function RootLayout({
           <Header />
           {children}
           <AuthModal />
-          <Toaster richColors position="top-right" />
+          <Toaster richColors position="top-right" duration={1000} />
         </AuthProvider>
       </body>
     </html>
