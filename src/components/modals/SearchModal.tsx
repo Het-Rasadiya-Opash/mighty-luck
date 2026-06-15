@@ -85,7 +85,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     { name: 'Table Games', icon: '/tg.svg' },
     { name: 'Live Casino', icon: '/live.svg' },
     { name: 'Baccarat', icon: '/baccarat.svg' },
-    { name: 'Blackjack', icon: '/baccarat.svg' },
+    { name: 'Blackjack', icon: '/blackjet.svg' },
   ];
 
   const searchResults = gamesData.filter(game => game.title.toLowerCase().includes(searchQuery.toLowerCase()));

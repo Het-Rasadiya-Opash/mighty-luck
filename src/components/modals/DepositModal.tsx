@@ -96,6 +96,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
   if (!isOpen || !mounted) return null;
 
+  const isFiatAddress = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'address';
+  const isFiatPayment = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'payment';
+  
+  const modalHeightClass = isFiatAddress ? 'sm:h-[633px]' : (isFiatPayment ? 'sm:h-[647px]' : 'sm:h-[604px]');
+  const outerBoxHeightClass = isFiatAddress ? 'sm:h-[503px]' : (isFiatPayment ? 'sm:h-[517px]' : 'sm:h-[474px]');
+  const innerBoxHeightClass = isFiatAddress ? 'sm:h-[450px]' : (isFiatPayment ? 'sm:h-[464px]' : 'sm:h-[421px]');
+
   return createPortal(
     <div className="fixed inset-0 z-[100] sm:overflow-y-auto">
       <div
@@ -113,8 +120,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           <X size={24} />
         </button>
 
-        <div className="relative flex flex-col items-center bg-[#091741] rounded-none sm:rounded-[16px] w-full h-full sm:h-auto pt-[48px] sm:pt-[24px] px-[20px] pb-[32px] gap-[24px] overflow-x-hidden overflow-y-auto sm:overflow-hidden">
-          <div className="absolute top-[-145px] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none z-0" />
+        <div className={`relative flex flex-col items-center bg-[#091741] rounded-none sm:rounded-[16px] w-full sm:w-[500px] h-full ${modalHeightClass} pt-[48px] sm:pt-[24px] px-[20px] pb-[32px] gap-[24px] overflow-x-hidden overflow-y-auto sm:overflow-hidden`}>
+          <div className="absolute top-[-145px] left-1/2 -translate-x-1/2 w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none z-0" />
 
           {/* Mobile Close Button */}
           <button
@@ -124,36 +131,41 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             <X size={16} />
           </button>
 
-          <div className="flex flex-row items-center gap-[12px] z-10 pr-[36px] sm:pr-0">
-            <Image src="/wallet.svg" width={20} height={20} alt="Wallet" className="shrink-0" />
-            <h2 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] text-white">
-              Wallet
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-[16px] w-full z-10">
-            <div className="flex flex-row items-center gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-              <button
-                onClick={() => setActiveTab('deposit')}
-                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'deposit' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'deposit' ? 'text-white' : 'text-[#A5B8EF]'}`}>Deposit</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('bonuses')}
-                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'bonuses' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'bonuses' ? 'text-white' : 'text-[#A5B8EF]'}`}>Bonuses</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('withdraw')}
-                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'withdraw' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'withdraw' ? 'text-white' : 'text-[#A5B8EF]'}`}>Withdraw</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('transactions')}
-                className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-[30px] flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'transactions' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
-                <span className={`font-[family-name:var(--font-manrope)] font-bold text-[11px] min-[375px]:text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'transactions' ? 'text-white' : 'text-[#A5B8EF]'}`}>Transactions</span>
-              </button>
+          <div className={`flex flex-col items-start gap-[24px] w-full h-full ${outerBoxHeightClass} z-10`}>
+            <div className="flex flex-row justify-center items-start gap-[12px] w-full h-[29px]">
+              <div className="flex flex-row items-center gap-[12px] h-[29px]">
+                <div className="relative flex items-center justify-center w-[20px] h-[20px] shrink-0">
+                  <Image src="/wallet.svg" width={20} height={20} alt="Wallet" className="absolute top-0 left-0" />
+                </div>
+                <h2 className="font-['Jost'] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] text-white">
+                  Wallet
+                </h2>
+              </div>
             </div>
+
+            <div className={`flex flex-col items-start gap-[16px] w-full h-full ${innerBoxHeightClass}`}>
+              <div className="flex flex-row items-center gap-[8px] w-full h-[30px] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                <button
+                  onClick={() => setActiveTab('deposit')}
+                  className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-full flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'deposit' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                  <span className={`font-[family-name:var(--font-manrope)] text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'deposit' ? 'font-bold text-white' : 'font-semibold text-[#A5B8EF]'}`}>Deposit</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('bonuses')}
+                  className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-full flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'bonuses' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                  <span className={`font-[family-name:var(--font-manrope)] text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'bonuses' ? 'font-bold text-white' : 'font-semibold text-[#A5B8EF]'}`}>Bonuses</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('withdraw')}
+                  className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-full flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'withdraw' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                  <span className={`font-[family-name:var(--font-manrope)] text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'withdraw' ? 'font-bold text-white' : 'font-semibold text-[#A5B8EF]'}`}>Withdraw</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('transactions')}
+                  className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-full flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'transactions' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
+                  <span className={`font-[family-name:var(--font-manrope)] text-[12px] leading-[16px] tracking-[0.02em] ${activeTab === 'transactions' ? 'font-bold text-white' : 'font-semibold text-[#A5B8EF]'}`}>Transactions</span>
+                </button>
+              </div>
 
             {activeTab === 'deposit' && (
               <>
@@ -180,11 +192,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </p>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative">
+                  <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-[404px]' : (isFiatPayment ? 'h-[418px]' : 'h-[375px]')} bg-[#0C1F56] rounded-[16px] z-20 relative`}>
 
                     <div className="relative flex flex-col gap-[8px] w-full z-30">
-                      <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                        Select a Bonus
+                      <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                        {selectedPayment.id === 'fiat' ? 'Select a Bonus' : '1.Select a Bonus'}
                       </label>
                       <button
                         onClick={() => { setIsBonusOpen(!isBonusOpen); setIsPaymentOpen(false); }}
@@ -235,8 +247,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </div>
 
                     <div className="relative flex flex-col gap-[8px] w-full z-20">
-                      <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                        Select a payment method
+                      <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                        {selectedPayment.id === 'fiat' ? 'Select a payment method' : '2.Select a payment method'}
                       </label>
                       <button
                         onClick={() => { setIsPaymentOpen(!isPaymentOpen); setIsBonusOpen(false); }}
@@ -255,11 +267,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             {selectedPayment.descClosed}
                           </span>
                         </div>
-                        <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isPaymentOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown size={14} strokeWidth={2.5} className={`text-[#A5B8EF] transition-transform ${isPaymentOpen ? 'rotate-180' : ''}`} />
                       </button>
 
                       {isPaymentOpen && (
-                        <div className="absolute top-[64px] left-0 w-full bg-[#112F82] border border-[#1463FF] border-t-0 rounded-b-[8px] flex flex-col overflow-hidden shadow-xl z-50">
+                        <div className="absolute top-[63px] left-0 w-full bg-[#112F82] border border-[#1463FF] border-t-0 rounded-b-[8px] flex flex-col overflow-hidden shadow-xl z-50">
                           {payments.map((payment) => {
                             const isSelected = selectedPayment.id === payment.id;
                             return (
@@ -285,9 +297,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       )}
 
                       {selectedPayment.id === 'crypto' && (
-                        <div className="flex flex-row items-start gap-[8px] mt-[4px]">
-                          <Image src="/error.svg" width={16} height={16} alt="Info" className="mt-[2px] shrink-0" />
-                          <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                        <div className="flex flex-row items-start gap-[8px] w-full h-[28px]">
+                          <div className="flex items-center justify-center w-[12px] h-[12px] shrink-0 mt-[1px]">
+                            <Image src="/error.svg" width={12} height={12} alt="Info" className="w-[12px] h-[12px]" />
+                          </div>
+                          <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                             Only deposit BC via the Bitcoin network. Deposit of other assets or from other networks will be lost.
                           </p>
                         </div>
@@ -297,37 +311,37 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     {selectedPayment.id === 'crypto' ? (
                       <>
                         <div className="flex flex-col gap-[8px] w-full">
-                          <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                            Calculate the amount you want to deposit
+                          <label className="flex items-center w-full h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                            3.Calculate the amount you want to deposit
                           </label>
-                          <div className="flex flex-row items-center gap-[6px] min-[375px]:gap-[8px] w-full">
-                            <div className="flex-1 flex flex-row items-center px-[10px] min-[375px]:px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                          <div className="flex flex-row items-center gap-[8px] w-full h-[40px]">
+                            <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
                                 <Image src="/d-doller.svg" width={16} height={16} alt="USD" className="shrink-0 mr-[8px]" />
                               <input
                                 type="text"
                                 defaultValue="100"
-                                className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                                className="bg-transparent border-none outline-none font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
                               />
                             </div>
 
-                            <div className="w-[36px] min-[375px]:w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
+                            <div className="w-[40px] h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
                               <ArrowRightLeft size={16} className="text-white" />
                             </div>
 
-                            <div className="flex-1 flex flex-row items-center px-[10px] min-[375px]:px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
+                            <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
                                 <Image src="/d-bit.svg" width={16} height={16} alt="BTC" className="shrink-0 mr-[8px]" />
                               <input
                                 type="text"
                                 defaultValue="0.00954"
-                                className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                                className="bg-transparent border-none outline-none font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
                               />
                             </div>
                           </div>
                         </div>
 
                         <div className="flex flex-col gap-[8px] w-full">
-                          <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                            BTC Deposit Address
+                          <label className="flex items-center w-full h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                            4.BTC Deposit Address
                           </label>
                           <div className="flex flex-row items-center justify-between px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                             <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] truncate mr-[12px]">
@@ -345,59 +359,63 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </div>
                       </>
                     ) : fiatStep === 'address' ? (
-                      <div className="flex flex-col gap-[12px] w-full">
-                        <div className="flex flex-col gap-[8px] w-full">
-                          <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                            Enter your address
-                          </label>
-                          <div className="flex flex-row items-start gap-[8px] w-full">
-                            <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0 mt-[1px]" />
-                            <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                      <div className="flex flex-col gap-[12px] w-full h-[212px]">
+                        <div className="flex flex-col gap-[8px] w-full h-[52px]">
+                          <div className="flex flex-row items-center gap-[8px] w-full h-[16px]">
+                            <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
+                              Enter your address
+                            </label>
+                          </div>
+                          <div className="flex flex-row items-start gap-[8px] w-full h-[28px]">
+                            <div className="w-[12px] h-[12px] relative mt-[2px]">
+                              <div className="absolute inset-0 bg-[#7795E8] [mask-image:url('/error.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]" />
+                            </div>
+                            <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] flex-1">
                               Please fill up your address details before completing your deposit. This information is required for credit card deposits.
                             </p>
                           </div>
                         </div>
 
-                        <div className="flex flex-col gap-[8px] w-full">
-                          <div className="flex flex-row items-center px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
-                            <input type="text" placeholder="Street" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                        <div className="flex flex-col gap-[12px] w-full h-[144px]">
+                          <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                            <input type="text" placeholder="Street" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                           </div>
 
-                          <div className="flex flex-row gap-[8px] w-full">
-                            <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <input type="text" placeholder="City" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                          <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[210px] h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input type="text" placeholder="City" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                             </div>
-                            <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[210px] h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                             </div>
                           </div>
 
-                          <div className="flex flex-row gap-[8px] w-full">
-                            <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                          <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[210px] h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                             </div>
-                            <div className="flex-1 relative">
+                            <div className="relative w-[210px] h-[40px]">
                               <div
                                 onClick={() => setIsCountryOpen(!isCountryOpen)}
-                                className={`flex flex-row items-center justify-between px-[16px] h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+                                className={`flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[210px] h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
                               >
-                                <div className="flex flex-row items-center gap-[10px]">
-                                  <span className="text-[16px] leading-none">{selectedCountry.flag}</span>
-                                  <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white">{selectedCountry.name}</span>
+                                <span className="text-[20px] leading-none w-[20px] h-[20px] flex items-center justify-center shrink-0">{selectedCountry.flag}</span>
+                                <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1">{selectedCountry.name}</span>
+                                <div className="flex flex-col justify-center items-center w-[14px] h-[14px] shrink-0">
+                                  <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
                                 </div>
-                                <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
                               </div>
 
                               {isCountryOpen && (
-                                <div className="absolute top-[40px] left-0 w-full bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg">
+                                <div className="absolute top-[40px] left-0 w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg max-h-[150px] overflow-y-auto">
                                   {countries.map(country => (
                                     <button
                                       key={country.id}
                                       onClick={() => { setSelectedCountry(country); setIsCountryOpen(false); }}
                                       className="w-full px-[16px] py-[10px] flex flex-row items-center gap-[10px] hover:bg-[#112F82] transition-colors text-left"
                                     >
-                                      <span className="text-[16px] leading-none">{country.flag}</span>
-                                      <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white">{country.name}</span>
+                                      <span className="text-[20px] leading-none w-[20px] h-[20px] flex items-center justify-center shrink-0">{country.flag}</span>
+                                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1">{country.name}</span>
                                     </button>
                                   ))}
                                 </div>
@@ -407,56 +425,58 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </div>
                       </div>
                     ) : (
-                      <>
-                        <div className="flex flex-col gap-[8px] w-full">
-                          <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                      <div className="flex flex-col gap-[16px] w-full">
+                        <div className="flex flex-col gap-[8px] w-full h-[64px]">
+                          <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
                             Select an amount
                           </label>
-                          <div className="flex flex-row gap-[8px] w-full">
+                          <div className="flex flex-row gap-[8px] w-full h-[40px]">
                             {[20, 30, 100].map((amt) => (
                               <button
                                 key={amt}
                                 onClick={() => setFiatAmount(amt)}
-                                className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === amt ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] border-2 border-transparent text-[#A5B8EF] font-semibold hover:text-white'}`}
+                                className={`flex-1 flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors rounded-[8px] ${fiatAmount === amt ? 'bg-[#173EAD] border-[2px] border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
                               >
                                 ${amt}
                               </button>
                             ))}
                             <button
                               onClick={() => setFiatAmount('custom')}
-                              className={`flex-1 h-[40px] rounded-[8px] flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors ${fiatAmount === 'custom' ? 'bg-[#173EAD] border-2 border-[#1463FF] text-white font-bold' : 'bg-[#112F82] border-2 border-transparent text-[#A5B8EF] font-semibold hover:text-white'}`}
+                              className={`flex-1 flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors rounded-[8px] ${fiatAmount === 'custom' ? 'bg-[#173EAD] border-[2px] border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
                             >
                               Custom...
                             </button>
                           </div>
                         </div>
 
-                        <div className="flex flex-col gap-[12px] w-full">
-                          <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                        <div className="flex flex-col gap-[12px] w-full h-[146px]">
+                          <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
                             Enter your payment details
                           </label>
-                          <div className="flex flex-col gap-[12px] w-full">
-                            <div className="flex flex-row items-center px-[16px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
-                              <input type="text" placeholder="Credit Card Number" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                          <div className="flex flex-col gap-[12px] w-full h-[92px]">
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input type="text" placeholder="Credit Card Number" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                             </div>
-                            <div className="flex flex-row gap-[8px] w-full">
-                              <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                                <input type="text" placeholder="Exp." spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                            <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
+                              <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 h-[40px] bg-[#112F82] rounded-[8px]">
+                                <input type="text" placeholder="Exp." spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                               </div>
-                              <div className="flex-1 flex flex-row items-center px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                                <input type="text" placeholder="CCV" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] text-white placeholder:text-[#A5B8EF]" />
+                              <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 h-[40px] bg-[#112F82] rounded-[8px]">
+                                <input type="text" placeholder="CCV" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                               </div>
                             </div>
                           </div>
 
-                          <div className="flex flex-row items-start gap-[8px] w-full">
-                            <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0 mt-[1px]" />
-                            <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                          <div className="flex flex-row items-start gap-[8px] w-full h-[14px]">
+                            <div className="w-[12px] h-[12px] flex items-center justify-center shrink-0">
+                              <Info size={12} className="text-[#7795E8]" />
+                            </div>
+                            <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] w-[408px]">
                               Warning message about fees or anything else relevant at this stage.
                             </p>
                           </div>
                         </div>
-                      </>
+                      </div>
                     )}
                   </div>
                 )}
@@ -556,69 +576,68 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </div>
             )}
 
-            {activeTab === 'deposit' && (
-              <>
-                {isPending ? (
-                  <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
-                    <button
-                      onClick={() => {
-                        onClose();
-                        router.push('/');
-                      }}
-                      className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[46px] min-[375px]:h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
-                    >
-                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
-                        Go to games
-                      </span>
-                    </button>
-
-                    <div className="flex flex-row justify-center items-center gap-[8px]">
-                      <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0" />
-                      <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
-                        Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
-                      </span>
-                    </div>
+              {(activeTab === 'withdraw' || activeTab === 'transactions') && (
+                <div className="flex flex-col items-center justify-center p-[24px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[363px]">
+                  <Crown size={48} className="text-[#FFC83D]" fill="currentColor" />
+                  <div className="flex flex-col items-center gap-[8px]">
+                    <h3 className="font-[family-name:var(--font-jost)] font-bold text-[24px] leading-[32px] tracking-[0.02em] text-white">
+                      Coming Soon
+                    </h3>
+                    <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] max-w-[80%]">
+                      This feature is currently under development. Stay tuned for updates!
+                    </p>
                   </div>
-                ) : (
-                  <div className="flex flex-col gap-[12px] items-center z-10 mt-auto">
-                    <button
-                      onClick={selectedPayment.id === 'fiat' ? () => {
-                        if (fiatStep === 'address') {
-                          toast.success("Address saved, proceeding to payment...");
-                          setFiatStep('payment');
-                        } else {
-                          toast.success("Payment completed!");
-                          onClose();
-                          router.push('/');
-                        }
-                      } : handleCompleteDeposit}
-                      className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[46px] min-[375px]:h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
-                    >
-                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
-                        {selectedPayment.id === 'fiat'
-                          ? (fiatStep === 'address' ? 'Continue' : `Deposit ${fiatAmount === 'custom' ? '' : '$' + fiatAmount}`)
-                          : "I've completed my deposit"}
-                      </span>
-                    </button>
-                  </div>
-                )}
-              </>
-            )}
-
-            {(activeTab === 'withdraw' || activeTab === 'transactions') && (
-              <div className="flex flex-col items-center justify-center p-[24px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[363px]">
-                <Crown size={48} className="text-[#FFC83D]" fill="currentColor" />
-                <div className="flex flex-col items-center gap-[8px]">
-                  <h3 className="font-[family-name:var(--font-jost)] font-bold text-[24px] leading-[32px] tracking-[0.02em] text-white">
-                    Coming Soon
-                  </h3>
-                  <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] max-w-[80%]">
-                    This feature is currently under development. Stay tuned for updates!
-                  </p>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
+
+          {activeTab === 'deposit' && (
+            <div className="flex flex-col gap-[12px] items-center z-10 w-full justify-center">
+              {isPending ? (
+                <>
+                  <button
+                    onClick={() => {
+                      onClose();
+                      router.push('/');
+                    }}
+                    className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[300px] h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+                  >
+                    <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
+                      Go to games
+                    </span>
+                  </button>
+
+                  <div className="flex flex-row justify-center items-center gap-[8px]">
+                    <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0" />
+                    <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                      Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <button
+                  onClick={selectedPayment.id === 'fiat' ? () => {
+                    if (fiatStep === 'address') {
+                      toast.success("Address saved, proceeding to payment...");
+                      setFiatStep('payment');
+                    } else {
+                      toast.success("Payment completed!");
+                      onClose();
+                      router.push('/');
+                    }
+                  } : handleCompleteDeposit}
+                  className="flex flex-row justify-center items-center px-[30px] py-[10px] w-[300px] h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+                >
+                  <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
+                    {selectedPayment.id === 'fiat'
+                      ? (fiatStep === 'address' ? 'Continue' : `Deposit ${fiatAmount === 'custom' ? '' : '$' + fiatAmount}`)
+                      : "I've completed my deposit"}
+                  </span>
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
