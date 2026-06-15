@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { X, Wallet, Bell, Gift } from 'lucide-react';
-import { useSession } from 'next-auth/react';
+import { useState, useEffect, useRef } from 'react';
+import { X, Wallet, Bell, Gift, Users, LogOut } from 'lucide-react';
+import { useSession, signOut } from 'next-auth/react';
 import { Search } from '../ui/Search';
 import { SidebarNav } from '@/components/layout/Sidebar';
 import { DepositModal } from '@/components/modals/DepositModal';
@@ -12,7 +12,19 @@ import { DepositModal } from '@/components/modals/DepositModal';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDepositModalOpen, setIsDepositModalOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { data: session, status } = useSession();
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -98,9 +110,41 @@ export default function Header() {
                 <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
               </button>
 
-              <button className="w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] rounded-full overflow-hidden shrink-0">
-                <Image src="/user.png" alt="User" width={40} height={40} className="object-cover w-full h-full" />
-              </button>
+              <div className="relative" ref={profileRef}>
+                <button 
+                  className="w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80"
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                >
+                  <Image src="/user.png" alt="User" width={40} height={40} className="object-cover w-full h-full" />
+                </button>
+
+                {isProfileOpen && (
+                  <div className="absolute right-0 top-[calc(100%+12px)] w-[240px] bg-[#112F82] rounded-[16px] shadow-lg border border-[#173EAD] overflow-hidden flex flex-col z-50">
+                    <div className="flex flex-col gap-1 p-4 border-b border-[#173EAD]">
+                      <span className="font-['Jost'] font-bold text-[16px] leading-[23px] text-white">Player</span>
+                      <span className="font-['Manrope'] font-normal text-[14px] leading-[19px] text-[#A5B8EF] truncate">
+                        {session?.user?.email || 'john@example.com'}
+                      </span>
+                    </div>
+                    <div className="flex flex-col p-2">
+                      <button className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left">
+                        <Users size={18} color="#D2DCF7" />
+                        <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] text-[#D2DCF7] hover:text-white transition-colors">Refer a Friend</span>
+                      </button>
+                      <button 
+                        className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left mt-1"
+                        onClick={() => {
+                          setIsProfileOpen(false);
+                          signOut({ callbackUrl: '/' });
+                        }}
+                      >
+                        <LogOut size={18} color="#D2DCF7" />
+                        <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] text-[#D2DCF7] hover:text-white transition-colors">Logout</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         ) : (
