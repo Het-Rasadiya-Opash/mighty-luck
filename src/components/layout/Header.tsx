@@ -127,10 +127,14 @@ export default function Header() {
                       </span>
                     </div>
                     <div className="flex flex-col p-2">
-                      <button className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left">
+                      <Link 
+                        href="?view=refer"
+                        onClick={() => setIsProfileOpen(false)}
+                        className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left"
+                      >
                         <Users size={18} color="#D2DCF7" />
                         <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] text-[#D2DCF7] hover:text-white transition-colors">Refer a Friend</span>
-                      </button>
+                      </Link>
                       <button 
                         className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left mt-1"
                         onClick={() => {

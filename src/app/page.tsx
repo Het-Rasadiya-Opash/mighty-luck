@@ -20,8 +20,8 @@ import AboutSection from "@/components/sections/AboutSection";
 import CryptoIconSection from "@/components/sections/CryptoIconSection";
 import Footer from "@/components/layout/Footer";
 import PromotionSection from "@/components/sections/PromotionSection";
-
 import GameOpen from "@/components/sections/GameOpen";
+import ReferFriend from "@/components/sections/ReferFriend";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const session = await getServerSession(authOptions);
@@ -29,13 +29,16 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
   // Await the searchParams Promise in Next.js 15
   const resolvedParams = await searchParams;
   const gameId = resolvedParams?.game as string | undefined;
+  const view = resolvedParams?.view as string | undefined;
 
   return (
     <Container>
       <div className="flex gap-4 lg:gap-6 w-full">
         <Sidebar />
         <main className="flex-1 min-w-0 flex flex-col gap-6 md:gap-8 lg:gap-10 overflow-hidden">
-          {gameId ? (
+          {view === 'refer' ? (
+            <ReferFriend />
+          ) : gameId ? (
             <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
               <GameOpen gameId={gameId} />
               
