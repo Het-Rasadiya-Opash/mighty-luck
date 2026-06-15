@@ -381,23 +381,23 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             <input type="text" placeholder="Street" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                           </div>
 
-                          <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
-                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[210px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <input type="text" placeholder="City" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
+                          <div className="grid grid-cols-2 gap-[8px] w-full h-[40px]">
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input type="text" placeholder="City" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
                             </div>
-                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[210px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
                             </div>
                           </div>
 
-                          <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
-                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-[210px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
+                          <div className="grid grid-cols-2 gap-[8px] w-full h-[40px]">
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
                             </div>
-                            <div className="relative w-[210px] h-[40px]">
+                            <div className="relative w-full h-[40px]">
                               <div
                                 onClick={() => setIsCountryOpen(!isCountryOpen)}
-                                className={`flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[210px] h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+                                className={`flex flex-row items-center px-[10px] sm:px-[16px] py-[10px] gap-[8px] sm:gap-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
                               >
                                 <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
                                   {selectedCountry.flag.startsWith('/') ? (
@@ -406,14 +406,14 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                     <span className="text-[20px] leading-none">{selectedCountry.flag}</span>
                                   )}
                                 </div>
-                                <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1">{selectedCountry.name}</span>
+                                <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate min-w-0">{selectedCountry.name}</span>
                                 <div className="flex flex-col justify-center items-center w-[14px] h-[14px] shrink-0">
                                   <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
                                 </div>
                               </div>
 
                               {isCountryOpen && (
-                                <div className="absolute top-[40px] left-0 w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg max-h-[150px] overflow-y-auto">
+                                <div className="absolute top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg max-h-[150px] overflow-y-auto">
                                   {countries.map(country => (
                                     <button
                                       key={country.id}
@@ -427,7 +427,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                           <span className="text-[20px] leading-none">{country.flag}</span>
                                         )}
                                       </div>
-                                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1">{country.name}</span>
+                                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate">{country.name}</span>
                                     </button>
                                   ))}
                                 </div>
