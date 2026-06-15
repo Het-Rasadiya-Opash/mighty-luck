@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
+  style: ['normal', 'italic'],
 });
 
 const manrope = Manrope({
@@ -40,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${jost.variable} ${manrope.variable}`}
+      className={`${jost.variable} ${manrope.variable}`}
     >
       <body className="min-h-screen bg-[#091741] flex flex-col items-center w-full overflow-x-hidden font-sans" suppressHydrationWarning>
         <AuthProvider>

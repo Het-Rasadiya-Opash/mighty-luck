@@ -37,8 +37,23 @@ export default function Sidebar() {
                                     />
                                 </div>
                                 <div className="relative z-[2] flex h-[22px] w-[52px] flex-none flex-col justify-center">
-                                    <p className="font-jost text-[11px] font-bold leading-[100%] text-white">
-                                        REFER<br/>A FRIEND
+                                    <p 
+                                        className="text-white"
+                                        style={{
+                                            width: '52px',
+                                            height: '22px',
+                                            fontFamily: 'var(--font-jost), Jost, sans-serif',
+                                            fontStyle: 'normal',
+                                            fontWeight: 700,
+                                            fontSize: '11px',
+                                            lineHeight: '100%',
+                                            flex: 'none',
+                                            order: 2,
+                                            flexGrow: 0,
+                                            zIndex: 2
+                                        }}
+                                    >
+                                        REFER<br />A FRIEND
                                     </p>
                                 </div>
                             </div>
@@ -55,8 +70,23 @@ export default function Sidebar() {
                                     />
                                 </div>
                                 <div className="relative z-[2] flex h-[22px] w-[57px] flex-none flex-col justify-center">
-                                    <p className="font-jost text-[11px] font-bold leading-[100%] text-white">
-                                        VIP<br/>TRANSFER
+                                    <p 
+                                        className="text-white"
+                                        style={{
+                                            width: '57px',
+                                            height: '22px',
+                                            fontFamily: 'var(--font-jost), Jost, sans-serif',
+                                            fontStyle: 'normal',
+                                            fontWeight: 700,
+                                            fontSize: '11px',
+                                            lineHeight: '100%',
+                                            flex: 'none',
+                                            order: 2,
+                                            flexGrow: 0,
+                                            zIndex: 2
+                                        }}
+                                    >
+                                        VIP<br />TRANSFER
                                     </p>
                                 </div>
                             </div>
@@ -74,10 +104,39 @@ export default function Sidebar() {
                                 />
                             </div>
                             <div className="relative z-[3] flex h-[30px] w-[138px] flex-none flex-col items-start gap-[2px]">
-                                <h3 className="h-[14px] w-full whitespace-nowrap font-jost text-[18px] font-black italic leading-[14px] text-white">
+                                <h3 
+                                    className="whitespace-nowrap text-white"
+                                    style={{ 
+                                        width: '138px',
+                                        height: '14px',
+                                        fontFamily: 'var(--font-jost), Jost, sans-serif',
+                                        fontStyle: 'italic',
+                                        fontWeight: 900,
+                                        fontSize: '18px',
+                                        lineHeight: '14px',
+                                        flex: 'none',
+                                        order: 0,
+                                        alignSelf: 'stretch',
+                                        flexGrow: 0
+                                    }}
+                                >
                                     WINTER RUSH
                                 </h3>
-                                <p className="h-[14px] w-full whitespace-nowrap font-jost text-[12px] font-bold italic leading-[14px] text-white">
+                                <p 
+                                    className="whitespace-nowrap text-white"
+                                    style={{ 
+                                        width: '124px',
+                                        height: '14px',
+                                        fontFamily: 'var(--font-jost), Jost, sans-serif',
+                                        fontStyle: 'italic',
+                                        fontWeight: 700,
+                                        fontSize: '12px',
+                                        lineHeight: '14px',
+                                        flex: 'none',
+                                        order: 1,
+                                        flexGrow: 0
+                                    }}
+                                >
                                     $2,000,000 IN PRIZES
                                 </p>
                             </div>
