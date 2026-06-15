@@ -181,7 +181,7 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                     <div className="flex flex-col py-[8px]">
                         <SubNavItem icon={<Image src="/all.svg" alt="All Games" width={18} height={18} className="shrink-0" />} label="All Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame1.svg" alt="New Games" width={18} height={18} className="shrink-0" />} label="New Games" isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={18} height={18} className="shrink-0" />} label="Popular Games" isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={18} height={18} className="shrink-0" />} label="Popular Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame3.svg" alt="Original Games" width={18} height={18} className="shrink-0" />} label="Original Games" isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Vector1.svg" alt="Crash Games" width={18} height={18} className="shrink-0" />} label="Crash Games" isCollapsed={isCollapsed} />
                     </div>
