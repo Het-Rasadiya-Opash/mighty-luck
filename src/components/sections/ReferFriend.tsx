@@ -3,6 +3,7 @@ import Refer1 from './Refer1';
 import Refer2 from './Refer2';
 import Refer3 from './Refer3';
 import Refer4 from './Refer4';
+import FAQs from './FAQs';
 
 export default function ReferFriend() {
   return (
@@ -11,6 +12,7 @@ export default function ReferFriend() {
       <Refer2 />
       <Refer3 />
       <Refer4 />
+      <FAQs />
       {/* Other sections will be added here later */}
     </div>
   );
