@@ -79,10 +79,13 @@ function AuthModalContent() {
         </button>
         
         <div className="relative w-[340px] h-full rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
-          <div 
-            className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px] bg-cover bg-center"
-            style={{ backgroundImage: 'url(/login-loin.png)' }}
-          />
+          <div className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px]">
+            <img
+              src="/hero-bg.png?v=1"
+              alt="Welcome Image"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
           <div 
             className="absolute left-0 top-[327px] w-[340px] h-[219px]" 
             style={{ background: 'linear-gradient(180deg, rgba(0, 12, 36, 0) 6.85%, #000C24 45.66%)' }} 
@@ -260,7 +263,7 @@ function AuthModalContent() {
                       <div className="w-[20px] h-[20px] shrink-0 rounded-full overflow-hidden flex items-center justify-center">
                         <img src="https://flagcdn.com/w40/us.png" alt="US" className="w-[20px] h-[20px] object-cover" />
                       </div>
-                      <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white">+1</span>
+                      <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white">+380</span>
                       <svg width="7" height="4" viewBox="0 0 7 4" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-auto">
                         <path d="M1 1L3.5 3L6 1" stroke="#A5B8EF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>

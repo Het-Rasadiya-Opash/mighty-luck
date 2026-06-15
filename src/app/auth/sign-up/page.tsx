@@ -44,10 +44,13 @@ export default function SignUpPage() {
       <div className="relative w-full md:w-[95%] max-w-none md:max-w-[730px] h-[100dvh] md:h-auto md:min-h-[546px] rounded-none md:rounded-[16px] flex flex-row shadow-none md:shadow-2xl shrink-0 overflow-hidden md:my-auto">
         
         <div className="relative w-[340px] h-full rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
-          <div 
-            className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px] bg-cover bg-center"
-            style={{ backgroundImage: 'url(/login-loin.png)' }} 
-          />
+          <div className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px]">
+            <img 
+              src="/hero-bg.png?v=1" 
+              alt="Welcome Image" 
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
           <div 
             className="absolute left-0 top-[327px] w-[340px] h-[219px]" 
             style={{ background: 'linear-gradient(180deg, rgba(0, 12, 36, 0) 6.85%, #000C24 45.66%)' }} 
