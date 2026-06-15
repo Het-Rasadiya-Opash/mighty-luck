@@ -1,18 +1,9 @@
-import {
-  Activity,
-  Bitcoin,
-  Boxes,
-  Circle,
-  CircleDollarSign,
-  Coins,
-  Gem,
-  Hexagon,
-  Triangle,
-  Wallet,
-  Zap
-} from "lucide-react";
+import Image from "next/image";
 
-const cryptoIcons = [Bitcoin, Gem, CircleDollarSign, Triangle, Activity, Hexagon, Coins, Wallet, Circle, Boxes, Zap];
+const cryptoIcons = [
+  "d1.svg", "d2.svg", "d3.svg", "d4.svg", "d5.svg",
+  "d6.svg", "d7.svg", "d8.svg", "d9.svg", "d10.svg", "d11.svg"
+];
 
 export default function HeroSection1() {
   return (
@@ -29,9 +20,9 @@ export default function HeroSection1() {
         </h3>
       </div>
 
-      <div className="relative z-10 flex items-center gap-1.5 min-[375px]:gap-2 sm:gap-3 md:gap-4 lg:gap-4 xl:gap-[28px] justify-center flex-wrap">
-        {cryptoIcons.map((Icon, i) => (
-          <Icon key={i} width={14} height={18} className="text-[#FFFFFF] shrink-0" />
+      <div className="relative z-10 flex items-center justify-center flex-wrap gap-2 min-[375px]:gap-3 sm:gap-4 md:gap-[20px] lg:gap-[28px] max-w-full m-0 p-0">
+        {cryptoIcons.map((icon, i) => (
+          <Image key={i} src={`/${icon}`} alt={`Crypto ${i+1}`} width={19} height={19} className="w-auto h-[16px] md:h-[19px] shrink-0 object-contain" />
         ))}
       </div>
 
@@ -40,7 +31,7 @@ export default function HeroSection1() {
           className="font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404] whitespace-nowrap"
           style={{ fontFamily: 'var(--font-manrope)' }}
         >
-          Deposit
+          Deposit Now
         </span>
       </button>
 
