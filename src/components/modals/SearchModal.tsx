@@ -71,21 +71,21 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   if (!isOpen || !mounted) return null;
 
   const topCategories = [
-    { name: 'All Games', icon: <Gamepad2 size={16} /> },
-    { name: 'Recently Played', icon: <Clock size={16} /> },
-    { name: 'Favorites', icon: <Heart size={16} /> },
-    { name: 'New Releases', icon: <Sparkles size={16} /> },
+    { name: 'All Games', icon: '/all.svg' },
+    { name: 'Recently Played', icon: '/recent.svg' },
+    { name: 'Favorites', icon: '/fav.svg' },
+    { name: 'New Releases', icon: '/new.svg' },
   ];
 
   const bottomCategories = [
-    { name: 'Original', icon: <Zap size={16} /> },
-    { name: 'Slots', icon: <Cherry size={16} /> },
-    { name: 'Roulette', icon: <Dices size={16} /> },
-    { name: 'Crash Games', icon: <Rocket size={16} /> },
-    { name: 'Table Games', icon: <Grid size={16} /> },
-    { name: 'Live Casino', icon: <MonitorPlay size={16} /> },
-    { name: 'Baccarat', icon: <Coins size={16} /> },
-    { name: 'Blackjack', icon: <Spade size={16} /> },
+    { name: 'Original', icon: '/orignals.svg' },
+    { name: 'Slots', icon: '/slots.svg' },
+    { name: 'Roulette', icon: '/roulette.svg' },
+    { name: 'Crash Games', icon: '/crashgame.svg' },
+    { name: 'Table Games', icon: '/tg.svg' },
+    { name: 'Live Casino', icon: '/live.svg' },
+    { name: 'Baccarat', icon: '/baccarat.svg' },
+    { name: 'Blackjack', icon: '/baccarat.svg' },
   ];
 
   const searchResults = gamesData.filter(game => game.title.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -132,11 +132,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       className={`flex flex-row items-center p-[10px] gap-[8px] w-[148px] h-[36px] bg-[#112F82] rounded-[8px] transition-colors ${activeCategory === cat.name ? 'opacity-100 border border-[#1463FF]' : 'hover:opacity-80'}`}
                     >
                       <div className="flex flex-row justify-center items-center p-0 w-[16px] h-[16px]">
-                        <span className="flex justify-center items-center w-full h-full text-[#A5B8EF]">
-                          {cat.icon}
+                        <span className={`flex justify-center items-center w-full h-full ${activeCategory === cat.name ? 'text-white' : 'text-[#A5B8EF]'}`}>
+                          <div 
+                            className="w-full h-full bg-current" 
+                            style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          />
                         </span>
                       </div>
-                      <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">
+                      <span className={`font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] ${activeCategory === cat.name ? 'text-white' : 'text-[#A5B8EF]'}`}>
                         {cat.name}
                       </span>
                     </button>
@@ -153,11 +156,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       className={`flex flex-row items-center p-[10px] gap-[8px] w-[148px] h-[36px] bg-[#112F82] rounded-[8px] transition-colors ${activeCategory === cat.name ? 'opacity-100 border border-[#1463FF]' : 'hover:opacity-80'}`}
                     >
                       <div className="flex flex-row justify-center items-center p-0 w-[16px] h-[16px]">
-                        <span className="flex justify-center items-center w-full h-full text-[#A5B8EF]">
-                          {cat.icon}
+                        <span className={`flex justify-center items-center w-full h-full ${activeCategory === cat.name ? 'text-white' : 'text-[#A5B8EF]'}`}>
+                          <div 
+                            className="w-full h-full bg-current" 
+                            style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          />
                         </span>
                       </div>
-                      <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">
+                      <span className={`font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] ${activeCategory === cat.name ? 'text-white' : 'text-[#A5B8EF]'}`}>
                         {cat.name}
                       </span>
                     </button>
@@ -177,8 +183,11 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     className={`flex flex-row items-center gap-[6px] px-[12px] h-[32px] rounded-[6px] shrink-0 snap-start transition-colors ${activeCategory === cat.name ? 'bg-[#1463FF]' : 'bg-[#112F82]'
                       }`}
                   >
-                    <span className="flex items-center text-[#FFFFFF] [&>svg]:w-[14px] [&>svg]:h-[14px]">
-                      {cat.icon}
+                    <span className="flex items-center text-[#FFFFFF] w-[14px] h-[14px]">
+                      <div 
+                        className="w-full h-full bg-current" 
+                        style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                      />
                     </span>
                     <span className="font-[family-name:var(--font-manrope)] font-semibold text-[11px] leading-[15px] text-[#FFFFFF] whitespace-nowrap">
                       {cat.name}
@@ -226,8 +235,11 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   {/* Popular Games */}
                   <div className="flex flex-col gap-[20px] w-full">
                     <div className="flex flex-row items-center gap-[8px]">
-                      <div className="flex items-center justify-center w-[20px] h-[20px] text-[#FFBF1F]">
-                        <Flame size={16} fill="currentColor" />
+                      <div className="flex items-center justify-center w-[20px] h-[20px] text-[#FFC83D]">
+                        <div 
+                          className="w-[20px] h-[20px] bg-current" 
+                          style={{ WebkitMaskImage: 'url(/popular.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/popular.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                        />
                       </div>
                       <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white">
                         Popular Games
@@ -247,7 +259,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <div className="flex flex-col gap-[20px] w-full">
                     <div className="flex flex-row items-center gap-[8px]">
                       <div className="flex items-center justify-center w-[20px] h-[20px] text-[#FFC83D]">
-                        <LayoutGrid size={16} fill="currentColor" />
+                        <div 
+                          className="w-[20px] h-[20px] bg-current" 
+                          style={{ WebkitMaskImage: 'url(/gameprovider.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/gameprovider.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                        />
                       </div>
                       <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white">
                         Game Providers
