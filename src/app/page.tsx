@@ -4,6 +4,7 @@ import HeroBanner from "@/components/sections/HeroBanner";
 import HeroSection1 from "@/components/sections/HeroSection1";
 import TabSection from "@/components/sections/TabSection";
 import GameSlider from "@/components/sections/GameSlider";
+import Image from "next/image";
 import { Cherry, Zap, Rocket, Dices, CircleDollarSign } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
@@ -59,7 +60,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
             <div id="slots" className="tab-content">
               <GameSlider
                 title="SLOTS (1,487)"
-                icon={<Cherry className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />}
+                icon={<Image src="/slots.svg" alt="Slots" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                 games={slotsData}
               />
             </div>
@@ -67,7 +68,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
             <div id="originals" className="tab-content">
               <GameSlider
                 title="ORIGINALS (14)"
-                icon={<Zap className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+                icon={<Image src="/orignals.svg" alt="Originals" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                 games={originalsData}
               />
             </div>
@@ -79,7 +80,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
             <div id="crash-games" className="tab-content">
               <GameSlider
                 title="CRASH GAMES (723)"
-                icon={<Rocket className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+                icon={<Image src="/crashgame.svg" alt="Crash Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                 games={crashGamesData}
               />
             </div>
@@ -91,7 +92,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
             <div id="table-games" className="tab-content">
               <GameSlider
                 title="TABLE GAMES (51)"
-                icon={<Dices className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+                icon={<Image src="/tg.svg" alt="Table Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                 games={tableGamesData}
               />
             </div>
@@ -99,7 +100,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
             <div id="bonus-buys" className="tab-content">
               <GameSlider
                 title="BONUS BUYS (145)"
-                icon={<CircleDollarSign className="text-black w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />}
+                icon={<Image src="/bb.svg" alt="Bonus Buys" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                 games={bonusBuysData}
               />
             </div>

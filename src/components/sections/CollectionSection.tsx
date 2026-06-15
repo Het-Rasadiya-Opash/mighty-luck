@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Sun } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const collectionData = [
     { id: 1, title: 'MYTHOLOGY', image: '/games/c-1.png' },
@@ -49,7 +49,7 @@ export default function CollectionSection() {
         <section ref={containerRef} className="w-full flex flex-col gap-4">
             <div className="w-full h-[30px] flex items-center justify-between">
                 <div className="flex items-center gap-[12px]">
-                    <Sun className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} fill="#FFBF1F" />
+                    <Image src="/collections.svg" alt="Collections" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
                     <h2 className="font-['Jost'] font-extrabold text-[16px] md:text-[18px] lg:text-[20px] leading-[100%] tracking-[0.01em] text-white m-0">
                         COLLECTIONS (170)
                     </h2>

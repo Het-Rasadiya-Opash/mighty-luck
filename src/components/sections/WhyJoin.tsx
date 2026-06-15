@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { Trophy } from 'lucide-react';
 
 const features = [
     {
@@ -29,7 +28,7 @@ export default function WhyJoin() {
     return (
         <section className="flex flex-col items-start gap-5 md:gap-[28px] w-full">
             <div className="flex items-center h-[30px] gap-[12px]">
-                <Trophy className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />
+                <Image src="/100.svg" alt="Why Join" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
                 <span className="font-['Jost'] text-[16px] md:text-[18px] lg:text-[20px] font-extrabold leading-[100%] tracking-[0.01em] text-white uppercase whitespace-nowrap">
                     WHY JOIN MIGHTY LUCK?
                 </span>

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Gamepad2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import providerData from '@/data/providerData.json';
 
 export default function ProviderSection() {
@@ -40,7 +41,7 @@ export default function ProviderSection() {
         <div ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
             <div className="flex items-center justify-between w-full h-[30px]">
                 <div className="flex items-center h-[30px] gap-[12px]">
-                    <Gamepad2 className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />
+                    <Image src="/gameprovider.svg" alt="Providers" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
                     <h2 className="font-['Jost'] text-[16px] md:text-[18px] lg:text-[20px] font-extrabold leading-[100%] tracking-[0.01em] text-white uppercase whitespace-nowrap">
                         GAME PROVIDERS (34)
                     </h2>

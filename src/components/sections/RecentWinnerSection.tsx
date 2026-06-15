@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Trophy } from 'lucide-react';
+
 
 const recentWinners = [
     { id: 1, game: "Sweet Bonanza Super Scatter", user: "Alb****", time: "14:16 PM", payout: "$126.1", payoutColor: "text-[#00DD29]", image: "/winner-1.png" },
@@ -15,7 +15,7 @@ export default function RecentWinnerSection() {
     return (
         <section className="w-full flex flex-col gap-4 md:gap-[20px]">
             <div className="w-full flex items-center gap-[12px] h-[30px]">
-                <Trophy className="text-[#FFC83D] w-[24px] h-[24px]" strokeWidth={2.5} />
+                <Image src="/winners.svg" alt="Winners" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
                 <h2 className="font-['Jost'] font-extrabold text-[16px] md:text-[18px] lg:text-[20px] leading-[29px] tracking-[0.01em] text-white m-0">
                     RECENT WINNERS
                 </h2>

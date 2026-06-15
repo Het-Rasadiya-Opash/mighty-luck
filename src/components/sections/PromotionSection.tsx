@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, BadgePercent } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const promos = [
     {
@@ -61,9 +62,7 @@ export default function PromotionSection() {
             <div className="flex flex-row justify-between items-center w-full h-[30px] flex-none pr-[20px] md:pr-0">
 
                 <div className="flex flex-row items-center gap-[12px] h-[30px]">
-                    <div className="relative w-[30px] h-[30px] flex-none">
-                        <BadgePercent className="text-[#FFBF1F] w-[24px] h-[24px] shrink-0" strokeWidth={2} />
-                    </div>
+                        <Image src="/pro.svg" alt="Promotions" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
                     <span className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white select-none">
                         Promotions
                     </span>
