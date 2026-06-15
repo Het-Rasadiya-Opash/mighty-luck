@@ -82,7 +82,7 @@ export default function Header() {
                 className="flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors"
                 onClick={() => setIsDepositModalOpen(true)}
               >
-                <Wallet size={16} color="#1A1404" fill="#1A1404" />
+                <Image src="/wallet-dark.svg" width={16} height={16} alt="Wallet" />
                 <span className="font-manrope font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
                   Deposit
                 </span>
@@ -93,17 +93,17 @@ export default function Header() {
               className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[32px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
               onClick={() => setIsDepositModalOpen(true)}
             >
-              <Wallet size={16} color="#1A1404" fill="#1A1404" />
+              <Image src="/wallet-dark.svg" width={16} height={16} alt="Wallet" />
             </button>
 
             <div className="flex flex-row items-center gap-[4px] min-[375px]:gap-[8px]">
               <button className="flex flex-row justify-center items-center w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
-                <Bell size={16} color="#D2DCF7" fill="#D2DCF7" className="scale-90 min-[375px]:scale-100" />
+                <Image src="/noti.svg" width={16} height={16} alt="Notifications" className="scale-90 min-[375px]:scale-100" />
                 <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
               </button>
 
               <button className="flex flex-row justify-center items-center w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
-                <Gift size={16} color="#D2DCF7" fill="#D2DCF7" className="scale-90 min-[375px]:scale-100" />
+                <Image src="/gift-light.svg" width={16} height={16} alt="Gifts" className="scale-90 min-[375px]:scale-100" />
                 <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
               </button>
 
