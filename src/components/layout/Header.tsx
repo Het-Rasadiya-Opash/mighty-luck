@@ -33,6 +33,16 @@ export default function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0C1F56] h-[60px]">
       <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-2 min-[375px]:px-3 sm:px-6 md:px-8 lg:px-12 xl:px-6">
@@ -163,10 +173,10 @@ export default function Header() {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/60 z-40"
+            className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             onClick={() => setIsOpen(false)}
           />
-          <div className="fixed top-0 left-0 h-full w-[280px] bg-[#0C1F56] z-50 flex flex-col transform transition-transform duration-300 translate-x-0 overflow-y-auto">
+          <div className="fixed top-0 left-0 h-full w-[280px] bg-[#0C1F56] z-50 flex flex-col transform transition-transform duration-300 translate-x-0 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] lg:hidden">
             <div className="flex items-center justify-between p-4 border-b border-[#112F82]">
               <Link href="/" onClick={() => setIsOpen(false)} className="shrink-0">
                 <Image
