@@ -15,11 +15,12 @@ export default function Footer() {
 
             <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-[49px] w-full">
 
-                <div className="flex flex-col items-start gap-[16px] shrink-0">
-                    <div className="w-[132px] h-[50px] relative">
-                        <Image src="/Horizontal logo.png" alt="Mighty Luck" fill className="object-contain object-left" />
+                <div className="flex flex-col items-start p-0 gap-[16px] w-[213px] h-[81px] shrink-0 mx-auto md:mx-0">
+                    <div className="flex flex-col items-center justify-between w-[132px] h-[50px] relative shrink-0">
+                        <img src="/king.svg" alt="Crown" className="w-[33px] h-[24px] object-contain" />
+                        <img src="/logo-name.svg" alt="Mighty Luck" className="w-[131px] h-[14px] object-contain" />
                     </div>
-                    <div className="font-['Manrope'] font-semibold text-[11px] leading-[15px] tracking-[0.01em] text-[#D2DCF7]">
+                    <div className="w-[213px] h-[15px] font-['Manrope'] font-semibold text-[11px] leading-[15px] tracking-[0.01em] text-[#D2DCF7] shrink-0">
                         @ 2026 Mighty Luck. All rights reserved.
                     </div>
                 </div>
