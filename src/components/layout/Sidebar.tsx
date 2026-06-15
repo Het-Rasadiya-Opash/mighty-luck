@@ -160,16 +160,23 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
             <NavItem icon={<Image src="/image 20 (Traced).svg" alt="VIP Program" width={20} height={20} className="shrink-0" />} label="VIP Program" isCollapsed={isCollapsed} />
             <NavItem icon={<Image src="/image 21 (Traced).svg" alt="Tournaments" width={20} height={20} className="shrink-0" />} label="Tournaments" isCollapsed={isCollapsed} />
 
-            <div className={`flex flex-col rounded-[8px] overflow-hidden transition-colors ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
+            <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
                 <div
                     onClick={() => toggleDropdown('casino')}
-                    className={`flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[44px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
+                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[44px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
                 >
                     <div className={`flex items-center gap-[8px] ${isCollapsed ? 'justify-center' : ''}`}>
                         <Image src="/Frame.svg" alt="Casino" width={20} height={20} className="shrink-0" />
                         {!isCollapsed && <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Casino</span>}
                     </div>
                     {(!isCollapsed) && (openDropdown === 'casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />)}
+                    
+                    {isCollapsed && (
+                        <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
+                            Casino
+                            <div className="absolute top-1/2 -translate-y-1/2 -left-[8px] border-[4px] border-transparent border-r-[#1463FF]" />
+                        </div>
+                    )}
                 </div>
                 {openDropdown === 'casino' && (
                     <div className="flex flex-col py-[8px]">
@@ -182,16 +189,23 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                 )}
             </div>
 
-            <div className={`flex flex-col rounded-[8px] overflow-hidden transition-colors ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
+            <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
                 <div
                     onClick={() => toggleDropdown('live-casino')}
-                    className={`flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[44px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'live-casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
+                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[44px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'live-casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
                 >
                     <div className={`flex items-center gap-[8px] ${isCollapsed ? 'justify-center' : ''}`}>
                         <Image src="/Frame4.svg" alt="Live Casino" width={20} height={20} className="shrink-0" />
                         {!isCollapsed && <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Live Casino</span>}
                     </div>
                     {(!isCollapsed) && (openDropdown === 'live-casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />)}
+                    
+                    {isCollapsed && (
+                        <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
+                            Live Casino
+                            <div className="absolute top-1/2 -translate-y-1/2 -left-[8px] border-[4px] border-transparent border-r-[#1463FF]" />
+                        </div>
+                    )}
                 </div>
                 {openDropdown === 'live-casino' && (
                     <div className="flex flex-col py-[8px]">
@@ -214,9 +228,15 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
 
 function NavItem({ icon, label, isCollapsed }: { icon: React.ReactNode; label: string; isCollapsed?: boolean }) {
     return (
-        <div className={`flex items-center h-[44px] cursor-pointer bg-[#112F82] rounded-[8px] transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] px-0' : 'gap-[8px] w-full px-[10px]'}`}>
+        <div className={`group relative flex items-center h-[44px] cursor-pointer bg-[#112F82] rounded-[8px] transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] px-0' : 'gap-[8px] w-full px-[10px]'}`}>
             {icon}
             {!isCollapsed && <span className="font-medium text-[15px]">{label}</span>}
+            {isCollapsed && (
+                <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
+                    {label}
+                    <div className="absolute top-1/2 -translate-y-1/2 -left-[8px] border-[4px] border-transparent border-r-[#1463FF]" />
+                </div>
+            )}
         </div>
     );
 }
@@ -225,10 +245,16 @@ function SubNavItem({ icon, label, onClick, isCollapsed }: { icon: React.ReactNo
     return (
         <div
             onClick={onClick}
-            className={`flex items-center cursor-pointer transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'gap-[8px] w-full h-[40px] px-[10px] pl-[32px]'}`}
+            className={`group relative flex items-center cursor-pointer transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'gap-[8px] w-full h-[40px] px-[10px] pl-[32px]'}`}
         >
             {icon}
             {!isCollapsed && <span className="font-medium text-[15px]">{label}</span>}
+            {isCollapsed && (
+                <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
+                    {label}
+                    <div className="absolute top-1/2 -translate-y-1/2 -left-[8px] border-[4px] border-transparent border-r-[#1463FF]" />
+                </div>
+            )}
         </div>
     );
 }
