@@ -160,10 +160,10 @@ export default function Header() {
           </div>
         ) : (
           <div className="flex items-center gap-1.5 min-[375px]:gap-2 shrink-0">
-            <Link href="?auth=login" className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[44px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#1463FF] text-white whitespace-nowrap">
+            <Link href="?auth=login" className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[40px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#1463FF] text-white whitespace-nowrap">
               Login
             </Link>
-            <Link href="?auth=register" className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[44px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
+            <Link href="?auth=register" className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[40px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
               Join
             </Link>
           </div>
