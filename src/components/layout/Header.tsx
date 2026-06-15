@@ -201,14 +201,51 @@ export default function Header() {
             <nav className="flex flex-col px-4 pb-6 w-full">
               <SidebarNav />
             </nav>
-            <div className="px-4 pb-6 flex flex-col gap-3 mt-auto">
-              <Link href="?auth=login" className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] font-semibold text-[15px] transition-colors bg-[#1463FF] text-white">
-                Login
-              </Link>
-              <Link href="?auth=register" className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] font-semibold text-[15px] transition-colors bg-[#FFC83D] text-[#1A1404]">
-                Join
-              </Link>
-            </div>
+            {status === 'authenticated' ? (
+              <div className="flex flex-col mt-auto w-full">
+                <div className="flex items-center gap-4 px-4 pb-5">
+                  <Image src="/user.png" alt="User" width={48} height={48} className="rounded-full object-cover shrink-0" />
+                  <div className="flex flex-col min-w-0">
+                    <span className="font-['Jost'] font-bold text-[18px] text-white truncate">Player</span>
+                    <span className="font-['Manrope'] font-medium text-[14px] text-[#A5B8EF] truncate">
+                      {session?.user?.email || 'hra.opash@gmail.com'}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="w-full h-[1px] bg-[#112F82]" />
+
+                <div className="flex flex-col pt-4 pb-6 px-4 gap-2">
+                  <Link
+                    href="?view=refer"
+                    onClick={() => setIsOpen(false)}
+                    className="flex flex-row items-center gap-4 px-2 py-2 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left"
+                  >
+                    <Users size={20} color="#D2DCF7" />
+                    <span className="font-['Manrope'] font-medium text-[15px] text-white hover:text-white transition-colors">Refer a Friend</span>
+                  </Link>
+                  <button
+                    className="flex flex-row items-center gap-4 px-2 py-2 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left"
+                    onClick={() => {
+                      setIsOpen(false);
+                      signOut({ callbackUrl: '/' });
+                    }}
+                  >
+                    <LogOut size={20} color="#D2DCF7" />
+                    <span className="font-['Manrope'] font-medium text-[15px] text-white hover:text-white transition-colors">Logout</span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="px-4 pb-6 flex flex-col gap-3 mt-auto">
+                <Link href="?auth=login" onClick={() => setIsOpen(false)} className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] font-semibold text-[15px] transition-colors bg-[#1463FF] text-white">
+                  Login
+                </Link>
+                <Link href="?auth=register" onClick={() => setIsOpen(false)} className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] font-semibold text-[15px] transition-colors bg-[#FFC83D] text-[#1A1404]">
+                  Join
+                </Link>
+              </div>
+            )}
           </div>
         </>
       )}
