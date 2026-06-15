@@ -125,7 +125,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </button>
 
           <div className="flex flex-row items-center gap-[12px] z-10 pr-[36px] sm:pr-0">
-            <Wallet size={20} className="text-[#FFC83D]" />
+            <Image src="/wallet.svg" width={20} height={20} alt="Wallet" className="shrink-0" />
             <h2 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] text-white">
               Wallet
             </h2>
@@ -191,8 +191,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isBonusOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
                       >
                         <div className="flex flex-row items-center gap-[8px]">
-                          <div className="w-[16px] h-[16px] bg-[#FFC83D] flex items-center justify-center rounded-[2px] overflow-hidden shrink-0">
-                            <RenderBonusIcon type={selectedBonus.iconType} className="w-[12px] h-[12px] text-[#1A1404]" />
+                          <div className="w-[16px] h-[16px] flex items-center justify-center shrink-0">
+                            <RenderBonusIcon type={selectedBonus.iconType} />
                           </div>
                           <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] min-[375px]:text-[13px] min-[425px]:text-[14px] leading-[19px] tracking-[0.02em] text-white">
                             {selectedBonus.title}
@@ -244,9 +244,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       >
                         <div className="flex flex-row items-center gap-[8px]">
                           {selectedPayment.id === 'crypto' ? (
-                            <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center shrink-0">
-                              <span className="text-[#1A1404] font-bold text-[10px]">{selectedPayment.symbol}</span>
-                            </div>
+                            <Image src="/d-bit.svg" width={16} height={16} alt={selectedPayment.symbol || 'BTC'} className="shrink-0" />
                           ) : (
                             <FiatIcons />
                           )}
@@ -271,8 +269,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                 onClick={() => { setSelectedPayment(payment); setIsPaymentOpen(false); }}
                               >
                                 {payment.id === 'crypto' ? (
-                                  <div className={`w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? 'border-[1.5px] border-white' : 'bg-[#FFC83D]'}`}>
-                                    <span className={`${isSelected ? 'text-white' : 'text-[#1A1404]'} font-bold text-[12px]`}>{payment.symbol}</span>
+                                  <div className={`flex items-center justify-center shrink-0 ${isSelected ? 'border-[1.5px] border-white rounded-full' : ''}`}>
+                                    <Image src="/d-bit.svg" width={20} height={20} alt={payment.symbol || 'BTC'} className="shrink-0" />
                                   </div>
                                 ) : (
                                   <FiatIcons className={isSelected ? 'opacity-100' : 'opacity-80'} />
@@ -288,7 +286,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
                       {selectedPayment.id === 'crypto' && (
                         <div className="flex flex-row items-start gap-[8px] mt-[4px]">
-                          <Info size={12} className="text-[#7795E8] mt-[2px] shrink-0" />
+                          <Image src="/error.svg" width={16} height={16} alt="Info" className="mt-[2px] shrink-0" />
                           <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                             Only deposit BC via the Bitcoin network. Deposit of other assets or from other networks will be lost.
                           </p>
@@ -304,9 +302,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           </label>
                           <div className="flex flex-row items-center gap-[6px] min-[375px]:gap-[8px] w-full">
                             <div className="flex-1 flex flex-row items-center px-[10px] min-[375px]:px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
-                                <span className="text-[#1A1404] font-bold text-[10px]">$</span>
-                              </div>
+                                <Image src="/d-doller.svg" width={16} height={16} alt="USD" className="shrink-0 mr-[8px]" />
                               <input
                                 type="text"
                                 defaultValue="100"
@@ -319,9 +315,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             </div>
 
                             <div className="flex-1 flex flex-row items-center px-[10px] min-[375px]:px-[16px] h-[40px] bg-[#112F82] rounded-[8px]">
-                              <div className="w-[16px] h-[16px] bg-[#FFC83D] rounded-full flex items-center justify-center mr-[8px]">
-                                <span className="text-[#1A1404] font-bold text-[10px]">₿</span>
-                              </div>
+                                <Image src="/d-bit.svg" width={16} height={16} alt="BTC" className="shrink-0 mr-[8px]" />
                               <input
                                 type="text"
                                 defaultValue="0.00954"
@@ -340,11 +334,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                               bc1q7ndh47hf93rdhuhef873hheufhe447...
                             </span>
                             <div className="flex flex-row items-center gap-[12px] shrink-0">
-                              <button className="text-[#BBCAF3] hover:text-white transition-colors">
-                                <Copy size={16} />
+                              <button className="text-[#BBCAF3] hover:opacity-80 transition-opacity flex items-center justify-center">
+                                <Image src="/copy.svg" width={16} height={16} alt="Copy" />
                               </button>
-                              <button className="text-[#BBCAF3] hover:text-white transition-colors">
-                                <QrCode size={16} />
+                              <button className="text-[#BBCAF3] hover:opacity-80 transition-opacity flex items-center justify-center">
+                                <Image src="/qr.svg" width={16} height={16} alt="QR Code" />
                               </button>
                             </div>
                           </div>
@@ -357,9 +351,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             Enter your address
                           </label>
                           <div className="flex flex-row items-start gap-[8px] w-full">
-                            <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center shrink-0 mt-[1px]">
-                              <Info size={8} className="text-[#7795E8]" />
-                            </div>
+                            <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0 mt-[1px]" />
                             <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                               Please fill up your address details before completing your deposit. This information is required for credit card deposits.
                             </p>
@@ -458,9 +450,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           </div>
 
                           <div className="flex flex-row items-start gap-[8px] w-full">
-                            <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center shrink-0 mt-[1px]">
-                              <Info size={8} className="text-[#7795E8]" />
-                            </div>
+                            <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0 mt-[1px]" />
                             <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                               Warning message about fees or anything else relevant at this stage.
                             </p>
@@ -489,7 +479,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         className={`w-full h-full bg-transparent font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#7795E8] outline-none disabled:opacity-100 disabled:text-white ${isPromoApplied ? 'font-bold' : 'font-semibold'}`}
                       />
                       {isPromoApplied && (
-                        <Info size={16} className="text-[#A5B8EF] shrink-0 ml-[8px]" />
+                        <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0 ml-[8px]" />
                       )}
                     </div>
                     <button
@@ -583,9 +573,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </button>
 
                     <div className="flex flex-row justify-center items-center gap-[8px]">
-                      <div className="w-[12px] h-[12px] rounded-full border border-[#7795E8] flex items-center justify-center shrink-0">
-                        <Info size={8} className="text-[#7795E8]" />
-                      </div>
+                      <Image src="/error.svg" width={20} height={20} alt="Info" className="shrink-0" />
                       <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
                         Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
                       </span>
@@ -639,10 +627,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   );
 }
 export function RenderBonusIcon({ type, className }: { type: string, className?: string }) {
-  if (type === 'gift') return <Gift className={className} />;
-  if (type === 'badge') return <Award className={className} />;
-  if (type === 'coins') return <Coins className={className} />;
-  if (type === 'ban') return <Ban className={className} />;
+  if (type === 'gift') return <Image src="/gift.svg" width={16} height={16} alt="Gift" className={className} />;
+  if (type === 'badge') return <Image src="/star.svg" width={16} height={16} alt="Badge" className={className} />;
+  if (type === 'coins') return <Image src="/bonus.svg" width={16} height={16} alt="Coins" className={className} />;
+  if (type === 'ban') return <Image src="/close.svg" width={16} height={16} alt="Ban" className={className} />;
   return null;
 }
 
