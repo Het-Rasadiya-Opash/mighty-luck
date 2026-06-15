@@ -111,7 +111,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       />
 
       <div className="relative h-full sm:min-h-full flex items-center justify-center p-0 sm:py-[16px] pointer-events-none">
-        <div className="relative w-full h-[100dvh] sm:h-auto sm:w-[calc(100vw-24px)] max-w-[500px] pointer-events-auto">
+        <div className="relative w-full h-full sm:h-auto sm:w-[calc(100vw-24px)] max-w-[500px] pointer-events-auto">
           {/* Desktop Close Button */}
         <button
           onClick={onClose}
