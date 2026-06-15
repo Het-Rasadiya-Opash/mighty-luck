@@ -15,25 +15,25 @@ export default function Footer() {
 
             <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-[49px] w-full">
 
-                <div className="flex flex-col items-start p-0 gap-[16px] w-[213px] h-[81px] shrink-0 mx-auto md:mx-0">
+                <div className="flex flex-col items-center md:items-start p-0 gap-[16px] w-[213px] shrink-0 mx-auto md:mx-0">
                     <div className="flex flex-col items-center justify-between w-[132px] h-[50px] relative shrink-0">
                         <img src="/king.svg" alt="Crown" className="w-[33px] h-[24px] object-contain" />
                         <img src="/logo-name.svg" alt="Mighty Luck" className="w-[131px] h-[14px] object-contain" />
                     </div>
-                    <div className="w-[213px] h-[15px] font-['Manrope'] font-semibold text-[11px] leading-[15px] tracking-[0.01em] text-[#D2DCF7] shrink-0">
+                    <div className="w-[213px] font-['Manrope'] font-semibold text-[11px] leading-[15px] tracking-[0.01em] text-[#D2DCF7] shrink-0 text-center md:text-left">
                         @ 2026 Mighty Luck. All rights reserved.
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-8 w-full md:w-auto">
+                <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-8 w-full md:w-auto">
                     {Object.entries(footerLinks).map(([heading, links]) => (
-                        <div key={heading} className="flex flex-col items-start gap-[12px]">
-                            <div className="font-['Jost'] font-bold text-[12px] leading-[17px] tracking-[0.02em] uppercase text-white">
+                        <div key={heading} className="flex flex-col items-center md:items-start gap-[12px]">
+                            <div className="font-['Jost'] font-bold text-[12px] leading-[17px] tracking-[0.02em] uppercase text-white text-center md:text-left">
                                 {heading}
                             </div>
-                            <div className="flex flex-col items-start gap-[8px]">
+                            <div className="flex flex-col items-center md:items-start gap-[8px]">
                                 {links.map(item => (
-                                    <div key={item} className="font-['Manrope'] font-semibold text-[11px] leading-[15px] tracking-[0.01em] text-[#D2DCF7] hover:text-[#FFBF1F] cursor-pointer transition-colors">
+                                    <div key={item} className="font-['Manrope'] font-semibold text-[11px] leading-[15px] tracking-[0.01em] text-[#D2DCF7] hover:text-[#FFBF1F] cursor-pointer transition-colors text-center md:text-left">
                                         {item}
                                     </div>
                                 ))}
@@ -43,13 +43,13 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="box-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-[10px] w-full pt-6 md:pt-[48px] border-t border-[#112F82]">
+            <div className="box-border flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-[10px] w-full pt-6 md:pt-[48px] border-t border-[#112F82]">
 
-                <p className="max-w-full sm:max-w-[445px] font-['Manrope'] font-semibold text-[10px] leading-[14px] text-justify tracking-[0.01em] text-[#D2DCF7]">
+                <p className="max-w-full md:max-w-[445px] font-['Manrope'] font-semibold text-[10px] leading-[14px] text-center md:text-justify tracking-[0.01em] text-[#D2DCF7]">
                     MightyLuck.com is owned and operated by Company Name B.V. a company that is incorporated under the laws of Curacao with company registration number XXXXXX, having its registered address at Street 3XX9, City, Curaçao. MightyLuck.com is licensed and holds a valid Certificate of Operation (ABC/XXXX/XXX/XXXX).
                 </p>
 
-                <div className="flex items-center gap-6 sm:gap-[32px] shrink-0">
+                <div className="flex items-center justify-center md:justify-end gap-6 sm:gap-[32px] shrink-0 w-full md:w-auto">
                     <div className="w-[38px] h-[38px] flex items-center justify-center shrink-0">
                         <div className="w-[32px] h-[32px] rounded-full border-2 border-[#D2DCF7] flex items-center justify-center opacity-80">
                             <span className="font-['Manrope'] font-bold text-[13px] text-[#D2DCF7] leading-none tracking-tighter ml-[1px]">18+</span>
