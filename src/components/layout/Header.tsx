@@ -51,7 +51,11 @@ export default function Header() {
           <button
             className="flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
-              if (window.innerWidth < 1024) setIsOpen(true);
+              if (window.innerWidth < 1024) {
+                setIsOpen(true);
+              } else {
+                window.dispatchEvent(new Event('toggleDesktopSidebar'));
+              }
             }}
             aria-label="Open menu"
           >
