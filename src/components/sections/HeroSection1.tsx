@@ -26,7 +26,7 @@ export default function HeroSection1() {
         ))}
       </div>
 
-      <button className="relative z-10 flex justify-center items-center px-4 md:px-[24px] py-[10px] gap-[10px] w-full sm:w-[136px] h-[40px] bg-[#FFC83D] rounded-[8px] min-h-[44px] shrink-0">
+      <button className="relative z-10 flex justify-center items-center px-4 md:px-[24px] py-[10px] gap-[10px] w-full sm:w-[136px] h-[40px] bg-[#FFC83D] rounded-[8px] min-h-[40px] shrink-0">
         <span
           className="font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404] whitespace-nowrap"
           style={{ fontFamily: 'var(--font-manrope)' }}
