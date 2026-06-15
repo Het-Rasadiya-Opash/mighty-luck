@@ -164,7 +164,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
 
-          <div className="relative w-full max-w-[350px] mx-auto flex flex-col items-center md:items-start gap-[16px] z-10">
+          <div className="relative w-full max-w-[350px] mx-auto my-auto py-8 md:py-0 flex flex-col items-center md:items-start gap-[16px] z-10">
             <div className="w-full flex justify-center items-start">
               <Image src="/Horizontal logo.png" alt="Mighty Luck" width={140} height={26} className="object-contain" />
             </div>

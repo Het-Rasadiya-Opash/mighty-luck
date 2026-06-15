@@ -131,7 +131,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             <X size={16} />
           </button>
 
-          <div className={`flex flex-col items-start gap-[24px] w-full h-full ${outerBoxHeightClass} z-40`}>
+          <div className={`flex flex-col items-start gap-[24px] w-full h-auto my-auto py-8 sm:py-0 ${outerBoxHeightClass} z-40`}>
             <div className="flex flex-row justify-center items-start gap-[12px] w-full h-[29px]">
               <div className="flex flex-row items-center gap-[12px] h-[29px]">
                 <div className="relative flex items-center justify-center w-[20px] h-[20px] shrink-0">
@@ -143,7 +143,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </div>
             </div>
 
-            <div className={`flex flex-col items-start gap-[16px] w-full h-full ${innerBoxHeightClass}`}>
+            <div className={`flex flex-col items-start gap-[16px] w-full h-auto ${innerBoxHeightClass}`}>
               <div className="flex flex-row items-center gap-[8px] w-full h-[30px] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <button
                   onClick={() => setActiveTab('deposit')}
