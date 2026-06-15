@@ -1,19 +1,7 @@
 import React from 'react';
-import {
-    Bitcoin,
-    Gem,
-    CircleDollarSign,
-    Triangle,
-    X,
-    Hexagon,
-    Dog,
-    Zap,
-    Cat,
-    Coins,
-    Aperture
-} from 'lucide-react';
+import Image from 'next/image';
 
-const icons = [Bitcoin, Gem, CircleDollarSign, Triangle, X, Hexagon, Dog, Zap, Cat, Coins, Aperture];
+const icons = ['c1.svg', 'c2.svg', 'c3.svg', 'c4.svg', 'c5.svg', 'c6.svg', 'c7.svg', 'c8.svg', 'c9.svg', 'c10.svg', 'c11.svg'];
 
 export default function CryptoIconSection() {
     return (
@@ -28,9 +16,9 @@ export default function CryptoIconSection() {
                 }}
             />
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-[28px] relative z-[1]">
-                {icons.map((Icon, i) => (
-                    <div key={i} className="flex items-center justify-center text-white/50 hover:text-white transition-colors cursor-pointer min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0">
-                        <Icon size={19} strokeWidth={2} />
+                {icons.map((icon, i) => (
+                    <div key={i} className="flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity cursor-pointer min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0">
+                        <Image src={`/${icon}`} alt={`Crypto ${i+1}`} width={19} height={19} className="w-auto h-[16px] md:h-[19px] shrink-0 object-contain" />
                     </div>
                 ))}
             </div>
