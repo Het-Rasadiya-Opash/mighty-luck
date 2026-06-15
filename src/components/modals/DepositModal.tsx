@@ -57,7 +57,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   };
 
   const countries = [
-    { id: 'us', name: 'United States', flag: '🇺🇸' },
+    { id: 'us', name: 'United States', flag: '/use1.svg' },
     { id: 'gb', name: 'United Kingdom', flag: '🇬🇧' },
     { id: 'ca', name: 'Canada', flag: '🇨🇦' },
     { id: 'au', name: 'Australia', flag: '🇦🇺' },
@@ -131,7 +131,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             <X size={16} />
           </button>
 
-          <div className={`flex flex-col items-start gap-[24px] w-full h-full ${outerBoxHeightClass} z-10`}>
+          <div className={`flex flex-col items-start gap-[24px] w-full h-full ${outerBoxHeightClass} z-40`}>
             <div className="flex flex-row justify-center items-start gap-[12px] w-full h-[29px]">
               <div className="flex flex-row items-center gap-[12px] h-[29px]">
                 <div className="relative flex items-center justify-center w-[20px] h-[20px] shrink-0">
@@ -399,7 +399,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                 onClick={() => setIsCountryOpen(!isCountryOpen)}
                                 className={`flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[210px] h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
                               >
-                                <span className="text-[20px] leading-none w-[20px] h-[20px] flex items-center justify-center shrink-0">{selectedCountry.flag}</span>
+                                <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
+                                  {selectedCountry.flag.startsWith('/') ? (
+                                    <Image src={selectedCountry.flag} width={20} height={20} alt={selectedCountry.name} />
+                                  ) : (
+                                    <span className="text-[20px] leading-none">{selectedCountry.flag}</span>
+                                  )}
+                                </div>
                                 <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1">{selectedCountry.name}</span>
                                 <div className="flex flex-col justify-center items-center w-[14px] h-[14px] shrink-0">
                                   <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
@@ -414,7 +420,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                       onClick={() => { setSelectedCountry(country); setIsCountryOpen(false); }}
                                       className="w-full px-[16px] py-[10px] flex flex-row items-center gap-[10px] hover:bg-[#112F82] transition-colors text-left"
                                     >
-                                      <span className="text-[20px] leading-none w-[20px] h-[20px] flex items-center justify-center shrink-0">{country.flag}</span>
+                                      <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
+                                        {country.flag.startsWith('/') ? (
+                                          <Image src={country.flag} width={20} height={20} alt={country.name} />
+                                        ) : (
+                                          <span className="text-[20px] leading-none">{country.flag}</span>
+                                        )}
+                                      </div>
                                       <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1">{country.name}</span>
                                     </button>
                                   ))}
