@@ -1,17 +1,17 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Home, Cherry, Zap, Rocket, Joystick, Dices, CircleDollarSign, LifeBuoy } from 'lucide-react';
+import Image from 'next/image';
 
 const tabs = [
-    { name: 'Lobby', icon: Home },
-
-    { name: 'Slots', icon: Cherry },
-    { name: 'Originals', icon: Zap },
-    { name: 'Crash Games', icon: Rocket },
-    { name: 'Providers', icon: Joystick },
-    { name: 'Table Games', icon: Dices },
-    { name: 'Bonus Buys', icon: CircleDollarSign }, { name: 'Collection', icon: LifeBuoy },
+    { name: 'Lobby', icon: '/home.svg' },
+    { name: 'Slots', icon: '/slots.svg' },
+    { name: 'Originals', icon: '/orignals.svg' },
+    { name: 'Crash Games', icon: '/crashgame.svg' },
+    { name: 'Providers', icon: '/gameprovider.svg' },
+    { name: 'Table Games', icon: '/tg.svg' },
+    { name: 'Bonus Buys', icon: '/bb.svg' },
+    { name: 'Collection', icon: '/collections.svg' },
 ];
 
 export default function TabSection() {
@@ -22,17 +22,16 @@ export default function TabSection() {
             <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="flex flex-row items-center gap-[8px] w-max min-w-full">
                     {tabs.map((tab, index) => {
-                        const Icon = tab.icon;
                         const isActive = activeTab === tab.name;
                         return (
                             <button
                                 key={index}
                                 onClick={() => {
                                     setActiveTab(tab.name);
-                                    
+
                                     // Get all tab content sections
                                     const allSections = document.querySelectorAll('.tab-content');
-                                    
+
                                     if (tab.name === 'Lobby') {
                                         // Reset order for all sections
                                         allSections.forEach((el) => {
@@ -43,7 +42,7 @@ export default function TabSection() {
                                         allSections.forEach((el) => {
                                             (el as HTMLElement).style.order = '0';
                                         });
-                                        
+
                                         // Move the requested section to the top
                                         const id = tab.name.toLowerCase().replace(' ', '-');
                                         const targetEl = document.getElementById(id);
@@ -58,15 +57,17 @@ export default function TabSection() {
                                     }`}
                             >
                                 <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
-                                    <Icon
-                                        size={20}
-                                        strokeWidth={2.5}
-                                        className={isActive ? 'text-[#FFB800]' : 'text-[#D2DCF7]'}
-                                        fill={tab.name === 'Lobby' ? 'currentColor' : 'none'}
+                                    <Image 
+                                        src={tab.icon} 
+                                        alt={tab.name} 
+                                        width={20} 
+                                        height={20} 
+                                        className={`w-[20px] h-[20px] shrink-0 object-contain transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-100 group-hover:opacity-100'}`} 
+                                        style={{ filter: isActive ? 'none' : 'brightness(0) saturate(100%) invert(86%) sepia(21%) saturate(301%) hue-rotate(188deg) brightness(105%) contrast(96%)' }}
                                     />
                                 </div>
                                 <span
-                                    className={`font-manrope leading-[19px] tracking-[0.02em] whitespace-nowrap ${isActive
+                                    className={`font-['Manrope'] leading-[19px] tracking-[0.02em] whitespace-nowrap ${isActive
                                         ? 'font-bold text-[14px] text-white'
                                         : 'font-semibold text-[14px] text-[#D2DCF7]'
                                         }`}
