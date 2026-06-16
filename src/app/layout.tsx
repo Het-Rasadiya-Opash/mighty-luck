@@ -1,17 +1,9 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Jost, Manrope } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/layout/Header";
+import type { Metadata } from "next";
+import { Jost, Manrope } from "next/font/google";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const jost = Jost({
   variable: "--font-jost",
@@ -27,10 +19,13 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Mighty Luck",
   description: "Play your favorite games",
+  icons: {
+    icon: "/king.svg",
+  },
 };
 
-import AuthProvider from "@/context/AuthProvider";
 import AuthModal from "@/components/modals/AuthModal";
+import AuthProvider from "@/context/AuthProvider";
 import { Toaster } from 'sonner';
 
 export default function RootLayout({
