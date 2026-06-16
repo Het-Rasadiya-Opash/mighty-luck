@@ -443,14 +443,14 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             </div>
                           </>
                         ) : fiatStep === 'address' ? (
-                          <div className="flex flex-col gap-[12px] w-full h-[212px]">
-                            <div className="flex flex-col gap-[8px] w-full h-[52px]">
+                          <div className="flex flex-col gap-[12px] w-full h-auto">
+                            <div className="flex flex-col gap-[8px] w-full h-auto">
                               <div className="flex flex-row items-center gap-[8px] w-full h-[16px]">
                                 <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
                                   Enter your address
                                 </label>
                               </div>
-                              <div className="flex flex-row items-start gap-[8px] w-full h-[28px]">
+                              <div className="flex flex-row items-start gap-[8px] w-full h-auto">
                                 <div className="w-[12px] h-[12px] relative mt-[2px]">
                                   <div className="absolute inset-0 bg-[#7795E8] [mask-image:url('/error.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]" />
                                 </div>
