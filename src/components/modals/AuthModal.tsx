@@ -119,7 +119,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
           <div 
             className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px]"
             style={{ 
-              backgroundImage: 'url(/login.png)',
+              backgroundImage: 'url(/login-1.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
