@@ -25,14 +25,15 @@ export default function Sidebar() {
                             <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
                                 <div className="absolute -left-[43px] -top-[15px] h-[97px] w-[97px] rounded-full bg-[#A92BF5] blur-[25px]" />
                             </div>
+
                             <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
                                 <div
-                                    className="absolute -left-[20px] -top-[4px] h-[39.33px] w-[59px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
-                                    style={{ backgroundImage: "url('/s-1.png')" }}
+                                    className="absolute -left-[17px] -top-[4px] h-[39.33px] w-[59px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
+                                    style={{ backgroundImage: "url('/sp-1.svg')" }}
                                 />
                             </div>
                             <div className="relative z-[2] flex h-[22px] w-[52px] flex-none flex-col justify-center">
-                                <p 
+                                <p
                                     className="text-white"
                                     style={{
                                         width: '52px',
@@ -58,14 +59,15 @@ export default function Sidebar() {
                             <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
                                 <div className="absolute -left-[40px] -top-[5px] h-[97px] w-[97px] rounded-full bg-[#FF3981] blur-[25px]" />
                             </div>
+
                             <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
                                 <div
-                                    className="absolute -left-[25px] -top-[4px] h-[33.01px] w-[64px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
-                                    style={{ transform: "rotate(11.84deg)", backgroundImage: "url('/s-2.png')" }}
+                                    className="absolute -left-[23px] -top-[4px] h-[33.01px] w-[64px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
+                                    style={{ transform: "rotate(11.84deg)", backgroundImage: "url('/sp-2.svg')" }}
                                 />
                             </div>
                             <div className="relative z-[2] flex h-[22px] w-[57px] flex-none flex-col justify-center">
-                                <p 
+                                <p
                                     className="text-white"
                                     style={{
                                         width: '57px',
@@ -94,14 +96,14 @@ export default function Sidebar() {
                         </div>
                         <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
                             <div
-                                className="absolute -left-[50px] -top-[40px] h-[68px] w-[102px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
-                                style={{ transform: "scaleX(-1) rotate(-110deg)", backgroundImage: "url('/s-3.png')" }}
+                                className="absolute h-[50px] w-[80px] -left-[20px] -top-[12px] bg-contain bg-center bg-no-repeat pointer-events-none"
+                                style={{ backgroundImage: "url('/sp-3.svg')" }}
                             />
                         </div>
                         <div className="relative z-[3] flex h-[30px] w-[138px] flex-none flex-col items-start gap-[2px]">
-                            <h3 
+                            <h3
                                 className="whitespace-nowrap text-white"
-                                style={{ 
+                                style={{
                                     width: '138px',
                                     height: '14px',
                                     fontFamily: 'var(--font-jost), Jost, sans-serif',
@@ -117,9 +119,9 @@ export default function Sidebar() {
                             >
                                 WINTER RUSH
                             </h3>
-                            <p 
+                            <p
                                 className="whitespace-nowrap text-white"
-                                style={{ 
+                                style={{
                                     width: '124px',
                                     height: '14px',
                                     fontFamily: 'var(--font-jost), Jost, sans-serif',
@@ -170,7 +172,7 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                         {!isCollapsed && <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Casino</span>}
                     </div>
                     {(!isCollapsed) && (openDropdown === 'casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />)}
-                    
+
                     {isCollapsed && (
                         <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
                             Casino
@@ -199,7 +201,7 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                         {!isCollapsed && <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Live Casino</span>}
                     </div>
                     {(!isCollapsed) && (openDropdown === 'live-casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />)}
-                    
+
                     {isCollapsed && (
                         <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
                             Live Casino
