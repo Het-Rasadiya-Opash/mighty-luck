@@ -276,7 +276,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </p>
                       </div>
                     ) : (
-                      <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-[404px]' : (isFiatPayment ? 'h-[418px]' : 'h-[375px]')} bg-[#0C1F56] rounded-[16px] z-20 relative`}>
+                      <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-auto sm:h-[404px]' : (isFiatPayment ? 'h-auto sm:h-[418px]' : 'h-auto sm:h-[375px]')} bg-[#0C1F56] rounded-[16px] z-20 relative`}>
 
                         <div ref={bonusRef} className="relative flex flex-col gap-[8px] w-full z-30">
                           <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
