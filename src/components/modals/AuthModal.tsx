@@ -138,8 +138,8 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                   350%
                 </h2>
               </div>
-              <div className="flex justify-center items-center px-[20px] py-[10px] gap-[10px] w-[167px] h-[37px] bg-[#FFC83D] rounded-[100px]">
-                <span className="font-['Jost'] font-extrabold text-[12px] leading-[17px] text-center text-[#1A1404]">
+              <div className="flex justify-center items-center px-[20px] py-[10px] gap-[10px] w-[167px] h-[37px] bg-[#2BEA51] rounded-[100px]">
+                <span className="font-['Jost'] font-extrabold text-[12px] leading-[17px] text-center text-[#051D09]">
                   WELCOME PACKAGE
                 </span>
               </div>
