@@ -120,12 +120,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   };
 
   const countries = [
-    { id: 'us', name: 'United States', flag: '/use1.svg' },
-    { id: 'gb', name: 'United Kingdom', flag: '🇬🇧' },
-    { id: 'ca', name: 'Canada', flag: '🇨🇦' },
-    { id: 'au', name: 'Australia', flag: '🇦🇺' },
-    { id: 'de', name: 'Germany', flag: '🇩🇪' },
-    { id: 'fr', name: 'France', flag: '🇫🇷' },
+    { id: 'us', name: 'United States', flag: 'https://flagcdn.com/w40/us.png' },
+    { id: 'ca', name: 'Canada', flag: 'https://flagcdn.com/w40/ca.png' },
+    { id: 'au', name: 'Australia', flag: 'https://flagcdn.com/w40/au.png' },
+    { id: 'de', name: 'Germany', flag: 'https://flagcdn.com/w40/de.png' },
+    { id: 'fr', name: 'France', flag: 'https://flagcdn.com/w40/fr.png' },
   ];
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
@@ -484,11 +483,9 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                     className={`flex flex-row items-center px-[10px] sm:px-[16px] py-[10px] gap-[8px] sm:gap-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
                                   >
                                     <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
-                                      {selectedCountry.flag.startsWith('/') ? (
-                                        <Image src={selectedCountry.flag} width={20} height={20} alt={selectedCountry.name} />
-                                      ) : (
-                                        <span className="text-[20px] leading-none">{selectedCountry.flag}</span>
-                                      )}
+                                      <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center">
+                                        <img src={selectedCountry.flag} alt={selectedCountry.name} className="w-[20px] h-[20px] object-cover" />
+                                      </div>
                                     </div>
                                     <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate min-w-0">{selectedCountry.name}</span>
                                     <div className="flex flex-col justify-center items-center w-[14px] h-[14px] shrink-0">
@@ -505,11 +502,9 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                           className="w-full px-[16px] py-[10px] flex flex-row items-center gap-[10px] hover:bg-[#112F82] transition-colors text-left"
                                         >
                                           <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
-                                            {country.flag.startsWith('/') ? (
-                                              <Image src={country.flag} width={20} height={20} alt={country.name} />
-                                            ) : (
-                                              <span className="text-[20px] leading-none">{country.flag}</span>
-                                            )}
+                                            <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center">
+                                              <img src={country.flag} alt={country.name} className="w-[20px] h-[20px] object-cover" />
+                                            </div>
                                           </div>
                                           <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate">{country.name}</span>
                                         </button>
