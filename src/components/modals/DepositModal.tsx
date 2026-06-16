@@ -24,8 +24,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   ];
 
   const payments = [
-    { id: 'fiat', titleExpanded: 'Credit Card (Visa/Mastercard)', titleClosed: 'Credit Card', descClosed: '(Min. Deposit $30 - Max. Deposit $2,500)' },
-    { id: 'crypto', titleExpanded: 'Bitcoin (BTC)', titleClosed: 'Bitcoin', descClosed: '(Min. Deposit $10)', symbol: '₿' }
+    { id: 'fiat', titleExpanded: 'Credit Card (Visa/Mastercard)', titleClosed: 'Credit Card', descClosed: '(Min. $30 - Max. $2,500)' },
+    { id: 'crypto', titleExpanded: 'Bitcoin (BTC)', titleClosed: 'Bitcoin', descClosed: '(Min. $10)', symbol: '₿' }
   ];
 
   const router = useRouter();
