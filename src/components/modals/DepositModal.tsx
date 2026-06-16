@@ -178,8 +178,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             <X size={24} />
           </button>
 
-          <div className={`relative flex flex-col items-center bg-[#091741] rounded-none sm:rounded-[16px] w-full sm:w-[500px] h-full ${modalHeightClass} pt-[48px] sm:pt-[24px] px-[20px] pb-[32px] gap-[24px] overflow-x-hidden overflow-y-auto sm:overflow-hidden`}>
-            <div className="absolute top-[-145px] left-1/2 -translate-x-1/2 w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none z-0" />
+          <div className={`relative flex flex-col items-center w-full sm:w-[500px] h-full ${modalHeightClass} pt-[48px] sm:pt-[24px] px-[20px] pb-[32px] gap-[24px]`}>
+            {/* Background & Clipping for Blur */}
+            <div className="absolute inset-0 bg-[#091741] rounded-none sm:rounded-[16px] overflow-hidden pointer-events-none -z-10">
+              <div className="absolute top-[-145px] left-1/2 -translate-x-1/2 w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
+            </div>
 
             <button
               onClick={onClose}
@@ -472,7 +475,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                   </div>
 
                                   {isCountryOpen && (
-                                    <div className="absolute top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg max-h-[150px] overflow-y-auto">
+                                    <div className="absolute top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-30 shadow-lg max-h-[150px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
                                       {countries.map(country => (
                                         <button
                                           key={country.id}
