@@ -1,11 +1,21 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import axios from 'axios';
 import { toast } from 'sonner';
+
+const countries = [
+  { id: 'us', name: 'United States', flag: 'https://flagcdn.com/w40/us.png', dialCode: '+1' },
+  { id: 'ua', name: 'Ukraine', flag: 'https://flagcdn.com/w40/ua.png', dialCode: '+380' },
+  { id: 'gb', name: 'United Kingdom', flag: 'https://flagcdn.com/w40/gb.png', dialCode: '+44' },
+  { id: 'ca', name: 'Canada', flag: 'https://flagcdn.com/w40/ca.png', dialCode: '+1' },
+  { id: 'au', name: 'Australia', flag: 'https://flagcdn.com/w40/au.png', dialCode: '+61' },
+  { id: 'de', name: 'Germany', flag: 'https://flagcdn.com/w40/de.png', dialCode: '+49' },
+  { id: 'fr', name: 'France', flag: 'https://flagcdn.com/w40/fr.png', dialCode: '+33' },
+];
 
 function EyeIcon() {
   return (
@@ -31,6 +41,22 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const countryRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (countryRef.current && !countryRef.current.contains(event.target as Node)) {
+        setIsCountryOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const [formData, setFormData] = useState({
     username: '',
     firstName: '',
@@ -309,14 +335,38 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                   </div>
 
                   <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
-                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[121px] h-[40px] bg-[#112F82] rounded-[8px] cursor-pointer">
-                      <div className="w-[20px] h-[20px] shrink-0 rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="https://flagcdn.com/w40/us.png" alt="US" className="w-[20px] h-[20px] object-cover" />
-                      </div>
-                      <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white">+380</span>
-                      <div className="ml-auto flex items-center justify-center">
-                        <CaretDown />
-                      </div>
+                    <div ref={countryRef} className="relative h-[40px] z-30">
+                      <button
+                        type="button"
+                        onClick={() => setIsCountryOpen(!isCountryOpen)}
+                        className={`flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[121px] h-[40px] bg-[#112F82] transition-colors hover:bg-[#1A3FA6] ${isCountryOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
+                      >
+                        <div className="w-[20px] h-[20px] shrink-0 rounded-full overflow-hidden flex items-center justify-center">
+                          <img src={selectedCountry.flag} alt={selectedCountry.id} className="w-[20px] h-[20px] object-cover" />
+                        </div>
+                        <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white">{selectedCountry.dialCode}</span>
+                        <div className={`ml-auto flex items-center justify-center transition-transform ${isCountryOpen ? 'rotate-180' : ''}`}>
+                          <CaretDown />
+                        </div>
+                      </button>
+
+                      {isCountryOpen && (
+                        <div className="absolute top-[39px] left-0 w-full bg-[#091741] border border-[#1463FF] rounded-b-[8px] overflow-hidden z-40 shadow-xl max-h-[150px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                          {countries.map(country => (
+                            <button
+                              key={country.id}
+                              type="button"
+                              onClick={() => { setSelectedCountry(country); setIsCountryOpen(false); }}
+                              className="w-full px-[16px] py-[10px] flex flex-row items-center gap-[10px] hover:bg-[#112F82] transition-colors text-left"
+                            >
+                              <div className="w-[20px] h-[20px] shrink-0 rounded-full overflow-hidden flex items-center justify-center">
+                                <img src={country.flag} alt={country.id} className="w-[20px] h-[20px] object-cover" />
+                              </div>
+                              <span className="font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white flex-1">{country.dialCode}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-[40px] bg-[#112F82] rounded-[8px]">
                       <input
