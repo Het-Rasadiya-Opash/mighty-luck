@@ -46,8 +46,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0C1F56] h-[60px]">
       <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-2 min-[375px]:px-3 sm:px-6 md:px-8 lg:px-12 xl:px-6">
+        {/* Perfect Figma Shadow clipped to header */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 hidden md:block">
+          <div 
+            className="absolute rounded-full" 
+            style={{ width: '143px', height: '143px', left: '114px', top: '37px', background: '#1463FF', filter: 'blur(25px)' }}
+          ></div>
+        </div>
 
-        <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-6 min-w-0">
+        <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-6 min-w-0 z-10">
           <button
             className="flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
@@ -74,7 +81,7 @@ export default function Header() {
               alt="Mighty Luck"
               width={150}
               height={28}
-              className="object-contain w-[105px] min-[375px]:w-[100px] min-[425px]:w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto"
+              className="object-contain w-[105px] min-[375px]:w-[100px] min-[425px]:w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto relative z-10"
             />
           </Link>
 
