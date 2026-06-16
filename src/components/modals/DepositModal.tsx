@@ -36,6 +36,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [activeTab, setActiveTab] = useState<'deposit' | 'bonuses' | 'withdraw' | 'transactions'>('deposit');
   const [fiatAmount, setFiatAmount] = useState<number | 'custom'>(30);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const bonusRef = useRef<HTMLDivElement>(null);
+  const paymentRef = useRef<HTMLDivElement>(null);
+  const countryRef = useRef<HTMLDivElement>(null);
+  
   const [activeSlide, setActiveSlide] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [isPromoApplied, setIsPromoApplied] = useState(false);
@@ -153,6 +157,24 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     setIsPending(true);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (bonusRef.current && !bonusRef.current.contains(event.target as Node)) {
+        setIsBonusOpen(false);
+      }
+      if (paymentRef.current && !paymentRef.current.contains(event.target as Node)) {
+        setIsPaymentOpen(false);
+      }
+      if (countryRef.current && !countryRef.current.contains(event.target as Node)) {
+        setIsCountryOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   if (!isOpen || !mounted) return null;
 
   const isFiatAddress = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'address';
@@ -256,7 +278,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     ) : (
                       <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-[404px]' : (isFiatPayment ? 'h-[418px]' : 'h-[375px]')} bg-[#0C1F56] rounded-[16px] z-20 relative`}>
 
-                        <div className="relative flex flex-col gap-[8px] w-full z-30">
+                        <div ref={bonusRef} className="relative flex flex-col gap-[8px] w-full z-30">
                           <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                             {selectedPayment.id === 'fiat' ? 'Select a Bonus' : '1.Select a Bonus'}
                           </label>
@@ -308,7 +330,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           )}
                         </div>
 
-                        <div className="relative flex flex-col gap-[8px] w-full z-20">
+                        <div ref={paymentRef} className="relative flex flex-col gap-[8px] w-full z-20">
                           <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                             {selectedPayment.id === 'fiat' ? 'Select a payment method' : '2.Select a payment method'}
                           </label>
@@ -456,7 +478,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                 <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
                                   <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
                                 </div>
-                                <div className="relative w-full h-[40px]">
+                                <div ref={countryRef} className="relative w-full h-[40px]">
                                   <div
                                     onClick={() => setIsCountryOpen(!isCountryOpen)}
                                     className={`flex flex-row items-center px-[10px] sm:px-[16px] py-[10px] gap-[8px] sm:gap-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
