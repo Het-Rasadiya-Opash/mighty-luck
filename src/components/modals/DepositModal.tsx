@@ -338,16 +338,16 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             onClick={() => { setIsPaymentOpen(!isPaymentOpen); setIsBonusOpen(false); }}
                             className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isPaymentOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
                           >
-                            <div className="flex flex-row items-center gap-[8px]">
+                            <div className="flex flex-row items-center gap-[8px] min-w-0">
                               {selectedPayment.id === 'crypto' ? (
                                 <Image src="/d-bit.svg" width={16} height={16} alt={selectedPayment.symbol || 'BTC'} className="shrink-0" />
                               ) : (
                                 <FiatIcons />
                               )}
-                              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white shrink-0">
                                 {selectedPayment.titleClosed}
                               </span>
-                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] hidden min-[375px]:inline">
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] truncate">
                                 {selectedPayment.descClosed}
                               </span>
                             </div>
