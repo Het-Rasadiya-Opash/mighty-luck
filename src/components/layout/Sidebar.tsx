@@ -110,7 +110,7 @@ export default function Sidebar() {
                                     fontStyle: 'italic',
                                     fontWeight: 900,
                                     fontSize: '18px',
-                                    lineHeight: '14px',
+                                    lineHeight: '13.9px',
                                     flex: 'none',
                                     order: 0,
                                     alignSelf: 'stretch',
@@ -128,13 +128,13 @@ export default function Sidebar() {
                                     fontStyle: 'italic',
                                     fontWeight: 700,
                                     fontSize: '12px',
-                                    lineHeight: '14px',
+                                    lineHeight: '13.9px',
                                     flex: 'none',
                                     order: 1,
                                     flexGrow: 0
                                 }}
                             >
-                                $2,000,000 IN PRIZES
+                                $2,000,000<span style={{ fontSize: '16.22px', fontWeight: 600 }}> </span><span style={{ fontSize: '11px', fontWeight: 600 }}>IN PRIZES</span>
                             </p>
                         </div>
                     </div>
