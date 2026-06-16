@@ -47,7 +47,7 @@ export default function Refer1() {
         
         {/* Left Text */}
         <div className="flex flex-col items-center lg:items-start gap-[4px] w-full lg:w-[457px] h-auto lg:h-[140px] flex-none text-center lg:text-left mt-[20px] lg:mt-0">
-          <div className="w-full lg:w-[457px] h-auto font-['Jost'] font-medium text-[28px] sm:text-[32px] leading-[40px] text-white flex-none">
+          <div className="w-full lg:w-[457px] h-[40px] font-['Jost'] font-medium text-[28px] leading-[40px] text-white flex-none order-0 self-stretch grow-0">
             Get <span className="text-[#FFC83D] font-bold">PAID</span> every time
           </div>
           <div className="w-full lg:w-[457px] h-auto font-['Jost'] font-extrabold text-[36px] sm:text-[48px] leading-[40px] sm:leading-[48px] text-white flex-none">
