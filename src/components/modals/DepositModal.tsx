@@ -39,12 +39,71 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [isPromoApplied, setIsPromoApplied] = useState(false);
+  
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const slideWidth = 308; // width (300px) + gap (8px)
     const newIndex = Math.round(e.currentTarget.scrollLeft / slideWidth);
     if (newIndex !== activeSlide) setActiveSlide(newIndex);
   };
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    if (sliderRef.current) {
+      // Optional: remove smooth scrolling during drag to make it responsive
+      sliderRef.current.style.scrollBehavior = 'auto';
+      sliderRef.current.style.scrollSnapType = 'none';
+    }
+    setStartX(e.pageX - (sliderRef.current?.offsetLeft || 0));
+    setScrollLeft(sliderRef.current?.scrollLeft || 0);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    if (sliderRef.current) {
+      sliderRef.current.style.scrollBehavior = 'smooth';
+      sliderRef.current.style.scrollSnapType = 'x mandatory';
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (sliderRef.current) {
+      sliderRef.current.style.scrollBehavior = 'smooth';
+      sliderRef.current.style.scrollSnapType = 'x mandatory';
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - (sliderRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 1.5; // Scroll speed multiplier
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft = scrollLeft - walk;
+    }
+  };
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        // Optional: you can turn off snap during wheel scroll or leave it
+        slider.scrollLeft += e.deltaY;
+      }
+    };
+
+    slider.addEventListener('wheel', handleWheel, { passive: false });
+    return () => {
+      slider.removeEventListener('wheel', handleWheel);
+    };
+  }, [activeTab]);
 
   const scrollToSlide = (index: number) => {
     setActiveSlide(index);
@@ -541,7 +600,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       <div
                         ref={sliderRef}
                         onScroll={handleScroll}
-                        className="flex flex-row items-start gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth"
+                        onMouseDown={handleMouseDown}
+                        onMouseLeave={handleMouseLeave}
+                        onMouseUp={handleMouseUp}
+                        onMouseMove={handleMouseMove}
+                        className={`flex flex-row items-start gap-[8px] w-full overflow-x-auto [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                       >
                         {[0, 1, 2].map((item, idx) => (
                           <div key={item} className="flex flex-col justify-center items-start p-[20px] gap-[12px] w-[calc(100vw-90px)] min-[425px]:w-[300px] max-w-[300px] h-[205px] bg-[#112F82] rounded-[12px] shrink-0 snap-center">
