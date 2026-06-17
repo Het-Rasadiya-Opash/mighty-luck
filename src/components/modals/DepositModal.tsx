@@ -129,6 +129,25 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   ];
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const touchStartY = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartY.current === null) return;
+    const currentY = e.touches[0].clientY;
+    const diffY = currentY - touchStartY.current;
+    if (diffY > 50) {
+      onClose();
+      touchStartY.current = null;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartY.current = null;
+  };
 
   const [mounted, setMounted] = useState(false);
 
@@ -240,12 +259,19 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
             <button
               onClick={onClose}
-              className="absolute top-[16px] right-[16px] w-[28px] h-[28px] rounded-full bg-[#112F82]/80 hover:bg-[#1463FF] flex items-center justify-center text-white transition-colors sm:hidden z-50"
+              className="absolute top-[16px] right-[16px] w-[28px] h-[28px] rounded-full bg-[#112F82]/80 hover:bg-[#1463FF] hidden items-center justify-center text-white transition-colors sm:hidden z-50"
             >
               <X size={16} />
             </button>
 
-            <div className="w-[70px] h-[6px] bg-[#112F82] rounded-[100px] sm:hidden shrink-0 z-40" />
+            <button
+              onClick={onClose}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              className="w-[70px] h-[6px] bg-[#112F82] rounded-[100px] sm:hidden shrink-0 z-40 cursor-pointer hover:bg-[#1463FF] transition-colors"
+              aria-label="Close wallet"
+            />
 
             {/* <div className={`flex flex-col items-start gap-[24px] w-full h-auto my-auto py-8 sm:py-0 ${outerBoxHeightClass} z-40`}> */}
             <div className={`flex flex-col items-start gap-[24px] w-full ${outerBoxHeightClass} z-40`}>
