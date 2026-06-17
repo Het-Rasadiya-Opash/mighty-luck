@@ -57,18 +57,20 @@ export default function PromotionSection() {
     };
 
     return (
-        <div className="flex flex-col items-start gap-5 w-full flex-none">
+        <div className="flex flex-col items-start gap-[14.81px] sm:gap-5 w-full flex-none">
 
-            <div className="flex flex-row justify-between items-center w-full h-[30px] flex-none pr-[20px] md:pr-0">
+            <div className="flex flex-row justify-between items-center w-full h-[23px] sm:h-[30px] flex-none px-0 sm:pr-[20px] md:pr-0">
 
-                <div className="flex flex-row items-center gap-[12px] h-[30px]">
-                        <Image src="/pro.svg" alt="Promotions" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
-                    <span className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white select-none">
-                        Promotions
+                <div className="flex flex-row items-center gap-[7.2px] sm:gap-[12px] w-[140.2px] sm:w-auto h-[23px] sm:h-[30px]">
+                    <div className="w-[18px] h-[18px] sm:w-[30px] sm:h-[30px] shrink-0 relative flex-none">
+                        <Image src="/pro.svg" alt="Promotions" fill className="object-contain" />
+                    </div>
+                    <span className="w-[115px] sm:w-auto font-[family-name:var(--font-jost)] font-extrabold text-[16px] sm:text-[20px] leading-[23px] sm:leading-[29px] tracking-[0.01em] uppercase text-white select-none">
+                        PROMOTIONS
                     </span>
                 </div>
 
-                <div className="flex flex-row items-center gap-[8px]">
+                <div className="hidden sm:flex flex-row items-center gap-[8px]">
                     <button
                         onClick={scrollLeft}
                         disabled={!canScrollLeft}
@@ -94,26 +96,40 @@ export default function PromotionSection() {
             <div
                 ref={scrollRef}
                 onScroll={handleScroll}
-                className="flex flex-row items-center gap-3 w-full h-[220px] flex-none overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                className="flex flex-row items-center gap-[8px] sm:gap-3 w-full h-[163px] sm:h-[220px] flex-none overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
                 {promos.map((promo) => (
                     <div
                         key={promo.id}
-                        className="relative w-[85vw] sm:w-[400px] md:w-[560px] h-[200px] sm:h-[220px] rounded-[16px] flex-none overflow-hidden"
+                        className="relative w-[278px] sm:w-[400px] md:w-[560px] h-[163px] sm:h-[200px] md:h-[220px] rounded-[8px] sm:rounded-[16px] flex-none overflow-hidden"
                     >
                         <div
-                            className="absolute inset-0 bg-cover bg-right bg-no-repeat"
+                            className="absolute inset-0 bg-cover bg-right bg-no-repeat rounded-[10px] sm:rounded-none"
                             style={{ backgroundImage: `url('${promo.bg}')` }}
                         />
 
                         <div
-                            className="absolute inset-0"
+                            className="absolute inset-0 rounded-[10px] sm:rounded-none"
                             style={{ background: promo.gradient }}
                         />
 
                         <div
-                            className="absolute w-[160px] h-[160px] rounded-full pointer-events-none"
+                            className="absolute rounded-full pointer-events-none block sm:hidden"
                             style={{
+                                width: "118.52px",
+                                height: "118.52px",
+                                left: "-55.56px",
+                                top: "-57.48px",
+                                background: "#1463FF",
+                                filter: "blur(37.037px)",
+                            }}
+                        />
+
+                        <div
+                            className="absolute rounded-full pointer-events-none hidden sm:block"
+                            style={{
+                                width: "160px",
+                                height: "160px",
                                 left: "-75px",
                                 top: "-77.6px",
                                 background: "#1463FF",
@@ -122,15 +138,27 @@ export default function PromotionSection() {
                             }}
                         />
 
-                        <div className="relative z-[2] w-full h-full p-[16px] sm:p-[24px] flex flex-col justify-center items-start pointer-events-none">
-                            <div className="flex flex-col items-start gap-[12px] sm:gap-[16px] w-full max-w-[200px] sm:max-w-[290px] flex-none pointer-events-auto">
+                        <div className="relative z-[2] w-full h-full p-[17.78px] sm:p-[24px] flex flex-col justify-center items-start pointer-events-none">
+                            <div className="flex flex-col items-start gap-[12px] sm:gap-[16px] w-[141px] h-[97.55px] sm:h-auto sm:w-full sm:max-w-[290px] flex-none pointer-events-auto">
+                                
+                                <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[14px] leading-[120%] tracking-[0.01em] text-white w-[141px] h-[51px] whitespace-normal block sm:hidden">
+                                    {promo.title}
+                                </h3>
+
                                 <h3
-                                    className="font-[family-name:var(--font-jost)] font-extrabold text-[18px] sm:text-[24px] leading-[120%] tracking-[0.01em] text-white w-full"
+                                    className="font-[family-name:var(--font-jost)] font-extrabold text-[18px] sm:text-[24px] leading-[120%] tracking-[0.01em] text-white w-full hidden sm:block"
                                     style={{ whiteSpace: "pre-line" }}
                                 >
                                     {promo.title}
                                 </h3>
-                                <button className="flex flex-row items-center justify-center px-[16px] sm:px-[24px] py-[8px] sm:py-[10px] gap-[10px] bg-[#FFC83D] hover:bg-[#FFD966] rounded-[8px] transition-colors cursor-pointer flex-none">
+
+                                <button className="flex flex-row items-center justify-center px-[20.73px] py-[8.64px] gap-[8.64px] w-[95px] h-[34.55px] bg-[#FFBF1F] hover:bg-[#FFD966] rounded-[6px] transition-colors cursor-pointer flex-none sm:hidden">
+                                    <span className="font-[family-name:var(--font-manrope)] font-bold text-[12.09px] leading-[17px] tracking-[0.02em] text-[#1A1404] flex items-center justify-center whitespace-nowrap flex-none">
+                                        {promo.cta}
+                                    </span>
+                                </button>
+
+                                <button className="hidden sm:flex flex-row items-center justify-center px-[16px] sm:px-[24px] py-[8px] sm:py-[10px] gap-[10px] bg-[#FFC83D] hover:bg-[#FFD966] rounded-[8px] transition-colors cursor-pointer flex-none">
                                     <span className="font-[family-name:var(--font-manrope)] font-bold text-[13px] sm:text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404] flex items-center justify-center whitespace-nowrap flex-none">
                                         {promo.cta}
                                     </span>
