@@ -157,9 +157,13 @@ export default function Sidebar() {
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <svg width="22" height="15" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-[22px] h-[14.67px] transition-opacity ${isMobileMenuOpen ? 'opacity-100' : 'opacity-80 group-hover:opacity-100'}`}>
-                            <path d="M4 7.66669H21.1111M4 15H16.2222M4 22.3334H21.1111M26 10.1111L24.5896 11.183C22.2722 12.9442 21.1111 13.8255 21.1111 15C21.1111 16.1746 22.271 17.0558 24.5896 18.8182L26 19.8889" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        <Image 
+                            src="/menu.svg" 
+                            alt="Menu" 
+                            width={30} 
+                            height={30} 
+                            className={`w-[30px] h-[30px] transition-all ${isMobileMenuOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`} 
+                        />
                     </div>
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Menu</span>
                 </div>
@@ -168,7 +172,7 @@ export default function Sidebar() {
                     onClick={() => setIsMobileSearchOpen(true)}
                 >
                     <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/search.svg" alt="Search" width={20} height={20} className="w-[20px] h-[19.99px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                        <Image src="/search.svg" alt="Search" width={30} height={30} className="w-[30px] h-[30px] opacity-80 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Search</span>
                 </div>
