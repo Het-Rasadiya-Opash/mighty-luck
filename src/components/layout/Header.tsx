@@ -102,8 +102,9 @@ export default function Header() {
         </div>
 
         {status === 'authenticated' ? (
-          <div className="flex flex-row justify-end items-center gap-1.5 min-[375px]:gap-2 sm:gap-4 shrink-0 z-[2]">
-            <div className="hidden min-[600px]:flex flex-row items-center gap-1">
+          <div className="flex flex-row justify-end items-center gap-[16px] lg:gap-4 shrink-0 z-[2]">
+            {/* Desktop Balance + Deposit */}
+            <div className="hidden lg:flex flex-row items-center gap-1">
               <div className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-[116px] h-[40px] bg-[#112F82] rounded-[8px]">
                 <span className="font-manrope font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
                   $105,98
@@ -121,30 +122,39 @@ export default function Header() {
               </button>
             </div>
 
-            <button
-              className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[30px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
-              onClick={() => setIsDepositModalOpen(true)}
-            >
-              <Image src="/wallet-dark.svg" width={16} height={16} alt="Wallet" />
-            </button>
+            {/* Mobile Balances Block */}
+            <div className="flex lg:hidden flex-row items-center gap-[4px] h-[30px]">
+              <div className="flex flex-row justify-center items-center px-[20px] py-[8px] w-[82px] h-[30px] bg-[#112F82] rounded-[6px]">
+                <span className="font-manrope font-bold text-[10.5px] leading-[14px] tracking-[0.02em] text-white">
+                  $105,98
+                </span>
+              </div>
+              <button
+                className="flex flex-row justify-center items-center p-[8px] w-[30px] h-[30px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
+                onClick={() => setIsDepositModalOpen(true)}
+              >
+                <Image src="/wallet-dark.svg" width={12} height={10.78} alt="Wallet" className="w-[12px] h-[10.78px] object-contain" />
+              </button>
+            </div>
 
-            <div className="flex flex-row items-center gap-[4px] min-[375px]:gap-[8px]">
-              <button className="flex flex-row justify-center items-center w-[30px] h-[30px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
-                <Image src="/noti.svg" width={16} height={16} alt="Notifications" className="scale-90 min-[375px]:scale-100" />
-                <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
+            {/* Icons Block */}
+            <div className="flex flex-row items-center gap-[8px] h-[30px] lg:h-auto">
+              <button className="flex flex-row justify-center items-center p-[7.5px] w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
+                <Image src="/noti.svg" width={10.3} height={12} alt="Notifications" className="w-[10.3px] h-[12px] lg:w-[16px] lg:h-[16px]" />
+                <div className="flex flex-col justify-center items-center p-[2.3px] absolute left-[22px] top-0 lg:left-auto lg:right-0 lg:top-0 w-[8px] h-[8px] lg:w-[10px] lg:h-[10px] bg-[#FF0E0E] rounded-[50px] z-10"></div>
               </button>
 
-              <button className="flex flex-row justify-center items-center w-[30px] h-[30px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
-                <Image src="/gift-light.svg" width={16} height={16} alt="Gifts" className="scale-90 min-[375px]:scale-100" />
-                <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
+              <button className="flex flex-row justify-center items-center p-[7.5px] w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
+                <Image src="/gift-light.svg" width={12} height={12} alt="Gifts" className="w-[12px] h-[12px] lg:w-[16px] lg:h-[16px]" />
+                <div className="flex flex-col justify-center items-center p-[2.3px] absolute left-[22px] top-0 lg:left-auto lg:right-0 lg:top-0 w-[8px] h-[8px] lg:w-[10px] lg:h-[10px] bg-[#FF0E0E] rounded-[50px] z-10"></div>
               </button>
 
               <div className="relative" ref={profileRef}>
                 <button
-                  className="w-[30px] h-[30px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80"
+                  className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80 flex items-center justify-center"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                 >
-                  <Image src="/user.png" alt="User" width={40} height={40} className="object-cover w-full h-full" />
+                  <Image src="/user.png" alt="User" width={30} height={30} className="object-cover w-[30px] h-[30px] lg:w-[40px] lg:h-[40px]" />
                 </button>
 
                 {isProfileOpen && (
