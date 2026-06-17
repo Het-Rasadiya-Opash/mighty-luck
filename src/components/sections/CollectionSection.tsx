@@ -47,18 +47,20 @@ export default function CollectionSection() {
 
     return (
         <section ref={containerRef} className="w-full flex flex-col gap-4">
-            <div className="w-full h-[30px] flex items-center justify-between">
-                <div className="flex items-center gap-[12px]">
-                    <Image src="/collections.svg" alt="Collections" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
-                    <h2 className="font-['Jost'] font-extrabold text-[16px] md:text-[18px] lg:text-[20px] leading-[100%] tracking-[0.01em] text-white m-0">
-                        COLLECTIONS (170)
+            <div className="w-full flex flex-row justify-between items-center h-[23px] md:h-[30px]">
+                <div className="flex flex-row items-center gap-[7.2px] md:gap-[12px] h-[23px] md:h-[30px]">
+                    <div className="flex items-center justify-center w-[18px] h-[18px] md:w-[30px] md:h-[30px] shrink-0">
+                        <Image src="/collections.svg" alt="Collections" width={30} height={30} className="w-full h-full object-contain" />
+                    </div>
+                    <h2 className="font-['Jost'] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[30px] tracking-[0.01em] text-white uppercase whitespace-nowrap m-0">
+                        COLLECTIONS (17)
                     </h2>
                 </div>
-                <div className="flex items-center gap-3">
-                    <span className="hidden sm:flex font-['Manrope'] font-semibold text-[12px] leading-[100%] tracking-[0.02em] text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap">
+                <div className="flex items-center gap-3 md:gap-[12px]">
+                    <span className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap">
                         View all
                     </span>
-                    <div className="flex gap-[8px]">
+                    <div className="hidden md:flex gap-[4px]">
                         <button
                             onClick={handlePrev}
                             disabled={currentIndex === 0}
@@ -77,29 +79,36 @@ export default function CollectionSection() {
                 </div>
             </div>
 
-            <div className="relative w-full overflow-hidden">
+            <div className="relative w-full overflow-x-auto md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
                 <div
-                    className="flex gap-[12px] h-[80px] sm:h-[90px] md:h-[100px] transition-transform duration-300 ease-in-out"
-                    style={{ transform: `translateX(-${currentIndex * cardStep}px)` }}
+                    className="flex gap-[8px] md:gap-[12px] h-[60px] sm:h-[90px] md:h-[100px] transition-transform duration-300 ease-in-out w-max"
+                    style={{ transform: visibleCount === 1 ? 'none' : `translateX(-${currentIndex * cardStep}px)` }}
                 >
                     {collectionData.map((collection) => (
                         <div
                             key={collection.id}
-                            style={{ width: `${cardWidth}px` }}
-                            className="h-full bg-[#0C1F56] hover:bg-[#173EAD] transition-colors rounded-[12px] flex items-center pl-[12px] pr-[16px] py-[12px] gap-[12px] shrink-0 cursor-pointer group"
+                            style={{ 
+                                width: visibleCount === 1 
+                                    ? (collection.title === 'MYTHOLOGY' ? '183px' : collection.title === 'FRUITS' ? '182px' : '189.6px') 
+                                    : `${cardWidth}px` 
+                            }}
+                            className={`h-[60px] md:h-full bg-[#0C1F56] hover:bg-[#173EAD] transition-colors rounded-[8px] md:rounded-[12px] flex items-center pl-[7.2px] pr-[14.4px] py-[7.2px] md:pl-[12px] md:pr-[16px] md:py-[12px] gap-[7.2px] md:gap-[12px] shrink-0 snap-start cursor-pointer group`}
                         >
-                            <div className="w-[60px] md:w-[76px] h-[60px] md:h-[76px] rounded-[8px] bg-[#0E1B3D] overflow-hidden flex-none shrink-0 flex items-center justify-center relative">
-                                <div className="absolute w-[50px] h-[50px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1463FF] blur-[22px] rounded-full z-0" />
-                                <Image
-                                    src={collection.image}
-                                    alt={collection.title}
-                                    fill
-                                    className="object-cover absolute inset-0 z-10"
-                                    sizes="76px"
-                                />
+                            <div className="w-[45.6px] md:w-[76px] h-[45.6px] md:h-[76px] rounded-[4.8px] md:rounded-[8px] bg-[#0E1B3D] overflow-hidden flex-none shrink-0 flex items-center justify-center relative">
+                                <div className="absolute w-[42px] md:w-[50px] h-[42px] md:h-[50px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1463FF] blur-[13.125px] md:blur-[22px] rounded-full z-0" />
+                                <div className="absolute invisible w-[31.8px] h-[31.8px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FFC83D] rounded-full z-[1]" />
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42.75px] md:w-full h-[40.2px] md:h-full z-10 flex items-center justify-center">
+                                    <Image
+                                        src={collection.image}
+                                        alt={collection.title}
+                                        fill
+                                        className="object-contain"
+                                        sizes="(max-width: 768px) 43px, 76px"
+                                    />
+                                </div>
                             </div>
                             <div className="flex-1 min-w-0 flex items-center justify-center">
-                                <span className="font-['Jost'] font-extrabold text-[16px] md:text-[20px] lg:text-[22px] leading-tight text-white tracking-[0.01em] text-center truncate">
+                                <span className={`font-['Jost'] font-extrabold text-white tracking-[0.01em] text-center ${visibleCount === 1 ? (collection.title === 'MYTHOLOGY' || collection.title === 'FRUITS' ? 'text-[12px] leading-[17px]' : 'text-[13.2px] leading-[19px]') : 'text-[16px] md:text-[20px] lg:text-[22px] leading-tight truncate'}`}>
                                     {collection.title}
                                 </span>
                             </div>
