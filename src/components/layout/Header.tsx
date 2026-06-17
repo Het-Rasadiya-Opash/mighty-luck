@@ -48,12 +48,12 @@ export default function Header() {
       <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-6 md:px-8 lg:px-12 xl:px-6">
         {/* Perfect Figma Shadow clipped to header */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
-            className="absolute rounded-full hidden md:block" 
+          <div
+            className="absolute rounded-full hidden md:block"
             style={{ width: '143px', height: '143px', left: '114px', top: '37px', background: '#1463FF', filter: 'blur(25px)' }}
           ></div>
-          <div 
-            className="absolute rounded-full sm:hidden" 
+          <div
+            className="absolute rounded-full sm:hidden"
             style={{ width: '71.5px', height: '71.5px', left: '6px', top: '33px', background: '#1463FF', filter: 'blur(12.5px)' }}
           ></div>
         </div>
@@ -244,7 +244,7 @@ export default function Header() {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="w-full h-[1px] bg-[#112F82]" />
 
                 <div className="flex flex-col pt-4 pb-6 px-4 gap-2">
