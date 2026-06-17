@@ -21,6 +21,7 @@ export interface GameSliderProps {
 export default function GameSlider({ id, title, icon, games }: GameSliderProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(7);
+    const [cardStep, setCardStep] = useState(164); // Default desktop (152 + 12)
     const containerRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -33,40 +34,81 @@ export default function GameSlider({ id, title, icon, games }: GameSliderProps) 
     };
 
     const [isMobile, setIsMobile] = useState(false);
+    const trackRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [isDragged, setIsDragged] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [startScrollLeft, setStartScrollLeft] = useState(0);
 
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 640);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
+    const handleMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true);
+        setIsDragged(false);
+        if (trackRef.current) {
+            setStartX(e.pageX - trackRef.current.offsetLeft);
+            setStartScrollLeft(trackRef.current.scrollLeft);
+        }
+    };
 
-    const cardWidth = isMobile ? 121.6 : 152;
-    const cardGap = isMobile ? 8 : 12;
-    const cardStep = cardWidth + cardGap;
+    const handleMouseLeave = () => setIsDragging(false);
+    const handleMouseUp = () => setIsDragging(false);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging || !trackRef.current) return;
+        e.preventDefault();
+        setIsDragged(true);
+        const x = e.pageX - trackRef.current.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        trackRef.current.scrollLeft = startScrollLeft - walk;
+    };
 
     useEffect(() => {
         const updateVisible = () => {
             if (containerRef.current) {
+                const isMobileView = window.innerWidth < 640;
+                setIsMobile(isMobileView);
+                const cWidth = isMobileView ? 121.6 : 152;
+                const cGap = isMobileView ? 8 : 12;
+                const step = cWidth + cGap;
+                setCardStep(step);
+
                 const w = containerRef.current.offsetWidth;
-                const count = Math.floor((w + cardGap) / cardStep);
+                const count = Math.floor((w + cGap) / step);
                 setVisibleCount(Math.max(2, count));
             }
         };
         updateVisible();
         const ro = new ResizeObserver(updateVisible);
         if (containerRef.current) ro.observe(containerRef.current);
-        return () => ro.disconnect();
-    }, [cardStep, cardGap]);
+        window.addEventListener('resize', updateVisible);
+        
+        return () => {
+            ro.disconnect();
+            window.removeEventListener('resize', updateVisible);
+        };
+    }, []);
 
     const maxIndex = Math.max(0, games.length - visibleCount);
 
-    const handlePrev = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
-    const handleNext = () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+    const handlePrev = () => {
+        if (trackRef.current) {
+            const newIndex = Math.max(currentIndex - 1, 0);
+            trackRef.current.scrollTo({ left: newIndex * cardStep, behavior: 'smooth' });
+        }
+    };
 
-    useEffect(() => {
-        setCurrentIndex((prev) => Math.min(prev, maxIndex));
-    }, [maxIndex]);
+    const handleNext = () => {
+        if (trackRef.current) {
+            const newIndex = Math.min(currentIndex + 1, maxIndex);
+            trackRef.current.scrollTo({ left: newIndex * cardStep, behavior: 'smooth' });
+        }
+    };
+
+    const handleScroll = () => {
+        if (trackRef.current) {
+            const index = Math.round(trackRef.current.scrollLeft / cardStep);
+            setCurrentIndex(index);
+        }
+    };
 
     return (
         <div id={id} ref={containerRef} className="flex flex-col gap-[12px] w-full overflow-hidden">
@@ -102,16 +144,28 @@ export default function GameSlider({ id, title, icon, games }: GameSliderProps) 
                 </div>
             </div>
 
-            <div className="w-full overflow-hidden">
+            <div className="w-full relative">
                 <div
-                    className="flex gap-[8px] sm:gap-[12px] transition-transform duration-300 ease-out"
-                    style={{ transform: `translateX(-${currentIndex * cardStep}px)` }}
+                    ref={trackRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
+                    onScroll={handleScroll}
+                    className={`flex gap-[8px] sm:gap-[12px] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory ${isDragging ? 'cursor-grabbing select-none' : 'cursor-grab'}`}
                 >
                     {games.map((game) => (
                         <div
                             key={game.id}
-                            onClick={() => handleGameClick(game.id)}
-                            className="w-[121.6px] sm:w-[152px] h-[160px] sm:h-[200px] bg-[#0C1F56] rounded-[9.6px] sm:rounded-[16px] flex flex-col items-center justify-center overflow-hidden relative group shrink-0 cursor-pointer hover:z-10"
+                            onClick={(e) => {
+                                if (isDragged) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                } else {
+                                    handleGameClick(game.id);
+                                }
+                            }}
+                            className="w-[121.6px] sm:w-[152px] h-[160px] sm:h-[200px] bg-[#0C1F56] rounded-[9.6px] sm:rounded-[16px] flex flex-col items-center justify-center overflow-hidden relative group shrink-0 hover:z-10 snap-start"
                         >
                             <Image
                                 src={game.image}
