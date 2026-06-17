@@ -179,60 +179,107 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
         </div>
 
         {/* Right Panel */}
-        <div className="relative w-full md:w-[390px] h-full md:h-[546px] bg-[#091741] rounded-none md:rounded-l-none md:rounded-r-[16px] flex flex-col items-center md:items-start px-[20px] py-[24px] gap-[32px] shrink-0 overflow-y-auto md:overflow-hidden z-10">
+        <div className="relative w-full md:w-[390px] h-full md:h-[546px] bg-[#091741] rounded-none md:rounded-l-none md:rounded-r-[16px] flex flex-col items-start shrink-0 overflow-y-auto md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
           <div className="hidden min-[426px]:block absolute top-[-145px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full -z-10" />
 
-          {/* Mobile Close Button */}
-          <button
-            onClick={handleClose}
-            className="absolute top-[16px] right-[16px] w-[28px] h-[28px] rounded-full bg-[#112F82]/80 hover:bg-[#1463FF] flex items-center justify-center text-white transition-colors md:hidden z-50"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
-          </button>
-
-          <div className="relative w-full max-w-[350px] mx-auto my-auto py-8 md:py-0 flex flex-col items-center md:items-start gap-[16px] z-10">
-            <div className="w-full flex justify-center items-start">
-              <Image src="/Horizontal logo.png" alt="Mighty Luck" width={140} height={26} className="object-contain" />
-            </div>
-
-            <div className="flex flex-row items-center gap-[8px] w-full h-[40px] mt-[2px]">
+          {/* MOBILE TOP HEADER (Back + Tabs) */}
+          <div className="flex md:hidden flex-row items-center px-[20px] pt-[12px] pb-[30px] gap-[20px] w-full shrink-0">
+            <button onClick={handleClose} className="flex flex-col justify-center items-center w-[30px] h-[30px] shrink-0 text-[#D2DCF7] hover:text-white transition-colors">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 1L1 8L8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M1 8H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <div className="flex flex-row items-center gap-[8px] flex-1 h-[50px]">
               <button
                 onClick={() => handleTabSwitch('register')}
-                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] gap-[10px] rounded-[8px] h-full transition-colors ${!isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
+                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-[8px] h-[50px] transition-colors ${!isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
               >
                 <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Join Now</span>
               </button>
               <button
                 onClick={() => handleTabSwitch('login')}
-                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] gap-[10px] rounded-[8px] h-full transition-colors ${isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
+                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-[8px] h-[50px] transition-colors ${isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
               >
                 <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Log In</span>
               </button>
             </div>
+          </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col items-start gap-[12px] w-full mt-[8px]">
+          {/* MOBILE BANNER */}
+          {!isLogin && (
+            <div className="md:hidden relative w-full h-[170px] rounded-t-[12px] bg-cover bg-center shrink-0 overflow-hidden" style={{ backgroundImage: 'url(/login-1.png)' }}>
+              <div className="absolute left-[calc(50%-140.5px)] top-[calc(50%-140.5px)] w-[281px] h-[281px] bg-[#0051F1] blur-[62px] pointer-events-none" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-[12px] z-10">
+                <div className="flex flex-col items-center">
+                  <h2 className="font-['Jost'] font-extrabold text-[44px] leading-[64px] text-center tracking-[0.01em] text-white">
+                    350%
+                  </h2>
+                  <div className="flex justify-center items-center px-[17.3px] py-[8.65px] bg-[#2BEA51] rounded-[86.5px] mt-[-10px]">
+                    <span className="font-['Jost'] font-extrabold text-[10px] leading-[14px] text-center text-[#051D09]">
+                      WELCOME PACKAGE
+                    </span>
+                  </div>
+                </div>
+                <p className="font-['Manrope'] font-bold text-[12px] leading-[16px] text-center tracking-[0.01em] text-white w-[200px]">
+                  Boost your deposits with 350% in Bonus and 200 Free Spins
+                </p>
+              </div>
+            </div>
+          )}
+          {isLogin && (
+            <div className="md:hidden relative w-full h-[170px] rounded-t-[12px] bg-cover bg-center shrink-0 overflow-hidden flex items-center justify-center" style={{ backgroundImage: 'url(/login-1.png)' }}>
+               <div className="absolute left-[calc(50%-140.5px)] top-[calc(50%-140.5px)] w-[281px] h-[281px] bg-[#0051F1] blur-[62px] pointer-events-none" />
+               <Image src="/Horizontal logo.png" alt="Mighty Luck" width={180} height={34} className="object-contain z-10 relative" />
+            </div>
+          )}
+
+          {/* DESKTOP HEADER (Logo + Tabs) */}
+          <div className="hidden md:flex relative w-full max-w-[350px] mx-auto pt-[24px] flex-col items-start gap-[16px] z-10 px-[20px]">
+            <div className="w-full flex justify-start items-start">
+              <Image src="/Horizontal logo.png" alt="Mighty Luck" width={140} height={26} className="object-contain" />
+            </div>
+            <div className="flex flex-row items-center gap-[8px] w-full h-[40px] mt-[2px]">
+              <button
+                onClick={() => handleTabSwitch('register')}
+                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-[8px] h-full transition-colors ${!isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
+              >
+                <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Join Now</span>
+              </button>
+              <button
+                onClick={() => handleTabSwitch('login')}
+                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-[8px] h-full transition-colors ${isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
+              >
+                <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Log In</span>
+              </button>
+            </div>
+          </div>
+
+          {/* FORM AREA */}
+          <div className="w-full px-[20px] py-[20px] pb-[40px] md:pb-[24px] md:px-[20px] max-w-[414px] md:max-w-[350px] mx-auto flex flex-col items-center md:items-start flex-1 shrink-0 z-10 gap-[32px] md:gap-[16px]">
+            <form onSubmit={handleSubmit} className="flex flex-col items-start gap-[16px] md:gap-[12px] w-full">
               {isLogin ? (
                 // Login Form
                 <>
-                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] md:h-[40px] bg-[#112F82] rounded-[8px]">
                     <input
                       name="identifier"
                       value={formData.identifier}
                       onChange={handleChange}
                       placeholder="User name or Email"
-                      className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-white"
+                      className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                       required
                     />
                   </div>
 
-                  <div className="flex flex-row justify-between items-center px-[16px] py-[10px] gap-[10px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="flex flex-row justify-between items-center px-[16px] py-[10px] gap-[10px] w-full h-[50px] md:h-[40px] bg-[#112F82] rounded-[8px]">
                     <input
                       name="password"
                       type={showPassword ? 'text' : 'password'}
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="Password"
-                      className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-white"
+                      className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                       required
                     />
                     <div
@@ -243,25 +290,25 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     </div>
                   </div>
 
-                  <div className="w-full flex justify-end mt-[4px]">
+                  <div className="w-full flex justify-end mt-[4px] md:mt-0">
                     <span className="font-['Manrope'] font-medium text-[12px] text-[#A5B8EF] cursor-pointer hover:text-white transition-colors">
                       Forgot password?
                     </span>
                   </div>
 
-                  <div className="flex flex-col items-center gap-[12px] w-full mt-[16px]">
+                  <div className="flex flex-col items-center gap-[12px] w-full mt-[32px] md:mt-[16px]">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-full h-[50px] bg-[#1463FF] rounded-[8px] hover:bg-blue-600 transition-colors"
+                      className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-full h-[60px] md:h-[50px] bg-[#1463FF] rounded-[8px] hover:bg-blue-600 transition-colors"
                     >
-                      <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                      <span className="font-['Manrope'] font-bold text-[16px] md:text-[14px] leading-[22px] md:leading-[19px] tracking-[0.02em] text-white">
                         {isSubmitting ? 'Logging in...' : 'Log In'}
                       </span>
                     </button>
-                    <div className="flex flex-row items-center gap-[8px] w-full h-[16px] mt-[4px]">
-                      <div className="w-[16px] h-[16px] flex items-center justify-center border-[1.5px] border-[#7795E8] rounded-full text-[#7795E8] font-bold text-[10px]">?</div>
-                      <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                    <div className="flex flex-row items-center gap-[8px] w-full justify-center h-[16px] mt-[4px]">
+                      <div className="w-[16px] h-[16px] shrink-0 flex items-center justify-center bg-[#7795E8] rounded-full text-[#091741] font-bold text-[12px] pb-[1px]">?</div>
+                      <p className="font-['Manrope'] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#7795E8]">
                         Having problems? <span className="font-bold cursor-pointer text-[#FFC83D]">Contact support</span>
                       </p>
                     </div>
@@ -270,7 +317,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
               ) : (
                 // Register Form
                 <>
-                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] md:h-[40px] bg-[#112F82] rounded-[8px]">
                     <input
                       name="username"
                       value={formData.username}
@@ -281,8 +328,8 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-[8px] w-full h-[40px]">
-                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="flex flex-row gap-[8px] w-full h-[50px] md:h-[40px]">
+                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 bg-[#112F82] rounded-[8px]">
                       <input
                         name="firstName"
                         value={formData.firstName}
@@ -292,7 +339,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                         required
                       />
                     </div>
-                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 bg-[#112F82] rounded-[8px]">
                       <input
                         name="lastName"
                         value={formData.lastName}
@@ -304,7 +351,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     </div>
                   </div>
 
-                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] md:h-[40px] bg-[#112F82] rounded-[8px]">
                     <input
                       name="email"
                       type="email"
@@ -316,7 +363,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     />
                   </div>
 
-                  <div className="flex flex-row justify-between items-center px-[16px] py-[10px] gap-[10px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                  <div className="flex flex-row justify-between items-center px-[16px] py-[10px] gap-[10px] w-full h-[50px] md:h-[40px] bg-[#112F82] rounded-[8px]">
                     <input
                       name="password"
                       type={showPassword ? 'text' : 'password'}
@@ -334,12 +381,12 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     </div>
                   </div>
 
-                  <div className="flex flex-row items-start gap-[8px] w-full h-[40px]">
-                    <div ref={countryRef} className="relative h-[40px] z-30">
+                  <div className="flex flex-row items-start gap-[8px] w-full h-[50px] md:h-[40px]">
+                    <div ref={countryRef} className="relative h-full z-30">
                       <button
                         type="button"
                         onClick={() => setIsCountryOpen(!isCountryOpen)}
-                        className={`flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[121px] h-[40px] bg-[#112F82] transition-colors hover:bg-[#1A3FA6] ${isCountryOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
+                        className={`flex flex-row items-center px-[16px] py-[10px] gap-[10px] w-[121px] h-full bg-[#112F82] transition-colors hover:bg-[#1A3FA6] ${isCountryOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
                       >
                         <div className="w-[20px] h-[20px] shrink-0 rounded-full overflow-hidden flex items-center justify-center">
                           <img src={selectedCountry.flag} alt={selectedCountry.id} className="w-[20px] h-[20px] object-cover" />
@@ -351,7 +398,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                       </button>
 
                       {isCountryOpen && (
-                        <div className="absolute top-[39px] left-0 w-full bg-[#091741] border border-[#1463FF] rounded-b-[8px] overflow-hidden z-40 shadow-xl max-h-[150px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                        <div className="absolute top-[100%] left-0 w-full bg-[#091741] border border-[#1463FF] rounded-b-[8px] overflow-hidden z-40 shadow-xl max-h-[150px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
                           {countries.map(country => (
                             <button
                               key={country.id}
@@ -368,7 +415,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                         </div>
                       )}
                     </div>
-                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-[40px] bg-[#112F82] rounded-[8px]">
+                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 min-w-0 h-full bg-[#112F82] rounded-[8px]">
                       <input
                         name="phoneNumber"
                         value={formData.phoneNumber}
@@ -379,25 +426,25 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     </div>
                   </div>
 
-                  <div className="flex flex-row items-start gap-[10px] w-full mt-[4px]">
-                    <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] text-justify tracking-[0.01em] text-[#BBCAF3] w-full">
+                  <div className="flex flex-row justify-center items-start w-full mt-[16px] md:mt-[4px]">
+                    <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] text-center tracking-[0.01em] text-[#BBCAF3] w-full">
                       By clicking "Join Now" I confirm that I'm over 18 years old and agree to Mighty Luck' T&C along with the Privacy Policy
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-center gap-[12px] w-full mt-[12px]">
+                  <div className="flex flex-col items-center gap-[12px] w-full mt-[16px] md:mt-[12px]">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-full h-[50px] bg-[#FFC83D] rounded-[8px] hover:opacity-90 transition-opacity"
+                      className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-full h-[60px] md:h-[50px] bg-[#FFC83D] rounded-[8px] hover:opacity-90 transition-opacity"
                     >
-                      <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
+                      <span className="font-['Manrope'] font-bold text-[16px] md:text-[14px] leading-[22px] md:leading-[19px] tracking-[0.02em] text-[#1A1404]">
                         {isSubmitting ? 'Joining...' : 'Join with a 350% Bonus'}
                       </span>
                     </button>
-                    <div className="flex flex-row items-center gap-[8px] w-full h-[16px] mt-[4px]">
-                      <div className="w-[16px] h-[16px] flex items-center justify-center border-[1.5px] border-[#7795E8] rounded-full text-[#7795E8] font-bold text-[10px]">?</div>
-                      <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                    <div className="flex flex-row items-center gap-[8px] w-full justify-center h-[16px] mt-[4px]">
+                      <div className="w-[16px] h-[16px] shrink-0 flex items-center justify-center bg-[#7795E8] rounded-full text-[#091741] font-bold text-[12px] pb-[1px]">?</div>
+                      <p className="font-['Manrope'] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#7795E8]">
                         Having problems? <span className="font-bold cursor-pointer text-[#FFC83D]">Contact support</span>
                       </p>
                     </div>
