@@ -152,27 +152,27 @@ export default function Sidebar() {
 
             {/* Mobile Bottom Navigation */}
             <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent shadow-[0_-4px_10px_rgba(0,0,0,0.2)] gap-[2px]">
-                <div 
-                    className={`flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer transition-colors group mx-auto ${isMobileMenuOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
+                <div
+                    className="flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image 
-                            src="/menu.svg" 
-                            alt="Menu" 
-                            width={30} 
-                            height={30} 
-                            className={`w-[30px] h-[30px] transition-all ${isMobileMenuOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`} 
+                        <Image
+                            src="/menu.svg"
+                            alt="Menu"
+                            width={30}
+                            height={30}
+                            className="w-[28px] h-[28px] opacity-80 group-hover:opacity-100 transition-opacity"
                         />
                     </div>
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Menu</span>
                 </div>
-                <div 
+                <div
                     className="flex flex-col items-center justify-center gap-[2px] w-[50px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto"
                     onClick={() => setIsMobileSearchOpen(true)}
                 >
                     <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/search.svg" alt="Search" width={30} height={30} className="w-[30px] h-[30px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                        <Image src="/search.svg" alt="Search" width={30} height={30} className="w-[28px] h-[28px] opacity-80 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Search</span>
                 </div>
@@ -198,7 +198,7 @@ export default function Sidebar() {
 
             {/* Mobile Menu Drawer */}
             {isMobileMenuOpen && (
-                <div className="lg:hidden fixed top-0 left-0 right-0 bottom-[75px] z-[90] bg-[#091741] flex flex-col w-full overflow-y-auto animate-in slide-in-from-left duration-300">
+                <div className="lg:hidden fixed top-0 left-0 right-0 bottom-[75px] z-[90] bg-[#091741] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
                     <div className="flex flex-row items-center justify-between p-[20px] w-full shrink-0">
                         <Link href="/" className="flex items-center shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
                             <Image src="/king.svg" alt="Mighty Luck" width={32} height={32} className="w-[32px] h-[32px]" />
@@ -208,7 +208,7 @@ export default function Sidebar() {
                             <Link href="?auth=register" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-[67px] h-[30px] bg-[#FFC83D] rounded-[6px] text-[#1A1404] font-['Manrope'] font-bold text-[10.5px]">Join</Link>
                         </div>
                     </div>
-                    
+
                     <div className="px-[20px] pb-[20px] flex flex-col w-full flex-1">
                         <SidebarNav isCollapsed={false} />
                     </div>
