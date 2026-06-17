@@ -44,19 +44,23 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#0C1F56] h-[60px]">
-      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-2 min-[375px]:px-3 sm:px-6 md:px-8 lg:px-12 xl:px-6">
+    <header className="sticky top-0 z-50 w-full bg-[#0C1F56] h-[50px] sm:h-[60px] border-b border-[#112F82] sm:border-none">
+      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-6 md:px-8 lg:px-12 xl:px-6">
         {/* Perfect Figma Shadow clipped to header */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 hidden md:block">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div 
-            className="absolute rounded-full" 
+            className="absolute rounded-full hidden md:block" 
             style={{ width: '143px', height: '143px', left: '114px', top: '37px', background: '#1463FF', filter: 'blur(25px)' }}
+          ></div>
+          <div 
+            className="absolute rounded-full sm:hidden" 
+            style={{ width: '71.5px', height: '71.5px', left: '6px', top: '33px', background: '#1463FF', filter: 'blur(12.5px)' }}
           ></div>
         </div>
 
         <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-6 min-w-0 z-10">
           <button
-            className="flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
+            className="hidden sm:flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
               if (window.innerWidth < 1024) {
                 setIsOpen(true);
@@ -77,11 +81,18 @@ export default function Header() {
 
           <Link href="/" className="flex items-center shrink-0">
             <Image
+              src="/king.svg"
+              alt="Mighty Luck"
+              width={44}
+              height={30}
+              className="sm:hidden object-contain relative z-10"
+            />
+            <Image
               src="/Horizontal logo.png"
               alt="Mighty Luck"
               width={150}
               height={28}
-              className="object-contain w-[105px] min-[375px]:w-[100px] min-[425px]:w-[130px] sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto relative z-10"
+              className="hidden sm:block object-contain sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto relative z-10"
             />
           </Link>
 
@@ -111,26 +122,26 @@ export default function Header() {
             </div>
 
             <button
-              className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[32px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
+              className="flex min-[600px]:hidden flex-row justify-center items-center px-[8px] min-[375px]:px-[12px] h-[30px] min-[375px]:h-[36px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
               onClick={() => setIsDepositModalOpen(true)}
             >
               <Image src="/wallet-dark.svg" width={16} height={16} alt="Wallet" />
             </button>
 
             <div className="flex flex-row items-center gap-[4px] min-[375px]:gap-[8px]">
-              <button className="flex flex-row justify-center items-center w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
+              <button className="flex flex-row justify-center items-center w-[30px] h-[30px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
                 <Image src="/noti.svg" width={16} height={16} alt="Notifications" className="scale-90 min-[375px]:scale-100" />
                 <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
               </button>
 
-              <button className="flex flex-row justify-center items-center w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
+              <button className="flex flex-row justify-center items-center w-[30px] h-[30px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
                 <Image src="/gift-light.svg" width={16} height={16} alt="Gifts" className="scale-90 min-[375px]:scale-100" />
                 <div className="absolute right-0 top-0 w-[6px] h-[6px] min-[375px]:w-[8px] min-[375px]:h-[8px] bg-[#FF0E0E] rounded-full"></div>
               </button>
 
               <div className="relative" ref={profileRef}>
                 <button
-                  className="w-[32px] h-[32px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80"
+                  className="w-[30px] h-[30px] min-[375px]:w-[36px] min-[375px]:h-[36px] md:w-[40px] md:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                 >
                   <Image src="/user.png" alt="User" width={40} height={40} className="object-cover w-full h-full" />
@@ -170,11 +181,11 @@ export default function Header() {
             </div>
           </div>
         ) : (
-          <div className="flex items-center gap-1.5 min-[375px]:gap-2 shrink-0">
-            <Link href="?auth=login" className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[40px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#1463FF] text-white whitespace-nowrap">
+          <div className="flex items-center gap-[7.5px] sm:gap-2 md:gap-4 shrink-0 z-10">
+            <Link href="?auth=login" className="flex items-center justify-center w-[74px] h-[30px] sm:w-auto sm:min-h-[40px] sm:h-[40px] sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-['Manrope'] font-bold sm:font-semibold text-[10.5px] sm:text-sm leading-[100%] sm:leading-normal tracking-[0.02em] transition-colors bg-[#1463FF] text-white whitespace-nowrap">
               Login
             </Link>
-            <Link href="?auth=register" className="flex items-center justify-center min-h-[32px] min-[375px]:min-h-[36px] min-[425px]:min-h-[40px] sm:min-h-[40px] h-[32px] min-[375px]:h-[36px] min-[425px]:h-[40px] sm:h-[40px] px-2.5 min-[375px]:px-3 min-[425px]:px-4 sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-semibold text-[12px] min-[375px]:text-[13px] sm:text-sm transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
+            <Link href="?auth=register" className="flex items-center justify-center w-[67px] h-[30px] sm:w-auto sm:min-h-[40px] sm:h-[40px] sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-['Manrope'] font-bold sm:font-semibold text-[10.5px] sm:text-sm leading-[100%] sm:leading-normal tracking-[0.02em] transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
               Join
             </Link>
           </div>
