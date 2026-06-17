@@ -6,6 +6,7 @@ import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info, Gift, Award
 import Image from "next/image";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import './deposit-modal.css';
 
 interface DepositModalProps {
   isOpen: boolean;
@@ -223,7 +224,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       />
 
       <div className="relative h-full sm:min-h-full flex flex-col justify-end sm:justify-center items-center p-0 pt-[30px] sm:py-[16px] pointer-events-none">
-        <div className="relative w-full max-w-[414px] sm:max-w-[500px] h-full sm:h-auto pointer-events-auto flex flex-col justify-end">
+        <div className="deposit-modal-container relative w-full max-w-[414px] sm:max-w-[500px] h-full sm:h-auto pointer-events-auto flex flex-col justify-end">
           <button
             onClick={onClose}
             className="absolute -right-[44px] top-0 z-10 text-white hover:opacity-70 transition-opacity hidden sm:block"
@@ -418,7 +419,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           )}
 
                           {selectedPayment.id === 'crypto' && (
-                            <div className="flex flex-row items-start gap-[8px] w-full h-[28px]">
+                            <div className="deposit-warning-message flex flex-row items-start gap-[8px] w-full h-[28px]">
                               <div className="flex items-center justify-center w-[12px] h-[12px] shrink-0 mt-[1px]">
                                 <Image src="/error.svg" width={12} height={12} alt="Info" className="w-[12px] h-[12px]" />
                               </div>
@@ -481,13 +482,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           </>
                         ) : fiatStep === 'address' ? (
                           <div className="flex flex-col gap-[12px] w-full h-[242px] sm:h-auto">
-                            <div className="flex flex-col gap-[8px] w-full h-[52px] sm:h-auto">
+                            <div className="deposit-address-warning-container flex flex-col gap-[8px] w-full h-[52px] sm:h-auto">
                               <div className="flex flex-row items-center gap-[8px] w-full h-[16px]">
                                 <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
                                   Enter your address
                                 </label>
                               </div>
-                              <div className="flex flex-row items-start gap-[8px] w-full h-[28px] sm:h-auto">
+                              <div className="deposit-warning-message flex flex-row items-start gap-[8px] w-full h-[28px] sm:h-auto">
                                 <div className="w-[12px] h-[12px] relative mt-[2px]">
                                   <div className="absolute inset-0 bg-[#7795E8] [mask-image:url('/error.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]" />
                                 </div>
