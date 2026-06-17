@@ -207,32 +207,24 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
           </div>
 
           {/* MOBILE BANNER */}
-          {!isLogin && (
-            <div className="md:hidden relative w-full h-[170px] rounded-t-[12px] bg-cover bg-center shrink-0 overflow-hidden" style={{ backgroundImage: 'url(/login-1.png)' }}>
-              <div className="absolute left-[calc(50%-140.5px)] top-[calc(50%-140.5px)] w-[281px] h-[281px] bg-[#0051F1] blur-[62px] pointer-events-none" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-[12px] z-10">
-                <div className="flex flex-col items-center">
-                  <h2 className="font-['Jost'] font-extrabold text-[44px] leading-[64px] text-center tracking-[0.01em] text-white">
-                    350%
-                  </h2>
-                  <div className="flex justify-center items-center px-[17.3px] py-[8.65px] bg-[#2BEA51] rounded-[86.5px] mt-[-10px]">
-                    <span className="font-['Jost'] font-extrabold text-[10px] leading-[14px] text-center text-[#051D09]">
-                      WELCOME PACKAGE
-                    </span>
-                  </div>
+          <div className="md:hidden relative w-full h-[170px] rounded-t-[12px] bg-cover bg-center shrink-0 overflow-hidden" style={{ backgroundImage: 'url(/login-1.png)' }}>
+            <div className="absolute left-[calc(50%-140.5px)] top-[calc(50%-140.5px)] w-[281px] h-[281px] bg-[#0051F1] blur-[62px] pointer-events-none" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-[12px] z-10">
+              <div className="flex flex-col items-center gap-[6px]">
+                <h2 className="font-['Jost'] font-extrabold text-[44px] leading-none text-center tracking-[0.01em] text-white">
+                  350%
+                </h2>
+                <div className="flex justify-center items-center px-[17px] py-[8.5px] bg-[#2BEA51] rounded-full">
+                  <span className="font-['Jost'] font-extrabold text-[10px] leading-[14px] text-center text-[#051D09]">
+                    WELCOME PACKAGE
+                  </span>
                 </div>
-                <p className="font-['Manrope'] font-bold text-[12px] leading-[16px] text-center tracking-[0.01em] text-white w-[200px]">
-                  Boost your deposits with 350% in Bonus and 200 Free Spins
-                </p>
               </div>
+              <p className="font-['Manrope'] font-bold text-[12px] leading-[16px] text-center tracking-[0.01em] text-white w-[200px]">
+                Boost your deposits with 350% in Bonus and 200 Free Spins
+              </p>
             </div>
-          )}
-          {isLogin && (
-            <div className="md:hidden relative w-full h-[170px] rounded-t-[12px] bg-cover bg-center shrink-0 overflow-hidden flex items-center justify-center" style={{ backgroundImage: 'url(/login-1.png)' }}>
-               <div className="absolute left-[calc(50%-140.5px)] top-[calc(50%-140.5px)] w-[281px] h-[281px] bg-[#0051F1] blur-[62px] pointer-events-none" />
-               <Image src="/Horizontal logo.png" alt="Mighty Luck" width={180} height={34} className="object-contain z-10 relative" />
-            </div>
-          )}
+          </div>
 
           {/* DESKTOP HEADER (Logo + Tabs) */}
           <div className="hidden md:flex relative w-full max-w-[350px] mx-auto pt-[24px] flex-col items-start gap-[16px] z-10 px-[20px]">
@@ -432,7 +424,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-center gap-[12px] w-full mt-[16px] md:mt-[12px]">
+                  <div className="flex flex-col items-center gap-[12px] w-full mt-[44px] md:mt-[12px]">
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -443,7 +435,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                       </span>
                     </button>
                     <div className="flex flex-row items-center gap-[8px] w-full justify-center h-[16px] mt-[4px]">
-                      <div className="w-[16px] h-[16px] shrink-0 flex items-center justify-center bg-[#7795E8] rounded-full text-[#091741] font-bold text-[12px] pb-[1px]">?</div>
+                      <div className="w-[16px] h-[16px] shrink-0 flex items-center justify-center border-[1.5px] border-[#7795E8] rounded-full text-[#7795E8] font-bold text-[10px] pb-[0.5px]">?</div>
                       <p className="font-['Manrope'] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#7795E8]">
                         Having problems? <span className="font-bold cursor-pointer text-[#FFC83D]">Contact support</span>
                       </p>
