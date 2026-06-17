@@ -153,7 +153,7 @@ export default function Sidebar() {
             {/* Mobile Bottom Navigation */}
             <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent shadow-[0_-4px_10px_rgba(0,0,0,0.2)] gap-[2px]">
                 <div
-                    className="flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto"
+                    className={`flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer transition-colors group mx-auto ${isMobileMenuOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
@@ -162,7 +162,7 @@ export default function Sidebar() {
                             alt="Menu"
                             width={30}
                             height={30}
-                            className="w-[28px] h-[28px] opacity-80 group-hover:opacity-100 transition-opacity"
+                            className={`w-[28px] h-[28px] transition-all ${isMobileMenuOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`}
                         />
                     </div>
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Menu</span>
