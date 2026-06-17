@@ -2,12 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronUp, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
+import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { SearchModal } from '@/components/modals/SearchModal';
 
 export default function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleToggle = () => setIsCollapsed(prev => !prev);
@@ -150,9 +152,14 @@ export default function Sidebar() {
 
             {/* Mobile Bottom Navigation */}
             <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent shadow-[0_-4px_10px_rgba(0,0,0,0.2)] gap-[2px]">
-                <div className="flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                <div 
+                    className={`flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer transition-colors group mx-auto ${isMobileMenuOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
                     <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/menu.svg" alt="Menu" width={22} height={15} className="w-[22px] h-[14.67px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                        <svg width="22" height="15" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-[22px] h-[14.67px] transition-opacity ${isMobileMenuOpen ? 'opacity-100' : 'opacity-80 group-hover:opacity-100'}`}>
+                            <path d="M4 7.66669H21.1111M4 15H16.2222M4 22.3334H21.1111M26 10.1111L24.5896 11.183C22.2722 12.9442 21.1111 13.8255 21.1111 15C21.1111 16.1746 22.271 17.0558 24.5896 18.8182L26 19.8889" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                     </div>
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Menu</span>
                 </div>
@@ -185,6 +192,25 @@ export default function Sidebar() {
                 </div>
             </nav>
 
+            {/* Mobile Menu Drawer */}
+            {isMobileMenuOpen && (
+                <div className="lg:hidden fixed top-0 left-0 right-0 bottom-[75px] z-[90] bg-[#091741] flex flex-col w-full overflow-y-auto animate-in slide-in-from-left duration-300">
+                    <div className="flex flex-row items-center justify-between p-[20px] w-full shrink-0">
+                        <Link href="/" className="flex items-center shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Image src="/king.svg" alt="Mighty Luck" width={32} height={32} className="w-[32px] h-[32px]" />
+                        </Link>
+                        <div className="flex flex-row items-center gap-[8px] shrink-0">
+                            <Link href="?auth=login" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-[74px] h-[30px] bg-[#1463FF] rounded-[6px] text-white font-['Manrope'] font-bold text-[10.5px]">Login</Link>
+                            <Link href="?auth=register" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-[67px] h-[30px] bg-[#FFC83D] rounded-[6px] text-[#1A1404] font-['Manrope'] font-bold text-[10.5px]">Join</Link>
+                        </div>
+                    </div>
+                    
+                    <div className="px-[20px] pb-[20px] flex flex-col w-full flex-1">
+                        <SidebarNav isCollapsed={false} />
+                    </div>
+                </div>
+            )}
+
             <SearchModal
                 isOpen={isMobileSearchOpen}
                 onClose={() => setIsMobileSearchOpen(false)}
@@ -210,11 +236,13 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
             <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
                 <div
                     onClick={() => toggleDropdown('casino')}
-                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[44px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
+                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[50px] cursor-pointer text-white transition-colors bg-[#1463FF] rounded-[8px]`}
                 >
-                    <div className={`flex items-center gap-[8px] ${isCollapsed ? 'justify-center' : ''}`}>
-                        <Image src="/Frame.svg" alt="Casino" width={20} height={20} className="shrink-0" />
-                        {!isCollapsed && <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Casino</span>}
+                    <div className={`flex items-center gap-[12px] ${isCollapsed ? 'justify-center' : ''}`}>
+                        <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
+                            <Image src="/Frame.svg" alt="Casino" width={20} height={20} className="shrink-0" />
+                        </div>
+                        {!isCollapsed && <span className="font-['Manrope'] font-bold text-[16px] leading-[22px] tracking-[0.02em]">Casino</span>}
                     </div>
                     {(!isCollapsed) && (openDropdown === 'casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />)}
 
@@ -226,12 +254,12 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                     )}
                 </div>
                 {openDropdown === 'casino' && (
-                    <div className="flex flex-col py-[8px]">
-                        <SubNavItem icon={<Image src="/all.svg" alt="All Games" width={18} height={18} className="shrink-0" />} label="All Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Frame1.svg" alt="New Games" width={18} height={18} className="shrink-0" />} label="New Games" isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={18} height={18} className="shrink-0" />} label="Popular Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Frame3.svg" alt="Original Games" width={18} height={18} className="shrink-0" />} label="Original Games" isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Vector1.svg" alt="Crash Games" width={18} height={18} className="shrink-0" />} label="Crash Games" isCollapsed={isCollapsed} />
+                    <div className="flex flex-col px-[16px] py-[20px] gap-[20px] rounded-b-[8px]">
+                        <SubNavItem icon={<Image src="/all.svg" alt="All Games" width={19} height={14} className="w-[19.25px] h-[14.14px] shrink-0" />} label="All Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Frame1.svg" alt="New Games" width={19} height={17} className="w-[19.21px] h-[17.3px] shrink-0" />} label="New Games" isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={16} height={20} className="w-[15.86px] h-[20px] shrink-0" />} label="Popular Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Frame3.svg" alt="Original Games" width={14} height={20} className="w-[13.92px] h-[20px] shrink-0" />} label="Original Games" isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Vector1.svg" alt="Crash Games" width={20} height={20} className="w-[20px] h-[20.01px] shrink-0" />} label="Crash Games" isCollapsed={isCollapsed} />
                     </div>
                 )}
             </div>
@@ -239,11 +267,13 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
             <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
                 <div
                     onClick={() => toggleDropdown('live-casino')}
-                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[44px] cursor-pointer text-white transition-colors bg-[#1463FF] ${openDropdown === 'live-casino' ? 'rounded-t-[8px]' : 'rounded-[8px]'}`}
+                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[50px] cursor-pointer text-white transition-colors bg-[#1463FF] rounded-[8px]`}
                 >
-                    <div className={`flex items-center gap-[8px] ${isCollapsed ? 'justify-center' : ''}`}>
-                        <Image src="/Frame4.svg" alt="Live Casino" width={20} height={20} className="shrink-0" />
-                        {!isCollapsed && <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Live Casino</span>}
+                    <div className={`flex items-center gap-[12px] ${isCollapsed ? 'justify-center' : ''}`}>
+                        <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
+                            <Image src="/Frame4.svg" alt="Live Casino" width={20} height={20} className="w-[20px] h-[17.62px] shrink-0" />
+                        </div>
+                        {!isCollapsed && <span className="font-['Manrope'] font-bold text-[16px] leading-[22px] tracking-[0.02em]">Live Casino</span>}
                     </div>
                     {(!isCollapsed) && (openDropdown === 'live-casino' ? <ChevronUp size={16} /> : <ChevronDown size={16} />)}
 
@@ -255,8 +285,8 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                     )}
                 </div>
                 {openDropdown === 'live-casino' && (
-                    <div className="flex flex-col py-[8px]">
-                        <SubNavItem icon={<Image src="/Frame1.svg" alt="All Live Games" width={18} height={18} className="shrink-0" />} label="All Live Games" isCollapsed={isCollapsed} />
+                    <div className="flex flex-col px-[16px] py-[20px] gap-[20px] rounded-b-[8px]">
+                        <SubNavItem icon={<Image src="/Frame1.svg" alt="All Live Games" width={19} height={17} className="w-[19.21px] h-[17.3px] shrink-0" />} label="All Live Games" isCollapsed={isCollapsed} />
                     </div>
                 )}
             </div>
@@ -275,9 +305,11 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
 
 function NavItem({ icon, label, isCollapsed }: { icon: React.ReactNode; label: string; isCollapsed?: boolean }) {
     return (
-        <div className={`group relative flex items-center h-[44px] cursor-pointer bg-[#112F82] rounded-[8px] transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] px-0' : 'gap-[8px] w-full px-[10px]'}`}>
-            {icon}
-            {!isCollapsed && <span className="font-medium text-[15px]">{label}</span>}
+        <div className={`group relative flex items-center h-[50px] cursor-pointer bg-[#112F82] rounded-[8px] transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] px-0' : 'gap-[12px] w-full px-[10px]'}`}>
+            <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
+                {icon}
+            </div>
+            {!isCollapsed && <span className="font-['Manrope'] font-semibold text-[16px] leading-[22px] tracking-[0.02em]">{label}</span>}
             {isCollapsed && (
                 <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
                     {label}
@@ -292,10 +324,12 @@ function SubNavItem({ icon, label, onClick, isCollapsed }: { icon: React.ReactNo
     return (
         <div
             onClick={onClick}
-            className={`group relative flex items-center cursor-pointer transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'gap-[8px] w-full h-[40px] px-[10px] pl-[32px]'}`}
+            className={`group relative flex items-center cursor-pointer transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'gap-[12px] w-full h-[22px]'}`}
         >
-            {icon}
-            {!isCollapsed && <span className="font-medium text-[15px]">{label}</span>}
+            <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
+                {icon}
+            </div>
+            {!isCollapsed && <span className="font-['Manrope'] font-semibold text-[16px] leading-[22px] tracking-[0.02em]">{label}</span>}
             {isCollapsed && (
                 <div className="absolute left-[calc(100%+12px)] top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#1463FF] text-white text-[13px] font-bold rounded-[6px] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity whitespace-nowrap z-[100] shadow-xl">
                     {label}
