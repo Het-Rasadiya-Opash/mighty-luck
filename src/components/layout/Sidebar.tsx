@@ -7,6 +7,7 @@ import { SearchModal } from '@/components/modals/SearchModal';
 
 export default function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
     useEffect(() => {
         const handleToggle = () => setIsCollapsed(prev => !prev);
@@ -15,136 +16,180 @@ export default function Sidebar() {
     }, []);
 
     return (
-        <aside className={`hidden lg:flex flex-col gap-[10px] shrink-0 transition-[width] duration-300 ${isCollapsed ? 'w-[72px]' : 'w-[232px]'}`}>
-            <div className={`flex flex-none flex-col items-start rounded-[16px] bg-[#0C1F56] overflow-hidden transition-all duration-300 ${isCollapsed ? 'h-0 p-0 opacity-0 m-0 gap-0 border-0' : 'gap-[10px] h-[134px] w-[232px] p-[16px] mb-[10px]'}`}>
-                <div className="flex w-[200px] flex-none flex-col items-start gap-[8px]">
-                    {/* Top Two Cards Row */}
-                    <div className="flex h-[44px] w-[200px] flex-none flex-row items-center gap-[4px]">
-                        {/* Refer Friend */}
-                        <div className="relative isolate overflow-hidden flex h-[44px] w-[98px] flex-none items-center gap-[2px] rounded-[8px] bg-[#3B005F] px-[8px] py-[6px]">
-                            <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
-                                <div className="absolute -left-[43px] -top-[15px] h-[97px] w-[97px] rounded-full bg-[#A92BF5] blur-[25px]" />
+        <>
+            <aside className={`hidden lg:flex flex-col gap-[10px] shrink-0 transition-[width] duration-300 ${isCollapsed ? 'w-[72px]' : 'w-[232px]'}`}>
+                <div className={`flex flex-none flex-col items-start rounded-[16px] bg-[#0C1F56] overflow-hidden transition-all duration-300 ${isCollapsed ? 'h-0 p-0 opacity-0 m-0 gap-0 border-0' : 'gap-[10px] h-[134px] w-[232px] p-[16px] mb-[10px]'}`}>
+                    <div className="flex w-[200px] flex-none flex-col items-start gap-[8px]">
+                        {/* Top Two Cards Row */}
+                        <div className="flex h-[44px] w-[200px] flex-none flex-row items-center gap-[4px]">
+                            {/* Refer Friend */}
+                            <div className="relative isolate overflow-hidden flex h-[44px] w-[98px] flex-none items-center gap-[2px] rounded-[8px] bg-[#3B005F] px-[8px] py-[6px]">
+                                <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
+                                    <div className="absolute -left-[43px] -top-[15px] h-[97px] w-[97px] rounded-full bg-[#A92BF5] blur-[25px]" />
+                                </div>
+
+                                <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
+                                    <div
+                                        className="absolute -left-[17px] -top-[4px] h-[39.33px] w-[59px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
+                                        style={{ backgroundImage: "url('/sp-1.svg')" }}
+                                    />
+                                </div>
+                                <div className="relative z-[2] flex h-[22px] w-[52px] flex-none flex-col justify-center">
+                                    <p
+                                        className="text-white"
+                                        style={{
+                                            width: '52px',
+                                            height: '22px',
+                                            fontFamily: 'var(--font-jost), Jost, sans-serif',
+                                            fontStyle: 'normal',
+                                            fontWeight: 700,
+                                            fontSize: '11px',
+                                            lineHeight: '100%',
+                                            flex: 'none',
+                                            order: 2,
+                                            flexGrow: 0,
+                                            zIndex: 2
+                                        }}
+                                    >
+                                        REFER<br />A FRIEND
+                                    </p>
+                                </div>
                             </div>
 
+                            {/* VIP Transfer */}
+                            <div className="relative isolate overflow-hidden flex h-[44px] w-[98px] flex-none items-center gap-[2px] rounded-[8px] bg-[#500039] px-[8px] py-[6px]">
+                                <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
+                                    <div className="absolute -left-[40px] -top-[5px] h-[97px] w-[97px] rounded-full bg-[#FF3981] blur-[25px]" />
+                                </div>
+
+                                <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
+                                    <div
+                                        className="absolute -left-[23px] -top-[4px] h-[33.01px] w-[64px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
+                                        style={{ transform: "rotate(11.84deg)", backgroundImage: "url('/sp-2.svg')" }}
+                                    />
+                                </div>
+                                <div className="relative z-[2] flex h-[22px] w-[57px] flex-none flex-col justify-center">
+                                    <p
+                                        className="text-white"
+                                        style={{
+                                            width: '57px',
+                                            height: '22px',
+                                            fontFamily: 'var(--font-jost), Jost, sans-serif',
+                                            fontStyle: 'normal',
+                                            fontWeight: 700,
+                                            fontSize: '11px',
+                                            lineHeight: '100%',
+                                            flex: 'none',
+                                            order: 2,
+                                            flexGrow: 0,
+                                            zIndex: 2
+                                        }}
+                                    >
+                                        VIP<br />TRANSFER
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Winter Rush */}
+                        <div className="relative isolate overflow-hidden flex h-[50px] w-[200px] flex-none items-center gap-[10px] rounded-[8px] bg-[#091741] px-[10px] py-[6px]">
+                            <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
+                                <div className="absolute -left-[53px] -top-[22px] h-[110px] w-[110px] rounded-full bg-[#1463FF] blur-[25px]" />
+                            </div>
                             <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
                                 <div
-                                    className="absolute -left-[17px] -top-[4px] h-[39.33px] w-[59px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
-                                    style={{ backgroundImage: "url('/sp-1.svg')" }}
+                                    className="absolute h-[50px] w-[80px] -left-[20px] -top-[12px] bg-contain bg-center bg-no-repeat pointer-events-none"
+                                    style={{ backgroundImage: "url('/sp-3.svg')" }}
                                 />
                             </div>
-                            <div className="relative z-[2] flex h-[22px] w-[52px] flex-none flex-col justify-center">
-                                <p
-                                    className="text-white"
+                            <div className="relative z-[3] flex h-[30px] w-[138px] flex-none flex-col items-start gap-[2px]">
+                                <h3
+                                    className="whitespace-nowrap text-white"
                                     style={{
-                                        width: '52px',
-                                        height: '22px',
+                                        width: '138px',
+                                        height: '14px',
                                         fontFamily: 'var(--font-jost), Jost, sans-serif',
-                                        fontStyle: 'normal',
-                                        fontWeight: 700,
-                                        fontSize: '11px',
-                                        lineHeight: '100%',
+                                        fontStyle: 'italic',
+                                        fontWeight: 900,
+                                        fontSize: '18px',
+                                        lineHeight: '13.9px',
                                         flex: 'none',
-                                        order: 2,
-                                        flexGrow: 0,
-                                        zIndex: 2
+                                        order: 0,
+                                        alignSelf: 'stretch',
+                                        flexGrow: 0
                                     }}
                                 >
-                                    REFER<br />A FRIEND
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* VIP Transfer */}
-                        <div className="relative isolate overflow-hidden flex h-[44px] w-[98px] flex-none items-center gap-[2px] rounded-[8px] bg-[#500039] px-[8px] py-[6px]">
-                            <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
-                                <div className="absolute -left-[40px] -top-[5px] h-[97px] w-[97px] rounded-full bg-[#FF3981] blur-[25px]" />
-                            </div>
-
-                            <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
-                                <div
-                                    className="absolute -left-[23px] -top-[4px] h-[33.01px] w-[64px] bg-contain bg-center bg-no-repeat pointer-events-none mix-blend-screen"
-                                    style={{ transform: "rotate(11.84deg)", backgroundImage: "url('/sp-2.svg')" }}
-                                />
-                            </div>
-                            <div className="relative z-[2] flex h-[22px] w-[57px] flex-none flex-col justify-center">
+                                    WINTER RUSH
+                                </h3>
                                 <p
-                                    className="text-white"
+                                    className="whitespace-nowrap text-white"
                                     style={{
-                                        width: '57px',
-                                        height: '22px',
+                                        width: '124px',
+                                        height: '14px',
                                         fontFamily: 'var(--font-jost), Jost, sans-serif',
-                                        fontStyle: 'normal',
+                                        fontStyle: 'italic',
                                         fontWeight: 700,
-                                        fontSize: '11px',
-                                        lineHeight: '100%',
+                                        fontSize: '12px',
+                                        lineHeight: '13.9px',
                                         flex: 'none',
-                                        order: 2,
-                                        flexGrow: 0,
-                                        zIndex: 2
+                                        order: 1,
+                                        flexGrow: 0
                                     }}
                                 >
-                                    VIP<br />TRANSFER
+                                    $2,000,000<span style={{ fontSize: '16.22px', fontWeight: 600 }}> </span><span style={{ fontSize: '11px', fontWeight: 600 }}>IN PRIZES</span>
                                 </p>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* Winter Rush */}
-                    <div className="relative isolate overflow-hidden flex h-[50px] w-[200px] flex-none items-center gap-[10px] rounded-[8px] bg-[#091741] px-[10px] py-[6px]">
-                        <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
-                            <div className="absolute -left-[53px] -top-[22px] h-[110px] w-[110px] rounded-full bg-[#1463FF] blur-[25px]" />
-                        </div>
-                        <div className="relative z-[1] w-[24px] h-[24px] shrink-0 flex items-center justify-center">
-                            <div
-                                className="absolute h-[50px] w-[80px] -left-[20px] -top-[12px] bg-contain bg-center bg-no-repeat pointer-events-none"
-                                style={{ backgroundImage: "url('/sp-3.svg')" }}
-                            />
-                        </div>
-                        <div className="relative z-[3] flex h-[30px] w-[138px] flex-none flex-col items-start gap-[2px]">
-                            <h3
-                                className="whitespace-nowrap text-white"
-                                style={{
-                                    width: '138px',
-                                    height: '14px',
-                                    fontFamily: 'var(--font-jost), Jost, sans-serif',
-                                    fontStyle: 'italic',
-                                    fontWeight: 900,
-                                    fontSize: '18px',
-                                    lineHeight: '13.9px',
-                                    flex: 'none',
-                                    order: 0,
-                                    alignSelf: 'stretch',
-                                    flexGrow: 0
-                                }}
-                            >
-                                WINTER RUSH
-                            </h3>
-                            <p
-                                className="whitespace-nowrap text-white"
-                                style={{
-                                    width: '124px',
-                                    height: '14px',
-                                    fontFamily: 'var(--font-jost), Jost, sans-serif',
-                                    fontStyle: 'italic',
-                                    fontWeight: 700,
-                                    fontSize: '12px',
-                                    lineHeight: '13.9px',
-                                    flex: 'none',
-                                    order: 1,
-                                    flexGrow: 0
-                                }}
-                            >
-                                $2,000,000<span style={{ fontSize: '16.22px', fontWeight: 600 }}> </span><span style={{ fontSize: '11px', fontWeight: 600 }}>IN PRIZES</span>
-                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className={`w-full bg-[#0C1F56] rounded-[16px] flex flex-col p-[16px] transition-all duration-300 ${isCollapsed ? 'items-center' : ''}`}>
-                <SidebarNav isCollapsed={isCollapsed} />
-            </div>
-        </aside>
+                <div className={`w-full bg-[#0C1F56] rounded-[16px] flex flex-col p-[16px] transition-all duration-300 ${isCollapsed ? 'items-center' : ''}`}>
+                    <SidebarNav isCollapsed={isCollapsed} />
+                </div>
+            </aside>
+
+            {/* Mobile Bottom Navigation */}
+            <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent shadow-[0_-4px_10px_rgba(0,0,0,0.2)] gap-[2px]">
+                <div className="flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
+                        <Image src="/menu.svg" alt="Menu" width={22} height={15} className="w-[22px] h-[14.67px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Menu</span>
+                </div>
+                <div 
+                    className="flex flex-col items-center justify-center gap-[2px] w-[50px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto"
+                    onClick={() => setIsMobileSearchOpen(true)}
+                >
+                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
+                        <Image src="/search.svg" alt="Search" width={20} height={20} className="w-[20px] h-[19.99px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Search</span>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-[2px] w-[43px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
+                        <Image src="/image 19 (Traced).svg" alt="Offers" width={22} height={22} className="w-[22px] h-[22px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Offers</span>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-[2px] w-[30px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
+                        <Image src="/image 20 (Traced).svg" alt="VIP" width={24} height={23} className="w-[24px] h-[23px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">VIP</span>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-[2px] w-[65px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
+                        <Image src="/image 21 (Traced).svg" alt="Tourneys" width={22} height={22} className="w-[22px] h-[22px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Tourneys</span>
+                </div>
+            </nav>
+
+            <SearchModal
+                isOpen={isMobileSearchOpen}
+                onClose={() => setIsMobileSearchOpen(false)}
+            />
+        </>
     );
 }
 
