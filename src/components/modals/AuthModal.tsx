@@ -20,7 +20,7 @@ const countries = [
 function EyeIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 0C3.1325 0 0 4.66667 0 4.66667C0 4.66667 3.1325 9.33333 7 9.33333C10.8675 9.33333 14 4.66667 14 4.66667C14 4.66667 10.8675 0 7 0ZM7 7.77778C5.22375 7.77778 3.79167 6.38556 3.79167 4.66667C3.79167 2.94778 5.22375 1.55556 7 1.55556C8.77625 1.55556 10.2083 2.94778 10.2083 4.66667C10.2083 6.38556 8.77625 7.77778 7 7.77778ZM7 2.8C5.93917 2.8 5.075 3.63689 5.075 4.66667C5.075 5.69644 5.93917 6.53333 7 6.53333C8.06083 6.53333 8.925 5.69644 8.925 4.66667C8.925 3.63689 8.06083 2.8 7 2.8Z" fill="#A5B8EF"/>
+      <path d="M7 0C3.1325 0 0 4.66667 0 4.66667C0 4.66667 3.1325 9.33333 7 9.33333C10.8675 9.33333 14 4.66667 14 4.66667C14 4.66667 10.8675 0 7 0ZM7 7.77778C5.22375 7.77778 3.79167 6.38556 3.79167 4.66667C3.79167 2.94778 5.22375 1.55556 7 1.55556C8.77625 1.55556 10.2083 2.94778 10.2083 4.66667C10.2083 6.38556 8.77625 7.77778 7 7.77778ZM7 2.8C5.93917 2.8 5.075 3.63689 5.075 4.66667C5.075 5.69644 5.93917 6.53333 7 6.53333C8.06083 6.53333 8.925 5.69644 8.925 4.66667C8.925 3.63689 8.06083 2.8 7 2.8Z" fill="#A5B8EF" />
     </svg>
   );
 }
@@ -28,7 +28,7 @@ function EyeIcon() {
 function CaretDown() {
   return (
     <svg width="7" height="4" viewBox="0 0 7 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 1L3.5 3L6 1" stroke="#A5B8EF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M1 1L3.5 3L6 1" stroke="#A5B8EF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -38,7 +38,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
   const searchParams = useSearchParams();
   const authModeFromUrl = searchParams?.get('auth'); // 'login' or 'register'
   const authMode = authModeFromUrl === 'login' || authModeFromUrl === 'register' ? authModeFromUrl : defaultMode;
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
@@ -98,7 +98,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       if (isLogin) {
         const result = await signIn('credentials', {
@@ -129,34 +129,34 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0C1733]/70 backdrop-blur-[8px] md:p-8 md:overflow-y-auto">
-      <div 
-        className="relative w-full h-full md:w-[730px] md:h-[546px] md:rounded-[16px] flex flex-row shadow-2xl overflow-hidden bg-[#091741]" 
+      <div
+        className="relative w-full h-full md:w-[730px] md:h-[546px] md:rounded-[16px] flex flex-row shadow-2xl overflow-hidden bg-[#091741]"
         onClick={(e) => e.stopPropagation()}
       >
-        <button 
-          onClick={handleClose} 
+        <button
+          onClick={handleClose}
           className="absolute top-[16px] right-[16px] z-50 w-[28px] h-[28px] flex items-center justify-center rounded-full bg-[#112F82]/80 text-white hover:bg-[#1463FF] transition-colors md:flex hidden"
         >
           ✕
         </button>
-        
+
         {/* Left Panel */}
         <div className="relative w-[340px] h-[546px] rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
-          <div 
+          <div
             className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px]"
-            style={{ 
+            style={{
               backgroundImage: 'url(/login-1.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
           />
-          <div 
-            className="absolute left-0 top-[327px] w-[340px] h-[219px]" 
-            style={{ background: 'linear-gradient(180deg, rgba(0, 12, 36, 0) 6.85%, #000C24 45.66%)' }} 
+          <div
+            className="absolute left-0 top-[327px] w-[340px] h-[219px]"
+            style={{ background: 'linear-gradient(180deg, rgba(0, 12, 36, 0) 6.85%, #000C24 45.66%)' }}
           />
           <div className="absolute bottom-[-129px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
-          
+
           <div className="absolute top-[359px] left-[calc(50%-150px)] w-[300px] h-[160px] flex flex-col items-center gap-[20px]">
             <div className="flex flex-col items-center w-[167px] h-[112px]">
               <div className="flex justify-center items-center gap-[10px] w-[156px] h-[75px]">
@@ -180,14 +180,14 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
 
         {/* Right Panel */}
         <div className="relative w-full md:w-[390px] h-full md:h-[546px] bg-[#091741] rounded-none md:rounded-l-none md:rounded-r-[16px] flex flex-col items-center md:items-start px-[20px] py-[24px] gap-[32px] shrink-0 overflow-y-auto md:overflow-hidden z-10">
-          <div className="absolute top-[-145px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full -z-10" />
-          
+          <div className="hidden min-[426px]:block absolute top-[-145px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full -z-10" />
+
           {/* Mobile Close Button */}
           <button
             onClick={handleClose}
             className="absolute top-[16px] right-[16px] w-[28px] h-[28px] rounded-full bg-[#112F82]/80 hover:bg-[#1463FF] flex items-center justify-center text-white transition-colors md:hidden z-50"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
           </button>
 
           <div className="relative w-full max-w-[350px] mx-auto my-auto py-8 md:py-0 flex flex-col items-center md:items-start gap-[16px] z-10">
@@ -196,13 +196,13 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             </div>
 
             <div className="flex flex-row items-center gap-[8px] w-full h-[40px] mt-[2px]">
-              <button 
+              <button
                 onClick={() => handleTabSwitch('register')}
                 className={`flex-1 flex justify-center items-center px-[30px] py-[10px] gap-[10px] rounded-[8px] h-full transition-colors ${!isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
               >
                 <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Join Now</span>
               </button>
-              <button 
+              <button
                 onClick={() => handleTabSwitch('login')}
                 className={`flex-1 flex justify-center items-center px-[30px] py-[10px] gap-[10px] rounded-[8px] h-full transition-colors ${isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
               >
@@ -235,18 +235,18 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                       className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-white"
                       required
                     />
-                    <div 
+                    <div
                       className="w-[20px] h-[20px] shrink-0 flex justify-center items-center cursor-pointer"
                       onClick={() => setShowPassword(!showPassword)}
                     >
                       <EyeIcon />
                     </div>
                   </div>
-                  
+
                   <div className="w-full flex justify-end mt-[4px]">
-                     <span className="font-['Manrope'] font-medium text-[12px] text-[#A5B8EF] cursor-pointer hover:text-white transition-colors">
-                       Forgot password?
-                     </span>
+                    <span className="font-['Manrope'] font-medium text-[12px] text-[#A5B8EF] cursor-pointer hover:text-white transition-colors">
+                      Forgot password?
+                    </span>
                   </div>
 
                   <div className="flex flex-col items-center gap-[12px] w-full mt-[16px]">
@@ -326,7 +326,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                       className="w-full min-w-0 bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF] outline-none placeholder:text-[#A5B8EF]"
                       required
                     />
-                    <div 
+                    <div
                       className="w-[20px] h-[20px] shrink-0 flex justify-center items-center cursor-pointer"
                       onClick={() => setShowPassword(!showPassword)}
                     >
