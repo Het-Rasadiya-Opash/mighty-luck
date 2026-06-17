@@ -198,18 +198,8 @@ export default function Sidebar() {
 
             {/* Mobile Menu Drawer */}
             {isMobileMenuOpen && (
-                <div className="lg:hidden fixed top-0 left-0 right-0 bottom-[75px] z-[90] bg-[#091741] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
-                    <div className="flex flex-row items-center justify-between p-[20px] w-full shrink-0">
-                        <Link href="/" className="flex items-center shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
-                            <Image src="/king.svg" alt="Mighty Luck" width={32} height={32} className="w-[32px] h-[32px]" />
-                        </Link>
-                        <div className="flex flex-row items-center gap-[8px] shrink-0">
-                            <Link href="?auth=login" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-[74px] h-[30px] bg-[#1463FF] rounded-[6px] text-white font-['Manrope'] font-bold text-[10.5px]">Login</Link>
-                            <Link href="?auth=register" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-[67px] h-[30px] bg-[#FFC83D] rounded-[6px] text-[#1A1404] font-['Manrope'] font-bold text-[10.5px]">Join</Link>
-                        </div>
-                    </div>
-
-                    <div className="px-[20px] pb-[20px] flex flex-col w-full flex-1">
+                <div className="lg:hidden fixed top-[50px] sm:top-[60px] left-0 right-0 bottom-[75px] z-[40] bg-[#0C1F56] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
+                    <div className="p-[20px] flex flex-col gap-[10px] w-full flex-1">
                         <SidebarNav isCollapsed={false} />
                     </div>
                 </div>
