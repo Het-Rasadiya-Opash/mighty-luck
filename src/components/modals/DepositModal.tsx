@@ -223,8 +223,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
         onClick={onClose}
       />
 
-      <div className="relative h-full sm:min-h-full flex flex-col justify-end sm:justify-center items-center p-0 pt-[30px] sm:py-[16px] pointer-events-none">
-        <div className="deposit-modal-container relative w-full max-w-[414px] sm:max-w-[500px] h-full sm:h-auto pointer-events-auto flex flex-col justify-end">
+      <div className="relative min-h-full flex flex-col justify-end sm:justify-center items-center p-0 pt-[30px] sm:py-[16px] pointer-events-none">
+        <div className="deposit-modal-container relative w-full max-w-[414px] sm:max-w-[500px] h-fit sm:h-auto pointer-events-auto flex flex-col justify-end">
           <button
             onClick={onClose}
             className="absolute -right-[44px] top-0 z-10 text-white hover:opacity-70 transition-opacity hidden sm:block"
