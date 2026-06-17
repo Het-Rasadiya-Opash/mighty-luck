@@ -39,18 +39,20 @@ export default function ProviderSection() {
 
     return (
         <div ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
-            <div className="flex items-center justify-between w-full h-[30px]">
-                <div className="flex items-center h-[30px] gap-[12px]">
-                    <Image src="/gameprovider.svg" alt="Providers" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />
-                    <h2 className="font-['Jost'] text-[16px] md:text-[18px] lg:text-[20px] font-extrabold leading-[100%] tracking-[0.01em] text-white uppercase whitespace-nowrap">
+            <div className="flex flex-row justify-between items-center w-full h-[23px] md:h-[30px]">
+                <div className="flex flex-row items-center gap-[7.2px] md:gap-[12px] h-[23px] md:h-[30px]">
+                    <div className="flex items-center justify-center w-[18px] h-[18px] md:w-[30px] md:h-[30px] shrink-0">
+                        <Image src="/gameprovider.svg" alt="Providers" width={30} height={30} className="w-full h-full object-contain" />
+                    </div>
+                    <h2 className="font-['Jost'] text-[16px] md:text-[20px] font-extrabold leading-[23px] md:leading-[30px] tracking-[0.01em] text-white uppercase whitespace-nowrap">
                         GAME PROVIDERS (34)
                     </h2>
                 </div>
                 <div className="flex items-center gap-3 md:gap-[12px]">
-                    <span className="hidden sm:flex font-['Manrope'] font-semibold text-[12px] leading-[100%] tracking-[0.02em] text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap">
+                    <span className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap">
                         View all
                     </span>
-                    <div className="flex items-center gap-[4px]">
+                    <div className="hidden md:flex items-center gap-[4px]">
                         <button
                             onClick={handlePrev}
                             disabled={currentIndex === 0}
@@ -69,26 +71,28 @@ export default function ProviderSection() {
                 </div>
             </div>
 
-            <div className="w-full overflow-hidden">
+            <div className="w-full overflow-x-auto md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
                 <div
-                    className="flex gap-[12px] transition-transform duration-300 ease-out"
+                    className="flex gap-[8px] md:gap-[12px] transition-transform duration-300 ease-out"
                     style={{ transform: `translateX(-${currentIndex * cardStep}px)` }}
                 >
                     {providerData.map((provider) => (
                         <div
                             key={provider.id}
-                            className="w-[130px] sm:w-[140px] md:w-[152px] h-[100px] bg-[#0C1F56] hover:bg-[#173EAD] transition-colors rounded-[12px] flex flex-col items-center pt-[12px] pr-[16px] pb-[12px] pl-[16px] md:px-[24px] gap-[8px] shrink-0 cursor-pointer"
+                            className="w-[88px] md:w-[152px] h-[60px] md:h-[100px] bg-[#0C1F56] hover:bg-[#173EAD] transition-colors rounded-[8px] md:rounded-[12px] flex flex-col items-center py-[7.2px] px-[14.4px] md:py-[12px] md:px-[24px] gap-[4.8px] md:gap-[8px] shrink-0 snap-start cursor-pointer"
                         >
-                            <div className="relative w-full flex-1 flex items-center justify-center">
+                            <div className="relative w-[48px] h-[24px] md:w-full md:flex-1 flex items-center justify-center shrink-0">
                                 <img
                                     src={provider.image}
                                     alt={provider.name}
-                                    className="object-contain max-h-[40px]"
+                                    className="object-contain max-w-[48px] max-h-[24px] md:max-w-full md:max-h-[40px]"
                                 />
                             </div>
-                            <span className="font-['Manrope'] font-semibold text-[10px] leading-[100%] text-center text-[#FFC83D] whitespace-nowrap">
-                                {provider.gamesCount} Games
-                            </span>
+                            <div className="flex flex-row justify-center items-center h-[11px] md:h-auto w-full">
+                                <span className="font-['Manrope'] font-semibold text-[8px] md:text-[10px] leading-[11px] md:leading-[100%] text-center text-[#FFC83D] whitespace-nowrap">
+                                    {provider.gamesCount} Games
+                                </span>
+                            </div>
                         </div>
                     ))}
                 </div>
