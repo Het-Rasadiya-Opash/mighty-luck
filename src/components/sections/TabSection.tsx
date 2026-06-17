@@ -51,25 +51,27 @@ export default function TabSection() {
                                         }
                                     }
                                 }}
-                                className={`flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[135px] h-[50px] rounded-[6px] shrink-0 transition-colors ${isActive
+                                className={`flex flex-row justify-center items-center px-[16px] max-[435px]:px-[12.8px] py-[10px] max-[435px]:py-[8px] gap-[8px] max-[435px]:gap-[6.4px] w-[135px] max-[435px]:w-[106.6px] h-[50px] max-[435px]:h-[40px] rounded-[6px] shrink-0 transition-colors ${isActive
                                     ? 'bg-[#1463FF]'
                                     : 'bg-[#0C1F56] hover:bg-[#112F82]'
                                     }`}
                             >
-                                <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
+                                <div className="w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] flex items-center justify-center shrink-0">
                                     <Image 
                                         src={tab.icon} 
                                         alt={tab.name} 
                                         width={20} 
                                         height={20} 
-                                        className={`w-[20px] h-[20px] shrink-0 object-contain transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-100 group-hover:opacity-100'}`} 
+                                        className={`w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] shrink-0 object-contain transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-100 group-hover:opacity-100'}`} 
                                         style={{ filter: isActive ? 'none' : 'brightness(0) saturate(100%) invert(86%) sepia(21%) saturate(301%) hue-rotate(188deg) brightness(105%) contrast(96%)' }}
                                     />
                                 </div>
                                 <span
-                                    className={`font-['Manrope'] leading-[19px] tracking-[0.02em] whitespace-nowrap ${isActive
-                                        ? 'font-bold text-[14px] text-white'
-                                        : 'font-semibold text-[14px] text-[#D2DCF7]'
+                                    className={`font-['Manrope'] leading-[19px] tracking-[0.02em] whitespace-nowrap 
+                                        ${index >= 4 ? 'max-[435px]:text-[11.2px] max-[435px]:leading-[15px]' : 'max-[435px]:text-[12px] max-[435px]:leading-[16px]'}
+                                        ${isActive
+                                            ? 'font-bold text-[14px] text-white'
+                                            : 'font-semibold text-[14px] text-[#D2DCF7]'
                                         }`}
                                 >
                                     {tab.name}
