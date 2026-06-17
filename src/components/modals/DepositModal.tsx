@@ -39,11 +39,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const bonusRef = useRef<HTMLDivElement>(null);
   const paymentRef = useRef<HTMLDivElement>(null);
   const countryRef = useRef<HTMLDivElement>(null);
-  
+
   const [activeSlide, setActiveSlide] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [isPromoApplied, setIsPromoApplied] = useState(false);
-  
+
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -179,14 +179,17 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const isFiatAddress = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'address';
   const isFiatPayment = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'payment';
 
-  const modalHeightClass = isFiatAddress ? 'sm:h-[633px]' : (isFiatPayment ? 'sm:h-[647px]' : 'sm:h-[604px]');
-  const outerBoxHeightClass = isFiatAddress ? 'sm:h-[503px]' : (isFiatPayment ? 'sm:h-[517px]' : 'sm:h-[474px]');
-  const innerBoxHeightClass = isFiatAddress ? 'sm:h-[450px]' : (isFiatPayment ? 'sm:h-[464px]' : 'sm:h-[421px]');
+  const isBonusesTab = activeTab === 'bonuses';
+  const isWithdrawTxTab = activeTab === 'withdraw' || activeTab === 'transactions';
+
+  const modalHeightClass = (isBonusesTab || isWithdrawTxTab) ? 'sm:h-[518px]' : (isFiatAddress ? 'sm:h-[633px]' : (isFiatPayment ? 'sm:h-[647px]' : 'sm:h-[604px]'));
+  const outerBoxHeightClass = (isBonusesTab || isWithdrawTxTab) ? 'sm:h-[462px]' : (isFiatAddress ? 'sm:h-[503px]' : (isFiatPayment ? 'sm:h-[517px]' : 'sm:h-[474px]'));
+  const innerBoxHeightClass = (isBonusesTab || isWithdrawTxTab) ? 'sm:h-[409px]' : (isFiatAddress ? 'sm:h-[450px]' : (isFiatPayment ? 'sm:h-[464px]' : 'sm:h-[421px]'));
 
   return createPortal(
     <div className="fixed inset-0 z-[100] sm:overflow-y-auto">
       <div
-        className="fixed inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
+        className="fixed  inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
         onClick={onClose}
       />
 
@@ -199,9 +202,9 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             <X size={24} />
           </button>
 
-          <div className={`relative flex flex-col items-center w-full sm:w-[500px] h-full ${modalHeightClass} pt-[48px] sm:pt-[24px] px-[20px] pb-[32px] gap-[24px]`}>
+          <div className={`relative flex flex-col items-center w-full sm:w-[500px] h-full sm:h-auto ${modalHeightClass} pt-[48px] sm:pt-[24px] px-[20px] pb-[32px] gap-[24px]`}>
             {/* Background & Clipping for Blur */}
-            <div className="absolute inset-0 bg-[#091741] rounded-none sm:rounded-[16px] overflow-hidden pointer-events-none -z-10">
+            <div className="absolute inset-0 bg-[#091741] rounded-none sm:rounded-[16px] overflow-hidden pointer-events-none">
               <div className="hidden min-[426px]:block absolute top-[-145px] left-1/2 -translate-x-1/2 w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
             </div>
 
@@ -213,7 +216,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             </button>
 
             {/* <div className={`flex flex-col items-start gap-[24px] w-full h-auto my-auto py-8 sm:py-0 ${outerBoxHeightClass} z-40`}> */}
-            <div className={`flex flex-col items-start gap-[24px] w-full h-full ${outerBoxHeightClass} z-40`}>
+            <div className={`flex flex-col items-start gap-[24px] w-full h-auto ${outerBoxHeightClass} z-40`}>
               <div className="flex flex-row justify-center items-start gap-[12px] w-full h-[29px]">
                 <div className="flex flex-row items-center gap-[12px] h-[29px]">
                   <div className="relative flex items-center justify-center w-[20px] h-[20px] shrink-0">
@@ -225,7 +228,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </div>
               </div>
 
-              <div className={`flex flex-col items-start gap-[16px] w-full h-full ${innerBoxHeightClass}`}>
+              <div className={`flex flex-col items-start gap-[16px] w-full h-auto ${innerBoxHeightClass}`}>
                 {/* <div className={`flex flex-col items-start gap-[16px] w-full h-auto ${innerBoxHeightClass}`}> */}
                 <div className="flex flex-row items-center gap-[8px] w-full h-[30px] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                   <button
@@ -575,7 +578,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 )}
 
                 {activeTab === 'bonuses' && (
-                  <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[363px] overflow-hidden">
+                  <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto overflow-hidden">
                     <div className="flex flex-col items-start gap-[8px] w-full">
                       <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">If you have a Bonus Code — enter it here</label>
                       <div className="flex flex-row items-center gap-[8px] w-full h-[40px]">
@@ -672,7 +675,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 )}
 
                 {(activeTab === 'withdraw' || activeTab === 'transactions') && (
-                  <div className="flex flex-col items-center justify-center p-[24px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[363px]">
+                  <div className="flex flex-col items-center justify-center p-[24px] sm:p-0 gap-[16px] w-full bg-[#0C1F56] sm:bg-transparent rounded-[16px] sm:rounded-none z-20 relative h-[363px] sm:h-full">
                     <Crown size={48} className="text-[#FFC83D]" fill="currentColor" />
                     <div className="flex flex-col items-center gap-[8px]">
                       <h3 className="font-[family-name:var(--font-jost)] font-bold text-[24px] leading-[32px] tracking-[0.02em] text-white">
