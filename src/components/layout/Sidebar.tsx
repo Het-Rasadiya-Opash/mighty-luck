@@ -168,11 +168,11 @@ export default function Sidebar() {
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Menu</span>
                 </div>
                 <div
-                    className="flex flex-col items-center justify-center gap-[2px] w-[50px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto"
+                    className={`flex flex-col items-center justify-center gap-[2px] w-[50px] h-[51px] cursor-pointer transition-colors group mx-auto ${isMobileSearchOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
                     onClick={() => setIsMobileSearchOpen(true)}
                 >
                     <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/search.svg" alt="Search" width={30} height={30} className="w-[28px] h-[28px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                        <Image src="/search.svg" alt="Search" width={30} height={30} className={`w-[28px] h-[28px] transition-all ${isMobileSearchOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`} />
                     </div>
                     <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Search</span>
                 </div>

@@ -92,16 +92,17 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const popularGames = gamesData.filter(game => game.isPopular);
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex items-center justify-center md:overflow-y-auto py-0 md:py-[16px] px-0 md:px-[12px]">
+    <div className="fixed top-[50px] sm:top-[60px] md:top-0 bottom-[75px] md:bottom-0 left-0 right-0 z-[60] md:z-[100] flex items-center justify-center md:overflow-y-auto py-0 md:py-[16px] px-0 md:px-[12px]">
+      {/* Backdrop - only visible on desktop */}
       <div
-        className="fixed inset-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
+        className="fixed inset-0 bg-transparent md:bg-[#0C1733]/70 md:backdrop-blur-[8px]"
         onClick={onClose}
       />
 
       {/* Desktop Close Button */}
       <div className="relative w-full max-w-[1056px] my-auto pointer-events-none flex justify-center px-0 md:px-[60px] xl:px-0 h-full md:h-auto">
         <div className="relative pointer-events-auto w-full h-full md:h-auto">
-          {/* Close Button */}
+          {/* Close Button - Desktop only */}
           <button
             onClick={onClose}
             className="absolute -right-[44px] top-0 z-10 text-white hover:opacity-70 transition-opacity hidden md:block"
@@ -110,16 +111,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
           </button>
 
           <div
-            className="relative flex flex-col md:flex-row items-start p-[16px] md:p-[24px] pt-[48px] md:pt-[24px] gap-[20px] w-full max-w-[1056px] h-[100dvh] md:h-auto md:min-h-[636px] max-h-[100dvh] md:max-h-[calc(100vh-80px)] bg-[#091741] rounded-none md:rounded-[20px] overflow-hidden"
+            className="relative flex flex-col md:flex-row items-start md:items-start p-[0px] md:p-[24px] gap-[0px] md:gap-[20px] w-full max-w-[1056px] h-full md:h-auto md:min-h-[636px] md:max-h-[calc(100vh-80px)] bg-[#0C1F56] md:bg-[#091741] rounded-none md:rounded-[20px] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Mobile Internal Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-[16px] right-[16px] w-[28px] h-[28px] rounded-full bg-[#112F82]/80 hover:bg-[#1463FF] flex items-center justify-center text-white transition-colors md:hidden z-50"
-            >
-              <X size={16} />
-            </button>
 
             {/* Left Sidebar */}
             <div className="hidden md:flex flex-col justify-center items-start gap-[12px] w-[180px] h-[588px] shrink-0">
@@ -173,48 +167,20 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             </div>
 
             {/* Right Content Area */}
-            <div className="flex flex-col gap-[24px] md:gap-[32px] w-full lg:w-[808px] overflow-y-auto overflow-x-hidden md:overflow-hidden pb-[16px] md:pb-0 [&::-webkit-scrollbar]:hidden">
-              {/* Mobile Categories Scroll */}
-              <div className="flex md:hidden flex-row gap-[8px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x shrink-0">
-                {topCategories.map((cat) => (
-                  <button
-                    key={cat.name}
-                    onClick={() => setActiveCategory(cat.name)}
-                    className={`flex flex-row items-center gap-[6px] px-[12px] h-[32px] rounded-[6px] shrink-0 snap-start transition-colors ${activeCategory === cat.name ? 'bg-[#1463FF]' : 'bg-[#112F82]'
-                      }`}
-                  >
-                    <span className="flex items-center text-[#FFFFFF] w-[14px] h-[14px]">
-                      <div 
-                        className="w-full h-full bg-current" 
-                        style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
-                      />
-                    </span>
-                    <span className="font-[family-name:var(--font-manrope)] font-semibold text-[11px] leading-[15px] text-[#FFFFFF] whitespace-nowrap">
-                      {cat.name}
-                    </span>
-                  </button>
-                ))}
-                <button
-                  className={`flex flex-row items-center gap-[6px] px-[12px] h-[32px] rounded-[6px] shrink-0 snap-start transition-colors bg-[#112F82]`}
-                >
-                  <span className="font-[family-name:var(--font-manrope)] font-semibold text-[11px] leading-[15px] text-[#FFFFFF] whitespace-nowrap">
-                    Categories ▼
-                  </span>
-                </button>
-              </div>
-              {/* Search Bar */}
-              <div className={`flex flex-row items-center ${searchQuery ? 'justify-between py-[10px] pl-[20px] pr-[10px] h-[50px] border border-[#1463FF] rounded-[12px]' : 'p-[10px_20px] h-[40px] rounded-[8px]'
-                } gap-[10px] w-full bg-[#112F82] shrink-0 box-border transition-all duration-200`}>
+            <div className="flex flex-col gap-[20px] md:gap-[32px] w-full lg:w-[808px] overflow-y-auto overflow-x-hidden pb-[16px] md:pb-0 [&::-webkit-scrollbar]:hidden p-[20px] md:p-0 flex-1">
+              {/* Search Bar - comes first on mobile per Figma */}
+              <div className={`flex flex-row items-center ${searchQuery ? 'justify-between py-[10px] pl-[20px] pr-[10px] border border-[#1463FF] rounded-[12px]' : 'p-[10px_20px] rounded-[8px]'
+                } gap-[10px] w-full h-[50px] md:h-[40px] bg-[#112F82] shrink-0 box-border transition-all duration-200 order-first md:order-none`}>
                 <div className="flex flex-row items-center gap-[10px] w-full">
-                  <div className="flex flex-col items-center justify-center w-[16px] h-[16px]">
+                  <div className="flex flex-col items-start w-[16px] h-[15.99px]">
                     <Search size={16} className="text-white" strokeWidth={2.5} />
                   </div>
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Start typing a game name"
-                    className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] w-full transition-colors ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
+                    placeholder="What are you looking for?"
+                    className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[16px] md:text-[14px] leading-[22px] md:leading-[19px] w-full transition-colors ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
                       }`}
                   />
                 </div>
@@ -230,25 +196,52 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 )}
               </div>
 
+              {/* Mobile Categories Scroll */}
+              <div className="flex md:hidden flex-row gap-[8px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x shrink-0">
+                {topCategories.map((cat) => (
+                  <button
+                    key={cat.name}
+                    onClick={() => setActiveCategory(cat.name)}
+                    className={`flex flex-row items-center p-[10px] gap-[8px] h-[40px] rounded-[8px] shrink-0 snap-start transition-colors ${activeCategory === cat.name ? 'bg-[#1463FF]' : 'bg-[#112F82]'
+                      }`}
+                  >
+                    <div className="flex flex-col justify-center items-center w-[16px] h-[16px]">
+                      <div
+                        className="w-full h-full bg-[#A5B8EF]"
+                        style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}
+                      />
+                    </div>
+                    <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] whitespace-nowrap">
+                      {cat.name}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
               {searchQuery === '' ? (
-                <div className="flex flex-col gap-[24px] md:gap-[32px] w-full">
+                <div className="flex flex-col gap-[30px] md:gap-[32px] w-full">
                   {/* Popular Games */}
-                  <div className="flex flex-col gap-[20px] w-full">
-                    <div className="flex flex-row items-center gap-[8px]">
-                      <div className="flex items-center justify-center w-[20px] h-[20px] text-[#FFC83D]">
-                        <div 
-                          className="w-[20px] h-[20px] bg-current" 
-                          style={{ WebkitMaskImage: 'url(/popular.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/popular.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
-                        />
+                  <div className="flex flex-col gap-[12px] w-full">
+                    <div className="flex flex-row justify-between items-center w-full">
+                      <div className="flex flex-row items-center gap-[7.2px]">
+                        <div className="flex items-center justify-center w-[18px] h-[18px] text-[#FFBF1F] md:text-[#FFC83D]">
+                          <div 
+                            className="w-full h-full bg-current" 
+                            style={{ WebkitMaskImage: 'url(/popular.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/popular.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          />
+                        </div>
+                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white">
+                          Popular Games
+                        </h3>
                       </div>
-                      <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white">
-                        Popular Games
-                      </h3>
+                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer">
+                        View all
+                      </span>
                     </div>
 
-                    <div className="flex flex-row gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory pr-[16px] md:pr-0">
+                    <div className="flex flex-row gap-[8px] md:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory pr-[16px] md:pr-0">
                       {popularGames.map((game) => (
-                        <div key={game.id} className="w-[140px] md:w-[152px] h-[184px] md:h-[200px] shrink-0 rounded-[12px] overflow-hidden relative bg-[#0C1F56] snap-start group cursor-pointer">
+                        <div key={game.id} className="w-[121.6px] md:w-[152px] h-[160px] md:h-[200px] shrink-0 rounded-[9.6px] md:rounded-[12px] overflow-hidden relative bg-[#CDCDCD] snap-start group cursor-pointer">
                           <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                         </div>
                       ))}
@@ -256,32 +249,37 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </div>
 
                   {/* Game Providers */}
-                  <div className="flex flex-col gap-[20px] w-full">
-                    <div className="flex flex-row items-center gap-[8px]">
-                      <div className="flex items-center justify-center w-[20px] h-[20px] text-[#FFC83D]">
-                        <div 
-                          className="w-[20px] h-[20px] bg-current" 
-                          style={{ WebkitMaskImage: 'url(/gameprovider.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/gameprovider.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
-                        />
+                  <div className="flex flex-col gap-[12px] w-full">
+                    <div className="flex flex-row justify-between items-center w-full">
+                      <div className="flex flex-row items-center gap-[7.2px]">
+                        <div className="flex items-center justify-center w-[18px] h-[18px] text-[#FFC83D]">
+                          <div 
+                            className="w-full h-full bg-current" 
+                            style={{ WebkitMaskImage: 'url(/gameprovider.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/gameprovider.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          />
+                        </div>
+                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white">
+                          Game Providers
+                        </h3>
                       </div>
-                      <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white">
-                        Game Providers
-                      </h3>
+                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer">
+                        View all
+                      </span>
                     </div>
 
                     <div className="flex flex-col gap-[16px] w-full relative">
                       <div
                         ref={providersScrollRef}
                         onScroll={handleProviderScroll}
-                        className="flex flex-row gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth pr-[16px] md:pr-0"
+                        className="flex flex-row gap-[8px] md:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth pr-[16px] md:pr-0"
                       >
                         {providerData.map((provider) => (
-                          <div key={provider.id} className="flex flex-col justify-center items-center p-[12px_16px] md:p-[12px_24px] gap-[8px] w-[140px] md:w-[152px] h-[92px] md:h-[100px] bg-[#0C1F56] rounded-[12px] shrink-0 snap-start cursor-pointer group">
-                            <div className="w-[70px] md:w-[80px] h-[35px] md:h-[40px] relative transition-transform duration-300 group-hover:scale-105">
+                          <div key={provider.id} className="flex flex-col justify-center items-center p-[7.2px_14.4px] md:p-[12px_24px] gap-[4.8px] md:gap-[8px] w-[88px] md:w-[152px] h-[60px] md:h-[100px] bg-[#112F82] md:bg-[#0C1F56] rounded-[8px] md:rounded-[12px] shrink-0 snap-start cursor-pointer group">
+                            <div className="w-[48px] md:w-[80px] h-[24px] md:h-[40px] relative transition-transform duration-300 group-hover:scale-105">
                               <Image unoptimized src={provider.image} alt={provider.name} fill className="object-contain" />
                             </div>
-                            <div className="flex flex-row justify-center items-center gap-[10px] w-[104px] h-[14px]">
-                              <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] text-center text-[#FFC83D]">
+                            <div className="flex flex-row justify-center items-center gap-[6px] w-[59.2px] md:w-[104px] h-[11px] md:h-[14px]">
+                              <span className="font-[family-name:var(--font-manrope)] font-semibold text-[8px] md:text-[10px] leading-[11px] md:leading-[14px] text-center text-[#FFC83D]">
                                 {provider.gamesCount} Games
                               </span>
                             </div>
@@ -290,7 +288,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       </div>
 
                       {/* Pagination Dots */}
-                      <div className="flex flex-row justify-center items-center gap-[4px] w-full mt-[4px]">
+                      <div className="hidden md:flex flex-row justify-center items-center gap-[4px] w-full mt-[4px]">
                         {[0, 1, 2].map((dotIndex) => (
                           <button
                             key={dotIndex}
