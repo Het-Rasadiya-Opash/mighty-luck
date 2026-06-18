@@ -61,13 +61,9 @@ export default function Header() {
 
         <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-6 min-w-0 z-10">
           <button
-            className="hidden sm:flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
+            className="hidden lg:flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
-              if (window.innerWidth < 1024) {
-                setIsOpen(true);
-              } else {
-                window.dispatchEvent(new Event('toggleDesktopSidebar'));
-              }
+              window.dispatchEvent(new Event('toggleDesktopSidebar'));
             }}
             aria-label="Open menu"
           >
