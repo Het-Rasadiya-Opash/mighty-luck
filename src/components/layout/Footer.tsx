@@ -14,7 +14,7 @@ export default function Footer() {
     const [expandedCategory, setExpandedCategory] = useState<string | null>('SLOT GAMES');
 
     return (
-        <footer className="flex flex-col items-center md:items-start gap-[40px] md:gap-[48px] w-full mt-10 mb-6 px-[20px] md:px-0">
+        <footer className="flex flex-col items-center md:items-start gap-[40px] md:gap-[48px] w-full mt-10 mb-6  md:px-0">
 
             <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-[40px] md:gap-[49px] w-full max-w-[374px] md:max-w-none mx-auto">
 
