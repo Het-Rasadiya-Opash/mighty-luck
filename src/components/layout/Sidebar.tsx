@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { SearchModal } from '@/components/modals/SearchModal';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function Sidebar() {
+export function SidebarContent() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -236,7 +236,15 @@ export default function Sidebar() {
     );
 }
 
-export function SidebarNav({ isCollapsed = false, onOpenSearch }: { isCollapsed?: boolean; onOpenSearch?: () => void }) {
+export default function Sidebar() {
+    return (
+        <Suspense fallback={null}>
+            <SidebarContent />
+        </Suspense>
+    );
+}
+
+function SidebarNavContent({ isCollapsed = false, onOpenSearch }: { isCollapsed?: boolean; onOpenSearch?: () => void }) {
     const [openDropdown, setOpenDropdown] = useState<string | null>('casino');
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
@@ -341,6 +349,14 @@ function NavItem({ icon, label, isCollapsed }: { icon: React.ReactNode; label: s
                 </div>
             )}
         </div>
+    );
+}
+
+export function SidebarNav(props: { isCollapsed?: boolean; onOpenSearch?: () => void }) {
+    return (
+        <Suspense fallback={null}>
+            <SidebarNavContent {...props} />
+        </Suspense>
     );
 }
 

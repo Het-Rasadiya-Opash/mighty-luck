@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { X, Wallet, Bell, Gift, Users, LogOut } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { Search } from '../ui/Search';
@@ -11,7 +11,7 @@ import { DepositModal } from '@/components/modals/DepositModal';
 import { usePathname, useSearchParams } from 'next/navigation';
 // import './header.css';
 
-export default function Header() {
+export function HeaderContent() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDepositModalOpen, setIsDepositModalOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -298,5 +298,13 @@ export default function Header() {
         onClose={() => setIsDepositModalOpen(false)}
       />
     </header>
+  );
+}
+
+export default function Header() {
+  return (
+    <Suspense fallback={<div className="h-[50px] sm:h-[60px] bg-[#0C1F56] w-full" />}>
+      <HeaderContent />
+    </Suspense>
   );
 }

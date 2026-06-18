@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
@@ -18,7 +18,7 @@ export interface GameSliderProps {
     games: Game[];
 }
 
-export default function GameSlider({ id, title, icon, games }: GameSliderProps) {
+export function GameSliderContent({ id, title, icon, games }: GameSliderProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(7);
     const [cardStep, setCardStep] = useState(164); // Default desktop (152 + 12)
@@ -187,5 +187,13 @@ export default function GameSlider({ id, title, icon, games }: GameSliderProps) 
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function GameSlider(props: GameSliderProps) {
+    return (
+        <Suspense fallback={null}>
+            <GameSliderContent {...props} />
+        </Suspense>
     );
 }
