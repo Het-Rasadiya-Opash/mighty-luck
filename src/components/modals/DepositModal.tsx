@@ -237,11 +237,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
   return createPortal(
     <div className="fixed inset-0 z-40 sm:z-[100] overflow-y-auto top-[50px] sm:top-0">
-      <div
-        className="fixed inset-0 top-[50px] sm:top-0 bg-[#091741] sm:bg-[#0C1733]/70 sm:backdrop-blur-[8px]"
+   <div
+        className="fixed inset-0 top-[50px] min-[426px]:top-0 bg-[#091741] min-[426px]:bg-[#0C1733]/70 min-[426px]:backdrop-blur-[8px]"
         onClick={onClose}
       />
-
       <div className="relative min-h-full flex flex-col justify-end sm:justify-center items-center p-0 pt-[30px] sm:py-[16px] pointer-events-none">
         <div className="deposit-modal-container relative w-full max-w-[414px] sm:max-w-[500px] h-fit sm:h-auto pointer-events-auto flex flex-col justify-end">
           <button

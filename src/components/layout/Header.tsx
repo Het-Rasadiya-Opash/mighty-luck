@@ -8,7 +8,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { Search } from '../ui/Search';
 import { SidebarNav } from '@/components/layout/Sidebar';
 import { DepositModal } from '@/components/modals/DepositModal';
-import './header.css';
+// import './header.css';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
