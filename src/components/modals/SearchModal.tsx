@@ -353,14 +353,55 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col justify-center items-center py-[40px] md:py-[60px] gap-[16px] w-full mt-[20px] md:mt-[40px]">
-                  <h3 className="font-[family-name:var(--font-jost)] font-bold text-[18px] md:text-[20px] leading-[29px] text-white">
-                    No Results for your Search
-                  </h3>
-                  <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] md:text-[14px] leading-[19px] text-center text-[#A5B8EF] max-w-[480px]">
-                    There are no results in this category for your search term, please select a different category or try searching for something else
-                  </p>
-                </div>
+                <>
+                  {/* Mobile no-results: exact Figma spec (≤md) */}
+                  <div
+                    className="flex md:hidden flex-col items-start"
+                    style={{ gap: '30px', width: '100%' }}
+                  >
+                    {/* No-results text block: gap 8px */}
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px', width: '100%' }}>
+                      {/* Title */}
+                      <div style={{ width: '100%' }}>
+                        <p style={{
+                          fontFamily: "var(--font-manrope), Manrope, sans-serif",
+                          fontWeight: 800,
+                          fontSize: '16px',
+                          lineHeight: '22px',
+                          textAlign: 'center',
+                          color: '#FFFFFF',
+                          width: '100%',
+                        }}>
+                          No Results for your Search
+                        </p>
+                      </div>
+                      {/* Description */}
+                      <div style={{ width: '100%' }}>
+                        <p style={{
+                          fontFamily: "var(--font-manrope), Manrope, sans-serif",
+                          fontWeight: 500,
+                          fontSize: '16px',
+                          lineHeight: '22px',
+                          textAlign: 'center',
+                          color: '#7795E8',
+                          width: '100%',
+                        }}>
+                          There are no results in this category for your search term, please select a different category or try searching for something else
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop no-results: unchanged */}
+                  <div className="hidden md:flex flex-col justify-center items-center py-[60px] gap-[16px] w-full mt-[40px]">
+                    <h3 className="font-[family-name:var(--font-jost)] font-bold text-[20px] leading-[29px] text-white">
+                      No Results for your Search
+                    </h3>
+                    <p className="font-[family-name:var(--font-manrope)] font-medium text-[14px] leading-[19px] text-center text-[#A5B8EF] max-w-[480px]">
+                      There are no results in this category for your search term, please select a different category or try searching for something else
+                    </p>
+                  </div>
+                </>
               )}
             </div>
           </div>
