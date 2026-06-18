@@ -8,6 +8,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { Search } from '../ui/Search';
 import { SidebarNav } from '@/components/layout/Sidebar';
 import { DepositModal } from '@/components/modals/DepositModal';
+import { usePathname, useSearchParams } from 'next/navigation';
 // import './header.css';
 
 export default function Header() {
@@ -16,6 +17,13 @@ export default function Header() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { data: session, status } = useSession();
   const profileRef = useRef<HTMLDivElement>(null);
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setIsProfileOpen(false);
+  }, [pathname, searchParams]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -45,7 +53,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#0C1F56] h-[50px] sm:h-[60px] border-b border-[#112F82] sm:border-none">
+    <header className="sticky top-0 z-[110] w-full bg-[#0C1F56] h-[50px] sm:h-[60px] border-b border-[#112F82] sm:border-none">
       <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-6 md:px-8 lg:px-12 xl:px-6">
         {/* Perfect Figma Shadow clipped to header */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -149,7 +157,13 @@ export default function Header() {
               <div className="relative" ref={profileRef}>
                 <button
                   className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80 flex items-center justify-center"
-                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  onClick={() => {
+                    const nextState = !isProfileOpen;
+                    setIsProfileOpen(nextState);
+                    if (nextState) {
+                      window.dispatchEvent(new Event('closeSearchModal'));
+                    }
+                  }}
                 >
                   <Image src="/user.png" alt="User" width={30} height={30} className="object-cover w-[30px] h-[30px] lg:w-[40px] lg:h-[40px]" />
                 </button>
