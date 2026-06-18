@@ -151,7 +151,7 @@ export default function Sidebar() {
             </aside>
 
             {/* Mobile Bottom Navigation */}
-            <nav id="mobile-bottom-nav" className={`lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent gap-[2px] ${isMobileSearchOpen ? '' : 'shadow-[0_-4px_10px_rgba(0,0,0,0.2)]'}`}>
+            <nav id="mobile-bottom-nav" className={`lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent gap-[2px] ${(isMobileSearchOpen || isMobileMenuOpen) ? '' : 'shadow-[0_-4px_10px_rgba(0,0,0,0.2)]'}`}>
                 <div
                     className={`flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer transition-colors group mx-auto ${isMobileMenuOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
