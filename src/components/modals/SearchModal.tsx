@@ -54,6 +54,18 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     }
   };
 
+  const handlePrevProvider = () => {
+    if (activeProviderPage > 0) {
+      scrollToProviderPage(activeProviderPage - 1);
+    }
+  };
+
+  const handleNextProvider = () => {
+    if (activeProviderPage < 2) {
+      scrollToProviderPage(activeProviderPage + 1);
+    }
+  };
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -234,7 +246,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           Popular Games
                         </h3>
                       </div>
-                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer">
+                      <span className="font-['Manrope'] font-bold sm:font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] sm:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] sm:w-[45px] h-[16px] items-center justify-center">
                         View all
                       </span>
                     </div>
@@ -250,21 +262,47 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                   {/* Game Providers */}
                   <div className="flex flex-col gap-[12px] w-full">
-                    <div className="flex flex-row justify-between items-center w-full">
-                      <div className="flex flex-row items-center gap-[7.2px]">
-                        <div className="flex items-center justify-center w-[18px] h-[18px] text-[#FFC83D]">
+                    <div className="flex flex-row justify-between items-center w-[374px] max-w-full md:w-[808px] h-[23px] md:h-[30px]">
+                      <div className="flex flex-row items-center gap-[7.2px] md:gap-[8px] w-[176.2px] md:w-[217px] h-[23px] md:h-[29px]">
+                        <div className="w-[18px] md:w-[20px] h-[18px] md:h-[20px] flex items-center justify-center text-[#FFC83D] shrink-0">
                           <div 
                             className="w-full h-full bg-current" 
                             style={{ WebkitMaskImage: 'url(/gameprovider.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/gameprovider.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
                           />
                         </div>
-                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white">
+                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white whitespace-nowrap w-[151px] md:w-[189px] h-[23px] md:h-[29px]">
                           Game Providers
                         </h3>
                       </div>
-                      <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer">
-                        View all
-                      </span>
+                      
+                      {/* Mobile View: View all */}
+                      <div className="md:hidden">
+                        <span className="font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] h-[16px] items-center justify-center">
+                          View all
+                        </span>
+                      </div>
+
+                      {/* Desktop View: Arrow Navigation */}
+                      <div className="hidden md:flex flex-row items-center gap-[8px] w-[68px] h-[30px] shrink-0">
+                        <button
+                          onClick={handlePrevProvider}
+                          disabled={activeProviderPage === 0}
+                          className={`flex flex-col justify-center items-center p-0 w-[30px] h-[30px] bg-[#112F82] rounded-[4px] transition-opacity ${activeProviderPage === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'}`}
+                        >
+                          <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[6px] h-[10px]">
+                            <path d="M5 1L1 5L5 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </button>
+                        <button
+                          onClick={handleNextProvider}
+                          disabled={activeProviderPage === 2}
+                          className={`flex flex-col justify-center items-center p-0 w-[30px] h-[30px] bg-[#112F82] rounded-[4px] transition-opacity ${activeProviderPage === 2 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'}`}
+                        >
+                          <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[6px] h-[10px]">
+                            <path d="M1 1L5 5L1 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
 
                     <div className="flex flex-col gap-[16px] w-full relative">
@@ -284,21 +322,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                               </span>
                             </div>
                           </div>
-                        ))}
-                      </div>
-
-                      {/* Pagination Dots */}
-                      <div className="hidden md:flex flex-row justify-center items-center gap-[4px] w-full mt-[4px]">
-                        {[0, 1, 2].map((dotIndex) => (
-                          <button
-                            key={dotIndex}
-                            onClick={() => scrollToProviderPage(dotIndex)}
-                            className={`${activeProviderPage === dotIndex
-                              ? 'w-[12px] h-[6px] bg-[#BBCAF3]'
-                              : 'w-[6px] h-[6px] bg-[#BBCAF3]/50'
-                              } rounded-[150px] transition-all duration-300 hover:bg-[#BBCAF3]/80`}
-                            aria-label={`Scroll to page ${dotIndex + 1}`}
-                          />
                         ))}
                       </div>
                     </div>
