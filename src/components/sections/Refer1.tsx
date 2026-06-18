@@ -219,12 +219,14 @@ export default function Refer1() {
             </h2>
           </div>
 
-          <div className="flex flex-col items-center p-5 gap-6 w-full max-w-[430px] bg-[#091741] rounded-2xl relative isolate shrink-0">
-            <div className="absolute w-[173px] h-[173px] bg-[#1463FF] blur-[40px] -top-[118px] left-1/2 -translate-x-1/2 rounded-full pointer-events-none" />
-            <h3 className="max-w-[300px] font-['Jost'] font-extrabold text-xl leading-[29px] text-center tracking-[0.01em] text-white z-10">
-              How much can you earn with Mighty Luck?
-            </h3>
-            <div className="w-full z-10">{calculatorBody(false, false)}</div>
+          <div className="flex flex-col items-center p-5 gap-6 w-full max-w-[430px] bg-[#091741] rounded-2xl relative isolate overflow-hidden shrink-0">
+            <div className="absolute w-[173px] h-[173px] bg-[#1463FF] blur-[40px] -top-[118px] left-1/2 -translate-x-1/2 rounded-full pointer-events-none z-0" />
+            <div className="relative z-10 flex flex-col items-center gap-6 w-full">
+              <h3 className="max-w-[300px] font-['Jost'] font-extrabold text-xl leading-[29px] text-center tracking-[0.01em] text-white">
+                How much can you earn with Mighty Luck?
+              </h3>
+              <div className="w-full">{calculatorBody(false, false)}</div>
+            </div>
           </div>
         </div>
 
@@ -252,12 +254,14 @@ export default function Refer1() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center p-5 gap-6 w-full bg-[#0C1F56] rounded-2xl relative isolate">
-          <div className="absolute w-[173px] h-[173px] left-1/2 -translate-x-1/2 -top-[127px] bg-[#1463FF] blur-2xl rounded-full pointer-events-none" />
-          <h3 className="font-['Jost'] font-extrabold text-lg sm:text-xl leading-[26px] text-center tracking-[0.01em] text-white z-10 max-w-[300px]">
-            How much can you earn with Mighty Luck?
-          </h3>
-          <div className="w-full z-10">{calculatorBody(true, true)}</div>
+        <div className="flex flex-col items-center p-5 gap-6 w-full bg-[#0C1F56] rounded-2xl relative isolate overflow-hidden">
+          <div className="absolute w-[173px] h-[173px] left-1/2 -translate-x-1/2 -top-[127px] bg-[#1463FF] blur-[40px] rounded-full pointer-events-none z-0" />
+          <div className="relative z-10 flex flex-col items-center gap-6 w-full">
+            <h3 className="font-['Jost'] font-extrabold text-lg sm:text-xl leading-[26px] text-center tracking-[0.01em] text-white max-w-[300px]">
+              How much can you earn with Mighty Luck?
+            </h3>
+            <div className="w-full">{calculatorBody(true, true)}</div>
+          </div>
         </div>
 
         <div className="p-5 sm:px-6 bg-[#0C1F56] rounded-2xl">{stats}</div>
