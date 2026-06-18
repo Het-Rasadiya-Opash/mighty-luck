@@ -122,7 +122,7 @@ export default function GameSlider({ id, title, icon, games }: GameSliderProps) 
                     </span>
                 </div>
                 <div className="flex items-center gap-3 md:gap-[20px]">
-                    <span className="font-['Manrope'] font-bold text-[12px] leading-[16px] sm:leading-[100%] tracking-[0.02em] text-[#FFBF1F] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex">
+                    <span className="font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[45px] h-[16px] items-center justify-center">
                         View all
                     </span>
                     <div className="hidden sm:flex items-center gap-[4px]">

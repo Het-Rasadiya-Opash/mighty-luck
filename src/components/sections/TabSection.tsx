@@ -20,7 +20,7 @@ export default function TabSection() {
     return (
         <div className="w-full relative overflow-hidden">
             <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                <div className="flex flex-row items-center gap-[8px] w-max min-w-full">
+                <div className="flex flex-row items-center gap-[8px] w-max lg:w-[1136px] h-[50px] min-w-full">
                     {tabs.map((tab, index) => {
                         const isActive = activeTab === tab.name;
                         return (
@@ -63,7 +63,11 @@ export default function TabSection() {
                                         width={20} 
                                         height={20} 
                                         className={`w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] shrink-0 object-contain transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-100 group-hover:opacity-100'}`} 
-                                        style={{ filter: isActive ? 'none' : 'brightness(0) saturate(100%) invert(86%) sepia(21%) saturate(301%) hue-rotate(188deg) brightness(105%) contrast(96%)' }}
+                                        style={{ 
+                                            filter: isActive 
+                                                ? 'brightness(0) saturate(100%) invert(76%) sepia(87%) saturate(1455%) hue-rotate(7deg) brightness(102%) contrast(101%)' 
+                                                : 'brightness(0) saturate(100%) invert(86%) sepia(21%) saturate(301%) hue-rotate(188deg) brightness(105%) contrast(96%)' 
+                                        }}
                                     />
                                 </div>
                                 <span
