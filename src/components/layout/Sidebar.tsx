@@ -5,11 +5,32 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { SearchModal } from '@/components/modals/SearchModal';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+        setIsMobileSearchOpen(false);
+    }, [pathname, searchParams]);
+
+    useEffect(() => {
+        if (isMobileSearchOpen) {
+            setIsMobileMenuOpen(false);
+        }
+    }, [isMobileSearchOpen]);
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            setIsMobileSearchOpen(false);
+        }
+    }, [isMobileMenuOpen]);
 
     useEffect(() => {
         const handleToggle = () => setIsCollapsed(prev => !prev);
@@ -202,7 +223,7 @@ export default function Sidebar() {
             {isMobileMenuOpen && (
                 <div className="lg:hidden fixed top-[50px] sm:top-[60px] left-0 right-0 bottom-[75px] z-[40] bg-[#0C1F56] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
                     <div className="p-[20px] flex flex-col gap-[10px] w-full flex-1">
-                        <SidebarNav isCollapsed={false} />
+                        <SidebarNav isCollapsed={false} onOpenSearch={() => setIsMobileMenuOpen(false)} />
                     </div>
                 </div>
             )}
@@ -215,9 +236,16 @@ export default function Sidebar() {
     );
 }
 
-export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
+export function SidebarNav({ isCollapsed = false, onOpenSearch }: { isCollapsed?: boolean; onOpenSearch?: () => void }) {
     const [openDropdown, setOpenDropdown] = useState<string | null>('casino');
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        setIsSearchModalOpen(false);
+    }, [pathname, searchParams]);
 
     const toggleDropdown = (name: string) => {
         setOpenDropdown(openDropdown === name ? null : name);
@@ -251,9 +279,9 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                 </div>
                 {openDropdown === 'casino' && (
                     <div className={`flex flex-col rounded-b-[8px] ${isCollapsed ? 'items-center py-3 gap-4 px-0' : 'px-[16px] py-[20px] gap-[20px]'}`}>
-                        <SubNavItem icon={<Image src="/all.svg" alt="All Games" width={19} height={14} className="w-[19.25px] h-[14.14px] shrink-0" />} label="All Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/all.svg" alt="All Games" width={19} height={14} className="w-[19.25px] h-[14.14px] shrink-0" />} label="All Games" onClick={() => { setIsSearchModalOpen(true); onOpenSearch?.(); }} isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame1.svg" alt="New Games" width={19} height={17} className="w-[19.21px] h-[17.3px] shrink-0" />} label="New Games" isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={16} height={20} className="w-[15.86px] h-[20px] shrink-0" />} label="Popular Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={16} height={20} className="w-[15.86px] h-[20px] shrink-0" />} label="Popular Games" onClick={() => { setIsSearchModalOpen(true); onOpenSearch?.(); }} isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame3.svg" alt="Original Games" width={14} height={20} className="w-[13.92px] h-[20px] shrink-0" />} label="Original Games" isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Vector1.svg" alt="Crash Games" width={20} height={20} className="w-[20px] h-[20.01px] shrink-0" />} label="Crash Games" isCollapsed={isCollapsed} />
                     </div>
