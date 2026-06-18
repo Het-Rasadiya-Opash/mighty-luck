@@ -234,19 +234,19 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 <div className="flex flex-col gap-[30px] md:gap-[32px] w-full">
                   {/* Popular Games */}
                   <div className="flex flex-col gap-[12px] w-full">
-                    <div className="flex flex-row justify-between items-center w-full">
-                      <div className="flex flex-row items-center gap-[7.2px]">
-                        <div className="flex items-center justify-center w-[18px] h-[18px] text-[#FFBF1F] md:text-[#FFC83D]">
+                    <div className="flex flex-row justify-between items-center w-full lg:w-[808px] h-auto lg:h-[29px] self-stretch shrink-0">
+                      <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-auto lg:w-[209px] h-auto lg:h-[29px] shrink-0">
+                        <div className="w-[18px] lg:w-[20px] h-[18px] lg:h-[20px] flex items-center justify-center text-[#FFBF1F] shrink-0">
                           <div 
-                            className="w-full h-full bg-current" 
+                            className="w-full lg:w-[15.86px] h-full lg:h-[20px] bg-current" 
                             style={{ WebkitMaskImage: 'url(/popular.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/popular.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
                           />
                         </div>
-                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white">
+                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] lg:text-[20px] leading-[23px] lg:leading-[29px] tracking-[0.01em] uppercase text-white whitespace-nowrap w-auto lg:w-[181px] h-auto lg:h-[29px]">
                           Popular Games
                         </h3>
                       </div>
-                      <span className="font-['Manrope'] font-bold sm:font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] sm:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] sm:w-[45px] h-[16px] items-center justify-center">
+                      <span className="font-['Manrope'] font-bold lg:hidden text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] h-[16px] items-center justify-center shrink-0">
                         View all
                       </span>
                     </div>
@@ -262,28 +262,28 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                   {/* Game Providers */}
                   <div className="flex flex-col gap-[12px] w-full">
-                    <div className="flex flex-row justify-between items-center w-[374px] max-w-full md:w-[808px] h-[23px] md:h-[30px]">
-                      <div className="flex flex-row items-center gap-[7.2px] md:gap-[8px] w-[176.2px] md:w-[217px] h-[23px] md:h-[29px]">
-                        <div className="w-[18px] md:w-[20px] h-[18px] md:h-[20px] flex items-center justify-center text-[#FFC83D] shrink-0">
+                    <div className="flex flex-row justify-between items-center w-[374px] max-w-full lg:w-[808px] h-[23px] lg:h-[30px]">
+                      <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-[176.2px] lg:w-[217px] h-[23px] lg:h-[29px]">
+                        <div className="w-[18px] lg:w-[20px] h-[18px] lg:h-[20px] flex items-center justify-center text-[#FFC83D] shrink-0">
                           <div 
                             className="w-full h-full bg-current" 
                             style={{ WebkitMaskImage: 'url(/gameprovider.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/gameprovider.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
                           />
                         </div>
-                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white whitespace-nowrap w-[151px] md:w-[189px] h-[23px] md:h-[29px]">
+                        <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] lg:text-[20px] leading-[23px] lg:leading-[29px] tracking-[0.01em] uppercase text-white whitespace-nowrap w-[151px] lg:w-[189px] h-[23px] lg:h-[29px]">
                           Game Providers
                         </h3>
                       </div>
                       
                       {/* Mobile View: View all */}
-                      <div className="md:hidden">
+                      <div className="lg:hidden">
                         <span className="font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] h-[16px] items-center justify-center">
                           View all
                         </span>
                       </div>
 
                       {/* Desktop View: Arrow Navigation */}
-                      <div className="hidden md:flex flex-row items-center gap-[8px] w-[68px] h-[30px] shrink-0">
+                      <div className="hidden lg:flex flex-row items-center gap-[8px] w-[68px] h-[30px] shrink-0">
                         <button
                           onClick={handlePrevProvider}
                           disabled={activeProviderPage === 0}
