@@ -306,14 +306,47 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
               ) : searchResults.length > 0 ? (
                 <div className="flex flex-col gap-[12px] w-full">
-                  <div className="flex flex-row items-center w-full h-[23px]">
-                    <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white">
+                  {/* Heading */}
+                  <div className="flex flex-row justify-between items-center w-full h-[23px] md:h-[29px]">
+                    <h3
+                      className="font-[family-name:var(--font-jost)] font-extrabold tracking-[0.01em] uppercase text-white"
+                      style={{ fontSize: '16px', lineHeight: '23px' }}
+                    >
                       {activeCategory}
                     </h3>
                   </div>
-                  <div className="grid grid-cols-3 md:grid-cols-5 gap-[7.86px] md:gap-[12px] w-full pb-4">
+
+                  {/* Mobile only: exact Figma 3-col grid (≤425px) */}
+                  <div
+                    className="grid md:hidden"
+                    style={{
+                      gridTemplateColumns: 'repeat(3, 119.43px)',
+                      gap: '7.86px',
+                    }}
+                  >
                     {searchResults.map((game) => (
-                      <div key={game.id} className="w-full aspect-[119.43/157.14] md:w-[152px] md:h-[200px] rounded-[9.43px] md:rounded-[12px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
+                      <div
+                        key={game.id}
+                        style={{
+                          width: '119.43px',
+                          height: '157.14px',
+                          borderRadius: '9.42857px',
+                          overflow: 'hidden',
+                          position: 'relative',
+                          background: '#CDCDCD',
+                          cursor: 'pointer',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Image unoptimized src={game.image} alt={game.title} fill className="object-cover" />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop (md+): fluid grid that fills available width */}
+                  <div className="hidden md:grid gap-[12px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
+                    {searchResults.map((game) => (
+                      <div key={game.id} className="w-full aspect-[152/200] rounded-[12px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
                         <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                       </div>
                     ))}
