@@ -1,37 +1,27 @@
 import React from 'react';
 
+const stats = [
+  { value: '$2.5 K', label: 'Claim By the Most Active Referrer' },
+  { value: '500+', label: 'Players are already earning with us' },
+  { value: '19,000', label: 'Free Spins received by friends' },
+];
+
 export default function Refer2() {
   return (
-    <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-[12px] w-full max-w-[1136px] h-auto lg:h-[136px] mx-auto flex-none">
-      {/* Block 1 */}
-      <div className="flex flex-col justify-center items-center p-[24px] gap-[8px] w-full lg:flex-1 h-auto lg:h-[136px] bg-[#0C1F56] rounded-[16px]">
-        <div className="font-['Jost'] font-extrabold text-[32px] sm:text-[40px] leading-[40px] sm:leading-[58px] text-center tracking-[0.01em] text-white">
-          $2.5 K
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-[1136px] mx-auto">
+      {stats.map((stat) => (
+        <div
+          key={stat.label}
+          className="flex flex-col justify-center items-center p-6 gap-2 w-full min-h-[120px] sm:min-h-[136px] bg-[#0C1F56] rounded-2xl"
+        >
+          <div className="font-['Jost'] font-extrabold text-[32px] sm:text-[40px] leading-tight text-center tracking-[0.01em] text-white">
+            {stat.value}
+          </div>
+          <div className="font-['Manrope'] font-semibold text-sm sm:text-base leading-[140%] text-center tracking-[0.02em] text-[#A5B8EF]">
+            {stat.label}
+          </div>
         </div>
-        <div className="font-['Manrope'] font-semibold text-[14px] sm:text-[16px] leading-[140%] text-center tracking-[0.02em] text-[#A5B8EF]">
-          Claim By the Most Active Referrer
-        </div>
-      </div>
-
-      {/* Block 2 */}
-      <div className="flex flex-col justify-center items-center p-[24px] gap-[8px] w-full lg:flex-1 h-auto lg:h-[136px] bg-[#0C1F56] rounded-[16px]">
-        <div className="font-['Jost'] font-extrabold text-[32px] sm:text-[40px] leading-[40px] sm:leading-[58px] text-center tracking-[0.01em] text-white">
-          500+
-        </div>
-        <div className="font-['Manrope'] font-semibold text-[14px] sm:text-[16px] leading-[140%] text-center tracking-[0.02em] text-[#A5B8EF]">
-          Players are already earning with us
-        </div>
-      </div>
-
-      {/* Block 3 */}
-      <div className="flex flex-col justify-center items-center p-[24px] gap-[8px] w-full lg:flex-1 h-auto lg:h-[136px] bg-[#0C1F56] rounded-[16px]">
-        <div className="font-['Jost'] font-extrabold text-[32px] sm:text-[40px] leading-[40px] sm:leading-[58px] text-center tracking-[0.01em] text-white">
-          19,000
-        </div>
-        <div className="font-['Manrope'] font-semibold text-[14px] sm:text-[16px] leading-[140%] text-center tracking-[0.02em] text-[#A5B8EF]">
-          Free Spins received by friends
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
