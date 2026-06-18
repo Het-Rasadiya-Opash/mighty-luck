@@ -229,12 +229,12 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
             <NavItem icon={<Image src="/image 20 (Traced).svg" alt="VIP Program" width={20} height={20} className="shrink-0" />} label="VIP Program" isCollapsed={isCollapsed} />
             <NavItem icon={<Image src="/image 21 (Traced).svg" alt="Tournaments" width={20} height={20} className="shrink-0" />} label="Tournaments" isCollapsed={isCollapsed} />
 
-            <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''}`}>
+            <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'casino' ? 'bg-[#112F82]' : ''} ${isCollapsed ? 'w-[40px]' : 'w-full'}`}>
                 <div
                     onClick={() => toggleDropdown('casino')}
-                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[50px] cursor-pointer text-white transition-colors bg-[#1463FF] rounded-[8px]`}
+                    className={`group relative isolate overflow-hidden flex items-center cursor-pointer text-white transition-colors bg-[#1463FF] rounded-[8px] ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'justify-between px-[10px] w-full h-[50px]'}`}
                 >
-                    <div className={`flex items-center gap-[12px] ${isCollapsed ? 'justify-center' : ''}`}>
+                    <div className={`relative z-10 flex items-center ${isCollapsed ? 'justify-center' : 'gap-[12px]'}`}>
                         <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
                             <Image src="/Frame.svg" alt="Casino" width={20} height={20} className="shrink-0" />
                         </div>
@@ -250,7 +250,7 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                     )}
                 </div>
                 {openDropdown === 'casino' && (
-                    <div className="flex flex-col px-[16px] py-[20px] gap-[20px] rounded-b-[8px]">
+                    <div className={`flex flex-col rounded-b-[8px] ${isCollapsed ? 'items-center py-3 gap-4 px-0' : 'px-[16px] py-[20px] gap-[20px]'}`}>
                         <SubNavItem icon={<Image src="/all.svg" alt="All Games" width={19} height={14} className="w-[19.25px] h-[14.14px] shrink-0" />} label="All Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame1.svg" alt="New Games" width={19} height={17} className="w-[19.21px] h-[17.3px] shrink-0" />} label="New Games" isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={16} height={20} className="w-[15.86px] h-[20px] shrink-0" />} label="Popular Games" onClick={() => setIsSearchModalOpen(true)} isCollapsed={isCollapsed} />
@@ -260,12 +260,12 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                 )}
             </div>
 
-            <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''}`}>
+            <div className={`flex flex-col rounded-[8px] transition-colors ${openDropdown === 'live-casino' ? 'bg-[#112F82]' : ''} ${isCollapsed ? 'w-[40px]' : 'w-full'}`}>
                 <div
                     onClick={() => toggleDropdown('live-casino')}
-                    className={`group relative flex items-center ${isCollapsed ? 'justify-center w-[40px] px-0' : 'justify-between px-[10px] w-full'} h-[50px] cursor-pointer text-white transition-colors bg-[#1463FF] rounded-[8px]`}
+                    className={`group relative isolate overflow-hidden flex items-center cursor-pointer text-white transition-colors bg-[#1463FF] rounded-[8px] ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'justify-between px-[10px] w-full h-[50px]'}`}
                 >
-                    <div className={`flex items-center gap-[12px] ${isCollapsed ? 'justify-center' : ''}`}>
+                    <div className={`relative z-10 flex items-center ${isCollapsed ? 'justify-center' : 'gap-[12px]'}`}>
                         <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
                             <Image src="/Frame4.svg" alt="Live Casino" width={20} height={20} className="w-[20px] h-[17.62px] shrink-0" />
                         </div>
@@ -281,7 +281,7 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
                     )}
                 </div>
                 {openDropdown === 'live-casino' && (
-                    <div className="flex flex-col px-[16px] py-[20px] gap-[20px] rounded-b-[8px]">
+                    <div className={`flex flex-col rounded-b-[8px] ${isCollapsed ? 'items-center py-3 gap-4 px-0' : 'px-[16px] py-[20px] gap-[20px]'}`}>
                         <SubNavItem icon={<Image src="/Frame1.svg" alt="All Live Games" width={19} height={17} className="w-[19.21px] h-[17.3px] shrink-0" />} label="All Live Games" isCollapsed={isCollapsed} />
                     </div>
                 )}
@@ -301,8 +301,8 @@ export function SidebarNav({ isCollapsed = false }: { isCollapsed?: boolean }) {
 
 function NavItem({ icon, label, isCollapsed }: { icon: React.ReactNode; label: string; isCollapsed?: boolean }) {
     return (
-        <div className={`group relative flex items-center h-[50px] cursor-pointer bg-[#112F82] rounded-[8px] transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] px-0' : 'gap-[12px] w-full px-[10px]'}`}>
-            <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
+        <div className={`group relative flex items-center cursor-pointer bg-[#112F82] rounded-[8px] transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'gap-[12px] w-full h-[50px] px-[10px]'}`}>
+            <div className="relative z-10 flex items-center justify-center w-[20px] h-[20px] shrink-0">
                 {icon}
             </div>
             {!isCollapsed && <span className="font-['Manrope'] font-semibold text-[16px] leading-[22px] tracking-[0.02em]">{label}</span>}
@@ -320,9 +320,9 @@ function SubNavItem({ icon, label, onClick, isCollapsed }: { icon: React.ReactNo
     return (
         <div
             onClick={onClick}
-            className={`group relative flex items-center cursor-pointer transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[40px] h-[40px] px-0' : 'gap-[12px] w-full h-[22px]'}`}
+            className={`group relative flex items-center cursor-pointer transition-colors text-[#D2DCF7] hover:text-white ${isCollapsed ? 'justify-center w-[20px] h-[20px] px-0' : 'gap-[12px] w-full h-[22px]'}`}
         >
-            <div className="flex items-center justify-center w-[20px] h-[20px] shrink-0">
+            <div className="relative z-10 flex items-center justify-center w-[20px] h-[20px] shrink-0">
                 {icon}
             </div>
             {!isCollapsed && <span className="font-['Manrope'] font-semibold text-[16px] leading-[22px] tracking-[0.02em]">{label}</span>}
