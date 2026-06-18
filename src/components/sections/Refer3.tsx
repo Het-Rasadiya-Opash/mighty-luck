@@ -3,10 +3,10 @@ import { Coins, Zap, Infinity as InfinityIcon } from 'lucide-react';
 
 export default function Refer3() {
   return (
-    <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-[12px] w-full max-w-[1136px] h-auto lg:h-[391px] mx-auto flex-none">
+    <div className="flex flex-col lg:flex-row items-stretch gap-[12px] w-full max-w-[1136px] mx-auto flex-none">
       
       {/* WHAT YOU GET - Left Card */}
-      <div className="flex flex-col items-start p-[24px_20px] lg:p-[32px_40px] gap-[24px] w-full lg:w-[562px] h-auto lg:h-[391px] bg-[#0C1F56] rounded-[16px] relative overflow-hidden isolate flex-none">
+      <div className="flex flex-col items-start p-[24px_20px] lg:p-[32px_24px] xl:p-[32px_40px] gap-[24px] w-full lg:flex-1 bg-[#0C1F56] rounded-[16px] relative overflow-hidden isolate">
         {/* Green Glow */}
         <div className="absolute w-[182px] h-[182px] left-[-91px] top-[-91px] bg-[#57FF3D] blur-[60px] z-0 rounded-full"></div>
         
@@ -65,7 +65,7 @@ export default function Refer3() {
       </div>
 
       {/* WHAT YOUR FRIEND GETS - Right Card */}
-      <div className="flex flex-col items-start p-[24px_20px] lg:p-[32px_40px] gap-[24px] w-full lg:w-[562px] h-auto lg:h-[391px] bg-[#0C1F56] rounded-[16px] relative overflow-hidden isolate flex-none">
+      <div className="flex flex-col items-start p-[24px_20px] lg:p-[32px_24px] xl:p-[32px_40px] gap-[24px] w-full lg:flex-1 bg-[#0C1F56] rounded-[16px] relative overflow-hidden isolate">
         {/* Blue Glow */}
         <div className="absolute w-[182px] h-[182px] left-[-91px] top-[-91px] bg-[#1463FF] blur-[60px] z-0 rounded-full"></div>
         
