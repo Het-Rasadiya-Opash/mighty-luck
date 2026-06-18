@@ -116,16 +116,18 @@ export default function Refer1() {
               </div>
 
               {/* Input Form */}
-              <div className="flex flex-row items-start gap-[8px] w-full h-auto flex-none">
-                <input
-                  type="text"
-                  placeholder="Enter email address"
-                  className="flex flex-row items-center p-[10px_16px] flex-1 h-[40px] bg-[#112F82] rounded-[8px] font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder-[#7795E8] outline-none border border-transparent focus:border-[#1463FF] transition-colors flex-none"
-                />
-                <button className="flex flex-row justify-center items-center p-[10px_30px] gap-[10px] w-[122px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors flex-none cursor-pointer">
-                  <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404] whitespace-nowrap">
-                    Send Invite
-                  </span>
+              <div className="flex flex-row items-start p-0 gap-[8px] w-[390px] h-[40px] flex-none self-stretch grow-0">
+                <div className="flex flex-row items-center p-[10px_16px] gap-[12px] w-[260px] h-[40px] bg-[#112F82] rounded-[8px] flex-none">
+                  <div className="flex flex-row items-center p-0 gap-[8px] w-[228px] h-[19px] flex-none grow">
+                    <input
+                      type="text"
+                      placeholder="Enter email address"
+                      className="w-[137px] h-[19px] flex-none bg-transparent font-['Manrope'] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] placeholder-[#7795E8] outline-none"
+                    />
+                  </div>
+                </div>
+                <button className="flex flex-row justify-center items-center p-[10px_30px] gap-[10px] w-[122px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors flex-none grow cursor-pointer">
+                  <span className="w-[79px] h-[19px] font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404] flex-none grow-0 whitespace-nowrap">Send Invite</span>
                 </button>
               </div>
             </div>
