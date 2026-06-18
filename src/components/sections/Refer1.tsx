@@ -214,15 +214,15 @@ export default function Refer1() {
       </div>
 
       {/* Mobile View (max-width: 1279px / xl breakpoint) */}
-      <div className="flex xl:hidden flex-col items-start p-0 gap-[20px] w-[374px] h-[989px] flex-none self-stretch grow-0">
+      <div className="flex xl:hidden flex-col items-start p-0 gap-[20px] w-full max-w-[374px] h-[989px] flex-none self-stretch grow-0 mx-auto">
         {/* Banner Section */}
-        <div className="flex flex-col items-start p-0 gap-[8px] w-[374px] h-[170px] flex-none self-stretch grow-0">
-          <div className="w-[374px] h-[170px] rounded-[10px] flex-none self-stretch grow-0 overflow-hidden relative">
+        <div className="flex flex-col items-start p-0 gap-[8px] w-full h-[170px] flex-none self-stretch grow-0">
+          <div className="w-full h-[170px] rounded-[10px] flex-none self-stretch grow-0 overflow-hidden relative">
             {/* Background Image holding gift box */}
             <img
               src="/refer.svg"
               alt="Referral Banner"
-              className="absolute w-[547.18px] h-[170.03px] left-[calc(50%-547.18px/2+71.59px)] top-[calc(50%-170.03px/2+0.02px)] object-cover pointer-events-none"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
             {/* Blurs */}
             <div className="absolute w-[62.14px] h-[62.14px] left-[501.42px] top-[130.53px] bg-[#010A25] blur-[12.0419px] pointer-events-none" />
@@ -243,7 +243,7 @@ export default function Refer1() {
         </div>
 
         {/* Indicators Frame (Hidden) */}
-        <div className="hidden flex-col items-center p-0 w-[374px] h-[6px] flex-none self-stretch grow-0">
+        <div className="hidden flex-col items-center p-0 w-full h-[6px] flex-none self-stretch grow-0">
           <div className="flex flex-row justify-center items-center p-0 gap-[8px] w-[40px] h-[6px] flex-none grow-0">
             <div className="w-[12px] h-[6px] bg-[#D2DCF7] rounded-[150px] flex-none grow-0" />
             <div className="w-[6px] h-[6px] bg-[#D2DCF7] rounded-[150px] flex-none grow-0" />
