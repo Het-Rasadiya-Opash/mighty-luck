@@ -305,15 +305,15 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </div>
                 </div>
               ) : searchResults.length > 0 ? (
-                <div className="flex flex-col gap-[20px] w-full">
-                  <div className="flex flex-row items-center w-full h-[29px]">
-                    <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[20px] leading-[29px] tracking-[0.01em] uppercase text-white">
+                <div className="flex flex-col gap-[12px] w-full">
+                  <div className="flex flex-row items-center w-full h-[23px]">
+                    <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[29px] tracking-[0.01em] uppercase text-white">
                       {activeCategory}
                     </h3>
                   </div>
-                  <div className="flex flex-row flex-wrap gap-[12px] w-full content-start overflow-y-auto md:max-h-[500px] pb-4 [&::-webkit-scrollbar]:hidden">
+                  <div className="grid grid-cols-3 md:grid-cols-5 gap-[7.86px] md:gap-[12px] w-full pb-4">
                     {searchResults.map((game) => (
-                      <div key={game.id} className="w-[calc(50%-6px)] md:w-[152px] h-[184px] md:h-[200px] shrink-0 rounded-[12px] overflow-hidden relative bg-[#0C1F56] group cursor-pointer">
+                      <div key={game.id} className="w-full aspect-[119.43/157.14] md:w-[152px] md:h-[200px] rounded-[9.43px] md:rounded-[12px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
                         <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                       </div>
                     ))}
