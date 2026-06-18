@@ -7,13 +7,14 @@ import FAQs from './FAQs';
 
 export default function ReferFriend() {
   return (
-    <div className="flex flex-col gap-[32px] w-full max-w-[1136px] mx-auto items-center pb-[60px] px-4 sm:px-6 lg:px-0">
+    <div className="flex flex-col gap-[30px] md:gap-[32px] w-[374px] md:w-full md:max-w-[1136px] h-[3352.81px] md:h-auto mx-auto items-start md:items-center p-0 md:pb-[60px] md:px-0">
       <Refer1 />
-      <Refer2 />
+      <div className="hidden md:block w-full">
+        <Refer2 />
+      </div>
       <Refer3 />
       <Refer4 />
       <FAQs />
-      {/* Other sections will be added here later */}
     </div>
   );
 }
