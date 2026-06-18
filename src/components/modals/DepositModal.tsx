@@ -238,7 +238,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   return createPortal(
     <div className="fixed inset-0 z-40 sm:z-[100] overflow-y-auto top-[50px] sm:top-0">
       <div
-        className="fixed inset-0 top-[50px] sm:top-0 bg-[#0C1733]/70 backdrop-blur-[8px]"
+        className="fixed inset-0 top-[50px] sm:top-0 bg-[#091741] sm:bg-[#0C1733]/70 sm:backdrop-blur-[8px]"
         onClick={onClose}
       />
 
