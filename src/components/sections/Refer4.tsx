@@ -16,20 +16,20 @@ export default function Refer4() {
       </div>
 
       {/* Cards Row */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-[12px] w-full h-auto flex-none">
+      <div className="flex md:flex-row flex-col items-center justify-center gap-[12px] w-full h-auto flex-none">
         
         {/* Card 1 */}
-        <div className="w-full lg:flex-1 lg:min-w-0 rounded-[16px] overflow-hidden relative">
+        <div className="w-full md:flex-1 md:min-w-0 rounded-[16px] overflow-hidden relative">
           <img src="/r1.png" alt="Step 1" className="w-full h-auto object-contain" />
         </div>
 
         {/* Card 2 */}
-        <div className="w-full lg:flex-1 lg:min-w-0 rounded-[16px] overflow-hidden relative">
+        <div className="w-full md:flex-1 md:min-w-0 rounded-[16px] overflow-hidden relative">
           <img src="/r2.png" alt="Step 2" className="w-full h-auto object-contain" />
         </div>
 
         {/* Card 3 */}
-        <div className="w-full lg:flex-1 lg:min-w-0 rounded-[16px] overflow-hidden relative">
+        <div className="w-full md:flex-1 md:min-w-0 rounded-[16px] overflow-hidden relative">
           <img src="/r3.png" alt="Step 3" className="w-full h-auto object-contain" />
         </div>
 
