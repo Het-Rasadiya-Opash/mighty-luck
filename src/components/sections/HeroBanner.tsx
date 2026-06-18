@@ -2,7 +2,8 @@ import Image from "next/image";
 
 export default function HeroBanner() {
     return (
-        <div className="relative w-full h-[170px] sm:h-[260px] md:h-[300px] lg:h-[356px] flex-none overflow-hidden rounded-[10px] md:rounded-[20px]">
+        <div className="flex flex-col items-start gap-[20px] w-full">
+            <div className="relative w-full h-[170px] sm:h-[260px] md:h-[300px] lg:h-[356px] flex-none overflow-hidden rounded-[10px] md:rounded-[20px]">
 
             {/* Mobile Image container with exact Figma math */}
             <div className="sm:hidden absolute w-[547.18px] h-[170.03px] left-[calc(50%-547.18px/2+71.59px)] top-[calc(50%-170.03px/2+0.02px)]">
@@ -53,6 +54,16 @@ export default function HeroBanner() {
                     </span>
                 </button>
 
+            </div>
+        </div>
+
+            {/* Pagination Dots */}
+            <div className="flex flex-col items-center w-full h-[6px]">
+                <div className="flex flex-row justify-center items-center gap-[8px] h-[6px]">
+                    <div style={{ width: '12px', height: '6px', background: '#D2DCF7', borderRadius: '150px' }} />
+                    <div style={{ width: '6px', height: '6px', background: '#D2DCF7', borderRadius: '150px' }} />
+                    <div style={{ width: '6px', height: '6px', background: '#D2DCF7', borderRadius: '150px' }} />
+                </div>
             </div>
         </div>
     );
