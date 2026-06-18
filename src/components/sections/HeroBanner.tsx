@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroBanner() {
     return (
-        <div className="flex flex-col items-start gap-[20px] w-full">
+        <div className="flex flex-col items-start gap-[8px] sm:gap-[20px] w-full">
             <div className="relative w-full h-[170px] sm:h-[260px] md:h-[300px] lg:h-[356px] flex-none overflow-hidden rounded-[10px] md:rounded-[20px]">
 
             {/* Mobile Image container with exact Figma math */}
