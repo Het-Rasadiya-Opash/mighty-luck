@@ -117,7 +117,7 @@ export function GameSliderContent({ id, title, icon, games }: GameSliderProps) {
                     <div className="flex items-center justify-center w-[18px] h-[18px] sm:w-[30px] sm:h-[30px] shrink-0 [&>img]:w-full [&>img]:h-full [&>img]:object-contain">
                         {icon}
                     </div>
-                    <span className="font-['Jost'] text-[16px] md:text-[18px] lg:text-[20px] font-extrabold leading-[23px] sm:leading-[100%] tracking-[0.01em] text-white uppercase whitespace-nowrap">
+                    <span className="font-['Jost'] text-[13px] min-[375px]:text-[15px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-extrabold leading-[23px] sm:leading-[100%] tracking-[0.01em] text-white uppercase whitespace-nowrap">
                         {title}
                     </span>
                 </div>
