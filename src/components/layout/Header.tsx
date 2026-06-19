@@ -94,7 +94,16 @@ export function HeaderContent() {
             />
           </button>
 
-          <Link href="/" className="flex items-center shrink-0">
+          <Link
+            href="/"
+            className="flex items-center shrink-0"
+            onClick={() => {
+              setIsDepositModalOpen(false);
+              setIsProfileOpen(false);
+              window.dispatchEvent(new Event('closeSearchModal'));
+              window.dispatchEvent(new Event('closeMobileMenu'));
+            }}
+          >
             <Image
               src="/king.svg"
               alt="Mighty Luck"
