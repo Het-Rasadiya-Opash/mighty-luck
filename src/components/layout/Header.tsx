@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { X, Wallet, Bell, Gift, Users, LogOut } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { Search } from '../ui/Search';
@@ -11,7 +11,7 @@ import { DepositModal } from '@/components/modals/DepositModal';
 import { usePathname, useSearchParams } from 'next/navigation';
 // import './header.css';
 
-export default function Header() {
+export function HeaderContent() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDepositModalOpen, setIsDepositModalOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -179,7 +179,10 @@ export default function Header() {
                     <div className="flex flex-col p-2">
                       <Link
                         href="?view=refer"
-                        onClick={() => setIsProfileOpen(false)}
+                        onClick={() => {
+                          setIsProfileOpen(false);
+                          window.dispatchEvent(new Event('closeSearchModal'));
+                        }}
                         className="flex flex-row items-center gap-3 px-3 py-2.5 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left"
                       >
                         <Users size={18} color="#D2DCF7" />
@@ -261,7 +264,10 @@ export default function Header() {
                 <div className="flex flex-col pt-4 pb-6 px-4 gap-2">
                   <Link
                     href="?view=refer"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      window.dispatchEvent(new Event('closeSearchModal'));
+                    }}
                     className="flex flex-row items-center gap-4 px-2 py-2 rounded-[8px] hover:bg-[#173EAD] transition-colors w-full text-left"
                   >
                     <Users size={20} color="#D2DCF7" />
@@ -298,5 +304,13 @@ export default function Header() {
         onClose={() => setIsDepositModalOpen(false)}
       />
     </header>
+  );
+}
+
+export default function Header() {
+  return (
+    <Suspense fallback={<div className="h-[50px] sm:h-[60px] bg-[#0C1F56] w-full" />}>
+      <HeaderContent />
+    </Suspense>
   );
 }

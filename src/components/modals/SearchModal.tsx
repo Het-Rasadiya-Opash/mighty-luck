@@ -139,9 +139,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     >
                       <div className="flex flex-row justify-center items-center p-0 w-[16px] h-[16px]">
                         <span className={`flex justify-center items-center w-full h-full ${activeCategory === cat.name ? 'text-white' : 'text-[#A5B8EF]'}`}>
-                          <div 
-                            className="w-full h-full bg-current" 
-                            style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          <div
+                            className="w-full h-full bg-current"
+                            style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}
                           />
                         </span>
                       </div>
@@ -163,9 +163,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     >
                       <div className="flex flex-row justify-center items-center p-0 w-[16px] h-[16px]">
                         <span className={`flex justify-center items-center w-full h-full ${activeCategory === cat.name ? 'text-white' : 'text-[#A5B8EF]'}`}>
-                          <div 
-                            className="w-full h-full bg-current" 
-                            style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          <div
+                            className="w-full h-full bg-current"
+                            style={{ WebkitMaskImage: `url(${cat.icon})`, WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: `url(${cat.icon})`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}
                           />
                         </span>
                       </div>
@@ -237,9 +237,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     <div className="flex flex-row justify-between items-center w-full lg:w-[808px] h-auto lg:h-[29px] self-stretch shrink-0">
                       <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-auto lg:w-[209px] h-auto lg:h-[29px] shrink-0">
                         <div className="w-[18px] lg:w-[20px] h-[18px] lg:h-[20px] flex items-center justify-center text-[#FFBF1F] shrink-0">
-                          <div 
-                            className="w-full lg:w-[15.86px] h-full lg:h-[20px] bg-current" 
-                            style={{ WebkitMaskImage: 'url(/popular.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/popular.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          <div
+                            className="w-full lg:w-[15.86px] h-full lg:h-[20px] bg-current"
+                            style={{ WebkitMaskImage: 'url(/popular.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/popular.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}
                           />
                         </div>
                         <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] lg:text-[20px] leading-[23px] lg:leading-[29px] tracking-[0.01em] uppercase text-white whitespace-nowrap w-auto lg:w-[181px] h-auto lg:h-[29px]">
@@ -265,16 +265,16 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     <div className="flex flex-row justify-between items-center w-[374px] max-w-full lg:w-[808px] h-[23px] lg:h-[30px]">
                       <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-[176.2px] lg:w-[217px] h-[23px] lg:h-[29px]">
                         <div className="w-[18px] lg:w-[20px] h-[18px] lg:h-[20px] flex items-center justify-center text-[#FFC83D] shrink-0">
-                          <div 
-                            className="w-full h-full bg-current" 
-                            style={{ WebkitMaskImage: 'url(/gameprovider.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/gameprovider.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }} 
+                          <div
+                            className="w-full h-full bg-current"
+                            style={{ WebkitMaskImage: 'url(/gameprovider.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskImage: 'url(/gameprovider.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}
                           />
                         </div>
                         <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[16px] lg:text-[20px] leading-[23px] lg:leading-[29px] tracking-[0.01em] uppercase text-white whitespace-nowrap w-[151px] lg:w-[189px] h-[23px] lg:h-[29px]">
                           Game Providers
                         </h3>
                       </div>
-                      
+
                       {/* Mobile View: View all */}
                       <div className="lg:hidden">
                         <span className="font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] h-[16px] items-center justify-center">
@@ -290,7 +290,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           className={`flex flex-col justify-center items-center p-0 w-[30px] h-[30px] bg-[#112F82] rounded-[4px] transition-opacity ${activeProviderPage === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'}`}
                         >
                           <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[6px] h-[10px]">
-                            <path d="M5 1L1 5L5 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M5 1L1 5L5 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </button>
                         <button
@@ -299,7 +299,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           className={`flex flex-col justify-center items-center p-0 w-[30px] h-[30px] bg-[#112F82] rounded-[4px] transition-opacity ${activeProviderPage === 2 ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'}`}
                         >
                           <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[6px] h-[10px]">
-                            <path d="M1 1L5 5L1 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M1 1L5 5L1 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </button>
                       </div>
