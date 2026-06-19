@@ -76,7 +76,7 @@ export function HeaderContent() {
           ></div>
         </div>
 
-        <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-4 lg:gap-3 xl:gap-6 min-w-0 z-10">
+        <div className="flex items-center gap-[8px] md:gap-4 lg:gap-3 xl:gap-6 min-w-0 z-10">
           <button
             className="hidden lg:flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
@@ -109,7 +109,8 @@ export function HeaderContent() {
               alt="Mighty Luck"
               width={44}
               height={30}
-              className="sm:hidden object-contain relative z-10"
+              className="sm:hidden object-contain relative z-10 shrink-0"
+              style={{ width: '44px', height: '30px' }}
             />
             <Image
               src="/Horizontal logo.png"
