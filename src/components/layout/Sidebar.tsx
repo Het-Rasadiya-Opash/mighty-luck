@@ -362,7 +362,7 @@ function SidebarNavContent({ isCollapsed = false, onOpenSearch }: { isCollapsed?
                 </div>
                 {openDropdown === 'live-casino' && (
                     <div className={`flex flex-col rounded-b-[8px] ${isCollapsed ? 'items-center py-3 gap-4 px-0' : 'px-[16px] py-[20px] gap-[20px]'}`}>
-                        <SubNavItem icon={<Image src="/Frame1.svg" alt="All Live Games" width={19} height={17} className="w-[19.21px] h-[17.3px] shrink-0" />} label="All Live Games" isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Frame1.svg" alt="All Live Games" width={20} height={20} className="w-[120px] h-[20px] shrink-0" />} label="All Live Games" isCollapsed={isCollapsed} />
                     </div>
                 )}
             </div>
