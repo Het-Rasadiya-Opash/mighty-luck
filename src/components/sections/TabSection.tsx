@@ -62,7 +62,7 @@ export default function TabSection() {
                                         alt={tab.name} 
                                         width={20} 
                                         height={20} 
-                                        className={`w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] shrink-0 object-contain transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-100 group-hover:opacity-100'}`} 
+                                        className="w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] shrink-0 object-contain" 
                                         style={{ 
                                             filter: isActive 
                                                 ? 'brightness(0) saturate(100%) invert(76%) sepia(87%) saturate(1455%) hue-rotate(7deg) brightness(102%) contrast(101%)' 
