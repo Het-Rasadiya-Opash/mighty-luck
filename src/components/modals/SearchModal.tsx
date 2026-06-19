@@ -104,31 +104,31 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const popularGames = gamesData.filter(game => game.isPopular);
 
   return createPortal(
-    <div className="fixed top-[50px] sm:top-[60px] md:top-0 bottom-0 md:bottom-0 left-0 right-0 z-[60] md:z-[120] flex items-center justify-center md:overflow-y-auto py-0 md:py-[16px] px-0 md:px-[12px] bg-[#0C1F56] md:bg-transparent">
+    <div className="fixed top-[50px] sm:top-[60px] lg:top-0 bottom-[75px] lg:bottom-0 left-0 right-0 z-[60] lg:z-[120] flex items-center justify-center lg:overflow-y-auto py-0 lg:py-[16px] px-0 lg:px-[12px] bg-[#0C1F56] lg:bg-transparent">
       {/* Backdrop - only visible on desktop */}
       <div
-        className="fixed inset-0 bg-transparent md:bg-[#0C1733]/70 md:backdrop-blur-[8px]"
+        className="fixed inset-0 bg-transparent lg:bg-[#0C1733]/70 lg:backdrop-blur-[8px]"
         onClick={onClose}
       />
 
       {/* Desktop Close Button */}
-      <div className="relative w-full max-w-[1056px] my-auto pointer-events-none flex justify-center px-0 md:px-[60px] xl:px-0 h-full md:h-auto">
-        <div className="relative pointer-events-auto w-full h-full md:h-auto">
+      <div className="relative w-full max-w-[1056px] my-auto pointer-events-none flex justify-center px-0 lg:px-[60px] xl:px-0 h-full lg:h-auto">
+        <div className="relative pointer-events-auto w-full h-full lg:h-auto">
           {/* Close Button - Desktop only */}
           <button
             onClick={onClose}
-            className="absolute -right-[44px] top-0 z-10 text-white hover:opacity-70 transition-opacity hidden md:block"
+            className="absolute -right-[44px] top-0 z-10 text-white hover:opacity-70 transition-opacity hidden lg:block"
           >
             <X size={24} />
           </button>
 
           <div
-            className="relative flex flex-col md:flex-row items-start md:items-start p-[0px] md:p-[24px] gap-[0px] md:gap-[20px] w-full max-w-[1056px] h-full md:h-auto md:min-h-[636px] md:max-h-[calc(100vh-80px)] bg-[#0C1F56] md:bg-[#091741] rounded-none md:rounded-[20px] overflow-hidden"
+            className="relative flex flex-col lg:flex-row items-start lg:items-start p-[0px] lg:p-[24px] gap-[0px] lg:gap-[20px] w-full max-w-[1056px] h-full lg:h-auto lg:min-h-[636px] lg:max-h-[calc(100vh-80px)] bg-[#0C1F56] lg:bg-[#091741] rounded-none lg:rounded-[20px] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
 
             {/* Left Sidebar */}
-            <div className="hidden md:flex flex-col justify-center items-start gap-[12px] w-[180px] h-[588px] shrink-0">
+            <div className="hidden lg:flex flex-col justify-center items-start gap-[12px] w-[180px] h-[588px] shrink-0">
               <div className="flex flex-row items-start p-[16px] gap-[10px] w-[180px] h-[200px] bg-[#0C1F56] rounded-[12px]">
                 <div className="flex flex-col items-start gap-[8px] w-[148px] h-[168px]">
                   {topCategories.map((cat) => (
@@ -179,10 +179,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             </div>
 
             {/* Right Content Area */}
-            <div className="flex flex-col gap-[20px] md:gap-[32px] w-full lg:w-[808px] overflow-y-auto overflow-x-hidden pb-[16px] md:pb-0 [&::-webkit-scrollbar]:hidden p-[20px] md:p-0 flex-1">
+            <div className="flex flex-col gap-[20px] lg:gap-[32px] w-full lg:max-w-[808px] overflow-y-auto overflow-x-hidden pb-[16px] lg:pb-0 [&::-webkit-scrollbar]:hidden px-4 sm:px-6 md:px-8 lg:px-0 py-[20px] lg:py-0 flex-1 min-h-0 lg:self-stretch">
               {/* Search Bar - comes first on mobile per Figma */}
               <div className={`flex flex-row items-center ${searchQuery ? 'justify-between py-[10px] pl-[20px] pr-[10px] border border-[#1463FF] rounded-[12px]' : 'p-[10px_20px] rounded-[8px]'
-                } gap-[10px] w-full h-[50px] md:h-[40px] bg-[#112F82] shrink-0 box-border transition-all duration-200 order-first md:order-none`}>
+                } gap-[10px] w-full h-[50px] lg:h-[40px] bg-[#112F82] shrink-0 box-border transition-all duration-200 order-first lg:order-none`}>
                 <div className="flex flex-row items-center gap-[10px] w-full">
                   <div className="flex flex-col items-start w-[16px] h-[15.99px]">
                     <Search size={16} className="text-white" strokeWidth={2.5} />
@@ -192,7 +192,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="What are you looking for?"
-                    className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[16px] md:text-[14px] leading-[22px] md:leading-[19px] w-full transition-colors ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
+                    className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[16px] lg:text-[14px] leading-[22px] lg:leading-[19px] w-full transition-colors ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
                       }`}
                   />
                 </div>
@@ -209,7 +209,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               </div>
 
               {/* Mobile Categories Scroll */}
-              <div className="flex md:hidden flex-row gap-[8px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x shrink-0">
+              <div className="flex lg:hidden flex-row gap-[8px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x shrink-0">
                 {topCategories.map((cat) => (
                   <button
                     key={cat.name}
@@ -231,10 +231,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               </div>
 
               {searchQuery === '' ? (
-                <div className="flex flex-col gap-[30px] md:gap-[32px] w-full">
+                <div className="flex flex-col gap-[30px] lg:gap-[32px] w-full">
                   {/* Popular Games */}
                   <div className="flex flex-col gap-[12px] w-full">
-                    <div className="flex flex-row justify-between items-center w-full lg:w-[808px] h-auto lg:h-[29px] self-stretch shrink-0">
+                    <div className="flex flex-row justify-between items-center w-full lg:max-w-[808px] h-auto lg:h-[29px] self-stretch shrink-0">
                       <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-auto lg:w-[209px] h-auto lg:h-[29px] shrink-0">
                         <div className="w-[18px] lg:w-[20px] h-[18px] lg:h-[20px] flex items-center justify-center text-[#FFBF1F] shrink-0">
                           <div
@@ -251,9 +251,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       </span>
                     </div>
 
-                    <div className="flex flex-row gap-[8px] md:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory pr-[16px] md:pr-0">
+                    <div className="flex flex-row gap-[8px] lg:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory pr-[16px] lg:pr-0">
                       {popularGames.map((game) => (
-                        <div key={game.id} className="w-[121.6px] md:w-[152px] h-[160px] md:h-[200px] shrink-0 rounded-[9.6px] md:rounded-[12px] overflow-hidden relative bg-[#CDCDCD] snap-start group cursor-pointer">
+                        <div key={game.id} className="w-[121.6px] lg:w-[152px] h-[160px] lg:h-[200px] shrink-0 rounded-[9.6px] lg:rounded-[12px] overflow-hidden relative bg-[#CDCDCD] snap-start group cursor-pointer">
                           <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                         </div>
                       ))}
@@ -262,7 +262,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                   {/* Game Providers */}
                   <div className="flex flex-col gap-[12px] w-full">
-                    <div className="flex flex-row justify-between items-center w-[374px] max-w-full lg:w-[808px] h-[23px] lg:h-[30px]">
+                    <div className="flex flex-row justify-between items-center w-full lg:max-w-[808px] h-[23px] lg:h-[30px]">
                       <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-[176.2px] lg:w-[217px] h-[23px] lg:h-[29px]">
                         <div className="w-[18px] lg:w-[20px] h-[18px] lg:h-[20px] flex items-center justify-center text-[#FFC83D] shrink-0">
                           <div
@@ -309,15 +309,15 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       <div
                         ref={providersScrollRef}
                         onScroll={handleProviderScroll}
-                        className="flex flex-row gap-[8px] md:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth pr-[16px] md:pr-0"
+                        className="flex flex-row gap-[8px] lg:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth pr-[16px] lg:pr-0"
                       >
                         {providerData.map((provider) => (
-                          <div key={provider.id} className="flex flex-col justify-center items-center p-[7.2px_14.4px] md:p-[12px_24px] gap-[4.8px] md:gap-[8px] w-[88px] md:w-[152px] h-[60px] md:h-[100px] bg-[#112F82] md:bg-[#0C1F56] rounded-[8px] md:rounded-[12px] shrink-0 snap-start cursor-pointer group">
-                            <div className="w-[48px] md:w-[80px] h-[24px] md:h-[40px] relative transition-transform duration-300 group-hover:scale-105">
+                          <div key={provider.id} className="flex flex-col justify-center items-center p-[7.2px_14.4px] lg:p-[12px_24px] gap-[4.8px] lg:gap-[8px] w-[88px] lg:w-[152px] h-[60px] lg:h-[100px] bg-[#112F82] lg:bg-[#0C1F56] rounded-[8px] lg:rounded-[12px] shrink-0 snap-start cursor-pointer group">
+                            <div className="w-[48px] lg:w-[80px] h-[24px] lg:h-[40px] relative transition-transform duration-300 group-hover:scale-105">
                               <Image unoptimized src={provider.image} alt={provider.name} fill className="object-contain" />
                             </div>
-                            <div className="flex flex-row justify-center items-center gap-[6px] w-[59.2px] md:w-[104px] h-[11px] md:h-[14px]">
-                              <span className="font-[family-name:var(--font-manrope)] font-semibold text-[8px] md:text-[10px] leading-[11px] md:leading-[14px] text-center text-[#FFC83D]">
+                            <div className="flex flex-row justify-center items-center gap-[6px] w-[59.2px] lg:w-[104px] h-[11px] lg:h-[14px]">
+                              <span className="font-[family-name:var(--font-manrope)] font-semibold text-[8px] lg:text-[10px] leading-[11px] lg:leading-[14px] text-center text-[#FFC83D]">
                                 {provider.gamesCount} Games
                               </span>
                             </div>
@@ -330,7 +330,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               ) : searchResults.length > 0 ? (
                 <div className="flex flex-col gap-[12px] w-full">
                   {/* Heading */}
-                  <div className="flex flex-row justify-between items-center w-full h-[23px] md:h-[29px]">
+                  <div className="flex flex-row justify-between items-center w-full h-[23px] lg:h-[29px]">
                     <h3
                       className="font-[family-name:var(--font-jost)] font-extrabold tracking-[0.01em] uppercase text-white"
                       style={{ fontSize: '16px', lineHeight: '23px' }}
@@ -366,8 +366,17 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     ))}
                   </div>
 
-                  {/* Desktop (md+): fluid grid that fills available width */}
-                  <div className="hidden md:grid gap-[12px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
+                  {/* Tablet only: fluid grid */}
+                  <div className="hidden md:grid lg:hidden gap-[10px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))' }}>
+                    {searchResults.map((game) => (
+                      <div key={game.id} className="w-full aspect-[119/157] rounded-[9.6px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
+                        <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Desktop (lg+): fluid grid that fills available width */}
+                  <div className="hidden lg:grid gap-[12px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
                     {searchResults.map((game) => (
                       <div key={game.id} className="w-full aspect-[152/200] rounded-[12px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
                         <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
@@ -379,7 +388,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 <>
                   {/* Mobile no-results: exact Figma spec (≤md) */}
                   <div
-                    className="flex md:hidden flex-col items-start"
+                    className="flex lg:hidden flex-col items-start"
                     style={{ gap: '30px', width: '100%' }}
                   >
                     {/* No-results text block: gap 8px */}
@@ -416,7 +425,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </div>
 
                   {/* Desktop no-results: unchanged */}
-                  <div className="hidden md:flex flex-col justify-center items-center py-[60px] gap-[16px] w-full mt-[40px]">
+                  <div className="hidden lg:flex flex-col justify-center items-center py-[60px] gap-[16px] w-full mt-[40px]">
                     <h3 className="font-[family-name:var(--font-jost)] font-bold text-[20px] leading-[29px] text-white">
                       No Results for your Search
                     </h3>
