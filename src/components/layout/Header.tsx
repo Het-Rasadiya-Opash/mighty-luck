@@ -23,6 +23,7 @@ export function HeaderContent() {
 
   useEffect(() => {
     setIsProfileOpen(false);
+    setIsDepositModalOpen(false);
   }, [pathname, searchParams]);
 
   useEffect(() => {
