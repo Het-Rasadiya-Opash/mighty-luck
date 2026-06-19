@@ -63,7 +63,7 @@ export function HeaderContent() {
 
   return (
     <header className="sticky top-0 z-[110] w-full bg-[#0C1F56] h-[50px] sm:h-[60px] border-b border-[#112F82] sm:border-none">
-      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-6 md:px-8 lg:px-6 xl:px-12">
+      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-6">
         {/* Perfect Figma Shadow clipped to header */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div
@@ -76,7 +76,7 @@ export function HeaderContent() {
           ></div>
         </div>
 
-        <div className="flex items-center gap-[8px] md:gap-4 lg:gap-3 xl:gap-6 min-w-0 z-10">
+        <div className="flex items-center gap-[8px] md:gap-4 lg:gap-[30px] xl:gap-[51px] min-w-0 z-10">
           <button
             className="hidden lg:flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
@@ -228,11 +228,11 @@ export function HeaderContent() {
             </div>
           </div>
         ) : (
-          <div className="flex items-center gap-[7.5px] sm:gap-2 md:gap-4 shrink-0 z-10">
-            <Link href="?auth=login" className="flex items-center justify-center w-[74px] h-[30px] sm:w-auto sm:min-h-[40px] sm:h-[40px] sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-['Manrope'] font-bold sm:font-semibold text-[10.5px] sm:text-sm leading-[100%] sm:leading-normal tracking-[0.02em] transition-colors bg-[#1463FF] text-white whitespace-nowrap">
+          <div className="flex items-center gap-[7.5px] sm:gap-2 md:gap-4 xl:gap-[10px] shrink-0 z-10">
+            <Link href="?auth=login" className="flex items-center justify-center w-[74px] h-[30px] sm:w-auto sm:min-h-[40px] sm:h-[40px] sm:px-6 md:px-[30px] xl:w-[99px] xl:h-[40px] xl:px-[30px] xl:py-[10px] rounded-[6px] sm:rounded-[8px] xl:rounded-[8px] font-['Manrope'] font-bold sm:font-semibold xl:font-bold text-[10.5px] sm:text-sm xl:text-[14px] leading-[100%] sm:leading-normal xl:leading-[19px] tracking-[0.02em] transition-colors bg-[#1463FF] text-white whitespace-nowrap">
               Login
             </Link>
-            <Link href="?auth=register" className="flex items-center justify-center w-[67px] h-[30px] sm:w-auto sm:min-h-[40px] sm:h-[40px] sm:px-6 md:px-[30px] rounded-[6px] sm:rounded-[8px] font-['Manrope'] font-bold sm:font-semibold text-[10.5px] sm:text-sm leading-[100%] sm:leading-normal tracking-[0.02em] transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
+            <Link href="?auth=register" className="flex items-center justify-center w-[67px] h-[30px] sm:w-auto sm:min-h-[40px] sm:h-[40px] sm:px-6 md:px-[30px] xl:w-[90px] xl:h-[40px] xl:px-[30px] xl:py-[10px] rounded-[6px] sm:rounded-[8px] xl:rounded-[8px] font-['Manrope'] font-bold sm:font-semibold xl:font-bold text-[10.5px] sm:text-sm xl:text-[14px] leading-[100%] sm:leading-normal xl:leading-[19px] tracking-[0.02em] transition-colors bg-[#FFC83D] text-[#1A1404] whitespace-nowrap">
               Join
             </Link>
           </div>
