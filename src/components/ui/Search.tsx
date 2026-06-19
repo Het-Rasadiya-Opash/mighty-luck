@@ -6,15 +6,24 @@ interface SearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function Search({ className = '', ...props }: SearchProps) {
+  const handleClick = () => {
+    window.dispatchEvent(new Event('openSearchModal'));
+  };
+
+  // If width is not specified in className, use default responsive width
+  const widthClass = className.includes('w-') ? '' : 'w-[240px] md:w-[280px] lg:w-[200px] xl:w-[280px]';
+
   return (
     <div
-      className={`flex items-center gap-[10px] h-[40px] px-[16px] py-[10px] rounded-[8px] bg-[#112F82] w-[240px] md:w-[280px] ${className}`}
+      onClick={handleClick}
+      className={`flex items-center gap-[10px] h-[40px] px-[16px] py-[10px] rounded-[8px] bg-[#112F82] cursor-pointer ${widthClass} ${className}`}
     >
       <SearchIcon size={18} className="text-[#FFFFFF] shrink-0" />
       <input
         type="text"
         placeholder="What are you looking for?"
-        className="bg-transparent border-none outline-none text-[#BBCAF3] placeholder:text-[#BBCAF3] w-full text-sm min-w-0"
+        className="bg-transparent border-none outline-none text-[#BBCAF3] placeholder:text-[#BBCAF3] w-full text-sm min-w-0 cursor-pointer"
+        readOnly
         {...props}
       />
     </div>

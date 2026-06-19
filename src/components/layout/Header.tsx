@@ -36,6 +36,14 @@ export function HeaderContent() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleOpen = () => {
+      setIsOpen(false);
+    };
+    window.addEventListener('openSearchModal', handleOpen);
+    return () => window.removeEventListener('openSearchModal', handleOpen);
+  }, []);
+
 
 
   useEffect(() => {
@@ -55,7 +63,7 @@ export function HeaderContent() {
 
   return (
     <header className="sticky top-0 z-[110] w-full bg-[#0C1F56] h-[50px] sm:h-[60px] border-b border-[#112F82] sm:border-none">
-      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-6 md:px-8 lg:px-12 xl:px-6">
+      <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[20px] sm:px-6 md:px-8 lg:px-6 xl:px-12">
         {/* Perfect Figma Shadow clipped to header */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div
@@ -68,7 +76,7 @@ export function HeaderContent() {
           ></div>
         </div>
 
-        <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-6 min-w-0 z-10">
+        <div className="flex items-center gap-2 min-[375px]:gap-2 md:gap-4 lg:gap-3 xl:gap-6 min-w-0 z-10">
           <button
             className="hidden lg:flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
@@ -99,7 +107,7 @@ export function HeaderContent() {
               alt="Mighty Luck"
               width={150}
               height={28}
-              className="hidden sm:block object-contain sm:w-[150px] md:w-[170px] lg:w-[190px] h-auto relative z-10"
+              className="hidden sm:block object-contain sm:w-[150px] md:w-[170px] lg:w-[150px] xl:w-[190px] h-auto relative z-10"
             />
           </Link>
 
@@ -109,7 +117,7 @@ export function HeaderContent() {
         </div>
 
         {status === 'authenticated' ? (
-          <div className="flex flex-row justify-end items-center gap-[16px] lg:gap-4 shrink-0 z-[2]">
+          <div className="flex flex-row justify-end items-center gap-[16px] lg:gap-[8px] xl:gap-4 shrink-0 z-[2]">
             {/* Desktop Balance + Deposit */}
             <div className="hidden lg:flex flex-row items-center gap-1">
               <div className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-[116px] h-[40px] bg-[#112F82] rounded-[8px]">

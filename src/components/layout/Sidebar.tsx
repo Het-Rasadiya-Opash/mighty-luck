@@ -47,6 +47,16 @@ export function SidebarContent() {
     }, []);
 
     useEffect(() => {
+        const handleOpen = () => {
+            if (window.innerWidth < 1024) {
+                setIsMobileSearchOpen(true);
+            }
+        };
+        window.addEventListener('openSearchModal', handleOpen);
+        return () => window.removeEventListener('openSearchModal', handleOpen);
+    }, []);
+
+    useEffect(() => {
         const handleClose = () => {
             setIsMobileMenuOpen(false);
         };
@@ -277,6 +287,16 @@ function SidebarNavContent({ isCollapsed = false, onOpenSearch }: { isCollapsed?
         };
         window.addEventListener('closeSearchModal', handleClose);
         return () => window.removeEventListener('closeSearchModal', handleClose);
+    }, []);
+
+    useEffect(() => {
+        const handleOpen = () => {
+            if (window.innerWidth >= 1024) {
+                setIsSearchModalOpen(true);
+            }
+        };
+        window.addEventListener('openSearchModal', handleOpen);
+        return () => window.removeEventListener('openSearchModal', handleOpen);
     }, []);
 
     const toggleDropdown = (name: string) => {
