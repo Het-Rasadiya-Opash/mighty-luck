@@ -38,13 +38,21 @@ export function SidebarContent() {
         return () => window.removeEventListener('toggleDesktopSidebar', handleToggle as EventListener);
     }, []);
 
-    // useEffect(() => {
-    //     const handleClose = () => {
-    //         setIsMobileSearchOpen(false);
-    //     };
-    //     window.addEventListener('closeSearchModal', handleClose);
-    //     return () => window.removeEventListener('closeSearchModal', handleClose);
-    // }, []);
+    useEffect(() => {
+        const handleClose = () => {
+            setIsMobileSearchOpen(false);
+        };
+        window.addEventListener('closeSearchModal', handleClose);
+        return () => window.removeEventListener('closeSearchModal', handleClose);
+    }, []);
+
+    useEffect(() => {
+        const handleClose = () => {
+            setIsMobileMenuOpen(false);
+        };
+        window.addEventListener('closeMobileMenu', handleClose);
+        return () => window.removeEventListener('closeMobileMenu', handleClose);
+    }, []);
 
     return (
         <>
@@ -263,13 +271,13 @@ function SidebarNavContent({ isCollapsed = false, onOpenSearch }: { isCollapsed?
         setIsSearchModalOpen(false);
     }, [pathname, searchParams]);
 
-    // useEffect(() => {
-    //     const handleClose = () => {
-    //         setIsSearchModalOpen(false);
-    //     };
-    //     window.addEventListener('closeSearchModal', handleClose);
-    //     return () => window.removeEventListener('closeSearchModal', handleClose);
-    // }, []);
+    useEffect(() => {
+        const handleClose = () => {
+            setIsSearchModalOpen(false);
+        };
+        window.addEventListener('closeSearchModal', handleClose);
+        return () => window.removeEventListener('closeSearchModal', handleClose);
+    }, []);
 
     const toggleDropdown = (name: string) => {
         setOpenDropdown(openDropdown === name ? null : name);

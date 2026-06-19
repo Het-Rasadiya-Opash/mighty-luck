@@ -72,6 +72,7 @@ export function HeaderContent() {
             className="hidden lg:flex items-center justify-center min-h-[36px] min-w-[36px] min-[375px]:min-h-[44px] min-[375px]:min-w-[44px] text-white hover:opacity-80 transition-opacity shrink-0"
             onClick={() => {
               window.dispatchEvent(new Event('toggleDesktopSidebar'));
+              window.dispatchEvent(new Event('closeSearchModal'));
             }}
             aria-label="Open menu"
           >
@@ -118,7 +119,10 @@ export function HeaderContent() {
 
               <button
                 className="flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors"
-                onClick={() => setIsDepositModalOpen(true)}
+                onClick={() => {
+                  setIsDepositModalOpen(true);
+                  window.dispatchEvent(new Event('closeSearchModal'));
+                }}
               >
                 <Image src="/wallet-dark.svg" width={16} height={16} alt="Wallet" />
                 <span className="font-manrope font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
@@ -136,7 +140,11 @@ export function HeaderContent() {
               </div>
               <button
                 className="flex flex-row justify-center items-center p-[8px] w-[30px] h-[30px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
-                onClick={() => setIsDepositModalOpen(true)}
+                onClick={() => {
+                  setIsDepositModalOpen(true);
+                  window.dispatchEvent(new Event('closeSearchModal'));
+                  window.dispatchEvent(new Event('closeMobileMenu'));
+                }}
               >
                 <Image src="/wallet-dark.svg" width={12} height={10.78} alt="Wallet" className="w-[12px] h-[10.78px] object-contain" />
               </button>
@@ -158,11 +166,7 @@ export function HeaderContent() {
                 <button
                   className="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] rounded-full overflow-hidden shrink-0 transition-opacity hover:opacity-80 flex items-center justify-center"
                   onClick={() => {
-                    const nextState = !isProfileOpen;
-                    setIsProfileOpen(nextState);
-                    if (nextState) {
-                      window.dispatchEvent(new Event('closeSearchModal'));
-                    }
+                    setIsProfileOpen(!isProfileOpen);
                   }}
                 >
                   <Image src="/user.png" alt="User" width={30} height={30} className="object-cover w-[30px] h-[30px] lg:w-[40px] lg:h-[40px]" />
