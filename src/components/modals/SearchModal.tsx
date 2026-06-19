@@ -104,7 +104,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const popularGames = gamesData.filter(game => game.isPopular);
 
   return createPortal(
-    <div className="fixed top-[50px] sm:top-[60px] md:top-0 bottom-0 md:bottom-0 left-0 right-0 z-[60] md:z-[100] flex items-center justify-center md:overflow-y-auto py-0 md:py-[16px] px-0 md:px-[12px] bg-[#0C1F56] md:bg-transparent">
+    <div className="fixed top-[50px] sm:top-[60px] md:top-0 bottom-0 md:bottom-0 left-0 right-0 z-[60] md:z-[120] flex items-center justify-center md:overflow-y-auto py-0 md:py-[16px] px-0 md:px-[12px] bg-[#0C1F56] md:bg-transparent">
       {/* Backdrop - only visible on desktop */}
       <div
         className="fixed inset-0 bg-transparent md:bg-[#0C1733]/70 md:backdrop-blur-[8px]"
