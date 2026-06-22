@@ -318,13 +318,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </p>
 
                         <div className="flex flex-row justify-center items-center gap-[10px] w-full h-[120px]">
-                          <div className="w-[50px] h-[50px] flex items-center justify-center relative">
+                          <div className="w-[50px] h-[50px] flex items-center justify-center relative animate-crown-1">
                             <CrownLightningIcon className="text-[#A5B8EF] w-[35.83px] h-[26.13px]" />
                           </div>
-                          <div className="w-[50px] h-[50px] flex items-center justify-center relative">
+                          <div className="w-[50px] h-[50px] flex items-center justify-center relative animate-crown-2">
                             <CrownLightningIcon className="text-[#A5B8EF] w-[35.83px] h-[26.13px]" />
                           </div>
-                          <div className="w-[50px] h-[50px] flex items-center justify-center relative">
+                          <div className="w-[50px] h-[50px] flex items-center justify-center relative animate-crown-3">
                             <CrownLightningIcon className="text-[#112F82] w-[35.83px] h-[26.13px]" />
                           </div>
                         </div>
