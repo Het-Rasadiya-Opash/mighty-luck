@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { SearchModal } from '@/components/modals/SearchModal';
 import SidebarReferSection from '@/components/sections/SidebarReferSection';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 
 export function SidebarContent() {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -268,6 +268,7 @@ export default function Sidebar() {
 function SidebarNavContent({ isCollapsed = false, onOpenSearch }: { isCollapsed?: boolean; onOpenSearch?: () => void }) {
     const [openDropdown, setOpenDropdown] = useState<string | null>('casino');
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+    const router = useRouter();
 
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -329,8 +330,16 @@ function SidebarNavContent({ isCollapsed = false, onOpenSearch }: { isCollapsed?
                         <SubNavItem icon={<Image src="/all.svg" alt="All Games" width={20} height={20} className="w-[20px] h-[20px] shrink-0" />} label="All Games" onClick={() => { setIsSearchModalOpen(true); onOpenSearch?.(); }} isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame1.svg" alt="New Games" width={20} height={20} className="w-[20px] h-[20px] shrink-0" />} label="New Games" isCollapsed={isCollapsed} />
                         <SubNavItem icon={<Image src="/Frame2.svg" alt="Popular Games" width={20} height={20} className="w-[20px] h-[20px] shrink-0" />} label="Popular Games" onClick={() => { setIsSearchModalOpen(true); onOpenSearch?.(); }} isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Frame3.svg" alt="Original Games" width={20} height={20} className="w-[20px] h-[20px] shrink-0" />} label="Original Games" isCollapsed={isCollapsed} />
-                        <SubNavItem icon={<Image src="/Vector1.svg" alt="Crash Games" width={20} height={20} className="w-[20px] h-[20px] shrink-0" />} label="Crash Games" isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Frame3.svg" alt="Original Games" width={20} height={20} className="w-[20px] h-[20px] shrink-0" />} label="Original Games" onClick={() => {
+                            const params = new URLSearchParams(searchParams?.toString());
+                            params.set('tab', 'originals');
+                            router.push(`${pathname}?${params.toString()}`);
+                        }} isCollapsed={isCollapsed} />
+                        <SubNavItem icon={<Image src="/Vector1.svg" alt="Crash Games" width={20} height={20} className="w-[20px] h-[20px] shrink-0" />} label="Crash Games" onClick={() => {
+                            const params = new URLSearchParams(searchParams?.toString());
+                            params.set('tab', 'crash-games');
+                            router.push(`${pathname}?${params.toString()}`);
+                        }} isCollapsed={isCollapsed} />
                     </div>
                 )}
             </div>

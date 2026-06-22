@@ -16,9 +16,10 @@ export interface GameSliderProps {
     title: string;
     icon: React.ReactNode;
     games: Game[];
+    viewAllTab?: string;
 }
 
-export function GameSliderContent({ id, title, icon, games }: GameSliderProps) {
+export function GameSliderContent({ id, title, icon, games, viewAllTab }: GameSliderProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(7);
     const [cardStep, setCardStep] = useState(164); // Default desktop (152 + 12)
@@ -31,6 +32,14 @@ export function GameSliderContent({ id, title, icon, games }: GameSliderProps) {
         const params = new URLSearchParams(searchParams?.toString());
         params.set('game', gameId.toString());
         router.push(`${pathname}?${params.toString()}`);
+    };
+
+    const handleViewAll = () => {
+        if (viewAllTab) {
+            const params = new URLSearchParams(searchParams?.toString());
+            params.set('tab', viewAllTab);
+            router.push(`${pathname}?${params.toString()}`);
+        }
     };
 
     const [isMobile, setIsMobile] = useState(false);
@@ -122,7 +131,10 @@ export function GameSliderContent({ id, title, icon, games }: GameSliderProps) {
                     </span>
                 </div>
                 <div className="flex items-center gap-3 md:gap-[20px]">
-                    <span className="font-['Manrope'] font-bold sm:font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] sm:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] sm:w-[45px] h-[16px] items-center justify-center">
+                    <span 
+                        onClick={handleViewAll}
+                        className="font-['Manrope'] font-bold sm:font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] sm:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] sm:w-[45px] h-[16px] items-center justify-center"
+                    >
                         View all
                     </span>
                     <div className="hidden sm:flex items-center gap-[4px]">

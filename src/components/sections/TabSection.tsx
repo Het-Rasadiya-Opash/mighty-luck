@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { Suspense } from 'react';
 import Image from 'next/image';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 const tabs = [
     { name: 'Lobby', icon: '/home.svg' },
@@ -14,42 +15,31 @@ const tabs = [
     { name: 'Collection', icon: '/collections.svg' },
 ];
 
-export default function TabSection() {
-    const [activeTab, setActiveTab] = useState('Lobby');
+function TabSectionContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+
+    const activeTabSlug = searchParams.get('tab') || 'lobby';
 
     return (
         <div className="w-full relative overflow-hidden">
             <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="flex flex-row items-center gap-[8px] w-max lg:w-[1136px] h-[50px] min-w-full">
                     {tabs.map((tab, index) => {
-                        const isActive = activeTab === tab.name;
+                        const tabSlug = tab.name.toLowerCase().replace(' ', '-');
+                        const isActive = activeTabSlug === tabSlug;
                         return (
                             <button
                                 key={index}
                                 onClick={() => {
-                                    setActiveTab(tab.name);
-
-                                    // Get all tab content sections
-                                    const allSections = document.querySelectorAll('.tab-content');
-
-                                    if (tab.name === 'Lobby') {
-                                        // Reset order for all sections
-                                        allSections.forEach((el) => {
-                                            (el as HTMLElement).style.order = '0';
-                                        });
+                                    const params = new URLSearchParams(searchParams.toString());
+                                    if (tabSlug === 'lobby') {
+                                        params.delete('tab');
                                     } else {
-                                        // Reset order for all sections
-                                        allSections.forEach((el) => {
-                                            (el as HTMLElement).style.order = '0';
-                                        });
-
-                                        // Move the requested section to the top
-                                        const id = tab.name.toLowerCase().replace(' ', '-');
-                                        const targetEl = document.getElementById(id);
-                                        if (targetEl) {
-                                            targetEl.style.order = '-1';
-                                        }
+                                        params.set('tab', tabSlug);
                                     }
+                                    router.push(`${pathname}?${params.toString()}`, { scroll: false });
                                 }}
                                 className={`flex flex-row justify-center items-center px-[16px] max-[435px]:px-[12.8px] py-[10px] max-[435px]:py-[8px] gap-[8px] max-[435px]:gap-[6.4px] w-[135px] max-[435px]:w-[106.6px] h-[50px] max-[435px]:h-[40px] rounded-[6px] shrink-0 transition-colors ${isActive
                                     ? 'bg-[#1463FF]'
@@ -86,5 +76,13 @@ export default function TabSection() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function TabSection() {
+    return (
+        <Suspense fallback={<div className="w-full h-[50px] bg-[#0C1F56] rounded-[6px]" />}>
+            <TabSectionContent />
+        </Suspense>
     );
 }

@@ -639,8 +639,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[396px] sm:h-auto overflow-hidden">
                     <div className="flex flex-col items-start gap-[8px] w-full">
                       <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">If you have a Bonus Code — enter it here</label>
-                      <div className="flex flex-row items-center gap-[8px] w-full h-[50px]">
-                        <div className={`flex-1 h-[50px] bg-[#112F82] rounded-[8px] px-[16px] flex flex-row items-center justify-between border transition-colors ${isPromoApplied ? 'border-transparent' : 'border-transparent focus-within:border-[#1463FF]'}`}>
+                      <div className="flex flex-row items-center gap-[8px] w-full h-[40px]">
+                        <div className={`flex-1 h-[40px] bg-[#112F82] rounded-[8px] px-[16px] flex flex-row items-center justify-between border transition-colors ${isPromoApplied ? 'border-transparent' : 'border-transparent focus-within:border-[#1463FF]'}`}>
                           <input
                             type="text"
                             placeholder="Promo Code"
@@ -666,7 +666,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                               }
                             }
                           }}
-                          className={`flex flex-row justify-center items-center h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] rounded-[8px] transition-colors shrink-0 px-[30px] py-[10px] gap-[10px] ${isPromoApplied ? 'w-[109px]' : 'w-[100px]'}`}
+                          className={`flex flex-row justify-center items-center h-[40px] bg-[#FFC83D] hover:bg-[#F2B926] rounded-[8px] transition-colors shrink-0 px-[30px] py-[10px] gap-[10px] ${isPromoApplied ? 'w-[109px]' : 'w-[100px]'}`}
                         >
                           <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#1A1404]">
                             {isPromoApplied ? 'Cancel' : 'Apply'}

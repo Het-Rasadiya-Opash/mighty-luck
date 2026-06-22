@@ -4,6 +4,7 @@ import HeroBanner from "@/components/sections/HeroBanner";
 import HeroSection1 from "@/components/sections/HeroSection1";
 import TabSection from "@/components/sections/TabSection";
 import GameSlider from "@/components/sections/GameSlider";
+import GameGrid from "@/components/sections/GameGrid";
 import Image from "next/image";
 import { Cherry, Zap, Rocket, Dices, CircleDollarSign } from "lucide-react";
 import { getServerSession } from "next-auth";
@@ -32,6 +33,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
   const resolvedParams = await searchParams;
   const gameId = resolvedParams?.game as string | undefined;
   const view = resolvedParams?.view as string | undefined;
+  const activeTab = (resolvedParams?.tab as string | undefined) || 'lobby';
 
   return (
     <Container>
@@ -57,62 +59,104 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
               <HeroBanner />
               {session ? <TabSection /> : <HeroSection1 />}
 
-          <div id="tab-content-container" className="flex flex-col gap-6 md:gap-8 lg:gap-10">
-            <div id="slots" className="tab-content">
-              <GameSlider
-                title="SLOTS (1,487)"
-                icon={<Image src="/slots.svg" alt="Slots" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                games={slotsData}
-              />
-            </div>
+              <div id="tab-content-container" className="flex flex-col gap-6 md:gap-8 lg:gap-10">
+                {activeTab === 'lobby' ? (
+                  <>
+                    <div id="slots" className="tab-content">
+                      <GameSlider
+                        title="SLOTS (1,487)"
+                        icon={<Image src="/slots.svg" alt="Slots" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                        games={slotsData}
+                        viewAllTab="slots"
+                      />
+                    </div>
 
-            <div id="originals" className="tab-content">
-              <GameSlider
-                title="ORIGINALS (14)"
-                icon={<Image src="/orignals.svg" alt="Originals" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                games={originalsData}
-              />
-            </div>
+                    <div id="originals" className="tab-content">
+                      <GameSlider
+                        title="ORIGINALS (14)"
+                        icon={<Image src="/orignals.svg" alt="Originals" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                        games={originalsData}
+                        viewAllTab="originals"
+                      />
+                    </div>
 
-            {
-              session ? <PromotionSection /> : <Why />
-            }
+                    {session ? <PromotionSection /> : <Why />}
 
-            <div id="crash-games" className="tab-content">
-              <GameSlider
-                title="CRASH GAMES (723)"
-                icon={<Image src="/crashgame.svg" alt="Crash Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                games={crashGamesData}
-              />
-            </div>
+                    <div id="crash-games" className="tab-content">
+                      <GameSlider
+                        title="CRASH GAMES (723)"
+                        icon={<Image src="/crashgame.svg" alt="Crash Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                        games={crashGamesData}
+                        viewAllTab="crash-games"
+                      />
+                    </div>
 
-            <div id="providers" className="tab-content">
-              <ProviderSection />
-            </div>
+                    <div id="providers" className="tab-content">
+                      <ProviderSection />
+                    </div>
 
-            <div id="table-games" className="tab-content">
-              <GameSlider
-                title="TABLE GAMES (51)"
-                icon={<Image src="/tg.svg" alt="Table Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                games={tableGamesData}
-              />
-            </div>
+                    <div id="table-games" className="tab-content">
+                      <GameSlider
+                        title="TABLE GAMES (51)"
+                        icon={<Image src="/tg.svg" alt="Table Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                        games={tableGamesData}
+                        viewAllTab="table-games"
+                      />
+                    </div>
 
-            <div id="bonus-buys" className="tab-content">
-              <GameSlider
-                title="BONUS BUYS (145)"
-                icon={<Image src="/bb.svg" alt="Bonus Buys" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                games={bonusBuysData}
-              />
-            </div>
+                    <div id="bonus-buys" className="tab-content">
+                      <GameSlider
+                        title="BONUS BUYS (145)"
+                        icon={<Image src="/bb.svg" alt="Bonus Buys" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                        games={bonusBuysData}
+                        viewAllTab="bonus-buys"
+                      />
+                    </div>
 
-            <div id="collection" className="tab-content">
-              <CollectionSection />
-            </div>
-            <div id="recent-winners" className="tab-content">
-              <RecentWinnerSection />
-            </div>
-            </div>
+                    <div id="collection" className="tab-content">
+                      <CollectionSection />
+                    </div>
+                  </>
+                ) : activeTab === 'slots' ? (
+                  <GameGrid
+                    title="SLOTS (1,487)"
+                    icon={<Image src="/slots.svg" alt="Slots" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                    games={slotsData}
+                  />
+                ) : activeTab === 'originals' ? (
+                  <GameGrid
+                    title="ORIGINALS (14)"
+                    icon={<Image src="/orignals.svg" alt="Originals" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                    games={originalsData}
+                  />
+                ) : activeTab === 'crash-games' ? (
+                  <GameGrid
+                    title="CRASH GAMES (723)"
+                    icon={<Image src="/crashgame.svg" alt="Crash Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                    games={crashGamesData}
+                  />
+                ) : activeTab === 'providers' ? (
+                  <ProviderSection />
+                ) : activeTab === 'table-games' ? (
+                  <GameGrid
+                    title="TABLE GAMES (51)"
+                    icon={<Image src="/tg.svg" alt="Table Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                    games={tableGamesData}
+                  />
+                ) : activeTab === 'bonus-buys' ? (
+                  <GameGrid
+                    title="BONUS BUYS (145)"
+                    icon={<Image src="/bb.svg" alt="Bonus Buys" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
+                    games={bonusBuysData}
+                  />
+                ) : activeTab === 'collection' ? (
+                  <CollectionSection />
+                ) : null}
+
+                <div id="recent-winners" className="tab-content">
+                  <RecentWinnerSection />
+                </div>
+              </div>
             </>
           )}
           <AboutSection />
