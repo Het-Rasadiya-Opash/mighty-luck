@@ -536,6 +536,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                   <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
                                 </div>
                               </div>
+                              
 
                               <div className="grid grid-cols-2 gap-[8px] w-full h-[50px] sm:h-[40px]">
                                 <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
