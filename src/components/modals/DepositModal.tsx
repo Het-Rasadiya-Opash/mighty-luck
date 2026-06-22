@@ -208,36 +208,36 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const modalHeightClass = (isBonusesTab || isWithdrawTxTab)
     ? 'h-[573px] sm:h-[518px]'
     : (isFiatAddress
-        ? 'h-[715px] sm:h-[633px]'
-        : (isFiatPayment
-            ? 'h-[743px] sm:h-[647px]'
-            : (isPending
-                ? 'h-[612px] sm:h-[604px]'
-                : 'h-[673px] sm:h-[604px]')));
+      ? 'h-[715px] sm:h-[633px]'
+      : (isFiatPayment
+        ? 'h-[743px] sm:h-[647px]'
+        : (isPending
+          ? 'h-[612px] sm:h-[604px]'
+          : 'h-[673px] sm:h-[604px]')));
 
   const outerBoxHeightClass = (isBonusesTab || isWithdrawTxTab)
     ? 'h-[495px] sm:h-[462px]'
     : (isFiatAddress
-        ? 'h-[637px] sm:h-[503px]'
-        : (isFiatPayment
-            ? 'h-[665px] sm:h-[517px]'
-            : (isPending
-                ? 'h-[534px] sm:h-[474px]'
-                : 'h-[595px] sm:h-[474px]')));
+      ? 'h-[637px] sm:h-[503px]'
+      : (isFiatPayment
+        ? 'h-[665px] sm:h-[517px]'
+        : (isPending
+          ? 'h-[534px] sm:h-[474px]'
+          : 'h-[595px] sm:h-[474px]')));
 
   const innerBoxHeightClass = (isBonusesTab || isWithdrawTxTab)
     ? 'h-[442px] sm:h-[409px]'
     : (isFiatAddress
-        ? 'h-[500px] sm:h-[450px]'
-        : (isFiatPayment
-            ? 'h-[528px] sm:h-[464px]'
-            : (isPending
-                ? 'h-[371px] sm:h-[421px]'
-                : 'h-[458px] sm:h-[421px]')));
+      ? 'h-[500px] sm:h-[450px]'
+      : (isFiatPayment
+        ? 'h-[528px] sm:h-[464px]'
+        : (isPending
+          ? 'h-[371px] sm:h-[421px]'
+          : 'h-[458px] sm:h-[421px]')));
 
   return createPortal(
     <div className="fixed inset-0 z-40 sm:z-[120] overflow-y-auto top-[50px] sm:top-0">
-   <div
+      <div
         className="fixed inset-0 top-[50px] min-[426px]:top-0 bg-[#091741] min-[426px]:bg-[#0C1733]/70 min-[426px]:backdrop-blur-[8px]"
         onClick={onClose}
       />
@@ -348,7 +348,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           >
                             <div className="flex flex-row items-center gap-[12px]">
                               <div className="w-[16px] h-[16px] flex items-center justify-center shrink-0">
-                                <RenderBonusIcon type={selectedBonus.iconType} className="w-[16px] h-[16px] text-[#FFC83D]" />
+                                <RenderBonusIcon type={selectedBonus.iconType} className="w-[16px] h-[16px]" color="bg-[#FFC83D]" />
                               </div>
                               <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
                                 {selectedBonus.title}
@@ -376,7 +376,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                     <div className="shrink-0 flex items-center justify-center">
                                       <RenderBonusIcon
                                         type={bonus.iconType}
-                                        className={`w-[16px] h-[16px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}
+                                        className="w-[16px] h-[16px] transition-colors"
+                                        color={isSelected ? 'bg-[#FFC83D]' : 'bg-[#A5B8EF]'}
                                       />
                                     </div>
                                     <div className="flex flex-col justify-center gap-[2px]">
@@ -404,7 +405,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                               {selectedPayment.id === 'crypto' ? (
                                 <Image src="/d-bit.svg" width={16} height={16} alt={selectedPayment.symbol || 'BTC'} className="shrink-0" />
                               ) : (
-                                <FiatIcons />
+                                <FiatIcons isSelected={true} />
                               )}
                               <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white shrink-0">
                                 {selectedPayment.titleClosed}
@@ -428,10 +429,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                   >
                                     {payment.id === 'crypto' ? (
                                       <div className={`flex items-center justify-center shrink-0 ${isSelected ? 'border-[1.5px] border-white rounded-full' : ''}`}>
-                                        <Image src="/d-bit.svg" width={20} height={20} alt={payment.symbol || 'BTC'} className="shrink-0" />
+                                        <Image src="/d-bit.svg" width={20} height={20} alt={payment.symbol || 'BTC'} className={`shrink-0 transition-all ${isSelected ? '' : 'grayscale opacity-60'}`} />
                                       </div>
                                     ) : (
-                                      <FiatIcons className={isSelected ? 'opacity-100' : 'opacity-80'} />
+                                      <FiatIcons className={isSelected ? 'opacity-100' : 'opacity-80'} isSelected={isSelected} />
                                     )}
                                     <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>
                                       {payment.titleExpanded}
@@ -783,8 +784,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
                       <div className="flex flex-row justify-center items-center gap-[8px] w-full h-[16px]">
                         <svg className="w-[12px] h-[12px] text-[#7795E8] shrink-0" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="6" cy="6" r="5.25" stroke="currentColor" strokeWidth="1.2"/>
-                          <path d="M6 8.5V7.5M6 6.5C6.4 6.5 6.8 6.2 6.8 5.75C6.8 5.3 6.4 5 6 5C5.6 5 5.2 5.3 5.2 5.75" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                          <circle cx="6" cy="6" r="5.25" stroke="currentColor" strokeWidth="1.2" />
+                          <path d="M6 8.5V7.5M6 6.5C6.4 6.5 6.8 6.2 6.8 5.75C6.8 5.3 6.4 5 6 5C5.6 5 5.2 5.3 5.2 5.75" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                         </svg>
                         <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#7795E8]">
                           Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
@@ -822,24 +823,51 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     document.body
   );
 }
-export function RenderBonusIcon({ type, className }: { type: string, className?: string }) {
-  if (type === 'gift') return <Image src="/gift.svg" width={16} height={16} alt="Gift" className={className} />;
-  if (type === 'badge') return <Image src="/star.svg" width={16} height={16} alt="Badge" className={className} />;
-  if (type === 'coins') return <Image src="/bonus.svg" width={16} height={16} alt="Coins" className={className} />;
-  if (type === 'ban') return <Image src="/close.svg" width={16} height={16} alt="Ban" className={className} />;
-  return null;
+export function RenderBonusIcon({ type, className, color = 'bg-[#A5B8EF]' }: { type: string; className?: string; color?: string }) {
+  let maskUrl = '';
+  if (type === 'gift') maskUrl = "url('/gift.svg')";
+  if (type === 'badge') maskUrl = "url('/star.svg')";
+  if (type === 'coins') maskUrl = "url('/bonus.svg')";
+  if (type === 'ban') maskUrl = "url('/close.svg')";
+
+  if (!maskUrl) return null;
+
+  return (
+    <div
+      className={`${color} ${className || ''}`}
+      style={{
+        maskImage: maskUrl,
+        WebkitMaskImage: maskUrl,
+        maskSize: 'contain',
+        WebkitMaskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        WebkitMaskRepeat: 'no-repeat',
+        maskPosition: 'center',
+        WebkitMaskPosition: 'center',
+      }}
+    />
+  );
 }
 
-function FiatIcons({ className }: { className?: string }) {
+function FiatIcons({ className, isSelected }: { className?: string; isSelected?: boolean }) {
+  const colorClass = isSelected ? 'bg-[#FFC83D]' : 'bg-[#A5B8EF]';
+  const maskUrl = "url('/visa.svg')";
   return (
-    <div className={`flex flex-row items-center gap-[4px] shrink-0 ${className || ''}`}>
-      <div className="flex items-center justify-center w-[22px] h-[14px] bg-[#A5B8EF] rounded-[2px]">
-        <span className="text-[#112F82] font-[family-name:var(--font-manrope)] font-extrabold text-[6px] italic tracking-tighter">VISA</span>
-      </div>
-      <div className="relative flex items-center justify-center">
-        <CreditCard size={18} className="text-[#A5B8EF]" />
-      </div>
-    </div>
+    <div
+      className={`${colorClass} ${className || ''} shrink-0 transition-colors`}
+      style={{
+        width: '42px',
+        height: '20px',
+        maskImage: maskUrl,
+        WebkitMaskImage: maskUrl,
+        maskSize: 'contain',
+        WebkitMaskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        WebkitMaskRepeat: 'no-repeat',
+        maskPosition: 'center',
+        WebkitMaskPosition: 'center',
+      }}
+    />
   );
 }
 
