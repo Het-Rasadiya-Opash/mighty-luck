@@ -66,8 +66,8 @@ export function HeaderContent() {
       <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-6">
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div
-            className="absolute rounded-full hidden md:block"
-            style={{ width: '143px', height: '143px', left: '114px', top: '37px', background: '#1463FF', filter: 'blur(25px)' }}
+            className="absolute rounded-full hidden sm:block left-[12px] md:left-[24px] lg:left-[114px]"
+            style={{ width: '143px', height: '143px', top: '37px', background: '#1463FF', filter: 'blur(25px)' }}
           ></div>
           <div
             className="absolute rounded-full sm:hidden"
