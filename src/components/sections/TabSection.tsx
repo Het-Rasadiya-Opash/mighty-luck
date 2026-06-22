@@ -47,16 +47,18 @@ function TabSectionContent() {
                                     }`}
                             >
                                 <div className="w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] flex items-center justify-center shrink-0">
-                                    <Image 
-                                        src={tab.icon} 
-                                        alt={tab.name} 
-                                        width={20} 
-                                        height={20} 
-                                        className="w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] shrink-0 object-contain" 
-                                        style={{ 
-                                            filter: isActive 
-                                                ? 'brightness(0) saturate(100%) invert(76%) sepia(87%) saturate(1455%) hue-rotate(7deg) brightness(102%) contrast(101%)' 
-                                                : 'brightness(0) saturate(100%) invert(86%) sepia(21%) saturate(301%) hue-rotate(188deg) brightness(105%) contrast(96%)' 
+                                    <div
+                                        className="w-[20px] max-[435px]:w-[16px] h-[20px] max-[435px]:h-[16px] shrink-0"
+                                        style={{
+                                            backgroundColor: isActive ? '#FFB800' : '#D2DCF7',
+                                            maskImage: `url('${tab.icon}')`,
+                                            WebkitMaskImage: `url('${tab.icon}')`,
+                                            maskSize: 'contain',
+                                            WebkitMaskSize: 'contain',
+                                            maskRepeat: 'no-repeat',
+                                            WebkitMaskRepeat: 'no-repeat',
+                                            maskPosition: 'center',
+                                            WebkitMaskPosition: 'center',
                                         }}
                                     />
                                 </div>
