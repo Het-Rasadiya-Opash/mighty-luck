@@ -4,7 +4,6 @@ import HeroBanner from "@/components/sections/HeroBanner";
 import HeroSection1 from "@/components/sections/HeroSection1";
 import TabSection from "@/components/sections/TabSection";
 import GameSlider from "@/components/sections/GameSlider";
-import GameGrid from "@/components/sections/GameGrid";
 import Image from "next/image";
 import { Cherry, Zap, Rocket, Dices, CircleDollarSign } from "lucide-react";
 import { getServerSession } from "next-auth";
@@ -118,19 +117,19 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
                     </div>
                   </>
                 ) : activeTab === 'slots' ? (
-                  <GameGrid
+                  <GameSlider
                     title="SLOTS (1,487)"
                     icon={<Image src="/slots.svg" alt="Slots" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                     games={slotsData}
                   />
                 ) : activeTab === 'originals' ? (
-                  <GameGrid
+                  <GameSlider
                     title="ORIGINALS (14)"
                     icon={<Image src="/orignals.svg" alt="Originals" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                     games={originalsData}
                   />
                 ) : activeTab === 'crash-games' ? (
-                  <GameGrid
+                  <GameSlider
                     title="CRASH GAMES (723)"
                     icon={<Image src="/crashgame.svg" alt="Crash Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                     games={crashGamesData}
@@ -138,13 +137,13 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
                 ) : activeTab === 'providers' ? (
                   <ProviderSection />
                 ) : activeTab === 'table-games' ? (
-                  <GameGrid
+                  <GameSlider
                     title="TABLE GAMES (51)"
                     icon={<Image src="/tg.svg" alt="Table Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                     games={tableGamesData}
                   />
                 ) : activeTab === 'bonus-buys' ? (
-                  <GameGrid
+                  <GameSlider
                     title="BONUS BUYS (145)"
                     icon={<Image src="/bb.svg" alt="Bonus Buys" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
                     games={bonusBuysData}
