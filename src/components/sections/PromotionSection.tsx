@@ -11,6 +11,7 @@ const promos = [
         cta: "Claim Now",
         bg: "/pp-1.png",
         gradient: "linear-gradient(90deg, #091741 21.96%, rgba(9, 23, 65, 0) 60.27%)",
+        mobileGradient: "linear-gradient(90deg, #091741 48%, rgba(9,23,65,0.75) 62%, rgba(9,23,65,0.25) 80%, rgba(9,23,65,0) 100%)",
     },
     {
         id: 2,
@@ -18,6 +19,7 @@ const promos = [
         cta: "Claim Now",
         bg: "/pp-2.png",
         gradient: "linear-gradient(90deg, #060B4D 39.55%, rgba(6, 11, 77, 0) 50%)",
+        mobileGradient: "linear-gradient(90deg, #060B4D 48%, rgba(6,11,77,0.75) 62%, rgba(6,11,77,0.25) 80%, rgba(6,11,77,0) 100%)",
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ const promos = [
         cta: "Claim Now",
         bg: "/pp-1.png",
         gradient: "linear-gradient(90deg, #091741 21.96%, rgba(9, 23, 65, 0) 60.27%)",
+        mobileGradient: "linear-gradient(90deg, #091741 48%, rgba(9,23,65,0.75) 62%, rgba(9,23,65,0.25) 80%, rgba(9,23,65,0) 100%)",
     },
 ];
 
@@ -96,20 +99,28 @@ export default function PromotionSection() {
             <div
                 ref={scrollRef}
                 onScroll={handleScroll}
-                className="flex flex-row items-center gap-[8px] sm:gap-3 w-full h-[163px] sm:h-[220px] flex-none overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                className="flex flex-row items-center gap-[8px] sm:gap-3 w-full h-[163px] sm:h-[220px] flex-none overflow-x-auto scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
                 {promos.map((promo) => (
                     <div
                         key={promo.id}
-                        className="relative w-[278px] sm:w-[400px] md:w-[560px] h-[163px] sm:h-[200px] md:h-[220px] rounded-[8px] sm:rounded-[16px] flex-none overflow-hidden"
+                        className="relative w-full sm:w-[400px] md:w-[560px] h-[163px] sm:h-[200px] md:h-[220px] rounded-[8px] sm:rounded-[16px] flex-none overflow-hidden snap-start snap-always shrink-0"
                     >
                         <div
-                            className="absolute inset-0 bg-cover bg-right bg-no-repeat rounded-[10px] sm:rounded-none"
+                            className="absolute inset-0 bg-cover bg-right bg-no-repeat  rounded-[10px] sm:rounded-none"
                             style={{ backgroundImage: `url('${promo.bg}')` }}
                         />
 
+
+                        {/* Mobile gradient — stronger to hide text baked into bg image */}
                         <div
-                            className="absolute inset-0 rounded-[10px] sm:rounded-none"
+                            className="absolute inset-0 rounded-[10px] block sm:hidden"
+                            style={{ background: promo.mobileGradient }}
+                        />
+
+                        {/* Desktop gradient — original design */}
+                        <div
+                            className="absolute inset-0 rounded-none hidden sm:block"
                             style={{ background: promo.gradient }}
                         />
 
@@ -140,7 +151,7 @@ export default function PromotionSection() {
 
                         <div className="relative z-[2] w-full h-full p-[17.78px] sm:p-[24px] flex flex-col justify-center items-start pointer-events-none">
                             <div className="flex flex-col items-start gap-[12px] sm:gap-[16px] w-[141px] h-[97.55px] sm:h-auto sm:w-full sm:max-w-[290px] flex-none pointer-events-auto">
-                                
+
                                 <h3 className="font-[family-name:var(--font-jost)] font-extrabold text-[14px] leading-[120%] tracking-[0.01em] text-white w-[141px] h-[51px] whitespace-normal block sm:hidden">
                                     {promo.title}
                                 </h3>
