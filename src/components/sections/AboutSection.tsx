@@ -11,7 +11,6 @@ export default function AboutSection() {
             <div 
                 className={`flex flex-col items-center p-0 gap-[24px] lg:gap-[32px] w-full max-w-[1136px] relative isolate overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded ? 'max-h-[3000px]' : 'max-h-[910px] md:max-h-[708px]'}`}
             >
-                {/* 1st Group */}
                 <div className="flex flex-col items-start p-0 gap-[16px] lg:gap-[24px] w-[374px] max-w-full md:w-full lg:w-[800px] md:px-[24px] lg:px-0 flex-none z-0">
                     <h2 className="w-full font-['Jost'] font-bold text-[22px] md:text-[32px] lg:text-[32px] leading-[26px] md:leading-[120%] tracking-[-0.02em] text-white flex-none m-0">
                         Play the Best Crypto Casino Games Online at Mighty Luck — Fast, Fair and Secure
@@ -21,7 +20,6 @@ export default function AboutSection() {
                     </p>
                 </div>
 
-                {/* 2nd Group */}
                 <div className="flex flex-col items-start p-0 gap-[12px] lg:gap-[16px] w-[374px] max-w-full md:w-full lg:w-[800px] md:px-[24px] lg:px-0 flex-none z-10">
                     <h3 className="w-full font-['Jost'] font-bold text-[18px] md:text-[24px] lg:text-[24px] leading-[26px] md:leading-[35px] text-white flex-none m-0">
                         Why Mighty Luck Is the Ultimate Place to Play Crypto Casino Games
@@ -31,7 +29,6 @@ export default function AboutSection() {
                     </p>
                 </div>
 
-                {/* 3rd Group */}
                 <div className="flex flex-col items-start p-0 gap-[12px] lg:gap-[16px] w-[374px] max-w-full md:w-full lg:w-[800px] md:px-[24px] lg:px-0 flex-none z-20 pb-[60px]">
                     <h3 className="w-full font-['Jost'] font-bold text-[18px] md:text-[24px] lg:text-[24px] leading-[26px] md:leading-[35px] text-white flex-none m-0">
                         Massive Game Variety
@@ -41,7 +38,6 @@ export default function AboutSection() {
                     </p>
                 </div>
 
-                {/* Overlay / Read More */}
                 <div 
                     className={`absolute w-[414px] md:w-full md:max-w-[800px] h-[200px] left-1/2 -translate-x-1/2 bottom-0 flex flex-col justify-end items-center px-[10px] py-[24px] gap-[10px] z-30 pointer-events-none transition-all duration-500 ${isExpanded ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}
                     style={{ background: isExpanded ? 'transparent' : 'linear-gradient(0deg, #091741 0%, rgba(9, 23, 65, 0) 100%)' }}
@@ -59,7 +55,6 @@ export default function AboutSection() {
                     </button>
                 </div>
 
-                {/* Expanded Read Less */}
                 {isExpanded && (
                     <div className="flex flex-col justify-end items-center px-[10px] pb-[24px] pt-[24px] gap-[10px] z-30 w-full animate-in fade-in duration-500 absolute bottom-0 left-1/2 -translate-x-1/2">
                         <button 

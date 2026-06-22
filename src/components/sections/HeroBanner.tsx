@@ -5,7 +5,6 @@ export default function HeroBanner() {
         <div className="flex flex-col items-start gap-[8px] sm:gap-[20px] w-full">
             <div className="relative w-full h-[170px] sm:h-[260px] md:h-[300px] lg:h-[356px] flex-none overflow-hidden rounded-[10px] md:rounded-[20px]">
 
-            {/* Mobile Image container with exact Figma math */}
             <div className="sm:hidden absolute w-[547.18px] h-[170.03px] left-[calc(50%-547.18px/2+71.59px)] top-[calc(50%-170.03px/2+0.02px)]">
                 <Image
                     src="/new-banner.jpg"
@@ -17,7 +16,6 @@ export default function HeroBanner() {
                 />
             </div>
 
-            {/* Desktop Image */}
             <Image
                 src="/new-banner.jpg"
                 alt="Hero Banner"
@@ -27,14 +25,10 @@ export default function HeroBanner() {
                 priority
             />
 
-            {/* Mobile Left Ellipse 7 */}
             <div className="sm:hidden absolute w-[226px] h-[226px] -left-[50px] -top-[38px] z-[1] rounded-full bg-[#03123C] blur-[29.26px]" />
-            {/* Desktop Left Ellipse */}
             <div className="hidden sm:block absolute -left-[120px] lg:-left-[161px] -top-[80px] lg:-top-[102px] z-[1] h-[420px] w-[420px] lg:h-[575px] lg:w-[575px] rounded-full bg-[#06102B] blur-[75px]" />
 
-            {/* Mobile Right Ellipse 8 (Pushed outside based on left: 501.42px inside a 374px container) */}
             <div className="sm:hidden absolute w-[62.14px] h-[62.14px] left-[501.42px] top-[130.53px] z-[1] rounded-full bg-[#010A25] blur-[12.04px]" />
-            {/* Desktop Right Ellipse */}
             <div className="hidden sm:block absolute right-0 bottom-0 z-[1] h-[80px] w-[80px] lg:h-[129px] lg:w-[129px] rounded-full bg-[#010A25] blur-[25px]" />
 
             <div className="absolute left-[19.27px] sm:left-[28px] md:left-[40px] top-[calc(50%-112.47px/2+0.74px)] sm:top-[40px] md:top-[60px] lg:top-[101px] z-10 flex flex-col items-start gap-[16px] sm:gap-3 md:gap-[24px] w-[220.13px] sm:w-auto sm:max-w-[60%] lg:max-w-[457px]">
@@ -57,7 +51,6 @@ export default function HeroBanner() {
             </div>
         </div>
 
-            {/* Pagination Dots */}
             <div className="flex flex-col items-center w-full h-[6px]">
                 <div className="flex flex-row justify-center items-center gap-[8px] h-[6px]">
                     <div style={{ width: '12px', height: '6px', background: '#D2DCF7', borderRadius: '150px' }} />

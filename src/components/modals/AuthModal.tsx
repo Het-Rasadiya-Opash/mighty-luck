@@ -140,7 +140,6 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
           ✕
         </button>
 
-        {/* Left Panel */}
         <div className="relative w-[340px] h-[546px] rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
           <div
             className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px]"
@@ -178,11 +177,9 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
           </div>
         </div>
 
-        {/* Right Panel */}
         <div className="relative w-full md:w-[390px] h-full md:h-[546px] bg-[#091741] rounded-none md:rounded-l-none md:rounded-r-[16px] flex flex-col items-start shrink-0 overflow-y-auto md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
           <div className="hidden min-[426px]:block absolute top-[-145px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full -z-10" />
 
-          {/* MOBILE TOP HEADER (Back + Tabs) */}
           <div className="flex md:hidden flex-row items-center px-[20px] pt-[12px] pb-[30px] gap-[20px] w-full shrink-0">
             <button onClick={handleClose} className="flex flex-col justify-center items-center w-[30px] h-[30px] shrink-0 text-[#D2DCF7] hover:text-white transition-colors">
               <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +203,6 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             </div>
           </div>
 
-          {/* MOBILE BANNER */}
           <div className="md:hidden relative w-full h-[170px] rounded-t-[12px] bg-cover bg-center shrink-0 overflow-hidden" style={{ backgroundImage: 'url(/login-1.png)' }}>
             <div className="absolute left-[calc(50%-140.5px)] top-[calc(50%-140.5px)] w-[281px] h-[281px] bg-[#0051F1] blur-[62px] pointer-events-none" />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-[12px] z-10">
@@ -226,7 +222,6 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             </div>
           </div>
 
-          {/* DESKTOP HEADER (Logo + Tabs) */}
           <div className="hidden md:flex relative w-full max-w-[350px] mx-auto pt-[24px] flex-col items-start gap-[16px] z-10 px-[20px]">
             <div className="w-full flex justify-start items-start">
               <Image src="/Horizontal logo.png" alt="Mighty Luck" width={140} height={26} className="object-contain" />
@@ -247,11 +242,9 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             </div>
           </div>
 
-          {/* FORM AREA */}
           <div className="w-full px-[20px] py-[20px] pb-[40px] md:pb-[24px] md:px-[20px] max-w-[414px] md:max-w-[350px] mx-auto flex flex-col items-center md:items-start flex-1 shrink-0 z-10 gap-[32px] md:gap-[16px]">
             <form onSubmit={handleSubmit} className="flex flex-col items-start gap-[16px] md:gap-[12px] w-full">
               {isLogin ? (
-                // Login Form
                 <>
                   <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] md:h-[40px] bg-[#112F82] rounded-[8px]">
                     <input

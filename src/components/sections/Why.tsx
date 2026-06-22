@@ -27,17 +27,16 @@ export default function Why() {
                         WHY JOIN MIGHTY LUCK?
                     </h2>
                 </div>
-                
-                {/* Desktop Carousel Arrows (Hidden on Mobile) */}
+
                 <div className="hidden md:flex flex-row items-center gap-[12px]">
                     <button className="flex flex-col justify-center items-center w-[30px] h-[30px] bg-[#112F82] opacity-40 rounded-[4px] rotate-180 hover:opacity-100 transition-opacity">
                         <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 9L5 5L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M1 9L5 5L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
                     <button className="flex flex-col justify-center items-center w-[30px] h-[30px] bg-[#112F82] rounded-[4px] hover:bg-[#1A3FA6] transition-colors">
                         <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 9L5 5L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M1 9L5 5L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
                 </div>
@@ -47,13 +46,12 @@ export default function Why() {
                 {features.map((item, index) => (
                     <div
                         key={index}
-                        className={`relative shrink-0 snap-start overflow-hidden group ${
-                            index === 0 
-                                ? 'w-[279px] h-[158px] rounded-[10px] md:w-full md:h-auto md:aspect-[370/220] md:rounded-[16px]' 
+                        className={`relative shrink-0 snap-start overflow-hidden group ${index === 0
+                                ? 'w-[279px] h-[158px] rounded-[10px] md:w-full md:h-auto md:aspect-[370/220] md:rounded-[16px]'
                                 : index === 1
                                     ? 'w-[266.19px] h-[158.27px] rounded-[10px] md:w-full md:h-auto md:aspect-[370/220] md:rounded-[16px]'
                                     : 'w-[266.19px] h-[158.27px] rounded-[11.51px] md:w-full md:h-auto md:aspect-[370/220] md:rounded-[16px]'
-                        }`}
+                            }`}
                     >
                         <Image
                             src={item.image}

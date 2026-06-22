@@ -15,7 +15,6 @@ export default function GameFrame({
         className="w-full max-w-[1136px] aspect-[1136/657] rounded-[16px] bg-cover bg-center bg-no-repeat shadow-2xl relative overflow-hidden"
         style={{ backgroundImage: `url(${imageSrc})` }}
       >
-        {/* If the image ever fails to load or requires an overlay, it can be added here */}
       </div>
     </div>
   );

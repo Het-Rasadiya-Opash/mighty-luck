@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { SearchModal } from '@/components/modals/SearchModal';
+import SidebarReferSection from '@/components/sections/SidebarReferSection';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export function SidebarContent() {
@@ -69,9 +70,7 @@ export function SidebarContent() {
             <aside className={`hidden lg:flex flex-col gap-[10px] shrink-0 transition-[width] duration-300 ${isCollapsed ? 'w-[72px]' : 'w-[232px]'}`}>
                 <div className={`flex flex-none flex-col items-start rounded-[16px] bg-[#0C1F56] overflow-hidden transition-all duration-300 ${isCollapsed ? 'h-0 p-0 opacity-0 m-0 gap-0 border-0' : 'gap-[10px] h-[134px] w-[232px] p-[16px] mb-[10px]'}`}>
                     <div className="flex w-[200px] flex-none flex-col items-start gap-[8px]">
-                        {/* Top Two Cards Row */}
                         <div className="flex h-[44px] w-[200px] flex-none flex-row items-center gap-[4px]">
-                            {/* Refer Friend */}
                             <div className="relative isolate overflow-hidden flex h-[44px] w-[98px] flex-none items-center gap-[2px] rounded-[8px] bg-[#3B005F] px-[8px] py-[6px]">
                                 <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
                                     <div className="absolute -left-[43px] -top-[15px] h-[97px] w-[97px] rounded-full bg-[#A92BF5] blur-[25px]" />
@@ -105,7 +104,6 @@ export function SidebarContent() {
                                 </div>
                             </div>
 
-                            {/* VIP Transfer */}
                             <div className="relative isolate overflow-hidden flex h-[44px] w-[98px] flex-none items-center gap-[2px] rounded-[8px] bg-[#500039] px-[8px] py-[6px]">
                                 <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
                                     <div className="absolute -left-[40px] -top-[5px] h-[97px] w-[97px] rounded-full bg-[#FF3981] blur-[25px]" />
@@ -140,7 +138,6 @@ export function SidebarContent() {
                             </div>
                         </div>
 
-                        {/* Winter Rush */}
                         <div className="relative isolate overflow-hidden flex h-[50px] w-[200px] flex-none items-center gap-[10px] rounded-[8px] bg-[#091741] px-[10px] py-[6px]">
                             <div className="absolute inset-0 z-[-1] overflow-hidden rounded-[8px]">
                                 <div className="absolute -left-[53px] -top-[22px] h-[110px] w-[110px] rounded-full bg-[#1463FF] blur-[25px]" />
@@ -197,8 +194,6 @@ export function SidebarContent() {
                 </div>
             </aside>
 
-            {/* Mobile Bottom Navigation */}
-            {/* Fill div covers gap behind rounded-t nav corners - only when menu is open */}
             {isMobileMenuOpen && <div className="lg:hidden fixed bottom-0 left-0 right-0 h-[91px] bg-[#0C1F56] z-[98]" />}
             <nav id="mobile-bottom-nav" className={`lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent gap-[2px] ${(isMobileSearchOpen || isMobileMenuOpen) ? '' : 'shadow-[0_-4px_10px_rgba(0,0,0,0.2)]'}`}>
                 <div
@@ -245,10 +240,10 @@ export function SidebarContent() {
                 </div>
             </nav>
 
-            {/* Mobile Menu Drawer */}
             {isMobileMenuOpen && (
                 <div className="lg:hidden fixed top-[50px] sm:top-[60px] left-0 right-0 bottom-[75px] z-[40] bg-[#0C1F56] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
                     <div className="p-[20px] flex flex-col gap-[10px] w-full flex-1">
+                        <SidebarReferSection />
                         <SidebarNav isCollapsed={false} onOpenSearch={() => setIsMobileMenuOpen(false)} />
                     </div>
                 </div>

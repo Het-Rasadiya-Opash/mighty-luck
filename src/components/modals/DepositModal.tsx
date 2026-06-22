@@ -251,7 +251,6 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
           </button>
 
           <div className={`relative flex flex-col items-center w-full ${modalHeightClass} pt-[16px] sm:pt-[24px] px-[20px] pb-[40px] sm:pb-[32px] gap-[16px] sm:gap-[24px]`}>
-            {/* Background & Clipping for Blur */}
             <div className="absolute inset-0 bg-[#091741] rounded-t-[30px] sm:rounded-[16px] overflow-hidden pointer-events-none">
               <div className="absolute top-[-125px] sm:top-[-145px] left-[calc(50%-165px)] sm:left-1/2 -translate-x-1/2 w-[174px] sm:w-[173px] h-[176px] sm:h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
             </div>

@@ -105,16 +105,13 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   return createPortal(
     <div className="fixed top-[50px] sm:top-[60px] lg:top-0 bottom-[75px] lg:bottom-0 left-0 right-0 z-[60] lg:z-[120] flex items-center justify-center lg:overflow-y-auto py-0 lg:py-[16px] px-0 lg:px-[12px] bg-[#0C1F56] lg:bg-transparent">
-      {/* Backdrop - only visible on desktop */}
       <div
         className="fixed inset-0 bg-transparent lg:bg-[#0C1733]/70 lg:backdrop-blur-[8px]"
         onClick={onClose}
       />
 
-      {/* Desktop Close Button */}
       <div className="relative w-full max-w-[1056px] my-auto pointer-events-none flex justify-center px-0 lg:px-[60px] xl:px-0 h-full lg:h-auto">
         <div className="relative pointer-events-auto w-full h-full lg:h-auto">
-          {/* Close Button - Desktop only */}
           <button
             onClick={onClose}
             className="absolute -right-[44px] top-0 z-10 text-white hover:opacity-70 transition-opacity hidden lg:block"
@@ -127,7 +124,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             onClick={(e) => e.stopPropagation()}
           >
 
-            {/* Left Sidebar */}
             <div className="hidden lg:flex flex-col justify-center items-start gap-[12px] w-[180px] h-[588px] shrink-0">
               <div className="flex flex-row items-start p-[16px] gap-[10px] w-[180px] h-[200px] bg-[#0C1F56] rounded-[12px]">
                 <div className="flex flex-col items-start gap-[8px] w-[148px] h-[168px]">
@@ -178,9 +174,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               </div>
             </div>
 
-            {/* Right Content Area */}
             <div className="flex flex-col gap-[20px] lg:gap-[32px] w-full lg:max-w-[808px] overflow-y-auto overflow-x-hidden pb-[16px] lg:pb-0 [&::-webkit-scrollbar]:hidden px-4 sm:px-6 md:px-8 lg:px-0 py-[20px] lg:py-0 flex-1 min-h-0 lg:self-stretch">
-              {/* Search Bar - comes first on mobile per Figma */}
               <div className={`flex flex-row items-center ${searchQuery ? 'justify-between py-[10px] pl-[20px] pr-[10px] border border-[#1463FF] rounded-[12px]' : 'p-[10px_20px] rounded-[8px]'
                 } gap-[10px] w-full h-[50px] lg:h-[40px] bg-[#112F82] shrink-0 box-border transition-all duration-200 order-first lg:order-none`}>
                 <div className="flex flex-row items-center gap-[10px] w-full">
@@ -208,7 +202,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 )}
               </div>
 
-              {/* Mobile Categories Scroll */}
               <div className="flex lg:hidden flex-row gap-[8px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x shrink-0">
                 {topCategories.map((cat) => (
                   <button
@@ -232,7 +225,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
               {searchQuery === '' ? (
                 <div className="flex flex-col gap-[30px] lg:gap-[32px] w-full">
-                  {/* Popular Games */}
                   <div className="flex flex-col gap-[12px] w-full">
                     <div className="flex flex-row justify-between items-center w-full lg:max-w-[808px] h-auto lg:h-[29px] self-stretch shrink-0">
                       <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-auto lg:w-[209px] h-auto lg:h-[29px] shrink-0">
@@ -260,7 +252,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     </div>
                   </div>
 
-                  {/* Game Providers */}
                   <div className="flex flex-col gap-[12px] w-full">
                     <div className="flex flex-row justify-between items-center w-full lg:max-w-[808px] h-[23px] lg:h-[30px]">
                       <div className="flex flex-row items-center gap-[7.2px] lg:gap-[8px] w-[176.2px] lg:w-[217px] h-[23px] lg:h-[29px]">
@@ -275,14 +266,12 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         </h3>
                       </div>
 
-                      {/* Mobile View: View all */}
                       <div className="lg:hidden">
                         <span className="font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] h-[16px] items-center justify-center">
                           View all
                         </span>
                       </div>
 
-                      {/* Desktop View: Arrow Navigation */}
                       <div className="hidden lg:flex flex-row items-center gap-[8px] w-[68px] h-[30px] shrink-0">
                         <button
                           onClick={handlePrevProvider}
@@ -329,7 +318,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
               ) : searchResults.length > 0 ? (
                 <div className="flex flex-col gap-[12px] w-full">
-                  {/* Heading */}
                   <div className="flex flex-row justify-between items-center w-full h-[23px] lg:h-[29px]">
                     <h3
                       className="font-[family-name:var(--font-jost)] font-extrabold tracking-[0.01em] uppercase text-white"
@@ -339,7 +327,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     </h3>
                   </div>
 
-                  {/* Mobile only: exact Figma 3-col grid (≤425px) */}
                   <div
                     className="grid md:hidden"
                     style={{
@@ -366,7 +353,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     ))}
                   </div>
 
-                  {/* Tablet only: fluid grid */}
                   <div className="hidden md:grid lg:hidden gap-[10px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))' }}>
                     {searchResults.map((game) => (
                       <div key={game.id} className="w-full aspect-[119/157] rounded-[9.6px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
@@ -375,7 +361,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     ))}
                   </div>
 
-                  {/* Desktop (lg+): fluid grid that fills available width */}
                   <div className="hidden lg:grid gap-[12px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
                     {searchResults.map((game) => (
                       <div key={game.id} className="w-full aspect-[152/200] rounded-[12px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
@@ -386,14 +371,11 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
               ) : (
                 <>
-                  {/* Mobile no-results: exact Figma spec (≤md) */}
                   <div
                     className="flex lg:hidden flex-col items-start"
                     style={{ gap: '30px', width: '100%' }}
                   >
-                    {/* No-results text block: gap 8px */}
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px', width: '100%' }}>
-                      {/* Title */}
                       <div style={{ width: '100%' }}>
                         <p style={{
                           fontFamily: "var(--font-manrope), Manrope, sans-serif",
@@ -407,7 +389,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           No Results for your Search
                         </p>
                       </div>
-                      {/* Description */}
                       <div style={{ width: '100%' }}>
                         <p style={{
                           fontFamily: "var(--font-manrope), Manrope, sans-serif",
@@ -424,7 +405,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     </div>
                   </div>
 
-                  {/* Desktop no-results: unchanged */}
                   <div className="hidden lg:flex flex-col justify-center items-center py-[60px] gap-[16px] w-full mt-[40px]">
                     <h3 className="font-[family-name:var(--font-jost)] font-bold text-[20px] leading-[29px] text-white">
                       No Results for your Search

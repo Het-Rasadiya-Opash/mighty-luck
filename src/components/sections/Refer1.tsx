@@ -201,7 +201,6 @@ export default function Refer1() {
 
   return (
     <div className="w-full">
-      {/* Desktop — 1280px+ */}
       <div
         className="hidden xl:flex flex-col gap-5 w-full p-8 xl:p-[32px_40px] rounded-2xl overflow-hidden relative"
         style={{
@@ -233,7 +232,6 @@ export default function Refer1() {
         <div className="p-5 xl:px-6 bg-[#091741] rounded-2xl z-10">{stats}</div>
       </div>
 
-      {/* Mobile & Tablet — below 1280px */}
       <div className="flex xl:hidden flex-col gap-5 w-full">
         <div className="w-full aspect-[374/170] min-h-[150px] max-h-[200px] rounded-[10px] overflow-hidden relative">
           <img

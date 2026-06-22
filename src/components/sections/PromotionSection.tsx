@@ -112,13 +112,11 @@ export default function PromotionSection() {
                         />
 
 
-                        {/* Mobile gradient — stronger to hide text baked into bg image */}
                         <div
                             className="absolute inset-0 rounded-[10px] block sm:hidden"
                             style={{ background: promo.mobileGradient }}
                         />
 
-                        {/* Desktop gradient — original design */}
                         <div
                             className="absolute inset-0 rounded-none hidden sm:block"
                             style={{ background: promo.gradient }}

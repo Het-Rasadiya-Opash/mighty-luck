@@ -18,7 +18,6 @@ export default function Footer() {
 
             <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-[40px] md:gap-[49px] w-full max-w-[374px] md:max-w-none mx-auto">
 
-                {/* Logo and Copyright */}
                 <div className="flex flex-col items-center md:items-start p-0 gap-[16px] w-[213px] shrink-0">
                     <div className="flex flex-col items-center justify-between w-[132px] h-[50px] relative shrink-0">
                         <img src="/king.svg" alt="Crown" className="w-[33px] h-[24px] object-contain" />
@@ -29,7 +28,6 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Desktop Grid */}
                 <div className="hidden md:grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-8 w-full md:w-auto">
                     {Object.entries(footerLinks).map(([heading, links]) => (
                         <div key={heading} className="flex flex-col items-start gap-[12px]">
@@ -47,7 +45,6 @@ export default function Footer() {
                     ))}
                 </div>
 
-                {/* Mobile Accordion */}
                 <div className="flex flex-col md:hidden items-start p-0 gap-[20px] w-full">
                     {Object.entries(footerLinks).map(([heading, links]) => {
                         const isExpanded = expandedCategory === heading;
@@ -90,7 +87,6 @@ export default function Footer() {
 
             </div>
 
-            {/* Bottom Footer Info */}
             <div className="box-border flex flex-col md:flex-row justify-between items-start gap-[20px] md:gap-[10px] w-full max-w-[374px] md:max-w-none mx-auto pt-[60px] md:pt-[48px] border-t border-[#112F82]">
 
                 <p className="w-full md:max-w-[445px] font-['Manrope'] font-semibold text-[10px] leading-[14px] text-left md:text-justify tracking-[0.01em] text-[#D2DCF7] m-0">

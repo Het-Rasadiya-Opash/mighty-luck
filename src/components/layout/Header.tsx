@@ -64,7 +64,6 @@ export function HeaderContent() {
   return (
     <header className="sticky top-0 z-[110] w-full bg-[#0C1F56] h-[50px] sm:h-[60px] border-b border-[#112F82] sm:border-none">
       <div className="relative mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-6">
-        {/* Perfect Figma Shadow clipped to header */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div
             className="absolute rounded-full hidden md:block"
@@ -128,7 +127,6 @@ export function HeaderContent() {
 
         {status === 'authenticated' ? (
           <div className="flex flex-row justify-end items-center gap-[16px] lg:gap-[8px] xl:gap-4 shrink-0 z-[2]">
-            {/* Desktop Balance + Deposit */}
             <div className="hidden lg:flex flex-row items-center gap-1">
               <div className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-[116px] h-[40px] bg-[#112F82] rounded-[8px]">
                 <span className="font-manrope font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
@@ -150,7 +148,6 @@ export function HeaderContent() {
               </button>
             </div>
 
-            {/* Mobile Balances Block */}
             <div className="flex lg:hidden flex-row items-center gap-[4px] h-[30px]">
               <div className="flex flex-row justify-center items-center px-[20px] py-[8px] w-[82px] h-[30px] bg-[#112F82] rounded-[6px]">
                 <span className="font-manrope font-bold text-[10.5px] leading-[14px] tracking-[0.02em] text-white">
@@ -169,7 +166,6 @@ export function HeaderContent() {
               </button>
             </div>
 
-            {/* Icons Block */}
             <div className="flex flex-row items-center gap-[8px] h-[30px] lg:h-auto">
               <button className="flex flex-row justify-center items-center p-[7.5px] w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] bg-[#173EAD] rounded-[6px] relative hover:bg-[#112F82] transition-colors">
                 <Image src="/noti.svg" width={10.3} height={12} alt="Notifications" className="w-[10.3px] h-[12px] lg:w-[16px] lg:h-[16px]" />
