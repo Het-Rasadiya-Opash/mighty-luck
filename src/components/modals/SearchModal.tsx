@@ -175,31 +175,39 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             </div>
 
             <div className="flex flex-col gap-[20px] lg:gap-[32px] w-full lg:max-w-[808px] overflow-y-auto overflow-x-hidden pb-[16px] lg:pb-0 [&::-webkit-scrollbar]:hidden px-4 sm:px-6 md:px-8 lg:px-0 py-[20px] lg:py-0 flex-1 min-h-0 lg:self-stretch">
-              <div className={`flex flex-row items-center ${searchQuery ? 'justify-between py-[10px] pl-[20px] pr-[10px] border border-[#1463FF] rounded-[12px]' : 'p-[10px_20px] rounded-[8px]'
-                } gap-[10px] w-full h-[50px] lg:h-[40px] bg-[#112F82] shrink-0 box-border transition-all duration-200 order-first lg:order-none`}>
-                <div className="flex flex-row items-center gap-[10px] w-full">
-                  <div className="flex flex-col items-start w-[16px] h-[15.99px]">
-                    <Search size={16} className="text-white" strokeWidth={2.5} />
+              <div className="flex flex-row items-center gap-[10px] w-full order-first lg:order-none">
+                <div className={`flex flex-row items-center flex-1 lg:w-full ${searchQuery ? 'justify-between py-[10px] pl-[20px] pr-[10px] border border-[#1463FF] rounded-[12px]' : 'p-[10px_20px] rounded-[8px]'
+                  } gap-[10px] h-[50px] lg:h-[40px] bg-[#112F82] shrink-0 box-border transition-all duration-200`}>
+                  <div className="flex flex-row items-center gap-[10px] w-full">
+                    <div className="flex flex-col items-start w-[16px] h-[15.99px]">
+                      <Search size={16} className="text-white" strokeWidth={2.5} />
+                    </div>
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="What are you looking for?"
+                      className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[16px] lg:text-[14px] leading-[22px] lg:leading-[19px] w-full transition-colors ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
+                        }`}
+                    />
                   </div>
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="What are you looking for?"
-                    className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[16px] lg:text-[14px] leading-[22px] lg:leading-[19px] w-full transition-colors ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
-                      }`}
-                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      className="flex flex-row justify-center items-center px-[16px] gap-[8px] w-[64px] h-[30px] bg-[#1463FF] rounded-[6px] hover:opacity-80 transition-opacity shrink-0 box-border"
+                    >
+                      <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFFFFF]">
+                        Clear
+                      </span>
+                    </button>
+                  )}
                 </div>
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="flex flex-row justify-center items-center px-[16px] gap-[8px] w-[64px] h-[30px] bg-[#1463FF] rounded-[6px] hover:opacity-80 transition-opacity shrink-0 box-border"
-                  >
-                    <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFFFFF]">
-                      Clear
-                    </span>
-                  </button>
-                )}
+                <button
+                  onClick={onClose}
+                  className="lg:hidden flex flex-row justify-center items-center w-[50px] h-[50px] bg-[#112F82] rounded-[8px] hover:opacity-85 transition-opacity shrink-0 text-white"
+                >
+                  <X size={24} />
+                </button>
               </div>
 
               <div className="flex lg:hidden flex-row gap-[8px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x shrink-0">
