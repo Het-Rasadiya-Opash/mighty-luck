@@ -309,12 +309,12 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         className="flex flex-row gap-[8px] lg:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory scroll-smooth pr-[16px] lg:pr-0"
                       >
                         {providerData.map((provider) => (
-                          <div key={provider.id} className="flex flex-col justify-center items-center p-[7.2px_14.4px] lg:p-[12px_24px] gap-[4.8px] lg:gap-[8px] w-[88px] lg:w-[152px] h-[60px] lg:h-[100px] bg-[#112F82] lg:bg-[#0C1F56] rounded-[8px] lg:rounded-[12px] shrink-0 snap-start cursor-pointer group">
-                            <div className="w-[48px] lg:w-[80px] h-[24px] lg:h-[40px] relative transition-transform duration-300 group-hover:scale-105">
+                          <div key={provider.id} className="flex flex-col justify-center items-center p-[10px_16px] lg:p-[12px_24px] gap-[6px] lg:gap-[8px] w-[116px] lg:w-[152px] h-[76px] lg:h-[100px] bg-[#112F82] lg:bg-[#0C1F56] rounded-[8px] lg:rounded-[12px] shrink-0 snap-start cursor-pointer group">
+                            <div className="w-[64px] lg:w-[80px] h-[30px] lg:h-[40px] relative transition-transform duration-300 group-hover:scale-105">
                               <Image unoptimized src={provider.image} alt={provider.name} fill className="object-contain" />
                             </div>
-                            <div className="flex flex-row justify-center items-center gap-[6px] w-[59.2px] lg:w-[104px] h-[11px] lg:h-[14px]">
-                              <span className="font-[family-name:var(--font-manrope)] font-semibold text-[8px] lg:text-[10px] leading-[11px] lg:leading-[14px] text-center text-[#FFC83D]">
+                            <div className="flex flex-row justify-center items-center gap-[6px] w-[90px] lg:w-[110px] h-[16px]">
+                              <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] text-center text-[#FFC83D]">
                                 {provider.gamesCount} Games
                               </span>
                             </div>
