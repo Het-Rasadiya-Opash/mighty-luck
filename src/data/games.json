@@ -75,5 +75,19 @@
     "image": "/games/ps-1.png",
     "provider": "TaDa Gaming",
     "isPopular": false
+  },
+  {
+    "id": "12",
+    "title": "Fire 81",
+    "image": "/games/ps-4.png",
+    "provider": "",
+    "isPopular": true
+  },
+  {
+    "id": "13",
+    "title": "Tiger Scratch",
+    "image": "/games/ps-5.png",
+    "provider": "",
+    "isPopular": true
   }
 ]
