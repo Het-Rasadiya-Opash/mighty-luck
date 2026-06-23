@@ -33,6 +33,20 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [selectedBonus, setSelectedBonus] = useState(bonuses[0]);
   const [selectedPayment, setSelectedPayment] = useState(payments[1]);
   const [isPending, setIsPending] = useState(false);
+  const [animationCompleted, setAnimationCompleted] = useState(false);
+
+  useEffect(() => {
+    if (isPending) {
+      setAnimationCompleted(false);
+      const timer = setTimeout(() => {
+        setAnimationCompleted(true);
+      }, 2500); // 2.5s matches the circular progress loader animation
+      return () => clearTimeout(timer);
+    } else {
+      setAnimationCompleted(false);
+    }
+  }, [isPending]);
+
   const [fiatStep, setFiatStep] = useState<'address' | 'payment'>('address');
   const [activeTab, setActiveTab] = useState<'deposit' | 'bonuses' | 'withdraw' | 'transactions'>('deposit');
   const [fiatAmount, setFiatAmount] = useState<number | 'custom'>(30);
@@ -212,7 +226,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       : (isFiatPayment
         ? 'h-[743px] sm:h-[647px]'
         : (isPending
-          ? 'h-[612px] sm:h-[604px]'
+          ? 'h-[652px] sm:h-[604px]'
           : 'h-[673px] sm:h-[604px]')));
 
   const outerBoxHeightClass = (isBonusesTab || isWithdrawTxTab)
@@ -222,7 +236,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       : (isFiatPayment
         ? 'h-[665px] sm:h-[517px]'
         : (isPending
-          ? 'h-[534px] sm:h-[474px]'
+          ? 'h-[574px] sm:h-[474px]'
           : 'h-[595px] sm:h-[474px]')));
 
   const innerBoxHeightClass = (isBonusesTab || isWithdrawTxTab)
@@ -232,7 +246,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       : (isFiatPayment
         ? 'h-[528px] sm:h-[464px]'
         : (isPending
-          ? 'h-[371px] sm:h-[421px]'
+          ? 'h-[411px] sm:h-[421px]'
           : 'h-[458px] sm:h-[421px]')));
 
   return createPortal(
@@ -312,19 +326,61 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 {activeTab === 'deposit' && (
                   <>
                     {isPending ? (
-                      <div className="flex flex-col items-start p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[325px]">
+                      <div className="flex flex-col items-start p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[365px] sm:h-[325px]">
                         <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] w-full h-[38px] flex items-center justify-center">
                           Your transaction in progress and pending confirmation from the blockchain.
                         </p>
 
-                        <div className="flex flex-row justify-center items-center gap-[10px] w-full h-[120px]">
+                        {/* Mobile Screen Loader */}
+                        <div className="flex sm:hidden flex-row justify-center items-center p-0 gap-[10px] w-full max-w-[342px] h-[160.16px] self-stretch flex-grow-0 mx-auto">
+                          <div className="relative w-[160px] h-[160.16px] flex-none flex-grow-0 flex items-center justify-center">
+                            {/* Circular track and spinner */}
+                            <svg className="absolute inset-0 w-full h-full animate-circular-rotate" viewBox="0 0 160 160">
+                              {/* Background Track */}
+                              <circle
+                                cx="80"
+                                cy="80"
+                                r="72"
+                                className="stroke-[#112F82]"
+                                strokeWidth="4.5"
+                                fill="transparent"
+                              />
+                              {/* Animated Foreground Arc */}
+                              <circle
+                                cx="80"
+                                cy="80"
+                                r="72"
+                                className="stroke-[#FFC83D] animate-circular-fill"
+                                strokeWidth="4.5"
+                                strokeDasharray="452.39"
+                                strokeDashoffset="452.39"
+                                strokeLinecap="round"
+                                fill="transparent"
+                              />
+                            </svg>
+                            
+                            {/* Gold Crown Logo in the center */}
+                            <div className="relative z-10 w-[73px] h-[53px] flex items-center justify-center">
+                              <Image
+                                src="/king.svg"
+                                alt="Crown"
+                                width={73}
+                                height={53}
+                                className="object-contain"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Desktop Screen Loader */}
+                        <div className="hidden sm:flex flex-row justify-center items-center gap-[10px] w-full h-[120px]">
                           <div className="w-[50px] h-[50px] flex items-center justify-center relative">
                             <CrownLightningIcon className="text-[#A5B8EF] w-[35.83px] h-[26.13px]" />
                           </div>
-                          <div className="w-[50px] h-[50px] flex items-center justify-center relative ">
+                          <div className="w-[50px] h-[50px] flex items-center justify-center relative">
                             <CrownLightningIcon className="text-[#A5B8EF] w-[35.83px] h-[26.13px]" />
                           </div>
-                          <div className="w-[50px] h-[50px] flex items-center justify-center relative ">
+                          <div className="w-[50px] h-[50px] flex items-center justify-center relative">
                             <CrownLightningIcon className="text-[#112F82] w-[35.83px] h-[26.13px]" />
                           </div>
                         </div>
@@ -775,7 +831,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           onClose();
                           router.push('/');
                         }}
-                        className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-full sm:w-[300px] h-[60px] sm:h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+                        disabled={!animationCompleted}
+                        className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-full sm:w-[300px] h-[60px] sm:h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-[8px]"
                       >
                         <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#1A1404]">
                           Go to games
