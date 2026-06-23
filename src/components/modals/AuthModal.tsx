@@ -223,7 +223,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
 
           <div 
             className="md:hidden relative w-full max-w-[414px] h-[170px] bg-cover bg-center shrink-0 overflow-hidden rounded-t-[12px] self-stretch flex-grow-0 mx-auto" 
-            style={{ backgroundImage: 'url(/login-1.png)' }}
+            style={{ backgroundImage: 'url(/small-login.png)' }}
           >
             {/* Ellipse 7 */}
             <div 
