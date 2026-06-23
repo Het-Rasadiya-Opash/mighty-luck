@@ -194,54 +194,54 @@ export function SidebarContent() {
                 </div>
             </aside>
 
-            {(isMobileMenuOpen || isMobileSearchOpen) && <div className="lg:hidden fixed bottom-0 left-0 right-0 h-[91px] bg-[#0C1F56] z-[98]" />}
-            <nav id="mobile-bottom-nav" className={`lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[75px] bg-[#0C1F56] pt-[12px] pr-[20px] pb-[12px] pl-[20px] rounded-t-[16px] border-b border-transparent gap-[2px] ${(isMobileSearchOpen || isMobileMenuOpen) ? '' : 'shadow-[0_-4px_10px_rgba(0,0,0,0.2)]'}`}>
+            {(isMobileMenuOpen || isMobileSearchOpen) && <div className="lg:hidden fixed bottom-0 left-0 right-0 h-[76px] bg-[#0C1F56] z-[98]" />}
+            <nav id="mobile-bottom-nav" className={`lg:hidden fixed bottom-0 left-0 right-0 z-[100] flex flex-row items-center justify-between w-full h-[60px] bg-[#0C1F56] pt-[8px] pr-[20px] pb-[8px] pl-[20px] rounded-t-[16px] border-b border-transparent gap-[2px] ${(isMobileSearchOpen || isMobileMenuOpen) ? '' : 'shadow-[0_-4px_10px_rgba(0,0,0,0.2)]'}`}>
                 <div
-                    className={`flex flex-col items-center justify-center gap-[2px] w-[39px] h-[51px] cursor-pointer transition-colors group mx-auto ${isMobileMenuOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
+                    className={`flex flex-col items-center justify-center gap-[2px] w-[39px] h-[44px] cursor-pointer transition-colors group mx-auto ${isMobileMenuOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
-                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
+                    <div className="flex items-center justify-center w-[24px] h-[24px] shrink-0">
                         <Image
                             src="/menu.svg"
                             alt="Menu"
-                            width={30}
-                            height={30}
-                            className={`w-[28px] h-[28px] transition-all ${isMobileMenuOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`}
+                            width={24}
+                            height={24}
+                            className={`w-[22px] h-[22px] transition-all ${isMobileMenuOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`}
                         />
                     </div>
-                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Menu</span>
+                    <span className="font-['Manrope'] font-bold text-[10px] leading-[14px] tracking-[0.02em]">Menu</span>
                 </div>
                 <div
-                    className={`flex flex-col items-center justify-center gap-[2px] w-[50px] h-[51px] cursor-pointer transition-colors group mx-auto ${isMobileSearchOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
+                    className={`flex flex-col items-center justify-center gap-[2px] w-[50px] h-[44px] cursor-pointer transition-colors group mx-auto ${isMobileSearchOpen ? 'text-[#FFBF1F]' : 'text-[#D2DCF7] hover:text-white'}`}
                     onClick={() => setIsMobileSearchOpen(prev => !prev)}
                 >
-                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/search.svg" alt="Search" width={30} height={30} className={`w-[28px] h-[28px] transition-all ${isMobileSearchOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`} />
+                    <div className="flex items-center justify-center w-[24px] h-[24px] shrink-0">
+                        <Image src="/search.svg" alt="Search" width={24} height={24} className={`w-[22px] h-[22px] transition-all ${isMobileSearchOpen ? 'opacity-100 [filter:brightness(0)_saturate(100%)_invert(80%)_sepia(52%)_saturate(1191%)_hue-rotate(336deg)_brightness(102%)_contrast(106%)]' : 'opacity-80 group-hover:opacity-100'}`} />
                     </div>
-                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Search</span>
+                    <span className="font-['Manrope'] font-bold text-[10px] leading-[14px] tracking-[0.02em]">Search</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-[2px] w-[43px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
-                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/image 19 (Traced).svg" alt="Offers" width={22} height={22} className="w-[22px] h-[22px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col items-center justify-center gap-[2px] w-[43px] h-[44px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                    <div className="flex items-center justify-center w-[24px] h-[24px] shrink-0">
+                        <Image src="/image 19 (Traced).svg" alt="Offers" width={18} height={18} className="w-[18px] h-[18px] opacity-80 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Offers</span>
+                    <span className="font-['Manrope'] font-bold text-[10px] leading-[14px] tracking-[0.02em]">Offers</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-[2px] w-[30px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
-                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/image 20 (Traced).svg" alt="VIP" width={24} height={23} className="w-[24px] h-[23px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col items-center justify-center gap-[2px] w-[30px] h-[44px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                    <div className="flex items-center justify-center w-[24px] h-[24px] shrink-0">
+                        <Image src="/image 20 (Traced).svg" alt="VIP" width={20} height={19} className="w-[20px] h-[19px] opacity-80 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">VIP</span>
+                    <span className="font-['Manrope'] font-bold text-[10px] leading-[14px] tracking-[0.02em]">VIP</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-[2px] w-[65px] h-[51px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
-                    <div className="flex items-center justify-center w-[30px] h-[30px] shrink-0">
-                        <Image src="/image 21 (Traced).svg" alt="Tourneys" width={22} height={22} className="w-[22px] h-[22px] opacity-80 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col items-center justify-center gap-[2px] w-[65px] h-[44px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
+                    <div className="flex items-center justify-center w-[24px] h-[24px] shrink-0">
+                        <Image src="/image 21 (Traced).svg" alt="Tourneys" width={18} height={18} className="w-[18px] h-[18px] opacity-80 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Tourneys</span>
+                    <span className="font-['Manrope'] font-bold text-[10px] leading-[14px] tracking-[0.02em]">Tourneys</span>
                 </div>
             </nav>
 
             {isMobileMenuOpen && (
-                <div className="lg:hidden fixed top-[50px] sm:top-[60px] left-0 right-0 bottom-[75px] z-[40] bg-[#0C1F56] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
+                <div className="lg:hidden fixed top-[50px] sm:top-[60px] left-0 right-0 bottom-[60px] z-[40] bg-[#0C1F56] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
                     <div className="p-[20px] flex flex-col gap-[10px] w-full flex-1">
                         <SidebarReferSection />
                         <SidebarNav isCollapsed={false} onOpenSearch={() => setIsMobileMenuOpen(false)} />

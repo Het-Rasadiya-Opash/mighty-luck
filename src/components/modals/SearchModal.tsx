@@ -104,7 +104,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const popularGames = gamesData.filter(game => game.isPopular);
 
   return createPortal(
-    <div className="fixed top-[50px] sm:top-[60px] lg:top-0 bottom-[75px] lg:bottom-0 left-0 right-0 z-[60] lg:z-[120] flex items-center justify-center lg:overflow-y-auto py-0 lg:py-[16px] px-0 lg:px-[12px] bg-[#0C1F56] lg:bg-transparent">
+    <div className="fixed top-[50px] sm:top-[60px] lg:top-0 bottom-[60px] lg:bottom-0 left-0 right-0 z-[60] lg:z-[120] flex items-center justify-center lg:overflow-y-auto py-0 lg:py-[16px] px-0 lg:px-[12px] bg-[#0C1F56] lg:bg-transparent">
       <div
         className="fixed inset-0 bg-transparent lg:bg-[#0C1733]/70 lg:backdrop-blur-[8px]"
         onClick={onClose}
