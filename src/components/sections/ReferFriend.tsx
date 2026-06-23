@@ -1,9 +1,8 @@
-import React from 'react';
+import FAQs from './FAQs';
 import Refer1 from './Refer1';
 import Refer2 from './Refer2';
 import Refer3 from './Refer3';
 import Refer4 from './Refer4';
-import FAQs from './FAQs';
 
 export default function ReferFriend() {
   return (

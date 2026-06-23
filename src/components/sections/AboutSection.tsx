@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
 import { ArrowDown, ArrowUp } from 'lucide-react';
+import { useState } from 'react';
 
 export default function AboutSection() {
     const [isExpanded, setIsExpanded] = useState(false);

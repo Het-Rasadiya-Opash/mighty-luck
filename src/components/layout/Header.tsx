@@ -1,14 +1,14 @@
 "use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect, useRef, Suspense } from 'react';
-import { X, Wallet, Bell, Gift, Users, LogOut } from 'lucide-react';
-import { useSession, signOut } from 'next-auth/react';
-import { Search } from '../ui/Search';
 import { SidebarNav } from '@/components/layout/Sidebar';
 import { DepositModal } from '@/components/modals/DepositModal';
+import { LogOut, Users, X } from 'lucide-react';
+import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { Search } from '../ui/Search';
 // import './header.css';
 
 export function HeaderContent() {

@@ -1,6 +1,6 @@
 "use client"
-import React, { useState } from 'react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const footerLinks = {
     "SLOT GAMES": ['Slots', 'Skill Games', 'Jackpot', 'Bonus Buy', 'Crash Games'],

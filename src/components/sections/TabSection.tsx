@@ -1,8 +1,7 @@
 "use client";
 
-import React, { Suspense } from 'react';
-import Image from 'next/image';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 const tabs = [
     { name: 'Lobby', icon: '/home.svg' },

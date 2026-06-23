@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Maximize, Heart } from 'lucide-react';
+import { useState } from 'react';
 
 export default function NinjaSlot() {
   const [isRealPlay, setIsRealPlay] = useState(true);

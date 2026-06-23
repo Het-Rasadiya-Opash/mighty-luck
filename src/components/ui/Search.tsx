@@ -1,5 +1,5 @@
-import React from 'react';
 import { Search as SearchIcon } from 'lucide-react';
+import React from 'react';
 
 interface SearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;

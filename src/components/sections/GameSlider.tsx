@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
-import Image from 'next/image';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 
 export interface Game {
     id: number | string;

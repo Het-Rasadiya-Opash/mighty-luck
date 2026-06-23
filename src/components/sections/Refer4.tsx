@@ -1,4 +1,3 @@
-import React from 'react';
 import { FerrisWheel } from 'lucide-react';
 
 const steps = [

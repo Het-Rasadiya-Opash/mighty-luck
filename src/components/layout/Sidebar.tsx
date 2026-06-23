@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ChevronUp, ChevronDown, X } from 'lucide-react';
 import { SearchModal } from '@/components/modals/SearchModal';
 import SidebarReferSection from '@/components/sections/SidebarReferSection';
-import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import Image from 'next/image';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React, { Suspense, useEffect, useState } from 'react';
 
 export function SidebarContent() {
     const [isCollapsed, setIsCollapsed] = useState(false);

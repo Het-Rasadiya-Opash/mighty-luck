@@ -1,4 +1,3 @@
-import React from 'react';
 
 const stats = [
   { value: '$2.5 K', label: 'Claim By the Most Active Referrer' },

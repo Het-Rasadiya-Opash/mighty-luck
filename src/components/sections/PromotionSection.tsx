@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useRef, useState } from "react";
 
 const promos = [
     {

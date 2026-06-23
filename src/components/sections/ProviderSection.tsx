@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import providerData from '@/data/providerData.json';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import providerData from '@/data/providerData.json';
+import { useEffect, useRef, useState } from 'react';
 
 export default function ProviderSection() {
     const [currentIndex, setCurrentIndex] = useState(0);

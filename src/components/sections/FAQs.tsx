@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Trophy, Plus, Minus } from 'lucide-react';
+import { Minus, Plus, Trophy } from 'lucide-react';
+import { useState } from 'react';
 
 const faqData = [
   {

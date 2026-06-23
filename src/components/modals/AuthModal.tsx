@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, Suspense, useRef, useEffect } from 'react';
+import axios from 'axios';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { signIn } from 'next-auth/react';
-import axios from 'axios';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 const countries = [

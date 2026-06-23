@@ -1,5 +1,5 @@
+import { Coins, Infinity as InfinityIcon, Zap } from 'lucide-react';
 import React from 'react';
-import { Coins, Zap, Infinity as InfinityIcon } from 'lucide-react';
 
 type BenefitItem = {
   icon: React.ReactNode;

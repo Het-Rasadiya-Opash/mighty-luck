@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
-import { Users, DollarSign } from 'lucide-react';
+import { DollarSign, Users } from 'lucide-react';
+import React, { useRef, useState } from 'react';
 
 const MAX_FRIENDS = 50;
 const EARNINGS_PER_FRIEND = 50;

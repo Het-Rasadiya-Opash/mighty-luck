@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { createPortal } from "react-dom";
-import { X, Wallet, ChevronDown, ArrowRightLeft, Copy, QrCode, Info, Gift, Award, Coins, Ban, CreditCard, Crown } from "lucide-react";
+import { ArrowRightLeft, ChevronDown, Crown, Info, X } from "lucide-react";
 import Image from "next/image";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { toast } from "sonner";
 import './deposit-modal.css';
 
 interface DepositModalProps {

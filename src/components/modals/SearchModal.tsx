@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import Image from 'next/image';
-import {
-  X, Search, Gamepad2, Clock, Heart, Sparkles, Zap, Cherry,
-  Dices, Rocket, Grid, MonitorPlay, Coins, Spade, Flame, LayoutGrid
-} from 'lucide-react';
 import gamesData from '@/data/games.json';
 import providerData from '@/data/providerData.json';
+import {
+  Search,
+  X
+} from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface SearchModalProps {
   isOpen: boolean;
