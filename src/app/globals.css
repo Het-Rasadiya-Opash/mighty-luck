@@ -28,10 +28,10 @@ body {
 
 /* Fix Chrome autofill background overriding dark theme inputs */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #112F82 inset !important;
+  -webkit-box-shadow: 0 0 0 30px #112f82 inset !important;
   -webkit-text-fill-color: white !important;
   transition: background-color 5000s ease-in-out 0s;
 }
@@ -47,35 +47,9 @@ body.hide-mobile-nav #mobile-bottom-nav {
     width: 0 !important;
     height: 0 !important;
   }
-  
+
   * {
     -ms-overflow-style: none !important;
     scrollbar-width: none !important;
   }
 }
-
-@keyframes pulseCrown {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-}
-
-@media (max-width: 639px) {
-  .animate-crown-1 {
-    animation: pulseCrown 1.6s infinite ease-in-out;
-  }
-  .animate-crown-2 {
-    animation: pulseCrown 1.6s infinite ease-in-out;
-    animation-delay: 0.3s;
-  }
-  .animate-crown-3 {
-    animation: pulseCrown 1.6s infinite ease-in-out;
-    animation-delay: 0.6s;
-  }
-}
-
