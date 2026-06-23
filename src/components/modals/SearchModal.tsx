@@ -187,7 +187,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="What are you looking for?"
-                      className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[16px] lg:text-[14px] leading-[22px] lg:leading-[19px] w-full transition-colors ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
+                      className={`bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] text-[16px] lg:text-[14px] leading-[22px] lg:leading-[19px] w-full transition-colors placeholder:text-[12px] placeholder:leading-[16px] sm:placeholder:text-[14px] sm:placeholder:leading-[19px] ${searchQuery ? 'font-bold text-[#FFFFFF] placeholder:text-[#FFFFFF]' : 'font-semibold text-[#BBCAF3] placeholder:text-[#BBCAF3]'
                         }`}
                     />
                   </div>
