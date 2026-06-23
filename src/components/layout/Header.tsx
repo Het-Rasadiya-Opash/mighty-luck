@@ -127,12 +127,18 @@ export function HeaderContent() {
 
         {status === 'authenticated' ? (
           <div className="flex flex-row justify-end items-center gap-[16px] lg:gap-[8px] xl:gap-4 shrink-0 z-[2]">
-            <div className="hidden lg:flex flex-row items-center gap-1">
-              <div className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-[116px] h-[40px] bg-[#112F82] rounded-[8px]">
+             <div className="hidden lg:flex flex-row items-center gap-1">
+              <button
+                className="flex flex-row justify-center items-center px-[30px] py-[10px] gap-[10px] w-[116px] h-[40px] bg-[#112F82] hover:bg-[#153B9D] active:bg-[#0D2463] transition-colors rounded-[8px]"
+                onClick={() => {
+                  setIsDepositModalOpen(true);
+                  window.dispatchEvent(new Event('closeSearchModal'));
+                }}
+              >
                 <span className="font-manrope font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
                   $105,98
                 </span>
-              </div>
+              </button>
 
               <button
                 className="flex flex-row justify-center items-center px-[16px] py-[10px] gap-[8px] w-[110px] h-[40px] bg-[#FFC83D] rounded-[8px] hover:bg-[#F2B926] transition-colors"
@@ -149,11 +155,18 @@ export function HeaderContent() {
             </div>
 
             <div className="flex lg:hidden flex-row items-center gap-[4px] h-[30px]">
-              <div className="flex flex-row justify-center items-center px-[20px] py-[8px] w-[82px] h-[30px] bg-[#112F82] rounded-[6px]">
+              <button
+                className="flex flex-row justify-center items-center px-[20px] py-[8px] w-[82px] h-[30px] bg-[#112F82] hover:bg-[#153B9D] active:bg-[#0D2463] transition-colors rounded-[6px]"
+                onClick={() => {
+                  setIsDepositModalOpen(true);
+                  window.dispatchEvent(new Event('closeSearchModal'));
+                  window.dispatchEvent(new Event('closeMobileMenu'));
+                }}
+              >
                 <span className="font-manrope font-bold text-[10.5px] leading-[14px] tracking-[0.02em] text-white">
                   $105,98
                 </span>
-              </div>
+              </button>
               <button
                 className="flex flex-row justify-center items-center p-[8px] w-[30px] h-[30px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
                 onClick={() => {
