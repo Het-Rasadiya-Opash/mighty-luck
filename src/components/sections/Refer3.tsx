@@ -1,25 +1,24 @@
-import { Coins, Infinity as InfinityIcon, Zap } from 'lucide-react';
 import React from 'react';
 
 type BenefitItem = {
-  icon: React.ReactNode;
+  iconPath: string;
   title: string;
   description: string;
 };
 
 const youGetItems: BenefitItem[] = [
   {
-    icon: <Coins size={20} className="text-[#57FF3D]" strokeWidth={2.5} />,
+    iconPath: '/rc1.svg',
     title: 'Lifetime earnings from each deposit',
     description: 'You get a percentage of every deposit your friends complete.',
   },
   {
-    icon: <Zap size={20} className="text-[#57FF3D]" strokeWidth={2.5} />,
+    iconPath: '/rc12.svg',
     title: 'Instant crediting',
     description: "Your income is credited a few minutes after your friend's deposit is completed.",
   },
   {
-    icon: <InfinityIcon size={20} className="text-[#57FF3D]" strokeWidth={2.5} />,
+    iconPath: '/rc13.svg',
     title: 'No limits for earnings',
     description: "Your earnings are not capped. Sky (and your friend's wallet) is the limit!",
   },
@@ -27,17 +26,17 @@ const youGetItems: BenefitItem[] = [
 
 const friendGetsItems: BenefitItem[] = [
   {
-    icon: <Coins size={20} className="text-[#2365FF]" strokeWidth={2.5} />,
+    iconPath: '/rc1.svg',
     title: 'Lifetime earnings from each deposit',
     description: 'You get a percentage of every deposit your friends complete.',
   },
   {
-    icon: <Zap size={20} className="text-[#2365FF]" strokeWidth={2.5} />,
+    iconPath: '/rc12.svg',
     title: 'Instant crediting',
     description: "Your income is credited a few minutes after your friend's deposit is completed.",
   },
   {
-    icon: <InfinityIcon size={20} className="text-[#2365FF]" strokeWidth={2.5} />,
+    iconPath: '/rc13.svg',
     title: 'No limits for earnings',
     description: "Your earnings are not capped. Sky (and your friend's wallet) is the limit!",
   },
@@ -65,7 +64,20 @@ function BenefitCard({
         {items.map((item) => (
           <div key={item.title} className="flex flex-row items-start gap-4 w-full">
             <div className="w-5 h-5 flex items-center justify-center shrink-0 mt-0.5">
-              {item.icon}
+              <div
+                className="w-5 h-5 shrink-0"
+                style={{
+                  backgroundColor: glowColor,
+                  maskImage: `url('${item.iconPath}')`,
+                  WebkitMaskImage: `url('${item.iconPath}')`,
+                  maskSize: 'contain',
+                  WebkitMaskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
             </div>
             <div className="flex flex-col gap-1 flex-1 min-w-0">
               <p className="font-['Manrope'] font-bold text-base leading-[22px] tracking-[0.01em] text-white">
