@@ -286,7 +286,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             />
 
             {/* <div className={`flex flex-col items-start gap-[24px] w-full h-auto my-auto py-8 sm:py-0 ${outerBoxHeightClass} z-40`}> */}
-            <div className={`flex flex-col items-start gap-[24px] w-full ${outerBoxHeightClass} z-40`}>
+            <div className={`flex flex-col items-start gap-[24px] w-full ${outerBoxHeightClass} max-[639px]:h-0 max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:pb-[100px] [&::-webkit-scrollbar]:hidden z-40`}>
               <div className="flex flex-row justify-start md:justify-center items-start md:items-center gap-[12px] w-full h-[29px]">
                 <div className="flex flex-row items-center gap-[12px] h-[29px]">
                   <div className="relative flex items-center justify-center w-[20px] h-[20px] shrink-0">
@@ -358,7 +358,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                 fill="transparent"
                               />
                             </svg>
-                            
+
                             {/* Gold Crown Logo in the center */}
                             <div className="relative z-10 w-[73px] h-[53px] flex items-center justify-center">
                               <Image
@@ -823,7 +823,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </div>
 
               {activeTab === 'deposit' && (
-                <div className={`flex flex-col gap-[12px] items-center z-10 w-full justify-center ${isPending ? 'h-[88px]' : ''}`}>
+                <div className={`max-[639px]:fixed max-[639px]:bottom-0 max-[639px]:left-0 max-[639px]:right-0 max-[639px]:bg-[#091741] max-[639px]:p-[16px_20px] max-[639px]:border-t max-[639px]:border-[#112F82]/80 max-[639px]:z-50 flex flex-col gap-[12px] items-center z-10 w-full justify-center ${isPending ? 'h-[88px] max-[639px]:h-auto' : ''}`}>
                   {isPending ? (
                     <>
                       <button
