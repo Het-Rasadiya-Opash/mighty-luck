@@ -64,31 +64,19 @@ body.hide-mobile-nav #mobile-bottom-nav {
 }
 
 @keyframes circularFillStep {
-  0% {
+  from {
     stroke-dashoffset: 452.39;
   }
-  16% {
-    stroke-dashoffset: 301.6;
-  }
-  40% {
-    stroke-dashoffset: 301.6;
-  }
-  56% {
-    stroke-dashoffset: 150.8;
-  }
-  80% {
-    stroke-dashoffset: 150.8;
-  }
-  96%, 100% {
+  to {
     stroke-dashoffset: 0;
   }
 }
 
 .animate-circular-rotate {
   transform-origin: center;
-  animation: circularRotate 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform: rotate(-90deg);
 }
 
 .animate-circular-fill {
-  animation: circularFillStep 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: circularFillStep 2.5s ease-in-out 1 forwards;
 }

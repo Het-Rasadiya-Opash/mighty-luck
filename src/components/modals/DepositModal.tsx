@@ -335,29 +335,31 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         <div className="flex sm:hidden flex-row justify-center items-center p-0 gap-[10px] w-full max-w-[342px] h-[160.16px] self-stretch flex-grow-0 mx-auto">
                           <div className="relative w-[160px] h-[160.16px] flex-none flex-grow-0 flex items-center justify-center">
                             {/* Circular track and spinner */}
-                            <svg className="absolute inset-0 w-full h-full animate-circular-rotate" viewBox="0 0 160 160">
-                              {/* Background Track */}
-                              <circle
-                                cx="80"
-                                cy="80"
-                                r="72"
-                                className="stroke-[#112F82]"
-                                strokeWidth="4.5"
-                                fill="transparent"
-                              />
-                              {/* Animated Foreground Arc */}
-                              <circle
-                                cx="80"
-                                cy="80"
-                                r="72"
-                                className="stroke-[#FFC83D] animate-circular-fill"
-                                strokeWidth="4.5"
-                                strokeDasharray="452.39"
-                                strokeDashoffset="452.39"
-                                strokeLinecap="round"
-                                fill="transparent"
-                              />
-                            </svg>
+                            <div key="loader-rotating-wrapper" className="absolute inset-0 w-full h-full animate-circular-rotate">
+                              <svg className="w-full h-full" viewBox="0 0 160 160">
+                                {/* Background Track */}
+                                <circle
+                                  cx="80"
+                                  cy="80"
+                                  r="72"
+                                  className="stroke-[#112F82]"
+                                  strokeWidth="4.5"
+                                  fill="transparent"
+                                />
+                                {/* Animated Foreground Arc */}
+                                <circle
+                                  cx="80"
+                                  cy="80"
+                                  r="72"
+                                  className="stroke-[#FFC83D] animate-circular-fill"
+                                  strokeWidth="4.5"
+                                  strokeDasharray="452.39"
+                                  strokeDashoffset="452.39"
+                                  strokeLinecap="round"
+                                  fill="transparent"
+                                />
+                              </svg>
+                            </div>
 
                             {/* Gold Crown Logo in the center */}
                             <div className="relative z-10 w-[73px] h-[53px] flex items-center justify-center">
