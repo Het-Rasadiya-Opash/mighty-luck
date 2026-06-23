@@ -154,26 +154,44 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             className="absolute left-0 top-[327px] w-[340px] h-[219px]"
             style={{ background: 'linear-gradient(180deg, rgba(0, 12, 36, 0) 6.85%, #000C24 45.66%)' }}
           />
-          <div className="absolute bottom-[-129px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
+          <div 
+            className="absolute bottom-[-129px] left-[calc(50%-173px/2-0.5px)] w-[173px] h-[173px] bg-[#1463FF] rounded-full" 
+            style={{ filter: 'blur(40px)' }}
+          />
 
-          <div className="absolute top-[359px] left-[calc(50%-150px)] w-[300px] h-[160px] flex flex-col items-center gap-[20px]">
-            <div className="flex flex-col items-center w-[167px] h-[112px]">
-              <div className="flex justify-center items-center gap-[10px] w-[156px] h-[75px]">
-                <h2 className="font-['Jost'] font-extrabold text-[52px] leading-[75px] text-center tracking-[0.01em] text-white">
+          <div className="absolute top-[340px] left-[calc(50%-300px/2)] w-[300px] h-[156px] flex flex-col items-center gap-[24px]">
+            
+            {/* Offer Value Frame */}
+            <div className="relative w-[216px] h-[104px] flex flex-col items-center p-0 isolation-isolate flex-none order-0 flex-grow-0">
+              {/* 350% Text */}
+              <div className="flex flex-row justify-center items-center p-0 gap-[10px] w-[216px] h-[104px] flex-none order-0 flex-grow-0 z-0">
+                <span className="w-[216px] h-[104px] font-['Jost'] font-extrabold text-[72px] leading-[104px] text-center tracking-[0.01em] text-white flex-none order-0 flex-grow-0">
                   350%
-                </h2>
+                </span>
               </div>
-              <div className="flex justify-center items-center px-[20px] py-[10px] gap-[10px] w-[167px] h-[37px] bg-[#2BEA51] rounded-[100px]">
-                <span className="font-['Jost'] font-extrabold text-[12px] leading-[17px] text-center text-[#051D09]">
+
+              {/* WELCOME PACKAGE Badge */}
+              <div 
+                className="absolute left-[31px] top-[60px] w-[151px] h-[41px] flex flex-row justify-center items-center p-[12px] gap-[8.42px] rounded-[100px] flex-none order-1 flex-grow-0 z-10"
+                style={{
+                  background: 'linear-gradient(92.06deg, #F5B607 2.1%, #F2D474 52.48%, #F5B607 64.97%, #FF672C 96.58%)',
+                  boxShadow: '0px -3.36821px 16.8411px rgba(61, 44, 0, 0.25)',
+                  transform: 'rotate(-6.38deg)'
+                }}
+              >
+                <span className="w-[127px] h-[17px] font-['Jost'] font-extrabold text-[12px] leading-[17px] text-center text-[#140F02] flex-none order-0 flex-grow-0">
                   WELCOME PACKAGE
                 </span>
               </div>
             </div>
-            <div className="flex justify-center items-center gap-[10px] w-[300px] h-[28px]">
-              <p className="font-['Manrope'] font-bold text-[10px] leading-[14px] text-center tracking-[0.01em] text-white w-[200px]">
+
+            {/* Subtext Frame */}
+            <div className="flex flex-row justify-center items-center p-0 gap-[10px] w-[300px] h-[28px] flex-none order-1 flex-grow-0">
+              <p className="w-[200px] h-[28px] font-['Manrope'] font-bold text-[10px] leading-[14px] text-center tracking-[0.01em] text-white flex-none order-0 flex-grow-0">
                 Boost your deposits with 350% in Bonus and 200 Free Spins
               </p>
             </div>
+
           </div>
         </div>
 
@@ -203,22 +221,52 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             </div>
           </div>
 
-          <div className="md:hidden relative w-full h-[170px] rounded-t-[12px] bg-cover bg-center shrink-0 overflow-hidden" style={{ backgroundImage: 'url(/login-1.png)' }}>
-            <div className="absolute left-[calc(50%-140.5px)] top-[calc(50%-140.5px)] w-[281px] h-[281px] bg-[#0051F1] blur-[62px] pointer-events-none" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-[12px] z-10">
-              <div className="flex flex-col items-center gap-[6px]">
-                <h2 className="font-['Jost'] font-extrabold text-[44px] leading-none text-center tracking-[0.01em] text-white">
-                  350%
-                </h2>
-                <div className="flex justify-center items-center px-[17px] py-[8.5px] bg-[#2BEA51] rounded-full">
-                  <span className="font-['Jost'] font-extrabold text-[10px] leading-[14px] text-center text-[#051D09]">
+          <div 
+            className="md:hidden relative w-full max-w-[414px] h-[170px] bg-cover bg-center shrink-0 overflow-hidden rounded-t-[12px] self-stretch flex-grow-0 mx-auto" 
+            style={{ backgroundImage: 'url(/login-1.png)' }}
+          >
+            {/* Ellipse 7 */}
+            <div 
+              className="absolute left-[calc(50%-281px/2+0.5px)] top-[calc(50%-281px/2+6.5px)] w-[281px] h-[281px] rounded-full bg-[#0051F1] pointer-events-none" 
+              style={{ filter: 'blur(62.3947px)' }}
+            />
+
+            {/* Inner Content Frame */}
+            <div className="absolute left-[calc(50%-220.13px/2+0.06px)] top-[calc(50%-131px/2+0.5px)] w-[220.13px] h-[131px] flex flex-col items-center p-0 gap-[12px] z-10">
+              
+              {/* Logo / Offer Value Frame */}
+              <div className="relative w-[180px] h-[87px] flex flex-col items-center p-0 isolation-isolate flex-none order-0 flex-grow-0">
+                {/* 350% Text */}
+                <div className="flex flex-row justify-center items-center p-0 gap-[7.5px] w-[180px] h-[87px] flex-none order-0 flex-grow-0 z-0">
+                  <span className="w-[180px] h-[87px] font-['Jost'] font-extrabold text-[60px] leading-[87px] text-center tracking-[0.01em] text-white flex-none order-0 flex-grow-0">
+                    350%
+                  </span>
+                </div>
+
+                {/* WELCOME PACKAGE Badge */}
+                <div 
+                  className="absolute left-[30.94px] top-[51px] w-[115px] h-[33px] flex flex-row justify-center items-center p-[10px] rounded-[75px] flex-none order-1 flex-grow-0 z-10"
+                  style={{
+                    background: 'linear-gradient(92.06deg, #F5B607 2.1%, #F2D474 52.48%, #F5B607 64.97%, #FF672C 96.58%)',
+                    boxShadow: '0px -2.52616px 12.6308px rgba(61, 44, 0, 0.25)',
+                    transform: 'rotate(-6.38deg)'
+                  }}
+                >
+                  <span 
+                    className="w-[95px] h-[13px] font-['Jost'] font-extrabold text-[9px] leading-[13px] text-center text-[#140F02] flex-none order-0 flex-grow-0"
+                  >
                     WELCOME PACKAGE
                   </span>
                 </div>
               </div>
-              <p className="font-['Manrope'] font-bold text-[12px] leading-[16px] text-center tracking-[0.01em] text-white w-[200px]">
-                Boost your deposits with 350% in Bonus and 200 Free Spins
-              </p>
+
+              {/* Subtext Frame */}
+              <div className="flex flex-row justify-center items-start p-0 gap-[10px] w-[220.13px] h-[32px] flex-none order-1 align-self-stretch flex-grow-0">
+                <p className="w-[200px] h-[32px] font-['Manrope'] font-bold text-[12px] leading-[16px] text-center tracking-[0.01em] text-white flex-none order-0 flex-grow-0">
+                  Boost your deposits with 350% in Bonus and 200 Free Spins
+                </p>
+              </div>
+
             </div>
           </div>
 
