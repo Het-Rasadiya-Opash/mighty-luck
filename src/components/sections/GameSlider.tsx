@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 export interface Game {
     id: number | string;
@@ -27,10 +28,15 @@ export function GameSliderContent({ id, title, icon, games, viewAllTab }: GameSl
     const router = useRouter();
     const searchParams = useSearchParams();
     const pathname = usePathname();
+    const { status } = useSession();
 
     const handleGameClick = (gameId: string | number) => {
         const params = new URLSearchParams(searchParams?.toString());
-        params.set('game', gameId.toString());
+        if (status === 'authenticated') {
+            params.set('game', gameId.toString());
+        } else {
+            params.set('auth', 'login');
+        }
         router.push(`${pathname}?${params.toString()}`);
     };
 

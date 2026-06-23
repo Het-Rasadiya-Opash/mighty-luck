@@ -41,7 +41,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
         <main className="flex-1 min-w-0 flex flex-col gap-6 md:gap-8 lg:gap-10 pb-[90px] lg:pb-0 overflow-hidden">
           {view === 'refer' ? (
             <ReferFriend />
-          ) : gameId ? (
+          ) : (gameId && session) ? (
             <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
               <GameOpen gameId={gameId} />
               
