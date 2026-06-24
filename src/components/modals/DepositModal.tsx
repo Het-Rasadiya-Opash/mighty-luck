@@ -616,7 +616,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                   </div>
 
                                   {isCountryOpen && (
-                                    <div className="absolute top-[50px] sm:top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-[60] shadow-lg max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                                    <div className="absolute top-[50px] sm:top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-[60] shadow-lg max-h-[88px] overflow-y-auto [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[#0C1F56] [&::-webkit-scrollbar-thumb]:bg-[#1A3FA6] [&::-webkit-scrollbar-thumb]:rounded-[2px]">
                                       {countries.map(country => (
                                         <button
                                           key={country.id}
