@@ -128,19 +128,26 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
   };
 
   return (
-    <div className="fixed inset-0 z-[120] flex items-center justify-center bg-[#0C1733]/70 backdrop-blur-[8px] md:p-8 md:overflow-y-auto">
+    <div
+      className="fixed inset-0 z-[120] flex items-center justify-center bg-[#0C1733]/70 backdrop-blur-[8px] md:p-8 md:overflow-y-auto"
+      onClick={handleClose}
+    >
       <div
-        className="relative w-full h-full md:w-[730px] md:h-[546px] md:rounded-[16px] flex flex-col md:flex-row shadow-2xl overflow-hidden bg-[#091741]"
+        className="relative w-full h-full md:w-[730px] md:h-[546px] flex flex-col md:flex-row pointer-events-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={handleClose}
-          className="absolute top-[16px] right-[16px] z-50 w-[28px] h-[28px] flex items-center justify-center rounded-full bg-[#112F82]/80 text-white hover:bg-[#1463FF] transition-colors md:flex hidden"
+          className="absolute -right-[44px] top-0 z-50 text-white/85 hover:text-white transition-opacity hidden md:flex items-center justify-center w-[24px] h-[24px] cursor-pointer"
         >
-          ✕
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
 
-        <div className="relative w-[340px] h-[546px] rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
+        <div className="relative w-full h-full md:w-[730px] md:h-[546px] md:rounded-[16px] flex flex-col md:flex-row shadow-2xl overflow-hidden bg-[#091741]">
+          <div className="relative w-[340px] h-[546px] rounded-l-[16px] bg-[#0C1F56] overflow-hidden shrink-0 hidden md:block">
           <div
             className="absolute left-[-3px] top-[-29px] w-[343px] h-[483px]"
             style={{
@@ -154,13 +161,13 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             className="absolute left-0 top-[327px] w-[340px] h-[219px]"
             style={{ background: 'linear-gradient(180deg, rgba(0, 12, 36, 0) 6.85%, #000C24 45.66%)' }}
           />
-          <div 
-            className="absolute bottom-[-129px] left-[calc(50%-173px/2-0.5px)] w-[173px] h-[173px] bg-[#1463FF] rounded-full" 
+          <div
+            className="absolute bottom-[-129px] left-[calc(50%-173px/2-0.5px)] w-[173px] h-[173px] bg-[#1463FF] rounded-full"
             style={{ filter: 'blur(40px)' }}
           />
 
           <div className="absolute top-[340px] left-[calc(50%-300px/2)] w-[300px] h-[156px] flex flex-col items-center gap-[24px]">
-            
+
             {/* Offer Value Frame */}
             <div className="relative w-[216px] h-[104px] flex flex-col items-center p-0 isolation-isolate flex-none order-0 flex-grow-0">
               {/* 350% Text */}
@@ -171,7 +178,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
               </div>
 
               {/* WELCOME PACKAGE Badge */}
-              <div 
+              <div
                 className="absolute left-[31px] top-[60px] w-[151px] h-[41px] flex flex-row justify-center items-center p-[12px] gap-[8.42px] rounded-[100px] flex-none order-1 flex-grow-0 z-10"
                 style={{
                   background: 'linear-gradient(92.06deg, #F5B607 2.1%, #F2D474 52.48%, #F5B607 64.97%, #FF672C 96.58%)',
@@ -201,8 +208,8 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
           <div className="flex md:hidden flex-row items-center pt-[12px] px-[20px] pb-[30px] gap-[20px] w-full max-w-[414px] h-[92px] flex-none self-stretch grow-0 shrink-0 mx-auto">
             <button onClick={handleClose} className="flex flex-col justify-center items-center p-0 w-[30px] h-[30px] flex-none grow-0 text-[#D2DCF7] hover:text-white transition-colors">
               <svg width="20" height="15.77" viewBox="0 0 20 15.77" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[20px] h-[15.77px] flex-none grow-0">
-                <path d="M8 1L1 8L8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M1 8H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8 1L1 8L8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M1 8H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             <div className="flex flex-row items-center p-0 flex-1 h-[50px] min-w-0">
@@ -221,19 +228,19 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             </div>
           </div>
 
-          <div 
-            className="md:hidden relative w-full max-w-[414px] h-[170px] bg-cover bg-center shrink-0 overflow-hidden rounded-t-[12px] self-stretch flex-grow-0 mx-auto" 
+          <div
+            className="md:hidden relative w-full max-w-[414px] h-[170px] bg-cover bg-center shrink-0 overflow-hidden rounded-t-[12px] self-stretch flex-grow-0 mx-auto"
             style={{ backgroundImage: 'url(/small-login.png)' }}
           >
             {/* Ellipse 7 */}
-            <div 
-              className="absolute left-[calc(50%-281px/2+0.5px)] top-[calc(50%-281px/2+6.5px)] w-[281px] h-[281px] rounded-full bg-[#0051F1] pointer-events-none" 
+            <div
+              className="absolute left-[calc(50%-281px/2+0.5px)] top-[calc(50%-281px/2+6.5px)] w-[281px] h-[281px] rounded-full bg-[#0051F1] pointer-events-none"
               style={{ filter: 'blur(62.3947px)' }}
             />
 
             {/* Inner Content Frame */}
             <div className="absolute left-[calc(50%-220.13px/2+0.06px)] top-[calc(50%-131px/2+0.5px)] w-[220.13px] h-[131px] flex flex-col items-center p-0 gap-[12px] z-10">
-              
+
               {/* Logo / Offer Value Frame */}
               <div className="relative w-[180px] h-[87px] flex flex-col items-center p-0 isolation-isolate flex-none order-0 flex-grow-0">
                 {/* 350% Text */}
@@ -244,7 +251,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                 </div>
 
                 {/* WELCOME PACKAGE Badge */}
-                <div 
+                <div
                   className="absolute left-[30.94px] top-[51px] w-[115px] h-[33px] flex flex-row justify-center items-center p-[10px] rounded-[75px] flex-none order-1 flex-grow-0 z-10"
                   style={{
                     background: 'linear-gradient(92.06deg, #F5B607 2.1%, #F2D474 52.48%, #F5B607 64.97%, #FF672C 96.58%)',
@@ -252,7 +259,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     transform: 'rotate(-6.38deg)'
                   }}
                 >
-                  <span 
+                  <span
                     className="w-[95px] h-[13px] font-['Jost'] font-extrabold text-[9px] leading-[13px] text-center text-[#140F02] flex-none order-0 flex-grow-0"
                   >
                     WELCOME PACKAGE
@@ -270,27 +277,27 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
             </div>
           </div>
 
-          <div className="hidden md:flex relative w-full max-w-[350px] mx-auto pt-[24px] flex-col items-start gap-[16px] z-10 px-[20px]">
-            <div className="w-full flex justify-start items-start">
+          <div className="hidden md:flex relative w-full max-w-[390px] mx-auto pt-[24px] flex-col items-start gap-[16px] z-10 px-[20px]">
+            <div className="w-full flex justify-center items-center">
               <Image src="/Horizontal logo.png" alt="Mighty Luck" width={140} height={26} className="object-contain" />
             </div>
-            <div className="flex flex-row items-center gap-[8px] w-full h-[40px] mt-[2px]">
+            <div className="flex flex-row items-center w-full h-[40px] mt-[2px]">
               <button
                 onClick={() => handleTabSwitch('register')}
-                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-[8px] h-full transition-colors ${!isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
+                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-l-[8px] rounded-r-none h-full transition-colors cursor-pointer ${!isLogin ? 'bg-[#1463FF]' : 'bg-[#112F82]'}`}
               >
-                <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Join Now</span>
+                <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#FFFFFF]">Join Now</span>
               </button>
               <button
                 onClick={() => handleTabSwitch('login')}
-                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-[8px] h-full transition-colors ${isLogin ? 'bg-[#FFC83D] text-[#000000]' : 'bg-[#1463FF] text-white'}`}
+                className={`flex-1 flex justify-center items-center px-[30px] py-[10px] rounded-r-[8px] rounded-l-none h-full transition-colors cursor-pointer ${isLogin ? 'bg-[#1463FF]' : 'bg-[#112F82]'}`}
               >
-                <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em]">Log In</span>
+                <span className="font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#FFFFFF]">Log In</span>
               </button>
             </div>
           </div>
 
-          <div className="w-full px-[20px] py-[20px] pb-[40px] md:pb-[24px] md:px-[20px] max-w-[414px] md:max-w-[350px] mx-auto flex flex-col items-center md:items-start flex-1 shrink-0 z-10 gap-[32px] md:gap-[16px]">
+          <div className="w-full px-[20px] py-[20px] pb-[40px] md:pb-[24px] md:px-[20px] max-w-[414px] md:max-w-[390px] mx-auto flex flex-col items-center md:items-start flex-1 shrink-0 z-10 gap-[32px] md:gap-[16px]">
             <form onSubmit={handleSubmit} className="flex flex-col items-start gap-[16px] md:gap-[12px] w-full">
               {isLogin ? (
                 <>
@@ -459,13 +466,13 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                     </div>
                   </div>
 
-                  <div className="flex flex-row justify-center items-start w-full mt-[16px] md:mt-[4px]">
-                    <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] text-center tracking-[0.01em] text-[#BBCAF3] w-full">
+                  <div className="flex flex-row justify-center items-start w-full mt-[12px] md:mt-[4px]">
+                    <p className="font-['Manrope'] font-medium text-[10px] leading-[14px]  tracking-[0.01em] text-[#BBCAF3] w-full">
                       By clicking "Join Now" I confirm that I'm over 18 years old and agree to Mighty Luck' T&C along with the Privacy Policy
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-center gap-[12px] w-full mt-[44px] md:mt-[12px]">
+                  <div className="flex flex-col items-center gap-[12px] w-full mt-[32px] md:mt-[12px]">
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -475,7 +482,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
                         {isSubmitting ? 'Joining...' : 'Join with a 350% Bonus'}
                       </span>
                     </button>
-                    <div className="flex flex-row items-center gap-[8px] w-full justify-center h-[16px] mt-[4px]">
+                    <div className="flex flex-row items-start gap-[8px] w-full justify-start h-[16px] mt-[4px]">
                       <div className="w-[16px] h-[16px] shrink-0 flex items-center justify-center border-[1.5px] border-[#7795E8] rounded-full text-[#7795E8] font-bold text-[10px] pb-[0.5px]">?</div>
                       <p className="font-['Manrope'] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#7795E8]">
                         Having problems? <span className="font-bold cursor-pointer text-[#FFC83D]">Contact support</span>
@@ -486,6 +493,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
               )}
             </form>
           </div>
+        </div>
         </div>
 
       </div>
