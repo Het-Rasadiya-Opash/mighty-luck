@@ -286,7 +286,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             />
 
             {/* <div className={`flex flex-col items-start gap-[24px] w-full h-auto my-auto py-8 sm:py-0 ${outerBoxHeightClass} z-40`}> */}
-            <div className={`flex flex-col items-start gap-[24px] w-full ${outerBoxHeightClass} max-[639px]:h-0 max-[639px]:flex-1 max-[639px]:overflow-y-auto ${isCountryOpen ? 'max-[639px]:pb-[180px] max-[639px]:z-[60] z-40' : 'max-[639px]:pb-[100px] z-40'} [&::-webkit-scrollbar]:hidden`}>
+            <div className={`flex flex-col items-start gap-[24px] w-full ${outerBoxHeightClass} max-[639px]:h-0 max-[639px]:flex-1 max-[639px]:overflow-y-auto ${isCountryOpen ? 'max-[639px]:pb-[240px] max-[639px]:relative max-[639px]:z-[60] z-40' : 'max-[639px]:pb-[100px] z-40'} [&::-webkit-scrollbar]:hidden`}>
               <div className="flex flex-row justify-start md:justify-center items-start md:items-center gap-[12px] w-full h-[29px]">
                 <div className="flex flex-row items-center gap-[12px] h-[29px]">
                   <div className="relative flex items-center justify-center w-[20px] h-[20px] shrink-0">
@@ -616,7 +616,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                   </div>
 
                                   {isCountryOpen && (
-                                    <div className="absolute top-[50px] sm:top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-[60] shadow-lg max-h-[150px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                                    <div className="absolute top-[50px] sm:top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-[60] shadow-lg max-h-[250px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
                                       {countries.map(country => (
                                         <button
                                           key={country.id}
