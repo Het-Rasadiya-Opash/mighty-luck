@@ -164,11 +164,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   };
 
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
       document.body.classList.add("hide-mobile-nav");
       setIsBonusOpen(false);
       setIsPaymentOpen(false);
@@ -180,14 +180,15 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setActiveTab('deposit');
     } else {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
       document.body.classList.remove("hide-mobile-nav");
     }
     return () => {
       document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
       document.body.classList.remove("hide-mobile-nav");
     };
   }, [isOpen]);
-
   const handleCompleteDeposit = () => {
     toast.success("Bitcoin Transection Completed!");
     setIsPending(true);

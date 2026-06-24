@@ -57,6 +57,20 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
     };
   }, []);
 
+  useEffect(() => {
+    if (authMode) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
+    };
+  }, [authMode]);
+
   const [formData, setFormData] = useState({
     username: '',
     firstName: '',
