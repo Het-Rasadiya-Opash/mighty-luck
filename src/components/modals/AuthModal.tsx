@@ -130,7 +130,7 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center bg-[#0C1733]/70 backdrop-blur-[8px] md:p-8 md:overflow-y-auto">
       <div
-        className="relative w-full h-full md:w-[730px] md:h-[546px] md:rounded-[16px] flex flex-row shadow-2xl overflow-hidden bg-[#091741]"
+        className="relative w-full h-full md:w-[730px] md:h-[546px] md:rounded-[16px] flex flex-col md:flex-row shadow-2xl overflow-hidden bg-[#091741]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -195,26 +195,26 @@ function AuthModalContent({ defaultMode }: { defaultMode?: 'login' | 'register' 
           </div>
         </div>
 
-        <div className="relative w-full md:w-[390px] h-full md:h-[546px] bg-[#091741] rounded-none md:rounded-l-none md:rounded-r-[16px] flex flex-col items-start shrink-0 overflow-y-auto md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
+        <div className="relative w-full md:w-[390px] h-full md:h-[546px] bg-[#091741] rounded-none md:rounded-l-none md:rounded-r-[16px] flex flex-col items-start md:shrink-0 overflow-y-auto overflow-x-hidden md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] z-10">
           <div className="hidden min-[426px]:block absolute top-[-145px] left-[calc(50%-86.5px)] w-[173px] h-[173px] bg-[#1463FF] blur-[40px] rounded-full -z-10" />
 
-          <div className="flex md:hidden flex-row items-center pt-[12px] px-[20px] pb-[30px] gap-[20px] w-[414px] max-w-full h-[92px] flex-none self-stretch grow-0 shrink-0">
+          <div className="flex md:hidden flex-row items-center pt-[12px] px-[20px] pb-[30px] gap-[20px] w-full max-w-[414px] h-[92px] flex-none self-stretch grow-0 shrink-0 mx-auto">
             <button onClick={handleClose} className="flex flex-col justify-center items-center p-0 w-[30px] h-[30px] flex-none grow-0 text-[#D2DCF7] hover:text-white transition-colors">
               <svg width="20" height="15.77" viewBox="0 0 20 15.77" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[20px] h-[15.77px] flex-none grow-0">
                 <path d="M8 1L1 8L8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M1 8H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            <div className="flex flex-row items-center p-0 w-[324px] max-w-full h-[50px] flex-none grow">
+            <div className="flex flex-row items-center p-0 flex-1 h-[50px] min-w-0">
               <button
                 onClick={() => handleTabSwitch('register')}
-                className={`flex flex-row justify-center items-center py-[10px] px-[30px] gap-[10px] w-[162px] h-[50px] rounded-l-[8px] rounded-r-none flex-none self-stretch grow transition-colors ${!isLogin ? 'bg-[#1463FF]' : 'bg-[#112F82]'}`}
+                className={`flex-1 flex flex-row justify-center items-center py-[10px] px-[12px] min-[375px]:px-[30px] gap-[10px] h-[50px] rounded-l-[8px] rounded-r-none self-stretch transition-colors ${!isLogin ? 'bg-[#1463FF]' : 'bg-[#112F82]'}`}
               >
                 <span className="whitespace-nowrap h-[19px] font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#FFFFFF] flex-none grow-0">Join Now</span>
               </button>
               <button
                 onClick={() => handleTabSwitch('login')}
-                className={`flex flex-row justify-center items-center py-[10px] px-[30px] gap-[10px] w-[162px] h-[50px] rounded-r-[8px] rounded-l-none flex-none self-stretch grow transition-colors ${isLogin ? 'bg-[#1463FF]' : 'bg-[#112F82]'}`}
+                className={`flex-1 flex flex-row justify-center items-center py-[10px] px-[12px] min-[375px]:px-[30px] gap-[10px] h-[50px] rounded-r-[8px] rounded-l-none self-stretch transition-colors ${isLogin ? 'bg-[#1463FF]' : 'bg-[#112F82]'}`}
               >
                 <span className="whitespace-nowrap h-[19px] font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-[#FFFFFF] flex-none grow-0">Log In</span>
               </button>
