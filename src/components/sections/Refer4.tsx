@@ -18,11 +18,11 @@ export default function Refer4() {
         </h2>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-3 w-full">
+      <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-3 w-full">
         {steps.map((step) => (
           <div
             key={step.alt}
-            className="w-full lg:flex-1 max-w-[370px] rounded-2xl overflow-hidden"
+            className="w-full lg:flex-1 lg:max-w-none max-w-[370px] rounded-2xl overflow-hidden"
           >
             <img
               src={step.src}
