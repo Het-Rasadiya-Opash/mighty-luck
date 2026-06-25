@@ -8,7 +8,7 @@ export default function AboutSection() {
 
     return (
         <section className="flex flex-col items-center lg:items-start p-0 gap-[24px] lg:gap-[40px] w-full max-w-[1136px] mx-auto px-0 lg:px-0">
-            <div 
+            <div
                 className={`flex flex-col items-center p-0 gap-[24px] lg:gap-[32px] w-full max-w-[1136px] relative isolate overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded ? 'max-h-[3000px]' : 'max-h-[910px] md:max-h-[708px]'}`}
             >
                 <div className="flex flex-col items-start p-0 gap-[16px] lg:gap-[24px] w-[374px] max-w-full md:w-full lg:w-[800px] md:px-[24px] lg:px-0 flex-none z-0">
@@ -38,11 +38,11 @@ export default function AboutSection() {
                     </p>
                 </div>
 
-                <div 
+                <div
                     className={`absolute w-[414px] md:w-full md:max-w-[800px] h-[200px] left-1/2 -translate-x-1/2 bottom-0 flex flex-col justify-end items-center px-[10px] py-[24px] gap-[10px] z-30 pointer-events-none transition-all duration-500 ${isExpanded ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}
                     style={{ background: isExpanded ? 'transparent' : 'linear-gradient(0deg, #091741 0%, rgba(9, 23, 65, 0) 100%)' }}
                 >
-                    <button 
+                    <button
                         onClick={() => setIsExpanded(true)}
                         className="flex flex-row items-center p-0 gap-[4px] w-[93px] h-[19px] cursor-pointer hover:opacity-80 transition-opacity pointer-events-auto flex-none"
                     >
@@ -57,7 +57,7 @@ export default function AboutSection() {
 
                 {isExpanded && (
                     <div className="flex flex-col justify-end items-center px-[10px] pb-[24px] pt-[24px] gap-[10px] z-30 w-full animate-in fade-in duration-500 absolute bottom-0 left-1/2 -translate-x-1/2">
-                        <button 
+                        <button
                             onClick={() => setIsExpanded(false)}
                             className="flex flex-row items-center p-0 gap-[4px] w-[93px] h-[19px] cursor-pointer hover:opacity-80 transition-opacity flex-none"
                         >
