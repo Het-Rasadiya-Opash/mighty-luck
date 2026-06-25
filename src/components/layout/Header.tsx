@@ -63,7 +63,7 @@ export function HeaderContent() {
 
   return (
     <header className="sticky top-0 z-[110] w-full bg-[#0C1F56] h-[50px] sm:h-[60px] border-b border-[#112F82] sm:border-none">
-            <div className="relative mx-auto flex h-full w-full items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-6">
+            <div className="relative mx-auto flex h-full w-full max-w-[2560px] items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-6">
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div
             className="absolute rounded-full hidden sm:block left-[12px] md:left-[24px] lg:left-[114px]"

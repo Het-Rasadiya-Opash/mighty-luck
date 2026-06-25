@@ -22,7 +22,7 @@ export default function CollectionSection() {
         const updateVisible = () => {
             if (!containerRef.current) return;
             const w = containerRef.current.offsetWidth;
-            const count = w >= 900 ? 3 : w >= 560 ? 2 : 1;
+            const count = w >= 1600 ? 5 : w >= 1200 ? 4 : w >= 900 ? 3 : w >= 560 ? 2 : 1;
             setVisibleCount(count);
         };
         updateVisible();
