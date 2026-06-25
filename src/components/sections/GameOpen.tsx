@@ -9,7 +9,7 @@ interface GameOpenProps {
 
 export default function GameOpen({ gameId }: GameOpenProps) {
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full max-w-[1440px] flex flex-col gap-4">
       <GameFrame imageSrc="/game-frame.png" />
       <NinjaSlot />
     </div>
