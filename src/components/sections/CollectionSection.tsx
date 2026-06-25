@@ -8,7 +8,10 @@ const collectionData = [
     { id: 2, title: 'FRUITS', image: '/games/c-2.png' },
     { id: 3, title: 'ANIMALS', image: '/games/c-3.png' },
     { id: 4, title: 'ASIAN', image: '/games/c-4.png' },
-    { id: 5, title: 'EGYPTIAN', image: '/games/c-1.png' }
+    { id: 5, title: 'EGYPTIAN', image: '/games/c-1.png' },
+    { id: 6, title: 'ANIMALS', image: '/games/c-3.png' },
+    { id: 7, title: 'ASIAN', image: '/games/c-4.png' },
+    { id: 8, title: 'EGYPTIAN', image: '/games/c-1.png' },
 ];
 
 export default function CollectionSection() {

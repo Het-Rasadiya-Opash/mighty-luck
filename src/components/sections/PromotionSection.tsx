@@ -29,6 +29,30 @@ const promos = [
         gradient: "linear-gradient(90deg, #091741 21.96%, rgba(9, 23, 65, 0) 60.27%)",
         mobileGradient: "linear-gradient(90deg, #091741 48%, rgba(9,23,65,0.75) 62%, rgba(9,23,65,0.25) 80%, rgba(9,23,65,0) 100%)",
     },
+     {
+        id: 4,
+        title: "150% RELOAD BONUS\n+ 50 FREE SPINS",
+        cta: "Claim Now",
+        bg: "/pp-1.png",
+        gradient: "linear-gradient(90deg, #091741 21.96%, rgba(9, 23, 65, 0) 60.27%)",
+        mobileGradient: "linear-gradient(90deg, #091741 48%, rgba(9,23,65,0.75) 62%, rgba(9,23,65,0.25) 80%, rgba(9,23,65,0) 100%)",
+    },
+    {
+        id: 5,
+        title: "150% RELOAD BONUS\n+ 50 FREE SPINS",
+        cta: "Claim Now",
+        bg: "/pp-2.png",
+        gradient: "linear-gradient(90deg, #060B4D 39.55%, rgba(6, 11, 77, 0) 50%)",
+        mobileGradient: "linear-gradient(90deg, #060B4D 48%, rgba(6,11,77,0.75) 62%, rgba(6,11,77,0.25) 80%, rgba(6,11,77,0) 100%)",
+    },
+    {
+        id: 6,
+        title: "150% RELOAD BONUS\n+ 50 FREE SPINS",
+        cta: "Claim Now",
+        bg: "/pp-1.png",
+        gradient: "linear-gradient(90deg, #091741 21.96%, rgba(9, 23, 65, 0) 60.27%)",
+        mobileGradient: "linear-gradient(90deg, #091741 48%, rgba(9,23,65,0.75) 62%, rgba(9,23,65,0.25) 80%, rgba(9,23,65,0) 100%)",
+    },
 ];
 
 export default function PromotionSection() {
