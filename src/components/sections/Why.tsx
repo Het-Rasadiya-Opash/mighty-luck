@@ -17,7 +17,7 @@ const features = [
 
 export default function Why() {
     return (
-        <section className="flex flex-col items-start gap-5 md:gap-[28px] w-full">
+        <section className="flex flex-col items-start gap-5 md:gap-[28px] w-full max-w-[1440px]">
             <div className="flex flex-row justify-between items-center w-full h-[23px] md:h-[30px]">
                 <div className="flex flex-row items-center gap-[7.2px] md:gap-[12px] h-[23px] md:h-[30px]">
                     <div className="flex items-center justify-center w-[18px] h-[18px] md:w-[30px] md:h-[30px] shrink-0">
@@ -57,7 +57,7 @@ export default function Why() {
                             src={item.image}
                             alt={item.alt}
                             fill
-                            className="object-cover"
+                            className="object-fill"
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                     </div>
