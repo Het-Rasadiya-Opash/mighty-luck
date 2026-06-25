@@ -6,7 +6,9 @@ import {
   Search,
   X
 } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -16,10 +18,26 @@ interface SearchModalProps {
 }
 
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
+  const { status } = useSession();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [activeCategory, setActiveCategory] = useState('All Games');
   const [searchQuery, setSearchQuery] = useState('');
   const providersScrollRef = useRef<HTMLDivElement>(null);
   const [activeProviderPage, setActiveProviderPage] = useState(0);
+
+  const handleGameClick = (gameId: string | number) => {
+    const params = new URLSearchParams(searchParams?.toString());
+    if (status === 'authenticated') {
+      params.set('game', gameId.toString());
+    } else {
+      params.set('auth', 'login');
+    }
+    router.push(`${pathname}?${params.toString()}`);
+    onClose();
+  };
 
   const handleProviderScroll = () => {
     if (providersScrollRef.current) {
@@ -256,7 +274,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                     <div className="flex flex-row gap-[8px] lg:gap-[12px] overflow-x-auto w-full [&::-webkit-scrollbar]:hidden snap-x snap-mandatory pr-[16px] lg:pr-0">
                       {popularGames.map((game) => (
-                        <div key={game.id} className="w-[121.6px] lg:w-[152px] h-[160px] lg:h-[200px] shrink-0 rounded-[9.6px] lg:rounded-[12px] overflow-hidden relative bg-[#CDCDCD] snap-start group cursor-pointer">
+                        <div key={game.id} onClick={() => handleGameClick(game.id)} className="w-[121.6px] lg:w-[152px] h-[160px] lg:h-[200px] shrink-0 rounded-[9.6px] lg:rounded-[12px] overflow-hidden relative bg-[#CDCDCD] snap-start group cursor-pointer">
                           <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                         </div>
                       ))}
@@ -348,6 +366,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     {searchResults.map((game) => (
                       <div
                         key={game.id}
+                        onClick={() => handleGameClick(game.id)}
                         style={{
                           width: '119.43px',
                           height: '157.14px',
@@ -366,7 +385,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                   <div className="hidden md:grid lg:hidden gap-[10px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))' }}>
                     {searchResults.map((game) => (
-                      <div key={game.id} className="w-full aspect-[119/157] rounded-[9.6px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
+                      <div key={game.id} onClick={() => handleGameClick(game.id)} className="w-full aspect-[119/157] rounded-[9.6px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
                         <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                       </div>
                     ))}
@@ -374,7 +393,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                   <div className="hidden lg:grid gap-[12px] w-full pb-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))' }}>
                     {searchResults.map((game) => (
-                      <div key={game.id} className="w-full aspect-[152/200] rounded-[12px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
+                      <div key={game.id} onClick={() => handleGameClick(game.id)} className="w-full aspect-[152/200] rounded-[12px] overflow-hidden relative bg-[#CDCDCD] group cursor-pointer">
                         <Image unoptimized src={game.image} alt={game.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                       </div>
                     ))}
