@@ -7,9 +7,9 @@ export default function AboutSection() {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <section className="flex flex-col items-center lg:items-start p-0 gap-[24px] lg:gap-[40px] w-full max-w-[1440px] px-0 lg:px-0">
+                <section className="flex flex-col items-center lg:items-start p-0 gap-[24px] lg:gap-[40px] w-full max-w-[1136px] mx-auto px-0 lg:px-0">
             <div
-                className={`flex flex-col items-center p-0 gap-[24px] lg:gap-[32px] w-full max-w-[1440px] relative isolate overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded ? 'max-h-[3000px]' : 'max-h-[910px] md:max-h-[708px]'}`}
+                className={`flex flex-col items-center p-0 gap-[24px] lg:gap-[32px] w-full max-w-[1136px] relative isolate overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded ? 'max-h-[3000px]' : 'max-h-[910px] md:max-h-[708px]'}`}
             >
                 <div className="flex flex-col items-start p-0 gap-[16px] lg:gap-[24px] w-[374px] max-w-full md:w-full lg:w-[800px] md:px-[24px] lg:px-0 flex-none z-0">
                     <h2 className="w-full font-['Jost'] font-bold text-[22px] md:text-[32px] lg:text-[32px] leading-[26px] md:leading-[120%] tracking-[-0.02em] text-white flex-none m-0">
