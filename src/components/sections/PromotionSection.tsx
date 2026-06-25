@@ -73,8 +73,7 @@ export default function PromotionSection() {
                     </span>
                 </div>
 
-                <div className="hidden sm:flex lg:hidden flex-row items-center gap-[8px]">
-                    <button
+                <div className="hidden sm:flex flex-row items-center gap-[8px]">                    <button
                         onClick={scrollLeft}
                         disabled={!canScrollLeft}
                         className={`flex items-center justify-center w-[30px] h-[30px] rounded-[4px] transition-all cursor-pointer ${canScrollLeft ? "bg-[#112F82] hover:bg-[#1463FF]" : "bg-[#112F82] opacity-40"
@@ -104,7 +103,7 @@ export default function PromotionSection() {
                 {promos.map((promo) => (
                     <div
                         key={promo.id}
-                        className="relative w-full sm:w-[400px] md:w-[560px] lg:w-auto lg:flex-1 h-[163px] sm:h-[200px] md:h-[220px] rounded-[8px] sm:rounded-[16px] flex-none overflow-hidden snap-start snap-always shrink-0 lg:shrink"
+                        className="relative w-full sm:w-[400px] md:w-[560px] h-[163px] sm:h-[200px] md:h-[220px] rounded-[8px] sm:rounded-[16px] flex-none overflow-hidden snap-start snap-always shrink-0"
                     >
                         <div
                             className="absolute inset-0 bg-cover bg-right bg-no-repeat  rounded-[10px] sm:rounded-none"
