@@ -43,5 +43,50 @@
     "id": 9,
     "title": "CRASH PUCK",
     "image": "/games/24.png"
+  },
+  {
+    "id": 10,
+    "title": "CRASH METEOR",
+    "image": "/games/21.png"
+  },
+  {
+    "id": 11,
+    "title": "CRASH ASTRONAUT",
+    "image": "/games/22.png"
+  },
+  {
+    "id": 12,
+    "title": "CRASH BALLOON",
+    "image": "/games/23.png"
+  },
+  {
+    "id": 13,
+    "title": "CRASH SUPERNOVA",
+    "image": "/games/24.png"
+  },
+  {
+    "id": 14,
+    "title": "CRASH JETPACK",
+    "image": "/games/25.png"
+  },
+  {
+    "id": 15,
+    "title": "CRASH RACING",
+    "image": "/games/26.png"
+  },
+  {
+    "id": 16,
+    "title": "CRASH ESCAPE",
+    "image": "/games/27.png"
+  },
+  {
+    "id": 17,
+    "title": "CRASH NITRO",
+    "image": "/games/21.png"
+  },
+  {
+    "id": 18,
+    "title": "CRASH HIGHWAY",
+    "image": "/games/24.png"
   }
 ]

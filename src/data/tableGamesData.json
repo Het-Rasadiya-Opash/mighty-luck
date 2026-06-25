@@ -43,5 +43,50 @@
     "id": 9,
     "title": "SPEED BACCARAT",
     "image": "/games/t-3.png"
+  },
+  {
+    "id": 10,
+    "title": "PONTOCK",
+    "image": "/games/t-1.png"
+  },
+  {
+    "id": 11,
+    "title": "MINI BACCARAT",
+    "image": "/games/t-2.png"
+  },
+  {
+    "id": 12,
+    "title": "CARIBBEAN STUD",
+    "image": "/games/t-3.png"
+  },
+  {
+    "id": 13,
+    "title": "THREE CARD POKER",
+    "image": "/games/t-4.png"
+  },
+  {
+    "id": 14,
+    "title": "PAI GOW POKER",
+    "image": "/games/t-5.png"
+  },
+  {
+    "id": 15,
+    "title": "SIC BO DELUXE",
+    "image": "/games/t-6.png"
+  },
+  {
+    "id": 16,
+    "title": "FRENCH ROULETTE",
+    "image": "/games/t-7.png"
+  },
+  {
+    "id": 17,
+    "title": "RED DOG",
+    "image": "/games/t-1.png"
+  },
+  {
+    "id": 18,
+    "title": "SUPER 6",
+    "image": "/games/t-3.png"
   }
 ]

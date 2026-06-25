@@ -89,5 +89,89 @@
     "image": "/games/ps-5.png",
     "provider": "",
     "isPopular": true
+  },
+  {
+    "id": "14",
+    "title": "Gates of Olympus",
+    "image": "/games/ps-1.png",
+    "provider": "Pragmatic Play",
+    "isPopular": true
+  },
+  {
+    "id": "15",
+    "title": "Sugar Rush",
+    "image": "/games/ps-2.png",
+    "provider": "Pragmatic Play",
+    "isPopular": true
+  },
+  {
+    "id": "16",
+    "title": "Book of Dead",
+    "image": "/games/ps-3.png",
+    "provider": "Play'n GO",
+    "isPopular": true
+  },
+  {
+    "id": "17",
+    "title": "Starburst",
+    "image": "/games/ps-4.png",
+    "provider": "NetEnt",
+    "isPopular": true
+  },
+  {
+    "id": "18",
+    "title": "Legacy of Dead",
+    "image": "/games/ps-5.png",
+    "provider": "Play'n GO",
+    "isPopular": true
+  },
+  {
+    "id": "19",
+    "title": "Big Bass Bonanza",
+    "image": "/games/ps-1.png",
+    "provider": "Reel Kingdom",
+    "isPopular": true
+  },
+  {
+    "id": "20",
+    "title": "Wolf Gold",
+    "image": "/games/ps-2.png",
+    "provider": "Pragmatic Play",
+    "isPopular": true
+  },
+  {
+    "id": "21",
+    "title": "Reactoonz",
+    "image": "/games/ps-3.png",
+    "provider": "Play'n GO",
+    "isPopular": false
+  },
+  {
+    "id": "22",
+    "title": "Gonzo's Quest",
+    "image": "/games/ps-4.png",
+    "provider": "NetEnt",
+    "isPopular": false
+  },
+  {
+    "id": "23",
+    "title": "Razor Shark",
+    "image": "/games/ps-5.png",
+    "provider": "Push Gaming",
+    "isPopular": false
+  },
+  {
+    "id": "24",
+    "title": "Rise of Olympus",
+    "image": "/games/ps-1.png",
+    "provider": "Play'n GO",
+    "isPopular": false
+  },
+  {
+    "id": "25",
+    "title": "Fruit Party",
+    "image": "/games/ps-2.png",
+    "provider": "Pragmatic Play",
+    "isPopular": false
   }
 ]

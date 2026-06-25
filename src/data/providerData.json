@@ -41,7 +41,7 @@
     "image": "/p-7.png",
     "gamesCount": 188
   },
-    {
+  {
     "id": 8,
     "name": "HACKSAW GAMING",
     "image": "/p-1.png",
@@ -52,5 +52,41 @@
     "name": "BOOMING GAMES",
     "image": "/p-2.png",
     "gamesCount": 188
+  },
+  {
+    "id": 10,
+    "name": "PRAGMATIC PLAY",
+    "image": "/p-3.png",
+    "gamesCount": 350
+  },
+  {
+    "id": 11,
+    "name": "PLAY'N GO",
+    "image": "/p-4.png",
+    "gamesCount": 280
+  },
+  {
+    "id": 12,
+    "name": "NETENT",
+    "image": "/p-5.png",
+    "gamesCount": 190
+  },
+  {
+    "id": 13,
+    "name": "MICROGAMING",
+    "image": "/p-6.png",
+    "gamesCount": 420
+  },
+  {
+    "id": 14,
+    "name": "EVOLUTION",
+    "image": "/p-7.png",
+    "gamesCount": 150
+  },
+  {
+    "id": 15,
+    "name": "QUICKSPIN",
+    "image": "/p-1.png",
+    "gamesCount": 95
   }
 ]
