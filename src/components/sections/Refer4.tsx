@@ -4,6 +4,8 @@ const steps = [
   { src: '/r1.png', alt: 'Step 1' },
   { src: '/r2.png', alt: 'Step 2' },
   { src: '/r3.png', alt: 'Step 3' },
+
+
 ];
 
 export default function Refer4() {

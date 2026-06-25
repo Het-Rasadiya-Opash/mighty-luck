@@ -44,6 +44,50 @@ const features = [
         image: "/j-1.svg",
         alt: "Weekly 10% Cashback",
     },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
 ];
 
 export default function Why() {

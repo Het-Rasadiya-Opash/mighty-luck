@@ -12,6 +12,12 @@ const collectionData = [
     { id: 6, title: 'ANIMALS', image: '/games/c-3.png' },
     { id: 7, title: 'ASIAN', image: '/games/c-4.png' },
     { id: 8, title: 'EGYPTIAN', image: '/games/c-1.png' },
+    { id: 9, title: 'EGYPTIAN', image: '/games/c-1.png' },
+    { id: 10, title: 'EGYPTIAN', image: '/games/c-1.png' },
+    { id: 11, title: 'EGYPTIAN', image: '/games/c-1.png' },
+    { id: 12, title: 'EGYPTIAN', image: '/games/c-1.png' },
+    { id: 13, title: 'EGYPTIAN', image: '/games/c-1.png' },
+    { id: 14, title: 'EGYPTIAN', image: '/games/c-1.png' },
 ];
 
 export default function CollectionSection() {

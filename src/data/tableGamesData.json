@@ -88,5 +88,95 @@
     "id": 18,
     "title": "SUPER 6",
     "image": "/games/t-3.png"
+  },
+  {
+    "id": 19,
+    "title": "ROULETTE",
+    "image": "/games/t-1.png"
+  },
+  {
+    "id": 20,
+    "title": "BLACKJACK",
+    "image": "/games/t-2.png"
+  },
+  {
+    "id": 21,
+    "title": "BACCARAT",
+    "image": "/games/t-3.png"
+  },
+  {
+    "id": 22,
+    "title": "TEXAS HOLD'EM",
+    "image": "/games/t-4.png"
+  },
+  {
+    "id": 23,
+    "title": "CRAPS",
+    "image": "/games/t-5.png"
+  },
+  {
+    "id": 24,
+    "title": "SIC BO",
+    "image": "/games/t-6.png"
+  },
+  {
+    "id": 25,
+    "title": "DRAGON TIGER",
+    "image": "/games/t-7.png"
+  },
+  {
+    "id": 26,
+    "title": "EUROPEAN ROULETTE",
+    "image": "/games/t-1.png"
+  },
+  {
+    "id": 27,
+    "title": "SPEED BACCARAT",
+    "image": "/games/t-3.png"
+  },
+  {
+    "id": 28,
+    "title": "PONTOCK",
+    "image": "/games/t-1.png"
+  },
+  {
+    "id": 29,
+    "title": "MINI BACCARAT",
+    "image": "/games/t-2.png"
+  },
+  {
+    "id": 30,
+    "title": "CARIBBEAN STUD",
+    "image": "/games/t-3.png"
+  },
+  {
+    "id": 31,
+    "title": "THREE CARD POKER",
+    "image": "/games/t-4.png"
+  },
+  {
+    "id": 32,
+    "title": "PAI GOW POKER",
+    "image": "/games/t-5.png"
+  },
+  {
+    "id": 33,
+    "title": "SIC BO DELUXE",
+    "image": "/games/t-6.png"
+  },
+  {
+    "id": 34,
+    "title": "FRENCH ROULETTE",
+    "image": "/games/t-7.png"
+  },
+  {
+    "id": 35,
+    "title": "RED DOG",
+    "image": "/games/t-1.png"
+  },
+  {
+    "id": 36,
+    "title": "SUPER 6",
+    "image": "/games/t-3.png"
   }
 ]

@@ -88,5 +88,95 @@
     "id": 18,
     "title": "FORTUNE COOKIE DICE",
     "image": "/games/b-6.png"
+  },
+  {
+    "id": 19,
+    "title": "ECHNATON GOLD",
+    "image": "/games/b-1.png"
+  },
+  {
+    "id": 20,
+    "title": "MONKEYS GO BANANAS MULTIMAX",
+    "image": "/games/b-2.png"
+  },
+  {
+    "id": 21,
+    "title": "RAGNA RAVENS WILD ENERGY",
+    "image": "/games/b-3.png"
+  },
+  {
+    "id": 22,
+    "title": "NEON VILLAINS",
+    "image": "/games/b-4.png"
+  },
+  {
+    "id": 23,
+    "title": "FRUITYLICIOUS DOUBLEMAX",
+    "image": "/games/b-5.png"
+  },
+  {
+    "id": 24,
+    "title": "CASH STREAK DICE",
+    "image": "/games/b-6.png"
+  },
+  {
+    "id": 25,
+    "title": "LUCKY CLOVERLAND DICE",
+    "image": "/games/b-7.png"
+  },
+  {
+    "id": 26,
+    "title": "NEON VILLAINS",
+    "image": "/games/b-4.png"
+  },
+  {
+    "id": 27,
+    "title": "CASH STREAK DICE",
+    "image": "/games/b-6.png"
+  },
+  {
+    "id": 28,
+    "title": "GATES OF VALHALLA",
+    "image": "/games/b-1.png"
+  },
+  {
+    "id": 29,
+    "title": "BOOK OF SPELLS",
+    "image": "/games/b-2.png"
+  },
+  {
+    "id": 30,
+    "title": "SHERLOCK'S MYSTERY",
+    "image": "/games/b-3.png"
+  },
+  {
+    "id": 31,
+    "title": "CHILLI HEAT DELUXE",
+    "image": "/games/b-4.png"
+  },
+  {
+    "id": 32,
+    "title": "PIGGY BANK EXPLOSION",
+    "image": "/games/b-5.png"
+  },
+  {
+    "id": 33,
+    "title": "SWEET BONANZA RUSH",
+    "image": "/games/b-6.png"
+  },
+  {
+    "id": 34,
+    "title": "JOKER DOUBLEMAX",
+    "image": "/games/b-7.png"
+  },
+  {
+    "id": 35,
+    "title": "RAIDERS OF THE LOST TOMB",
+    "image": "/games/b-4.png"
+  },
+  {
+    "id": 36,
+    "title": "FORTUNE COOKIE DICE",
+    "image": "/games/b-6.png"
   }
 ]
