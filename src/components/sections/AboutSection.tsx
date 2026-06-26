@@ -7,7 +7,7 @@ export default function AboutSection() {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <section className="flex flex-col items-center lg:items-start p-0 gap-[24px] lg:gap-[40px] w-full max-w-[1136px] mx-auto px-0 lg:px-0">
+        <section className="flex flex-col items-center lg:items-start p-0 gap-[24px] lg:gap-[40px] w-full max-w-[1136px] mx-auto px-0 lg:px-0 mt-[20px] md:mt-0">
             <div 
                 className={`flex flex-col items-center p-0 gap-[24px] lg:gap-[32px] w-full max-w-[1136px] relative isolate overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded ? 'max-h-[3000px]' : 'max-h-[910px] md:max-h-[708px]'}`}
             >
