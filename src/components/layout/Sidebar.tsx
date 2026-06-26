@@ -2,7 +2,7 @@
 
 import { SearchModal } from '@/components/modals/SearchModal';
 import SidebarReferSection from '@/components/sections/SidebarReferSection';
-import { ChevronDown, ChevronUp, X } from 'lucide-react';
+import { ChevronDown, ChevronUp, X, Plus } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react';
@@ -219,12 +219,17 @@ export function SidebarContent() {
                     </div>
                     <span className="font-['Manrope'] font-bold text-[10px] leading-[14px] tracking-[0.02em]">Search</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-[2px] w-[43px] h-[44px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
-                    <div className="flex items-center justify-center w-[24px] h-[24px] shrink-0">
-                        <Image src="/image 19 (Traced).svg" alt="Offers" width={18} height={18} className="w-[18px] h-[18px] opacity-80 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <span className="font-['Manrope'] font-bold text-[10px] leading-[14px] tracking-[0.02em]">Offers</span>
-                </div>
+                <button
+                    onClick={() => {
+                        window.dispatchEvent(new Event('openDepositModal'));
+                        window.dispatchEvent(new Event('closeMobileMenu'));
+                        window.dispatchEvent(new Event('closeSearchModal'));
+                    }}
+                    className="flex items-center justify-center w-[52px] h-[52px] bg-[#FFC83D] rounded-full text-[#1A1404] hover:bg-[#F2B926] active:scale-95 transition-all  cursor-pointer transform -translate-y-[14px] shrink-0 z-10"
+                    aria-label="Deposit"
+                >
+                    <Plus size={28} strokeWidth={2.5} color="#1A1404" />
+                </button>
                 <div className="flex flex-col items-center justify-center gap-[2px] w-[30px] h-[44px] cursor-pointer text-[#D2DCF7] hover:text-white transition-colors group mx-auto">
                     <div className="flex items-center justify-center w-[24px] h-[24px] shrink-0">
                         <Image src="/image 20 (Traced).svg" alt="VIP" width={20} height={19} className="w-[20px] h-[19px] opacity-80 group-hover:opacity-100 transition-opacity" />
