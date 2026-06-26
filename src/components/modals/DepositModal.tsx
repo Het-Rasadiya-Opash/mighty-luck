@@ -168,7 +168,6 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     setMounted(true);
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
       document.body.classList.add("hide-mobile-nav");
       setIsBonusOpen(false);
       setIsPaymentOpen(false);
@@ -180,12 +179,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setActiveTab('deposit');
     } else {
       document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
       document.body.classList.remove("hide-mobile-nav");
     }
     return () => {
       document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
       document.body.classList.remove("hide-mobile-nav");
     };
   }, [isOpen]);
@@ -253,7 +250,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   return createPortal(
     <div className="fixed inset-0 z-40 sm:z-[120] overflow-y-auto top-[50px] sm:top-0">
       <div
-        className="fixed inset-0 top-[50px] min-[426px]:top-0 bg-[#091741] min-[426px]:bg-[#0C1733]/70 min-[426px]:backdrop-blur-[8px]"
+        className="fixed inset-0 top-[50px] sm:top-0 bg-[#091741] sm:bg-[#0C1733]/70 sm:backdrop-blur-[8px]"
         onClick={onClose}
       />
       <div className="relative min-h-full flex flex-col justify-end sm:justify-center items-center p-0 pt-[30px] sm:py-[16px] pointer-events-none">
