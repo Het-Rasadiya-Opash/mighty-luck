@@ -1,7 +1,8 @@
 'use client';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 const collectionData = [
     { id: 1, title: 'MYTHOLOGY', image: '/games/c-1.png' },
@@ -20,12 +21,21 @@ const collectionData = [
     { id: 14, title: 'EGYPTIAN', image: '/games/c-1.png' },
 ];
 
-export default function CollectionSection() {
+function CollectionSectionContent() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(3);
     const containerRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     const cardGap = 12;
+
+    const handleViewAll = () => {
+        const params = new URLSearchParams(searchParams?.toString());
+        params.set('tab', 'collection');
+        router.push(`${pathname}?${params.toString()}`);
+    };
 
     useEffect(() => {
         const updateVisible = () => {
@@ -66,7 +76,10 @@ export default function CollectionSection() {
                     </h2>
                 </div>
                 <div className="flex items-center gap-3 md:gap-[12px]">
-                    <span className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap">
+                    <span 
+                        onClick={handleViewAll}
+                        className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap"
+                    >
                         View all
                     </span>
                     <div className="hidden md:flex gap-[4px]">
@@ -126,5 +139,13 @@ export default function CollectionSection() {
                 </div>
             </div>
         </section>
+    );
+}
+
+export default function CollectionSection() {
+    return (
+        <Suspense fallback={null}>
+            <CollectionSectionContent />
+        </Suspense>
     );
 }

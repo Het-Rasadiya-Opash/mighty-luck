@@ -3,16 +3,26 @@
 import providerData from '@/data/providerData.json';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
-export default function ProviderSection() {
+function ProviderSectionContent() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(7);
     const containerRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     const cardWidth = 152;
     const cardGap = 12;
     const cardStep = cardWidth + cardGap;
+
+    const handleViewAll = () => {
+        const params = new URLSearchParams(searchParams?.toString());
+        params.set('tab', 'providers');
+        router.push(`${pathname}?${params.toString()}`);
+    };
 
     useEffect(() => {
         const updateVisible = () => {
@@ -49,7 +59,10 @@ export default function ProviderSection() {
                     </h2>
                 </div>
                 <div className="flex items-center gap-3 md:gap-[12px]">
-                    <span className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap">
+                    <span 
+                        onClick={handleViewAll}
+                        className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap"
+                    >
                         View all
                     </span>
                     <div className="hidden md:flex items-center gap-[4px]">
@@ -98,5 +111,13 @@ export default function ProviderSection() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function ProviderSection() {
+    return (
+        <Suspense fallback={null}>
+            <ProviderSectionContent />
+        </Suspense>
     );
 }
