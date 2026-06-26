@@ -167,16 +167,6 @@ export function HeaderContent() {
                   $105,98
                 </span>
               </button>
-              <button
-                className="flex flex-row justify-center items-center p-[8px] w-[30px] h-[30px] bg-[#FFC83D] rounded-[6px] hover:bg-[#F2B926] transition-colors"
-                onClick={() => {
-                  setIsDepositModalOpen(true);
-                  window.dispatchEvent(new Event('closeSearchModal'));
-                  window.dispatchEvent(new Event('closeMobileMenu'));
-                }}
-              >
-                <Image src="/wallet-dark.svg" width={12} height={10.78} alt="Wallet" className="w-[12px] h-[10.78px] object-contain" />
-              </button>
             </div>
 
             <div className="flex flex-row items-center gap-[8px] h-[30px] lg:h-auto">
