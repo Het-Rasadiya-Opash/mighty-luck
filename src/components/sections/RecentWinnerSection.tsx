@@ -29,7 +29,7 @@ export default function RecentWinnerSection() {
     };
 
     return (
-        <section className="w-full flex flex-col gap-[20px]">
+        <section className="w-full flex flex-col gap-[20px] mb-[20px] md:mb-0">
             <div className="w-full flex items-center justify-between h-[23px] md:h-[30px]">
                 <div className="flex items-center gap-[7.2px] md:gap-[12px]">
                     <div className="flex items-center justify-center w-[18px] h-[18px] md:w-[30px] md:h-[30px] shrink-0">
@@ -51,14 +51,6 @@ export default function RecentWinnerSection() {
                         RECENT WINNERS
                     </h2>
                 </div>
-            </div>
-
-            <div className="w-full h-[12px] relative flex items-center md:hidden">
-                <div className="absolute w-full h-[10.29px] left-0 bg-[#D2DCF7] rounded-[100px]" />
-                <div
-                    className="absolute w-[52.75%] h-[12px] bg-[#1463FF] rounded-[100px]"
-                    style={{ left: `${scrollProgress * (100 - 52.75)}%` }}
-                />
             </div>
 
             <div
@@ -108,6 +100,14 @@ export default function RecentWinnerSection() {
                         ))}
                     </div>
                 </div>
+            </div>
+
+            <div className="w-full h-[12px] relative flex items-center md:hidden">
+                <div className="absolute w-full h-[10.29px] left-0 bg-[#D2DCF7] rounded-[100px]" />
+                <div
+                    className="absolute w-[52.75%] h-[12px] bg-[#1463FF] rounded-[100px]"
+                    style={{ left: `${scrollProgress * (100 - 52.75)}%` }}
+                />
             </div>
         </section>
     );
