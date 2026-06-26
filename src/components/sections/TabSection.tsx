@@ -40,7 +40,7 @@ function TabSectionContent() {
                                     }
                                     router.push(`${pathname}?${params.toString()}`, { scroll: false });
                                 }}
-                                className={`flex flex-row justify-center items-center px-[16px] max-[435px]:px-[12.8px] py-[10px] max-[435px]:py-[8px] gap-[8px] max-[435px]:gap-[6.4px] w-[135px] max-[435px]:w-[106.6px] h-[50px] max-[435px]:h-[40px] rounded-[6px] shrink-0 transition-colors ${isActive
+                                className={`flex flex-row justify-center items-center px-[16px] max-[435px]:px-[12.8px] py-[10px] max-[435px]:py-[8px] gap-[8px] max-[435px]:gap-[6.4px] w-[135px] lg:w-auto lg:flex-1 max-[435px]:w-[106.6px] h-[50px] max-[435px]:h-[40px] rounded-[6px] shrink-0 lg:shrink transition-colors ${isActive
                                     ? 'bg-[#1463FF]'
                                     : 'bg-[#0C1F56] hover:bg-[#112F82]'
                                     }`}

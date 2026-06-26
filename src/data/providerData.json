@@ -41,7 +41,7 @@
     "image": "/p-7.png",
     "gamesCount": 188
   },
-    {
+  {
     "id": 8,
     "name": "HACKSAW GAMING",
     "image": "/p-1.png",
@@ -52,5 +52,131 @@
     "name": "BOOMING GAMES",
     "image": "/p-2.png",
     "gamesCount": 188
+  },
+  {
+    "id": 10,
+    "name": "PRAGMATIC PLAY",
+    "image": "/p-3.png",
+    "gamesCount": 350
+  },
+  {
+    "id": 11,
+    "name": "PLAY'N GO",
+    "image": "/p-4.png",
+    "gamesCount": 280
+  },
+  {
+    "id": 12,
+    "name": "NETENT",
+    "image": "/p-5.png",
+    "gamesCount": 190
+  },
+  {
+    "id": 13,
+    "name": "MICROGAMING",
+    "image": "/p-6.png",
+    "gamesCount": 420
+  },
+  {
+    "id": 14,
+    "name": "EVOLUTION",
+    "image": "/p-7.png",
+    "gamesCount": 150
+  },
+  {
+    "id": 15,
+    "name": "QUICKSPIN",
+    "image": "/p-1.png",
+    "gamesCount": 95
+  },
+  {
+    "id": 16,
+    "name": "BELATRA",
+    "image": "/p-1.png",
+    "gamesCount": 226
+  },
+  {
+    "id": 17,
+    "name": "BGAMING",
+    "image": "/p-2.png",
+    "gamesCount": 142
+  },
+  {
+    "id": 18,
+    "name": "TADA GAMING",
+    "image": "/p-3.png",
+    "gamesCount": 114
+  },
+  {
+    "id": 19,
+    "name": "ENDORPHINA",
+    "image": "/p-4.png",
+    "gamesCount": 156
+  },
+  {
+    "id": 20,
+    "name": "NOLIMIT CITY",
+    "image": "/p-5.png",
+    "gamesCount": 82
+  },
+  {
+    "id": 21,
+    "name": "HACKSAW GAMING",
+    "image": "/p-6.png",
+    "gamesCount": 134
+  },
+  {
+    "id": 22,
+    "name": "BOOMING GAMES",
+    "image": "/p-7.png",
+    "gamesCount": 188
+  },
+  {
+    "id": 23,
+    "name": "HACKSAW GAMING",
+    "image": "/p-1.png",
+    "gamesCount": 134
+  },
+  {
+    "id": 24,
+    "name": "BOOMING GAMES",
+    "image": "/p-2.png",
+    "gamesCount": 188
+  },
+  {
+    "id": 25,
+    "name": "PRAGMATIC PLAY",
+    "image": "/p-3.png",
+    "gamesCount": 350
+  },
+  {
+    "id": 26,
+    "name": "PLAY'N GO",
+    "image": "/p-4.png",
+    "gamesCount": 280
+  },
+  {
+    "id": 27,
+    "name": "NETENT",
+    "image": "/p-5.png",
+    "gamesCount": 190
+  },
+  {
+    "id": 28,
+    "name": "MICROGAMING",
+    "image": "/p-6.png",
+    "gamesCount": 420
+  },
+  {
+    "id": 29,
+    "name": "EVOLUTION",
+    "image": "/p-7.png",
+    "gamesCount": 150
+  },
+  {
+    "id": 30,
+    "name": "QUICKSPIN",
+    "image": "/p-1.png",
+    "gamesCount": 95
   }
 ]
