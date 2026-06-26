@@ -2,7 +2,7 @@
 
 import { SearchModal } from '@/components/modals/SearchModal';
 import SidebarReferSection from '@/components/sections/SidebarReferSection';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, X } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react';
@@ -242,6 +242,16 @@ export function SidebarContent() {
             {isMobileMenuOpen && (
                 <div className="lg:hidden fixed top-[50px] sm:top-[60px] left-0 right-0 bottom-[60px] z-[40] bg-[#0C1F56] flex flex-col w-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] animate-in slide-in-from-left duration-300">
                     <div className="p-[20px] flex flex-col gap-[10px] w-full flex-1">
+                        <div className="flex flex-row justify-end items-center w-full pb-[12px] border-b border-[#112F82] mb-[10px] shrink-0">
+                            {/* <span className="font-['Jost'] font-extrabold text-[18px] text-white tracking-[0.01em] uppercase">Menu</span> */}
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="flex items-center justify-center w-[30px] h-[30px] rounded-full bg-[#112F82] hover:bg-[#1463FF] text-[#D2DCF7] hover:text-white transition-colors cursor-pointer"
+                                aria-label="Close menu"
+                            >
+                                <X size={18} />
+                            </button>
+                        </div>
                         <SidebarReferSection />
                         <SidebarNav isCollapsed={false} onOpenSearch={() => setIsMobileMenuOpen(false)} />
                     </div>
