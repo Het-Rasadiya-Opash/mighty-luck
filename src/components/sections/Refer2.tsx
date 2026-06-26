@@ -7,7 +7,7 @@ const stats = [
 
 export default function Refer2() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-[1136px] mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-[1440px] mx-auto">
       {stats.map((stat) => (
         <div
           key={stat.label}

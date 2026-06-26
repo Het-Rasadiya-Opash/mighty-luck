@@ -96,7 +96,7 @@ function BenefitCard({
 
 export default function Refer3() {
   return (
-    <div className="flex flex-col lg:flex-row items-stretch gap-3 w-full max-w-[1136px] mx-auto">
+    <div className="flex flex-col lg:flex-row items-stretch gap-3 w-full max-w-[1440px] mx-auto">
       <BenefitCard title="WHAT YOU GET" items={youGetItems} glowColor="#57FF3D" />
       <BenefitCard title="WHAT YOUR FRIEND GETS" items={friendGetsItems} glowColor="#1463FF" />
     </div>

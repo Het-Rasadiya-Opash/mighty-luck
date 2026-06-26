@@ -8,7 +8,7 @@ const steps = [
 
 export default function Refer4() {
   return (
-    <div className="flex flex-col gap-3 sm:gap-8 w-full max-w-[1136px] mx-auto">
+    <div className="flex flex-col gap-3 sm:gap-8 w-full max-w-[1440px] mx-auto">
       <div className="flex flex-row items-center gap-2 sm:gap-3">
         <div className="flex items-center justify-center w-[18px] h-[18px] sm:w-[30px] sm:h-[30px]">
           <FerrisWheel className="text-[#FFC83D]" size={18} />
@@ -22,7 +22,7 @@ export default function Refer4() {
         {steps.map((step) => (
           <div
             key={step.alt}
-            className="w-full lg:flex-1 max-w-[370px] rounded-2xl overflow-hidden"
+            className="w-full lg:flex-1 max-w-[424px] rounded-2xl overflow-hidden"
           >
             <img
               src={step.src}
