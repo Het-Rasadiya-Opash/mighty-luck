@@ -29,7 +29,7 @@ export default function RecentWinnerSection() {
     };
 
     return (
-        <section className="w-full flex flex-col gap-[20px] mb-[20px] md:mb-0">
+        <section className="w-full flex flex-col gap-[20px] mb-[20px] sm:mb-[30px] lg:mb-[20px]">
             <div className="w-full flex items-center justify-between h-[23px] md:h-[30px]">
                 <div className="flex items-center gap-[7.2px] md:gap-[12px]">
                     <div className="flex items-center justify-center w-[18px] h-[18px] md:w-[30px] md:h-[30px] shrink-0">
