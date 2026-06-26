@@ -165,14 +165,14 @@ export function HeaderContent() {
 
             <div className="flex lg:hidden flex-row items-center gap-[4px] h-[30px]">
               <button
-                className="flex flex-row justify-center items-center px-[20px] py-[8px] w-[82px] h-[30px] bg-[#112F82] hover:bg-[#153B9D] active:bg-[#0D2463] transition-colors rounded-[6px]"
+                className="flex flex-row justify-center items-center px-[12px] h-[30px] bg-[#112F82] hover:bg-[#153B9D] active:bg-[#0D2463] transition-colors rounded-[6px]"
                 onClick={() => {
                   setIsDepositModalOpen(true);
                   window.dispatchEvent(new Event('closeSearchModal'));
                   window.dispatchEvent(new Event('closeMobileMenu'));
                 }}
               >
-                <span className="font-manrope font-bold text-[10.5px] leading-[14px] tracking-[0.02em] text-white">
+                <span className="font-manrope font-bold text-[13px] leading-[18px] tracking-[0.02em] text-white">
                   $105,98
                 </span>
               </button>
