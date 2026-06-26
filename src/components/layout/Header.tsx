@@ -52,6 +52,15 @@ export function HeaderContent() {
   }, [isOpen]);
 
   useEffect(() => {
+    const handleOpenDeposit = () => {
+      setIsDepositModalOpen(true);
+      setIsOpen(false);
+    };
+    window.addEventListener('openDepositModal', handleOpenDeposit);
+    return () => window.removeEventListener('openDepositModal', handleOpenDeposit);
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsOpen(false);
