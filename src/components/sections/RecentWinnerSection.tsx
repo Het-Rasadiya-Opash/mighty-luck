@@ -59,14 +59,14 @@ export default function RecentWinnerSection() {
                 className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
                 <div className="min-w-[610px] w-full flex flex-col">
-                    <div className="flex items-center px-[12px] md:px-[24px] w-full h-[14px] md:h-[20px] mb-[8px] md:mb-[12px] gap-[40px] md:gap-[12px] xl:justify-between xl:gap-0">
-                        <div className="w-[220px] xl:w-auto xl:flex-1 shrink-0 font-['Jost'] font-bold text-[10px] md:text-[14px] leading-[14px] md:leading-[20px] tracking-[0.02em] uppercase text-white md:text-white/50">
+                    <div className="flex items-center px-[12px] md:px-[24px] w-full h-[14px] md:h-[20px] mb-[8px] md:mb-[12px] gap-[40px] md:gap-[12px] xl:gap-[32px]">
+                        <div className="w-[220px] xl:w-auto xl:flex-[2] shrink-0 font-['Jost'] font-bold text-[10px] md:text-[14px] leading-[14px] md:leading-[20px] tracking-[0.02em] uppercase text-white md:text-white/50">
                             GAME
                         </div>
-                        <div className="flex items-center gap-[8.41px] md:gap-[12px] xl:gap-[12px] flex-1 xl:flex-none xl:w-[624px] shrink-0 font-['Jost'] font-bold text-[9.81px] md:text-[14px] leading-[14px] md:leading-[20px] tracking-[0.02em] uppercase text-white md:text-white/50">
-                            <div className="w-[189.18px] md:w-[180px] xl:w-[300px] shrink-0">USERNAME</div>
-                            <div className="w-[60px] md:w-[100px] xl:w-[150px] shrink-0">TIME</div>
-                            <div className="w-[60px] md:w-[80px] xl:w-[150px] text-right shrink-0">PAYOUT</div>
+                        <div className="flex items-center gap-[8.41px] md:gap-[12px] xl:gap-[32px] flex-1 xl:flex-[3] xl:w-auto shrink-0 font-['Jost'] font-bold text-[9.81px] md:text-[14px] leading-[14px] md:leading-[20px] tracking-[0.02em] uppercase text-white md:text-white/50">
+                            <div className="w-[189.18px] md:w-[180px] xl:w-auto xl:flex-[1.5] shrink-0">USERNAME</div>
+                            <div className="w-[60px] md:w-[100px] xl:w-auto xl:flex-[1] shrink-0">TIME</div>
+                            <div className="w-[60px] md:w-[80px] xl:w-auto xl:flex-[1] text-right shrink-0">PAYOUT</div>
                         </div>
                     </div>
 
@@ -74,9 +74,9 @@ export default function RecentWinnerSection() {
                         {recentWinners.map((winner) => (
                             <div
                                 key={winner.id}
-                                className="w-full bg-[#0C1F56] rounded-[5.61px] md:rounded-[8px] px-[12px] md:px-[24px] py-[8.41px] md:py-0 h-[42px] md:h-[60px] flex items-center gap-[40px] md:gap-[12px] xl:justify-between xl:gap-0"
+                                className="w-full bg-[#0C1F56] rounded-[5.61px] md:rounded-[8px] px-[12px] md:px-[24px] py-[8.41px] md:py-0 h-[42px] md:h-[60px] flex items-center gap-[40px] md:gap-[12px] xl:gap-[32px]"
                             >
-                                <div className="flex items-center gap-[8.41px] md:gap-[12px] w-[220px] xl:w-auto xl:flex-1 shrink-0 min-w-0">
+                                <div className="flex items-center gap-[8.41px] md:gap-[12px] w-[220px] xl:w-auto xl:flex-[2] shrink-0 min-w-0">
                                     <div className="w-[15.42px] md:w-[22px] h-[21.03px] md:h-[30px] rounded-[1.26px] md:rounded-[1.8px] shrink-0 relative overflow-hidden bg-[#CDCDCD]">
                                         <Image src={winner.image} alt={winner.game} fill className="object-cover" sizes="(max-width: 768px) 15px, 22px" />
                                     </div>
@@ -85,14 +85,14 @@ export default function RecentWinnerSection() {
                                     </span>
                                 </div>
 
-                                <div className="flex items-center gap-[8.41px] md:gap-[12px] xl:gap-[12px] flex-1 xl:flex-none xl:w-[624px] shrink-0">
-                                    <span className="w-[189.18px] md:w-[180px] xl:w-[300px] font-['Manrope'] font-semibold text-[12px] md:text-[14px] leading-[16px] md:leading-[19px] tracking-[0.02em] text-white truncate shrink-0">
+                                <div className="flex items-center gap-[8.41px] md:gap-[12px] xl:gap-[32px] flex-1 xl:flex-[3] xl:w-auto shrink-0">
+                                    <span className="w-[189.18px] md:w-[180px] xl:w-auto xl:flex-[1.5] font-['Manrope'] font-semibold text-[12px] md:text-[14px] leading-[16px] md:leading-[19px] tracking-[0.02em] text-white truncate shrink-0">
                                         {winner.user}
                                     </span>
-                                    <span className="w-[60px] md:w-[100px] xl:w-[150px] font-['Manrope'] font-semibold text-[12px] md:text-[14px] leading-[16px] md:leading-[19px] tracking-[0.02em] text-white shrink-0">
+                                    <span className="w-[60px] md:w-[100px] xl:w-auto xl:flex-[1] font-['Manrope'] font-semibold text-[12px] md:text-[14px] leading-[16px] md:leading-[19px] tracking-[0.02em] text-white shrink-0">
                                         {winner.time}
                                     </span>
-                                    <span className={`w-[60px] md:w-[80px] xl:w-[150px] font-['Manrope'] font-semibold text-[12px] md:text-[14px] leading-[16px] md:leading-[19px] tracking-[0.02em] text-right shrink-0 ${winner.payoutColor}`}>
+                                    <span className={`w-[60px] md:w-[80px] xl:w-auto xl:flex-[1] font-['Manrope'] font-semibold text-[12px] md:text-[14px] leading-[16px] md:leading-[19px] tracking-[0.02em] text-right shrink-0 ${winner.payoutColor}`}>
                                         {winner.payout}
                                     </span>
                                 </div>

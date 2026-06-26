@@ -6,7 +6,7 @@ import Refer4 from './Refer4';
 
 export default function ReferFriend() {
   return (
-    <div className="flex flex-col gap-[30px] md:gap-[32px] w-full max-w-[1136px] mx-auto items-stretch md:items-center pb-0 md:pb-[60px]">
+    <div className="flex flex-col gap-[30px] md:gap-[32px] w-full items-stretch pb-0 md:pb-[60px]">
       <Refer1 />
       <div className="hidden md:block w-full">
         <Refer2 />

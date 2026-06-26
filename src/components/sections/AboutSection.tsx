@@ -38,11 +38,11 @@ export default function AboutSection() {
                     </p>
                 </div>
 
-                <div 
+                <div
                     className={`absolute w-[414px] md:w-full md:max-w-[800px] h-[200px] left-1/2 -translate-x-1/2 bottom-0 flex flex-col justify-end items-center px-[10px] py-[24px] gap-[10px] z-30 pointer-events-none transition-all duration-500 ${isExpanded ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}
                     style={{ background: isExpanded ? 'transparent' : 'linear-gradient(0deg, #091741 0%, rgba(9, 23, 65, 0) 100%)' }}
                 >
-                    <button 
+                    <button
                         onClick={() => setIsExpanded(true)}
                         className="flex flex-row items-center p-0 gap-[4px] w-[93px] h-[19px] cursor-pointer hover:opacity-80 transition-opacity pointer-events-auto flex-none"
                     >
@@ -57,7 +57,7 @@ export default function AboutSection() {
 
                 {isExpanded && (
                     <div className="flex flex-col justify-end items-center px-[10px] pb-[24px] pt-[24px] gap-[10px] z-30 w-full animate-in fade-in duration-500 absolute bottom-0 left-1/2 -translate-x-1/2">
-                        <button 
+                        <button
                             onClick={() => setIsExpanded(false)}
                             className="flex flex-row items-center p-0 gap-[4px] w-[93px] h-[19px] cursor-pointer hover:opacity-80 transition-opacity flex-none"
                         >

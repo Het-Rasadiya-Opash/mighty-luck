@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useRef, useState, useEffect } from 'react';
 
 const features = [
     {
@@ -13,9 +16,115 @@ const features = [
         image: "/j-3.svg",
         alt: "Weekly 10% Cashback",
     },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-1.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-2.svg",
+        alt: "Weekly 10% Cashback",
+    },
+    {
+        image: "/j-3.svg",
+        alt: "Weekly 10% Cashback",
+    },
 ];
 
 export default function Why() {
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
+
+    const handleScroll = () => {
+        const el = scrollRef.current;
+        if (!el) return;
+        setCanScrollLeft(el.scrollLeft > 0);
+        setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+    };
+
+    const scrollLeft = () => {
+        const el = scrollRef.current;
+        if (el) {
+            const scrollBy = window.innerWidth < 768 ? 278 : 382; // card width + gap
+            el.scrollBy({ left: -scrollBy, behavior: 'smooth' });
+        }
+    };
+
+    const scrollRight = () => {
+        const el = scrollRef.current;
+        if (el) {
+            const scrollBy = window.innerWidth < 768 ? 278 : 382; // card width + gap
+            el.scrollBy({ left: scrollBy, behavior: 'smooth' });
+        }
+    };
+
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (el) {
+            handleScroll();
+        }
+    }, []);
+
     return (
         <section className="flex flex-col items-start gap-5 md:gap-[28px] w-full">
             <div className="flex flex-row justify-between items-center w-full h-[23px] md:h-[30px]">
@@ -29,12 +138,20 @@ export default function Why() {
                 </div>
 
                 <div className="hidden md:flex flex-row items-center gap-[12px]">
-                    <button className="flex flex-col justify-center items-center w-[30px] h-[30px] bg-[#112F82] opacity-40 rounded-[4px] rotate-180 hover:opacity-100 transition-opacity">
+                    <button 
+                        onClick={scrollLeft}
+                        disabled={!canScrollLeft}
+                        className={`flex flex-col justify-center items-center w-[30px] h-[30px] rounded-[4px] rotate-180 transition-all ${canScrollLeft ? 'bg-[#112F82] hover:bg-[#1A3FA6] opacity-100' : 'bg-[#112F82] opacity-40 cursor-not-allowed'}`}
+                    >
                         <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 9L5 5L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
-                    <button className="flex flex-col justify-center items-center w-[30px] h-[30px] bg-[#112F82] rounded-[4px] hover:bg-[#1A3FA6] transition-colors">
+                    <button 
+                        onClick={scrollRight}
+                        disabled={!canScrollRight}
+                        className={`flex flex-col justify-center items-center w-[30px] h-[30px] rounded-[4px] transition-all ${canScrollRight ? 'bg-[#112F82] hover:bg-[#1A3FA6] opacity-100' : 'bg-[#112F82] opacity-40 cursor-not-allowed'}`}
+                    >
                         <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 9L5 5L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -42,23 +159,27 @@ export default function Why() {
                 </div>
             </div>
 
-            <div className="flex flex-row md:grid md:grid-cols-3 gap-[8.63px] md:gap-[12px] w-full overflow-x-auto md:overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory pb-4 md:pb-0">
+            <div 
+                ref={scrollRef}
+                onScroll={handleScroll}
+                className="flex flex-row gap-[8.63px] md:gap-[12px] w-full overflow-x-auto scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-4 md:pb-0"
+            >
                 {features.map((item, index) => (
                     <div
                         key={index}
                         className={`relative shrink-0 snap-start overflow-hidden group ${index === 0
-                                ? 'w-[279px] h-[158px] rounded-[10px] md:w-full md:h-auto md:aspect-[370/220] md:rounded-[16px]'
+                                ? 'w-[279px] h-[158px] rounded-[10px] md:w-[370px] md:h-[220px] md:rounded-[16px]'
                                 : index === 1
-                                    ? 'w-[266.19px] h-[158.27px] rounded-[10px] md:w-full md:h-auto md:aspect-[370/220] md:rounded-[16px]'
-                                    : 'w-[266.19px] h-[158.27px] rounded-[11.51px] md:w-full md:h-auto md:aspect-[370/220] md:rounded-[16px]'
+                                    ? 'w-[266.19px] h-[158.27px] rounded-[10px] md:w-[370px] md:h-[220px] md:rounded-[16px]'
+                                    : 'w-[266.19px] h-[158.27px] rounded-[11.51px] md:w-[370px] md:h-[220px] md:rounded-[16px]'
                             }`}
                     >
                         <Image
                             src={item.image}
                             alt={item.alt}
                             fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-fill"
+                            sizes="(max-width: 768px) 100vw, 370px"
                         />
                     </div>
                 ))}

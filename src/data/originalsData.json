@@ -48,5 +48,155 @@
     "id": 10,
     "title": "CYBERPUNK HEIST",
     "image": "/games/15.png"
+  },
+  {
+    "id": 11,
+    "title": "PLINKO KING",
+    "image": "/games/11.png"
+  },
+  {
+    "id": 12,
+    "title": "MINES SWEEPER",
+    "image": "/games/12.png"
+  },
+  {
+    "id": 13,
+    "title": "LIMBO DASH",
+    "image": "/games/13.png"
+  },
+  {
+    "id": 14,
+    "title": "WHEEL OF LUCK",
+    "image": "/games/14.png"
+  },
+  {
+    "id": 15,
+    "title": "DICE ROLLER",
+    "image": "/games/15.png"
+  },
+  {
+    "id": 16,
+    "title": "HILO LEGENDS",
+    "image": "/games/16.png"
+  },
+  {
+    "id": 17,
+    "title": "CRYPTO KENO",
+    "image": "/games/17.png"
+  },
+  {
+    "id": 18,
+    "title": "DIAMONDS SPLIT",
+    "image": "/games/11.png"
+  },
+  {
+    "id": 19,
+    "title": "TOWER CLIMB",
+    "image": "/games/14.png"
+  },
+  {
+    "id": 20,
+    "title": "COIN FLIP ULTRA",
+    "image": "/games/15.png"
+  },
+  {
+    "id": 21,
+    "title": "PANDARIFFIC",
+    "image": "/games/11.png"
+  },
+  {
+    "id": 22,
+    "title": "ZEUS GOES BANANAS",
+    "image": "/games/12.png"
+  },
+  {
+    "id": 23,
+    "title": "PATRICK VS NEFERTITI",
+    "image": "/games/13.png"
+  },
+  {
+    "id": 24,
+    "title": "SCROLL OF GODS",
+    "image": "/games/14.png"
+  },
+  {
+    "id": 25,
+    "title": "XO PARADISE",
+    "image": "/games/15.png"
+  },
+  {
+    "id": 26,
+    "title": "CASH-O-MATIC! EXTREME CASH OUT",
+    "image": "/games/16.png"
+  },
+  {
+    "id": 27,
+    "title": "ELVEN FORTUNE",
+    "image": "/games/17.png"
+  },
+  {
+    "id": 28,
+    "title": "MYSTIC UNICORN",
+    "image": "/games/11.png"
+  },
+  {
+    "id": 29,
+    "title": "NEON RIDER",
+    "image": "/games/14.png"
+  },
+  {
+    "id": 30,
+    "title": "CYBERPUNK HEIST",
+    "image": "/games/15.png"
+  },
+  {
+    "id": 31,
+    "title": "PLINKO KING",
+    "image": "/games/11.png"
+  },
+  {
+    "id": 32,
+    "title": "MINES SWEEPER",
+    "image": "/games/12.png"
+  },
+  {
+    "id": 33,
+    "title": "LIMBO DASH",
+    "image": "/games/13.png"
+  },
+  {
+    "id": 34,
+    "title": "WHEEL OF LUCK",
+    "image": "/games/14.png"
+  },
+  {
+    "id": 35,
+    "title": "DICE ROLLER",
+    "image": "/games/15.png"
+  },
+  {
+    "id": 36,
+    "title": "HILO LEGENDS",
+    "image": "/games/16.png"
+  },
+  {
+    "id": 37,
+    "title": "CRYPTO KENO",
+    "image": "/games/17.png"
+  },
+  {
+    "id": 38,
+    "title": "DIAMONDS SPLIT",
+    "image": "/games/11.png"
+  },
+  {
+    "id": 39,
+    "title": "TOWER CLIMB",
+    "image": "/games/14.png"
+  },
+  {
+    "id": 40,
+    "title": "COIN FLIP ULTRA",
+    "image": "/games/15.png"
   }
 ]
