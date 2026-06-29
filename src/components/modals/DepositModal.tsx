@@ -47,7 +47,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     }
   }, [isPending]);
 
-  const [fiatStep, setFiatStep] = useState<'address' | 'payment'>('address');
+  const [fiatStep, setFiatStep] = useState<'address' | 'payment' | 'success'>('address');
   const [activeTab, setActiveTab] = useState<'deposit' | 'bonuses' | 'withdraw' | 'transactions'>('deposit');
   const [fiatAmount, setFiatAmount] = useState<number | 'custom'>(30);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -213,6 +213,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
   const isFiatAddress = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'address';
   const isFiatPayment = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'payment';
+  const isFiatSuccess = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'success';
 
   const isBonusesTab = activeTab === 'bonuses';
   const isWithdrawTxTab = activeTab === 'withdraw' || activeTab === 'transactions';
@@ -223,9 +224,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       ? 'h-[715px] sm:h-[633px]'
       : (isFiatPayment
         ? 'h-[743px] sm:h-[647px]'
-        : (isPending
-          ? 'h-[652px] sm:h-[604px]'
-          : 'h-[673px] sm:h-[604px]')));
+        : (isFiatSuccess
+          ? 'h-[725px] sm:h-[655px]'
+          : (isPending
+            ? 'h-[652px] sm:h-[604px]'
+            : 'h-[673px] sm:h-[604px]'))));
 
   const outerBoxHeightClass = (isBonusesTab || isWithdrawTxTab)
     ? 'h-[495px] sm:h-[462px]'
@@ -233,9 +236,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       ? 'h-[637px] sm:h-[503px]'
       : (isFiatPayment
         ? 'h-[665px] sm:h-[517px]'
-        : (isPending
-          ? 'h-[574px] sm:h-[474px]'
-          : 'h-[595px] sm:h-[474px]')));
+        : (isFiatSuccess
+          ? 'h-[645px] sm:h-[472px]'
+          : (isPending
+            ? 'h-[574px] sm:h-[474px]'
+            : 'h-[595px] sm:h-[474px]'))));
 
   const innerBoxHeightClass = (isBonusesTab || isWithdrawTxTab)
     ? 'h-[442px] sm:h-[409px]'
@@ -243,9 +248,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       ? 'h-[500px] sm:h-[450px]'
       : (isFiatPayment
         ? 'h-[528px] sm:h-[464px]'
-        : (isPending
-          ? 'h-[411px] sm:h-[421px]'
-          : 'h-[458px] sm:h-[421px]')));
+        : (isFiatSuccess
+          ? 'h-[505px] sm:h-[472px]'
+          : (isPending
+            ? 'h-[411px] sm:h-[421px]'
+            : 'h-[458px] sm:h-[421px]'))));
 
   return createPortal(
     <div className="fixed inset-0 z-40 sm:z-[120] overflow-y-auto top-[50px] sm:top-0">
@@ -392,9 +399,81 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </div>
                       </div>
                     ) : (
-                      <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-[454px] sm:h-[404px]' : (isFiatPayment ? 'h-[482px] sm:h-[418px]' : 'h-[412px] sm:h-[375px]')} bg-[#0C1F56] rounded-[16px] z-20 relative`}>
+                      <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-[454px] sm:h-[404px]' : (isFiatPayment ? 'h-[482px] sm:h-[418px]' : (isFiatSuccess ? 'h-[464px] sm:h-[426px]' : 'h-[412px] sm:h-[375px]'))} bg-[#0C1F56] rounded-[16px] z-20 relative`}>
+                        {isFiatSuccess ? (
+                          <div className="flex flex-col items-start gap-[16px] w-full h-[394px] sm:h-[394px]">
+                            {/* Circle Checkmark Icon with Stroke from Figma Specs (Height 120px) */}
+                            <div className="flex flex-row justify-center items-center w-full h-[120px] shrink-0">
+                              <div className="relative w-[120px] h-[120px] flex items-center justify-center shrink-0">
+                                <div className="absolute inset-0 rounded-full border-[3px] border-[#1463FF] bg-[#112F82]/30 flex items-center justify-center">
+                                  <div className="w-[70px] h-[70px] rounded-full bg-[#1463FF] flex items-center justify-center shadow-lg">
+                                    <Image src="/tick.svg" width={24} height={24} alt="Success" className="w-[24px] h-[24px] object-contain" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
-                        <div ref={bonusRef} className="relative flex flex-col gap-[8px] w-full z-30">
+                            {/* Headline and Description (Height 67px in Figma) */}
+                            <div className="flex flex-col items-start gap-[8px] w-full text-center h-[67px] shrink-0">
+                              <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
+                                Deposit successful
+                              </h3>
+                              <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full text-center">
+                                Your credit card deposit was approved and your balance has been updated.
+                              </p>
+                            </div>
+
+                            {/* Info Cards Wrapper (Height 175px in Figma) */}
+                            <div className="flex flex-col items-start gap-[12px] w-full h-[175px] shrink-0">
+                              {/* Details Box (Height 100px in Figma) */}
+                              <div className="flex flex-col justify-center items-start p-[10px_16px] gap-[8px] w-full h-[100px] bg-[#112F82] rounded-[8px] shrink-0">
+                                <div className="flex flex-row justify-between items-center w-full h-[16px]">
+                                  <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                                    Amount
+                                  </span>
+                                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] text-right tracking-[0.02em] text-white">
+                                    ${typeof fiatAmount === 'number' ? fiatAmount.toFixed(2) : '30.00'}
+                                  </span>
+                                </div>
+                                <div className="w-full border-t border-dashed border-[#193EA5]" />
+                                <div className="flex flex-row justify-between items-center w-full h-[16px]">
+                                  <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                                    Payment Method
+                                  </span>
+                                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] text-right tracking-[0.02em] text-white">
+                                    Credit Card
+                                  </span>
+                                </div>
+                                <div className="w-full border-t border-dashed border-[#193EA5]" />
+                                <div className="flex flex-row justify-between items-center w-full h-[16px]">
+                                  <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                                    Status
+                                  </span>
+                                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] text-right tracking-[0.02em] text-white">
+                                    Completed
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Active Bonus Box (Height 63px in Figma) */}
+                              <div className="flex flex-col justify-center items-start p-[10px_16px] gap-[8px] w-full h-[63px] bg-[#112F82] rounded-[8px] shrink-0">
+                                <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                                  Active Bonus
+                                </span>
+                                <div className="flex flex-row items-center gap-[8px] w-full h-[19px]">
+                                  <div className="w-[16px] h-[16px] flex items-center justify-center shrink-0">
+                                    <RenderBonusIcon type={selectedBonus.iconType} className="w-[16px] h-[16px]" color="bg-[#FFC83D]" />
+                                  </div>
+                                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white truncate">
+                                    {selectedBonus.title}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <div ref={bonusRef} className="relative flex flex-col gap-[8px] w-full z-30">
                           <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                             {selectedPayment.id === 'fiat' ? 'Select a Bonus' : '1.Select a Bonus'}
                           </label>
@@ -658,7 +737,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                   Custom...
                                 </button>
                               </div>
-                            </div>                             <div className="flex flex-col gap-[12px] w-full h-[180px] sm:h-[146px]">
+                            </div>
+                            <div className="flex flex-col gap-[12px] w-full h-[180px] sm:h-[146px]">
                               <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
                                 Enter your payment details
                               </label>
@@ -687,10 +767,12 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             </div>
                           </div>
                         )}
-                      </div>
+                      </>
                     )}
-                  </>
+                  </div>
                 )}
+              </>
+            )}
 
                 {activeTab === 'bonuses' && (
                   <div className="flex flex-col items-start p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[396px] sm:h-auto overflow-hidden">
@@ -855,17 +937,23 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         if (fiatStep === 'address') {
                           toast.success("Address saved, proceeding to payment...");
                           setFiatStep('payment');
+                        } else if (fiatStep === 'payment') {
+                          toast.success("Deposit successful!");
+                          setFiatStep('success');
                         } else {
-                          toast.success("Payment completed!");
                           onClose();
                           router.push('/');
                         }
                       } : handleCompleteDeposit}
-                      className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full sm:w-[300px] h-[60px] sm:h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px]"
+                      className={`flex flex-row justify-center items-center px-[30px] py-[10px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0 ${
+                        isFiatSuccess ? 'w-full sm:w-[460px] h-[50px]' : 'w-full sm:w-[300px] h-[60px] sm:h-[50px]'
+                      }`}
                     >
-                      <span className="font-['Manrope'] font-bold text-[16px] sm:text-[14px] leading-[22px] sm:leading-[19px] tracking-[0.02em] text-[#1A1404]">
+                      <span className={`font-[family-name:var(--font-manrope)] font-bold text-[#1A1404] ${
+                        isFiatSuccess ? 'text-[16px] leading-[22px] tracking-[0.02em]' : 'text-[16px] sm:text-[14px] leading-[22px] sm:leading-[19px] tracking-[0.02em]'
+                      }`}>
                         {selectedPayment.id === 'fiat'
-                          ? (fiatStep === 'address' ? 'Continue' : `Deposit ${fiatAmount === 'custom' ? '' : '$' + fiatAmount}`)
+                          ? (fiatStep === 'address' ? 'Continue' : (fiatStep === 'payment' ? `Deposit ${fiatAmount === 'custom' ? '' : '$' + fiatAmount}` : 'Play Now'))
                           : "I've completed my deposit"}
                       </span>
                     </button>
