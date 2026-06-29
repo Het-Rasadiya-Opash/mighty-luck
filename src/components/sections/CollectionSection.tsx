@@ -81,12 +81,12 @@ function CollectionSectionContent({ hideHeader }: CollectionSectionProps) {
                         </h2>
                     </div>
                     <div className="flex items-center gap-3 md:gap-[12px]">
-                        <span 
+                        {/* <span
                             onClick={handleViewAll}
                             className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap"
                         >
                             View all
-                        </span>
+                        </span> */}
                         <div className="hidden md:flex gap-[4px]">
                             <button
                                 onClick={handlePrev}
@@ -115,10 +115,10 @@ function CollectionSectionContent({ hideHeader }: CollectionSectionProps) {
                     {collectionData.map((collection) => (
                         <div
                             key={collection.id}
-                            style={{ 
-                                width: visibleCount === 1 
-                                    ? (collection.title === 'MYTHOLOGY' ? '183px' : collection.title === 'FRUITS' ? '182px' : '189.6px') 
-                                    : `${cardWidth}px` 
+                            style={{
+                                width: visibleCount === 1
+                                    ? (collection.title === 'MYTHOLOGY' ? '183px' : collection.title === 'FRUITS' ? '182px' : '189.6px')
+                                    : `${cardWidth}px`
                             }}
                             className={`h-[60px] md:h-full bg-[#0C1F56] hover:bg-[#173EAD] transition-colors rounded-[8px] md:rounded-[12px] flex items-center pl-[7.2px] pr-[14.4px] py-[7.2px] md:pl-[12px] md:pr-[16px] md:py-[12px] gap-[7.2px] md:gap-[12px] shrink-0 snap-start cursor-pointer group`}
                         >

@@ -42,9 +42,7 @@ export function GameSliderContent({ id, title, icon, games, viewAllTab }: GameSl
 
     const handleViewAll = () => {
         if (viewAllTab) {
-            const params = new URLSearchParams(searchParams?.toString());
-            params.set('tab', viewAllTab);
-            router.push(`${pathname}?${params.toString()}`);
+            router.push(`/${viewAllTab}`);
         }
     };
 
@@ -95,7 +93,7 @@ export function GameSliderContent({ id, title, icon, games, viewAllTab }: GameSl
         const ro = new ResizeObserver(updateVisible);
         if (containerRef.current) ro.observe(containerRef.current);
         window.addEventListener('resize', updateVisible);
-        
+
         return () => {
             ro.disconnect();
             window.removeEventListener('resize', updateVisible);
@@ -137,7 +135,7 @@ export function GameSliderContent({ id, title, icon, games, viewAllTab }: GameSl
                     </span>
                 </div>
                 <div className="flex items-center gap-3 md:gap-[20px]">
-                    <span 
+                    <span
                         onClick={handleViewAll}
                         className="font-['Manrope'] font-bold sm:font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] sm:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap flex w-[46px] sm:w-[45px] h-[16px] items-center justify-center"
                     >
