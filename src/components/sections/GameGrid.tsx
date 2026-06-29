@@ -27,7 +27,7 @@ export default function GameGrid({ title, count, games }: GameGridProps) {
 
     // Parse numeric total from count prop (e.g. "1,487" -> 1487)
     const totalNum = typeof count === 'number' ? count : parseInt(count.toString().replace(/,/g, ''), 10) || games.length;
-    
+
     // Default initial visible count (multiple of 9 for balanced rows)
     const initialVisible = 27;
     const [visibleCount, setVisibleCount] = useState(initialVisible);
