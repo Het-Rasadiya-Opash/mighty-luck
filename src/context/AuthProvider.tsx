@@ -11,7 +11,7 @@ export default function AuthProvider({
 }: { children: React.ReactNode }) {
     return (
         <ReduxProvider store={store}>
-            <SessionProvider>
+            <SessionProvider refetchOnWindowFocus={false}>
                 {children}
             </SessionProvider>
         </ReduxProvider>
