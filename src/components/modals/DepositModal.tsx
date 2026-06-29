@@ -58,7 +58,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [isPromoApplied, setIsPromoApplied] = useState(false);
-  const [isVerificationStarted, setIsVerificationStarted] = useState(false);
+  const [verificationStep, setVerificationStep] = useState<'start' | 'process' | 'submitted'>('start');
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -177,7 +177,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setFiatAmount(30);
       setPromoCode('');
       setIsPromoApplied(false);
-      setIsVerificationStarted(false);
+      setVerificationStep('start');
       setActiveTab('deposit');
     } else {
       document.body.style.overflow = "unset";
@@ -226,7 +226,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (isBonusSuccess) {
     modalHeightClass = 'h-[660px] sm:h-[589px]';
   } else if (isWithdrawTab) {
-    modalHeightClass = isVerificationStarted ? 'h-[760px] sm:h-[705px]' : 'h-[647px] sm:h-[576px]';
+    if (verificationStep === 'process') {
+      modalHeightClass = 'h-[760px] sm:h-[705px]';
+    } else if (verificationStep === 'submitted') {
+      modalHeightClass = 'h-[647px] sm:h-[566px]';
+    } else {
+      modalHeightClass = 'h-[647px] sm:h-[576px]';
+    }
   } else if (isBonusesTab || isTransactionsTab) {
     modalHeightClass = 'h-[573px] sm:h-[518px]';
   } else if (isFiatAddress) {
@@ -243,7 +249,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (isBonusSuccess) {
     outerBoxHeightClass = 'h-[580px] sm:h-[480px]';
   } else if (isWithdrawTab) {
-    outerBoxHeightClass = isVerificationStarted ? 'h-[670px] sm:h-[596px]' : 'h-[547px] sm:h-[467px]';
+    if (verificationStep === 'process') {
+      outerBoxHeightClass = 'h-[670px] sm:h-[596px]';
+    } else if (verificationStep === 'submitted') {
+      outerBoxHeightClass = 'h-[547px] sm:h-[510px]';
+    } else {
+      outerBoxHeightClass = 'h-[547px] sm:h-[467px]';
+    }
   } else if (isBonusesTab || isTransactionsTab) {
     outerBoxHeightClass = 'h-[495px] sm:h-[462px]';
   } else if (isFiatAddress) {
@@ -260,7 +272,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (isBonusSuccess) {
     innerBoxHeightClass = 'h-[560px] sm:h-[480px]';
   } else if (isWithdrawTab) {
-    innerBoxHeightClass = isVerificationStarted ? 'h-[670px] sm:h-[596px]' : 'h-[547px] sm:h-[467px]';
+    if (verificationStep === 'process') {
+      innerBoxHeightClass = 'h-[670px] sm:h-[596px]';
+    } else if (verificationStep === 'submitted') {
+      innerBoxHeightClass = 'h-[547px] sm:h-[457px]';
+    } else {
+      innerBoxHeightClass = 'h-[547px] sm:h-[467px]';
+    }
   } else if (isBonusesTab || isTransactionsTab) {
     innerBoxHeightClass = 'h-[442px] sm:h-[409px]';
   } else if (isFiatAddress) {
@@ -1006,7 +1024,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 )}
 
                 {activeTab === 'withdraw' && (
-                  !isVerificationStarted ? (
+                  verificationStep === 'start' ? (
                     <div className="flex flex-col items-center justify-between p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[421px] overflow-hidden">
                       {/* Title & Subtitle Frame (428x67 in Figma) */}
                       <div className="flex flex-col items-start gap-[8px] w-full text-center shrink-0">
@@ -1061,7 +1079,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       <div className="flex flex-col items-center gap-[12px] w-full sm:w-[428px] shrink-0">
                         <button
                           onClick={() => {
-                            setIsVerificationStarted(true);
+                            setVerificationStep('process');
                           }}
                           className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
                         >
@@ -1072,17 +1090,17 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
                         <button
                           onClick={() => {
-                            toast.info('Previewing verified state');
+                            setVerificationStep('submitted');
                           }}
                           className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
                         >
                           <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#D2DCF7]">
-                            Preview verified withdrawal
+                            Preview verified state
                           </span>
                         </button>
                       </div>
                     </div>
-                  ) : (
+                  ) : verificationStep === 'process' ? (
                     /* Verification process screen (460x550 in Figma) */
                     <div className="flex flex-col items-center p-[20px_16px] gap-[20px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[550px] overflow-hidden shrink-0">
                       {/* Section 1: 1. Complete verification */}
@@ -1201,8 +1219,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       <div className="flex flex-col items-center gap-[12px] w-full sm:w-[428px] shrink-0">
                         <button
                           onClick={() => {
-                            toast.success('Verification details submitted successfully!');
-                            setIsVerificationStarted(false);
+                            setVerificationStep('submitted');
                           }}
                           className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
                         >
@@ -1213,7 +1230,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
                         <button
                           onClick={() => {
-                            setIsVerificationStarted(false);
+                            setVerificationStep('start');
                           }}
                           className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
                         >
@@ -1222,6 +1239,66 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           </span>
                         </button>
                       </div>
+                    </div>
+                  ) : (
+                    /* Verification submission screen (460x411 in Figma) */
+                    <div className="flex flex-col items-center justify-between p-[20px_16px] gap-[20px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[411px] overflow-hidden shrink-0">
+                      {/* Top Graphic Frame (428x120 in Figma) */}
+                      <div className="flex flex-row justify-center items-center w-full sm:w-[428px] h-[120px] shrink-0">
+                        <div className="relative w-[120px] h-[120px] flex items-center justify-center shrink-0">
+                          {/* Outer circular stroke ring (Vector Stroke in Figma) */}
+                          <div className="absolute inset-0 rounded-full border-[2px] border-[#1463FF]" />
+                          {/* Inner filled ellipse (70x70 in Figma) */}
+                          <div className="w-[70px] h-[70px] bg-[#1463FF] rounded-full flex items-center justify-center z-10">
+                            <img src="/tick.svg" alt="Tick" className="w-[24px] h-[24px]" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Title & Subtitle Frame (428x67 in Figma) */}
+                      <div className="flex flex-col items-center gap-[8px] w-full sm:w-[428px] shrink-0 text-center">
+                        <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
+                          Verification submitted
+                        </h3>
+                        <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full text-center">
+                          Your documents were received. Withdrawals will become available once the review is complete.
+                        </p>
+                      </div>
+
+                      {/* Status Info Box (428x74 in Figma) */}
+                      <div className="flex flex-col justify-center items-start p-[10px_16px] gap-[8px] w-full sm:w-[428px] h-[74px] bg-[#112F82] rounded-[8px] shrink-0">
+                        <div className="flex flex-row justify-between items-center w-full h-[22px]">
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                            Status
+                          </span>
+                          <div className="flex flex-row justify-center items-center px-[8px] py-[4px] bg-[#3E2A09] rounded-[6px]">
+                            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#FFC83D]">
+                              Under review
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="w-full border-b border-dashed border-[#193EA5]" />
+
+                        <div className="flex flex-row justify-between items-center w-full h-[16px]">
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                            Estimated review
+                          </span>
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white text-right">
+                            24-28 hours
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Preview verified state CTA (428x50 in Figma) */}
+                      <button
+                        onClick={onClose}
+                        className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full sm:w-[428px] h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
+                      >
+                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#1A1404]">
+                          Preview verified state
+                        </span>
+                      </button>
                     </div>
                   )
                 )}
