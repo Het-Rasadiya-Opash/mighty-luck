@@ -29,7 +29,7 @@ export default function GameGrid({ title, count, games }: GameGridProps) {
     const totalNum = typeof count === 'number' ? count : parseInt(count.toString().replace(/,/g, ''), 10) || games.length;
     
     // Default initial visible count
-    const initialVisible = 24;
+    const initialVisible = 27;
     const [visibleCount, setVisibleCount] = useState(initialVisible);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -49,7 +49,7 @@ export default function GameGrid({ title, count, games }: GameGridProps) {
     );
 
     const handleLoadMore = () => {
-        setVisibleCount((prev) => Math.min(prev + 24, filteredGames.length));
+        setVisibleCount((prev) => Math.min(prev + 27, filteredGames.length));
     };
 
     // Render filtered json items from games array
@@ -71,7 +71,7 @@ export default function GameGrid({ title, count, games }: GameGridProps) {
 
             {/* Grid of Game Cards */}
             {displayedGames.length > 0 ? (
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-[8px] sm:gap-[12px] w-full">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 gap-[8px] sm:gap-[12px] w-full">
                     {displayedGames.map((game) => (
                         <div
                             key={game.id}
