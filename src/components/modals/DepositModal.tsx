@@ -216,50 +216,60 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const isFiatSuccess = activeTab === 'deposit' && selectedPayment.id === 'fiat' && fiatStep === 'success';
 
   const isBonusesTab = activeTab === 'bonuses';
-  const isWithdrawTxTab = activeTab === 'withdraw' || activeTab === 'transactions';
+  const isWithdrawTab = activeTab === 'withdraw';
+  const isTransactionsTab = activeTab === 'transactions';
   const isBonusSuccess = isBonusesTab && isPromoApplied;
 
-  const modalHeightClass = isBonusSuccess
-    ? 'h-[660px] sm:h-[589px]'
-    : ((isBonusesTab || isWithdrawTxTab)
-      ? 'h-[573px] sm:h-[518px]'
-      : (isFiatAddress
-        ? 'h-[715px] sm:h-[633px]'
-        : (isFiatPayment
-          ? 'h-[743px] sm:h-[647px]'
-          : (isFiatSuccess
-            ? 'h-[725px] sm:h-[655px]'
-            : (isPending
-              ? 'h-[652px] sm:h-[604px]'
-              : 'h-[673px] sm:h-[604px]')))));
+  let modalHeightClass = 'h-[673px] sm:h-[604px]';
+  if (isBonusSuccess) {
+    modalHeightClass = 'h-[660px] sm:h-[589px]';
+  } else if (isWithdrawTab) {
+    modalHeightClass = 'h-[647px] sm:h-[576px]';
+  } else if (isBonusesTab || isTransactionsTab) {
+    modalHeightClass = 'h-[573px] sm:h-[518px]';
+  } else if (isFiatAddress) {
+    modalHeightClass = 'h-[715px] sm:h-[633px]';
+  } else if (isFiatPayment) {
+    modalHeightClass = 'h-[743px] sm:h-[647px]';
+  } else if (isFiatSuccess) {
+    modalHeightClass = 'h-[725px] sm:h-[655px]';
+  } else if (isPending) {
+    modalHeightClass = 'h-[652px] sm:h-[604px]';
+  }
 
-  const outerBoxHeightClass = isBonusSuccess
-    ? 'h-[580px] sm:h-[480px]'
-    : ((isBonusesTab || isWithdrawTxTab)
-      ? 'h-[495px] sm:h-[462px]'
-      : (isFiatAddress
-        ? 'h-[637px] sm:h-[503px]'
-        : (isFiatPayment
-          ? 'h-[665px] sm:h-[517px]'
-          : (isFiatSuccess
-            ? 'h-[645px] sm:h-[472px]'
-            : (isPending
-              ? 'h-[574px] sm:h-[474px]'
-              : 'h-[595px] sm:h-[474px]')))));
+  let outerBoxHeightClass = 'h-[595px] sm:h-[474px]';
+  if (isBonusSuccess) {
+    outerBoxHeightClass = 'h-[580px] sm:h-[480px]';
+  } else if (isWithdrawTab) {
+    outerBoxHeightClass = 'h-[547px] sm:h-[467px]';
+  } else if (isBonusesTab || isTransactionsTab) {
+    outerBoxHeightClass = 'h-[495px] sm:h-[462px]';
+  } else if (isFiatAddress) {
+    outerBoxHeightClass = 'h-[637px] sm:h-[503px]';
+  } else if (isFiatPayment) {
+    outerBoxHeightClass = 'h-[665px] sm:h-[517px]';
+  } else if (isFiatSuccess) {
+    outerBoxHeightClass = 'h-[645px] sm:h-[472px]';
+  } else if (isPending) {
+    outerBoxHeightClass = 'h-[574px] sm:h-[474px]';
+  }
 
-  const innerBoxHeightClass = isBonusSuccess
-    ? 'h-[560px] sm:h-[480px]'
-    : ((isBonusesTab || isWithdrawTxTab)
-      ? 'h-[442px] sm:h-[409px]'
-      : (isFiatAddress
-        ? 'h-[500px] sm:h-[450px]'
-        : (isFiatPayment
-          ? 'h-[528px] sm:h-[464px]'
-          : (isFiatSuccess
-            ? 'h-[505px] sm:h-[472px]'
-            : (isPending
-              ? 'h-[411px] sm:h-[421px]'
-              : 'h-[458px] sm:h-[421px]')))));
+  let innerBoxHeightClass = 'h-[458px] sm:h-[421px]';
+  if (isBonusSuccess) {
+    innerBoxHeightClass = 'h-[560px] sm:h-[480px]';
+  } else if (isWithdrawTab) {
+    innerBoxHeightClass = 'h-[547px] sm:h-[467px]';
+  } else if (isBonusesTab || isTransactionsTab) {
+    innerBoxHeightClass = 'h-[442px] sm:h-[409px]';
+  } else if (isFiatAddress) {
+    innerBoxHeightClass = 'h-[500px] sm:h-[450px]';
+  } else if (isFiatPayment) {
+    innerBoxHeightClass = 'h-[528px] sm:h-[464px]';
+  } else if (isFiatSuccess) {
+    innerBoxHeightClass = 'h-[505px] sm:h-[472px]';
+  } else if (isPending) {
+    innerBoxHeightClass = 'h-[411px] sm:h-[421px]';
+  }
 
   return createPortal(
     <div className="fixed inset-0 z-40 sm:z-[120] overflow-y-auto top-[50px] sm:top-0">
@@ -993,7 +1003,85 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   </div>
                 )}
 
-                {(activeTab === 'withdraw' || activeTab === 'transactions') && (
+                {activeTab === 'withdraw' && (
+                  <div className="flex flex-col items-center justify-between p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[421px] overflow-hidden">
+                    {/* Title & Subtitle Frame (428x67 in Figma) */}
+                    <div className="flex flex-col items-start gap-[8px] w-full text-center shrink-0">
+                      <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
+                        Verify your account
+                      </h3>
+                      <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full text-center">
+                        For security reasons, withdrawals are available only after KYC verification is completed.
+                      </p>
+                    </div>
+
+                    {/* 3 Verification Steps Frame (428x174 in Figma) */}
+                    <div className="flex flex-col items-start gap-[12px] w-full sm:w-[428px] shrink-0">
+                      {/* Step 1 */}
+                      <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
+                        <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
+                          <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
+                            1
+                          </span>
+                        </div>
+                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
+                          Confirm personal details
+                        </span>
+                      </div>
+
+                      {/* Step 2 */}
+                      <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
+                        <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
+                          <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
+                            2
+                          </span>
+                        </div>
+                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
+                          Upload identity document
+                        </span>
+                      </div>
+
+                      {/* Step 3 */}
+                      <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
+                        <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
+                          <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
+                            3
+                          </span>
+                        </div>
+                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
+                          Upload proof of address
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons Stack (428x112 in Figma) */}
+                    <div className="flex flex-col items-center gap-[12px] w-full sm:w-[428px] shrink-0">
+                      <button
+                        onClick={() => {
+                          toast.info('KYC Verification started!');
+                        }}
+                        className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
+                      >
+                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#1A1404]">
+                          Start verification
+                        </span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          toast.info('Previewing verified state');
+                        }}
+                        className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
+                      >
+                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#D2DCF7]">
+                          Preview verified withdrawal
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'transactions' && (
                   <div className="flex flex-col items-center justify-center p-[24px] sm:p-0 gap-[16px] w-full bg-[#0C1F56] sm:bg-transparent rounded-[16px] sm:rounded-none z-20 relative h-[396px] sm:h-full">
                     <Crown size={48} className="text-[#FFC83D]" fill="currentColor" />
                     <div className="flex flex-col items-center gap-[8px]">
