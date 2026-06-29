@@ -14,6 +14,8 @@ import ProviderSection from "@/components/sections/ProviderSection";
 import RecentWinnerSection from "@/components/sections/RecentWinnerSection";
 import ReferFriend from "@/components/sections/ReferFriend";
 import TabSection from "@/components/sections/TabSection";
+import TabHeader from "@/components/sections/TabHeader";
+import GameGrid from "@/components/sections/GameGrid";
 import Why from "@/components/sections/Why";
 import bonusBuysData from "@/data/bonusBuysData.json";
 import crashGamesData from "@/data/crashGamesData.json";
@@ -115,39 +117,25 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
                     </div>
                   </>
                 ) : activeTab === 'slots' ? (
-                  <GameSlider
-                    title="SLOTS (1,487)"
-                    icon={<Image src="/slots.svg" alt="Slots" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                    games={slotsData}
-                  />
+                  <GameGrid title="Slots" count="1,487" games={slotsData} />
                 ) : activeTab === 'originals' ? (
-                  <GameSlider
-                    title="ORIGINALS (14)"
-                    icon={<Image src="/orignals.svg" alt="Originals" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                    games={originalsData}
-                  />
+                  <GameGrid title="Originals" count="14" games={originalsData} />
                 ) : activeTab === 'crash-games' ? (
-                  <GameSlider
-                    title="CRASH GAMES (723)"
-                    icon={<Image src="/crashgame.svg" alt="Crash Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                    games={crashGamesData}
-                  />
+                  <GameGrid title="Crash Games" count="723" games={crashGamesData} />
                 ) : activeTab === 'providers' ? (
-                  <ProviderSection />
+                  <div className="flex flex-col gap-6 w-full">
+                    <TabHeader title="Providers" />
+                    <ProviderSection hideHeader />
+                  </div>
                 ) : activeTab === 'table-games' ? (
-                  <GameSlider
-                    title="TABLE GAMES (51)"
-                    icon={<Image src="/tg.svg" alt="Table Games" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                    games={tableGamesData}
-                  />
+                  <GameGrid title="Table Games" count="51" games={tableGamesData} />
                 ) : activeTab === 'bonus-buys' ? (
-                  <GameSlider
-                    title="BONUS BUYS (145)"
-                    icon={<Image src="/bb.svg" alt="Bonus Buys" width={30} height={30} className="w-[30px] h-[30px] shrink-0 object-contain" />}
-                    games={bonusBuysData}
-                  />
+                  <GameGrid title="Bonus Buys" count="145" games={bonusBuysData} />
                 ) : activeTab === 'collection' ? (
-                  <CollectionSection />
+                  <div className="flex flex-col gap-6 w-full">
+                    <TabHeader title="Collection" />
+                    <CollectionSection hideHeader />
+                  </div>
                 ) : null}
 
                 <div id="recent-winners" className="tab-content">

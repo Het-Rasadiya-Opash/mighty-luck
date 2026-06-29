@@ -21,7 +21,11 @@ const collectionData = [
     { id: 14, title: 'EGYPTIAN', image: '/games/c-1.png' },
 ];
 
-function CollectionSectionContent() {
+interface CollectionSectionProps {
+    hideHeader?: boolean;
+}
+
+function CollectionSectionContent({ hideHeader }: CollectionSectionProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(3);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -66,40 +70,42 @@ function CollectionSectionContent() {
 
     return (
         <section ref={containerRef} className="w-full flex flex-col gap-4">
-            <div className="w-full flex flex-row justify-between items-center h-[23px] md:h-[30px]">
-                <div className="flex flex-row items-center gap-[7.2px] md:gap-[12px] h-[23px] md:h-[30px]">
-                    <div className="flex items-center justify-center w-[18px] h-[18px] md:w-[30px] md:h-[30px] shrink-0">
-                        <Image src="/collections.svg" alt="Collections" width={30} height={30} className="w-full h-full object-contain" />
+            {!hideHeader && (
+                <div className="w-full flex flex-row justify-between items-center h-[23px] md:h-[30px]">
+                    <div className="flex flex-row items-center gap-[7.2px] md:gap-[12px] h-[23px] md:h-[30px]">
+                        <div className="flex items-center justify-center w-[18px] h-[18px] md:w-[30px] md:h-[30px] shrink-0">
+                            <Image src="/collections.svg" alt="Collections" width={30} height={30} className="w-full h-full object-contain" />
+                        </div>
+                        <h2 className="font-['Jost'] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[30px] tracking-[0.01em] text-white uppercase whitespace-nowrap m-0">
+                            COLLECTIONS (17)
+                        </h2>
                     </div>
-                    <h2 className="font-['Jost'] font-extrabold text-[16px] md:text-[20px] leading-[23px] md:leading-[30px] tracking-[0.01em] text-white uppercase whitespace-nowrap m-0">
-                        COLLECTIONS (17)
-                    </h2>
-                </div>
-                <div className="flex items-center gap-3 md:gap-[12px]">
-                    <span 
-                        onClick={handleViewAll}
-                        className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap"
-                    >
-                        View all
-                    </span>
-                    <div className="hidden md:flex gap-[4px]">
-                        <button
-                            onClick={handlePrev}
-                            disabled={currentIndex === 0}
-                            className={`flex items-center justify-center w-[30px] h-[30px] rounded-[8px] transition-colors shrink-0 ${currentIndex === 0 ? 'bg-[#0C1F56] text-white/50 cursor-not-allowed' : 'bg-[#112F82] hover:bg-[#1463FF] text-white'}`}
+                    <div className="flex items-center gap-3 md:gap-[12px]">
+                        <span 
+                            onClick={handleViewAll}
+                            className="flex font-['Manrope'] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-[#FFBF1F] md:text-[#D2DCF7] cursor-pointer hover:text-white transition-colors whitespace-nowrap"
                         >
-                            <ChevronLeft size={16} />
-                        </button>
-                        <button
-                            onClick={handleNext}
-                            disabled={currentIndex === maxIndex}
-                            className={`flex items-center justify-center w-[30px] h-[30px] rounded-[8px] transition-colors shrink-0 ${currentIndex === maxIndex ? 'bg-[#0C1F56] text-white/50 cursor-not-allowed' : 'bg-[#112F82] hover:bg-[#1463FF] text-white'}`}
-                        >
-                            <ChevronRight size={16} />
-                        </button>
+                            View all
+                        </span>
+                        <div className="hidden md:flex gap-[4px]">
+                            <button
+                                onClick={handlePrev}
+                                disabled={currentIndex === 0}
+                                className={`flex items-center justify-center w-[30px] h-[30px] rounded-[8px] transition-colors shrink-0 ${currentIndex === 0 ? 'bg-[#0C1F56] text-white/50 cursor-not-allowed' : 'bg-[#112F82] hover:bg-[#1463FF] text-white'}`}
+                            >
+                                <ChevronLeft size={16} />
+                            </button>
+                            <button
+                                onClick={handleNext}
+                                disabled={currentIndex === maxIndex}
+                                className={`flex items-center justify-center w-[30px] h-[30px] rounded-[8px] transition-colors shrink-0 ${currentIndex === maxIndex ? 'bg-[#0C1F56] text-white/50 cursor-not-allowed' : 'bg-[#112F82] hover:bg-[#1463FF] text-white'}`}
+                            >
+                                <ChevronRight size={16} />
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
 
             <div className="relative w-full overflow-x-auto md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
                 <div
@@ -142,10 +148,10 @@ function CollectionSectionContent() {
     );
 }
 
-export default function CollectionSection() {
+export default function CollectionSection({ hideHeader }: CollectionSectionProps) {
     return (
         <Suspense fallback={null}>
-            <CollectionSectionContent />
+            <CollectionSectionContent hideHeader={hideHeader} />
         </Suspense>
     );
 }
