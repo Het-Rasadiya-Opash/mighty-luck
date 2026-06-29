@@ -11,7 +11,6 @@ const tabs = [
     { name: 'Providers', icon: '/gameprovider.svg' },
     { name: 'Table Games', icon: '/tg.svg' },
     { name: 'Bonus Buys', icon: '/bb.svg' },
-    { name: 'Collection', icon: '/collections.svg' },
 ];
 
 function TabSectionContent() {
@@ -24,7 +23,7 @@ function TabSectionContent() {
     return (
         <div className="w-full relative overflow-hidden">
             <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                <div className="flex flex-row items-center gap-[8px] w-max lg:w-[1136px] h-[50px] min-w-full">
+                <div className="flex flex-row items-center gap-[8px] w-max lg:w-full  h-[50px] min-w-full ">
                     {tabs.map((tab, index) => {
                         const tabSlug = tab.name.toLowerCase().replace(' ', '-');
                         const isActive = activeTabSlug === tabSlug;
