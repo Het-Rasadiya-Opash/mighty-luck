@@ -4,7 +4,7 @@ import { Heart } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TabHeader from './TabHeader';
 
 export interface Game {
@@ -17,21 +17,32 @@ interface GameGridProps {
     title: string;
     count: string | number;
     games: Game[];
+    hideFooter?: boolean;
 }
 
-export default function GameGrid({ title, count, games }: GameGridProps) {
+export default function GameGrid({ title, count, games, hideFooter = false }: GameGridProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { status } = useSession();
 
-    // Parse numeric total from count prop (e.g. "1,487" -> 1487)
-    const totalNum = typeof count === 'number' ? count : parseInt(count.toString().replace(/,/g, ''), 10) || games.length;
-
-    // Default initial visible count (multiple of 9 for balanced rows)
-    const initialVisible = 27;
-    const [visibleCount, setVisibleCount] = useState(initialVisible);
+    // Responsive initial count: 9 on mobile, 16 on desktop
+    const getInitialCount = () => (typeof window !== 'undefined' && window.innerWidth < 640) ? 9 : 16;
+    const [visibleCount, setVisibleCount] = useState(getInitialCount);
     const [searchQuery, setSearchQuery] = useState('');
+
+    useEffect(() => {
+        const handleResize = () => {
+            const isMobile = window.innerWidth < 640;
+            setVisibleCount((prev) => {
+                const newInitial = isMobile ? 9 : 16;
+                // Only reset if we're still at the initial count threshold
+                return prev <= 16 ? newInitial : prev;
+            });
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleGameClick = (gameId: string | number) => {
         const params = new URLSearchParams(searchParams?.toString());
@@ -54,9 +65,6 @@ export default function GameGrid({ title, count, games }: GameGridProps) {
 
     // Render filtered json items from games array
     const displayedGames = filteredGames.slice(0, visibleCount);
-
-    // Progress percentage based on actual filtered json array length
-    const progressPercent = Math.min(100, Math.max(5, (displayedGames.length / (filteredGames.length || 1)) * 100));
 
     return (
         <div className="flex flex-col gap-6 w-full">
@@ -102,31 +110,31 @@ export default function GameGrid({ title, count, games }: GameGridProps) {
                 </div>
             )}
 
-            {/* Load More & Progress Section */}
-            <div className="flex flex-col items-center justify-center gap-3 mt-4 mb-8 w-full">
-                {/* Progress Bar Container */}
-                <div className="w-[200px] sm:w-[280px] h-[3px] bg-[#0C1F56] rounded-full overflow-hidden">
-                    <div 
-                        className="h-full bg-[#FFC83D] rounded-full transition-all duration-300"
-                        style={{ width: `${progressPercent}%` }}
-                    />
+            {/* Progress & Load More — hidden on dedicated pages */}
+            {!hideFooter && (
+                <div className="flex flex-col items-center justify-center gap-3 mt-4 mb-8 w-full">
+                    {/* Progress Bar */}
+                    <div className="w-[200px] sm:w-[280px] h-[3px] bg-[#0C1F56] rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-[#FFC83D] rounded-full transition-all duration-300"
+                            style={{ width: `${Math.min(100, Math.max(5, (displayedGames.length / (filteredGames.length || 1)) * 100))}%` }}
+                        />
+                    </div>
+                    {/* Counter */}
+                    <p className="font-['Manrope'] font-semibold text-[13px] sm:text-[14px] text-[#D2DCF7]">
+                        You viewed <span className="text-white font-bold">{displayedGames.length}</span> out of <span className="text-white font-bold">{filteredGames.length}</span> games
+                    </p>
+                    {/* Load More */}
+                    {visibleCount < filteredGames.length && (
+                        <button
+                            onClick={handleLoadMore}
+                            className="mt-1 px-6 py-2.5 bg-[#112F82] hover:bg-[#1463FF] text-white font-['Manrope'] font-bold text-[13px] sm:text-[14px] rounded-[6px] transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95"
+                        >
+                            Load More
+                        </button>
+                    )}
                 </div>
-
-                {/* Counter Text */}
-                <p className="font-['Manrope'] font-semibold text-[13px] sm:text-[14px] text-[#D2DCF7]">
-                    You viewed <span className="text-white font-bold">{displayedGames.length}</span> out of <span className="text-white font-bold">{filteredGames.length}</span> games
-                </p>
-
-                {/* Load More Button */}
-                {visibleCount < filteredGames.length && (
-                    <button
-                        onClick={handleLoadMore}
-                        className="mt-1 px-6 py-2.5 bg-[#112F82] hover:bg-[#1463FF] text-white font-['Manrope'] font-bold text-[13px] sm:text-[14px] rounded-[6px] transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95"
-                    >
-                        Load More
-                    </button>
-                )}
-            </div>
+            )}
         </div>
     );
 }
