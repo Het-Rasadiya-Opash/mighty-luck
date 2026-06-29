@@ -58,6 +58,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [isPromoApplied, setIsPromoApplied] = useState(false);
+  const [isVerificationStarted, setIsVerificationStarted] = useState(false);
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -176,6 +177,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setFiatAmount(30);
       setPromoCode('');
       setIsPromoApplied(false);
+      setIsVerificationStarted(false);
       setActiveTab('deposit');
     } else {
       document.body.style.overflow = "unset";
@@ -224,7 +226,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (isBonusSuccess) {
     modalHeightClass = 'h-[660px] sm:h-[589px]';
   } else if (isWithdrawTab) {
-    modalHeightClass = 'h-[647px] sm:h-[576px]';
+    modalHeightClass = isVerificationStarted ? 'h-[760px] sm:h-[705px]' : 'h-[647px] sm:h-[576px]';
   } else if (isBonusesTab || isTransactionsTab) {
     modalHeightClass = 'h-[573px] sm:h-[518px]';
   } else if (isFiatAddress) {
@@ -241,7 +243,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (isBonusSuccess) {
     outerBoxHeightClass = 'h-[580px] sm:h-[480px]';
   } else if (isWithdrawTab) {
-    outerBoxHeightClass = 'h-[547px] sm:h-[467px]';
+    outerBoxHeightClass = isVerificationStarted ? 'h-[670px] sm:h-[596px]' : 'h-[547px] sm:h-[467px]';
   } else if (isBonusesTab || isTransactionsTab) {
     outerBoxHeightClass = 'h-[495px] sm:h-[462px]';
   } else if (isFiatAddress) {
@@ -258,7 +260,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (isBonusSuccess) {
     innerBoxHeightClass = 'h-[560px] sm:h-[480px]';
   } else if (isWithdrawTab) {
-    innerBoxHeightClass = 'h-[547px] sm:h-[467px]';
+    innerBoxHeightClass = isVerificationStarted ? 'h-[670px] sm:h-[596px]' : 'h-[547px] sm:h-[467px]';
   } else if (isBonusesTab || isTransactionsTab) {
     innerBoxHeightClass = 'h-[442px] sm:h-[409px]';
   } else if (isFiatAddress) {
@@ -710,7 +712,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                                   </div>
 
                                   {isCountryOpen && (
-                                    <div className="absolute top-[50px] sm:top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-[60] shadow-lg max-h-[88px] overflow-y-auto [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[#0C1F56] [&::-webkit-scrollbar-thumb]:bg-[#1A3FA6] [&::-webkit-scrollbar-thumb]:rounded-[2px]">
+                                    <div className="absolute top-[50px] sm:top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-[60] shadow-lg max-h-[88px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                                       {countries.map(country => (
                                         <button
                                           key={country.id}
@@ -1004,81 +1006,224 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 )}
 
                 {activeTab === 'withdraw' && (
-                  <div className="flex flex-col items-center justify-between p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[421px] overflow-hidden">
-                    {/* Title & Subtitle Frame (428x67 in Figma) */}
-                    <div className="flex flex-col items-start gap-[8px] w-full text-center shrink-0">
-                      <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
-                        Verify your account
-                      </h3>
-                      <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full text-center">
-                        For security reasons, withdrawals are available only after KYC verification is completed.
-                      </p>
-                    </div>
-
-                    {/* 3 Verification Steps Frame (428x174 in Figma) */}
-                    <div className="flex flex-col items-start gap-[12px] w-full sm:w-[428px] shrink-0">
-                      {/* Step 1 */}
-                      <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
-                        <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
-                          <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
-                            1
-                          </span>
-                        </div>
-                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
-                          Confirm personal details
-                        </span>
+                  !isVerificationStarted ? (
+                    <div className="flex flex-col items-center justify-between p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[421px] overflow-hidden">
+                      {/* Title & Subtitle Frame (428x67 in Figma) */}
+                      <div className="flex flex-col items-start gap-[8px] w-full text-center shrink-0">
+                        <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
+                          Verify your account
+                        </h3>
+                        <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full text-center">
+                          For security reasons, withdrawals are available only after KYC verification is completed.
+                        </p>
                       </div>
 
-                      {/* Step 2 */}
-                      <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
-                        <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
-                          <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
-                            2
+                      {/* 3 Verification Steps Frame (428x174 in Figma) */}
+                      <div className="flex flex-col items-start gap-[12px] w-full sm:w-[428px] shrink-0">
+                        {/* Step 1 */}
+                        <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
+                          <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
+                            <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
+                              1
+                            </span>
+                          </div>
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
+                            Confirm personal details
                           </span>
                         </div>
-                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
-                          Upload identity document
-                        </span>
-                      </div>
 
-                      {/* Step 3 */}
-                      <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
-                        <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
-                          <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
-                            3
+                        {/* Step 2 */}
+                        <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
+                          <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
+                            <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
+                              2
+                            </span>
+                          </div>
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
+                            Upload identity document
                           </span>
                         </div>
-                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
-                          Upload proof of address
-                        </span>
+
+                        {/* Step 3 */}
+                        <div className="flex flex-row items-center p-[10px] gap-[12px] w-full h-[50px] bg-[#112F82] rounded-[8px] shrink-0">
+                          <div className="w-[30px] h-[30px] bg-[#1463FF] rounded-[4px] flex items-center justify-center shrink-0">
+                            <span className="font-['Jost'] font-extrabold text-[14px] leading-[17px] tracking-[0.01em] text-white">
+                              3
+                            </span>
+                          </div>
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">
+                            Upload proof of address
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons Stack (428x112 in Figma) */}
+                      <div className="flex flex-col items-center gap-[12px] w-full sm:w-[428px] shrink-0">
+                        <button
+                          onClick={() => {
+                            setIsVerificationStarted(true);
+                          }}
+                          className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
+                        >
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#1A1404]">
+                            Start verification
+                          </span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            toast.info('Previewing verified state');
+                          }}
+                          className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
+                        >
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#D2DCF7]">
+                            Preview verified withdrawal
+                          </span>
+                        </button>
                       </div>
                     </div>
+                  ) : (
+                    /* Verification process screen (460x550 in Figma) */
+                    <div className="flex flex-col items-center p-[20px_16px] gap-[20px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[550px] overflow-hidden shrink-0">
+                      {/* Section 1: 1. Complete verification */}
+                      <div className="flex flex-col items-start gap-[12px] w-full sm:w-[428px] shrink-0">
+                        <div className="flex flex-col items-start gap-[4px] w-full">
+                          <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                            1.Complete verification
+                          </span>
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                            We need to verify your account before enabling withdrawals.
+                          </span>
+                        </div>
 
-                    {/* Action Buttons Stack (428x112 in Figma) */}
-                    <div className="flex flex-col items-center gap-[12px] w-full sm:w-[428px] shrink-0">
-                      <button
-                        onClick={() => {
-                          toast.info('KYC Verification started!');
-                        }}
-                        className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
-                      >
-                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#1A1404]">
-                          Start verification
-                        </span>
-                      </button>
+                        <div className="flex flex-col items-start gap-[12px] w-full">
+                          <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                            <input
+                              type="text"
+                              placeholder="Legal first name"
+                              className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder-[#A5B8EF]"
+                            />
+                          </div>
 
-                      <button
-                        onClick={() => {
-                          toast.info('Previewing verified state');
-                        }}
-                        className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
-                      >
-                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#D2DCF7]">
-                          Preview verified withdrawal
+                          <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[40px] bg-[#112F82] rounded-[8px]">
+                            <input
+                              type="text"
+                              placeholder="Legal last name"
+                              className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder-[#A5B8EF]"
+                            />
+                          </div>
+
+                          <div className="flex flex-row items-center gap-[8px] w-full h-[40px]">
+                            <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 h-[40px] bg-[#112F82] rounded-[8px]">
+                              <input
+                                type="text"
+                                placeholder="Date of birth"
+                                onFocus={(e) => (e.target.type = 'date')}
+                                onBlur={(e) => { if (!e.target.value) e.target.type = 'text'; }}
+                                className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder-[#A5B8EF]"
+                              />
+                            </div>
+
+                            <div className="relative flex-1" ref={countryRef}>
+                              <button
+                                onClick={() => setIsCountryOpen(!isCountryOpen)}
+                                className="flex flex-row items-center justify-between px-[16px] py-[10px] gap-[10px] w-full h-[40px] bg-[#112F82] rounded-[8px]"
+                              >
+                                <div className="flex flex-row items-center gap-[8px] truncate">
+                                  <img src={selectedCountry.flag} alt={selectedCountry.name} className="w-[20px] h-[20px] object-cover rounded-full shrink-0" />
+                                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white truncate">{selectedCountry.name}</span>
+                                </div>
+                                <ChevronDown size={14} className={`text-[#A5B8EF] shrink-0 transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
+                              </button>
+
+                              {isCountryOpen && (
+                                <div className="absolute top-[44px] left-0 right-0 bg-[#0C1F56] border border-[#112F82] rounded-[8px] shadow-lg py-1 z-50 max-h-[160px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                                  {countries.map((c) => (
+                                    <button
+                                      key={c.id}
+                                      onClick={() => {
+                                        setSelectedCountry(c);
+                                        setIsCountryOpen(false);
+                                      }}
+                                      className="flex flex-row items-center gap-[8px] w-full px-[12px] py-[8px] hover:bg-[#112F82] transition-colors text-left"
+                                    >
+                                      <img src={c.flag} alt={c.name} className="w-[20px] h-[20px] object-cover rounded-full shrink-0" />
+                                      <span className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] text-white truncate">{c.name}</span>
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Section 2: 2. Upload documents */}
+                      <div className="flex flex-col items-start gap-[12px] w-full sm:w-[428px] shrink-0">
+                        <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                          2.Upload documents
                         </span>
-                      </button>
+
+                        <div className="flex flex-col items-start p-[10px] gap-[20px] w-full h-[60px] bg-[#112F82] rounded-[10px]">
+                          <div className="flex flex-row items-center gap-[16px] w-full h-[40px]">
+                            <div className="flex flex-col items-center justify-center p-[12px] gap-[10px] w-[40px] h-[40px] bg-[#0C1F56] rounded-[6px] shrink-0 cursor-pointer hover:bg-[#091741] transition-colors">
+                              <img src="/upload.svg" alt="Upload" className="w-[16px] h-[16px]" />
+                            </div>
+                            <div className="flex flex-col items-start gap-[4px] flex-1">
+                              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                                Identity document
+                              </span>
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">
+                                Passport, ID card, or driving license
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col items-start p-[10px] gap-[20px] w-full h-[60px] bg-[#112F82] rounded-[10px]">
+                          <div className="flex flex-row items-center gap-[16px] w-full h-[40px]">
+                            <div className="flex flex-col items-center justify-center p-[12px] gap-[10px] w-[40px] h-[40px] bg-[#0C1F56] rounded-[6px] shrink-0 cursor-pointer hover:bg-[#091741] transition-colors">
+                              <img src="/upload.svg" alt="Upload" className="w-[16px] h-[16px]" />
+                            </div>
+                            <div className="flex flex-col items-start gap-[4px] flex-1">
+                              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                                Proof of address
+                              </span>
+                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">
+                                Utility bill or bank statement
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Section 3: Buttons */}
+                      <div className="flex flex-col items-center gap-[12px] w-full sm:w-[428px] shrink-0">
+                        <button
+                          onClick={() => {
+                            toast.success('Verification details submitted successfully!');
+                            setIsVerificationStarted(false);
+                          }}
+                          className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
+                        >
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#1A1404]">
+                            Submit verification
+                          </span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setIsVerificationStarted(false);
+                          }}
+                          className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
+                        >
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#D2DCF7]">
+                            Back
+                          </span>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )
                 )}
 
                 {activeTab === 'transactions' && (
