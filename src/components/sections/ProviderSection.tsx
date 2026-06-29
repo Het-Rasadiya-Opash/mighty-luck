@@ -3,7 +3,7 @@
 import providerData from '@/data/providerData.json';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Suspense, useEffect, useRef, useState } from 'react';
 
 interface ProviderSectionProps {
@@ -15,17 +15,29 @@ function ProviderSectionContent({ hideHeader }: ProviderSectionProps) {
     const [visibleCount, setVisibleCount] = useState(7);
     const containerRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
+
+    // Responsive initial count for grid mode: 9 on mobile, 16 on desktop
+    const getGridInitial = () => (typeof window !== 'undefined' && window.innerWidth < 640) ? 9 : 16;
+    const [gridVisible, setGridVisible] = useState(getGridInitial);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const isMobile = window.innerWidth < 640;
+            setGridVisible((prev) => {
+                const newInitial = isMobile ? 9 : 16;
+                return prev <= 16 ? newInitial : prev;
+            });
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const cardWidth = 152;
     const cardGap = 12;
     const cardStep = cardWidth + cardGap;
 
     const handleViewAll = () => {
-        const params = new URLSearchParams(searchParams?.toString());
-        params.set('tab', 'providers');
-        router.push(`${pathname}?${params.toString()}`);
+        router.push('/providers');
     };
 
     useEffect(() => {
@@ -50,6 +62,9 @@ function ProviderSectionContent({ hideHeader }: ProviderSectionProps) {
     useEffect(() => {
         setCurrentIndex((prev) => Math.min(prev, maxIndex));
     }, [maxIndex]);
+
+    const displayedProviders = providerData.slice(0, gridVisible);
+    const progressPercent = Math.min(100, Math.max(5, (displayedProviders.length / (providerData.length || 1)) * 100));
 
     return (
         <div ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
@@ -91,27 +106,50 @@ function ProviderSectionContent({ hideHeader }: ProviderSectionProps) {
             )}
 
             {hideHeader ? (
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-[8px] md:gap-[12px] w-full">
-                    {providerData.map((provider) => (
-                        <div
-                            key={provider.id}
-                            className="w-full h-[60px] md:h-[100px] bg-[#0C1F56] hover:bg-[#173EAD] transition-colors rounded-[8px] md:rounded-[12px] flex flex-col items-center py-[7.2px] px-[14.4px] md:py-[12px] md:px-[24px] gap-[4.8px] md:gap-[8px] cursor-pointer"
-                        >
-                            <div className="relative w-[48px] h-[24px] md:w-full md:flex-1 flex items-center justify-center shrink-0">
-                                <img
-                                    src={provider.image}
-                                    alt={provider.name}
-                                    className="object-contain max-w-[48px] max-h-[24px] md:max-w-full md:max-h-[40px]"
-                                />
+                <>
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-[8px] md:gap-[12px] w-full">
+                        {displayedProviders.map((provider) => (
+                            <div
+                                key={provider.id}
+                                className="w-full h-[60px] md:h-[100px] bg-[#0C1F56] hover:bg-[#173EAD] transition-colors rounded-[8px] md:rounded-[12px] flex flex-col items-center py-[7.2px] px-[14.4px] md:py-[12px] md:px-[24px] gap-[4.8px] md:gap-[8px] cursor-pointer"
+                            >
+                                <div className="relative w-[48px] h-[24px] md:w-full md:flex-1 flex items-center justify-center shrink-0">
+                                    <img
+                                        src={provider.image}
+                                        alt={provider.name}
+                                        className="object-contain max-w-[48px] max-h-[24px] md:max-w-full md:max-h-[40px]"
+                                    />
+                                </div>
+                                <div className="flex flex-row justify-center items-center h-[11px] md:h-auto w-full">
+                                    <span className="font-['Manrope'] font-semibold text-[8px] md:text-[10px] leading-[11px] md:leading-[100%] text-center text-[#FFC83D] whitespace-nowrap">
+                                        {provider.gamesCount} Games
+                                    </span>
+                                </div>
                             </div>
-                            <div className="flex flex-row justify-center items-center h-[11px] md:h-auto w-full">
-                                <span className="font-['Manrope'] font-semibold text-[8px] md:text-[10px] leading-[11px] md:leading-[100%] text-center text-[#FFC83D] whitespace-nowrap">
-                                    {provider.gamesCount} Games
-                                </span>
-                            </div>
+                        ))}
+                    </div>
+
+                    {/* Progress & Load More */}
+                    <div className="flex flex-col items-center justify-center gap-3 mt-4 mb-8 w-full">
+                        <div className="w-[200px] sm:w-[280px] h-[3px] bg-[#0C1F56] rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-[#FFC83D] rounded-full transition-all duration-300"
+                                style={{ width: `${progressPercent}%` }}
+                            />
                         </div>
-                    ))}
-                </div>
+                        <p className="font-['Manrope'] font-semibold text-[13px] sm:text-[14px] text-[#D2DCF7]">
+                            You viewed <span className="text-white font-bold">{displayedProviders.length}</span> out of <span className="text-white font-bold">{providerData.length}</span> providers
+                        </p>
+                        {gridVisible < providerData.length && (
+                            <button
+                                onClick={() => setGridVisible((prev) => Math.min(prev + 16, providerData.length))}
+                                className="mt-1 px-6 py-2.5 bg-[#112F82] hover:bg-[#1463FF] text-white font-['Manrope'] font-bold text-[13px] sm:text-[14px] rounded-[6px] transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95"
+                            >
+                                Load More
+                            </button>
+                        )}
+                    </div>
+                </>
             ) : (
                 <div className="w-full overflow-x-auto md:overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
                     <div

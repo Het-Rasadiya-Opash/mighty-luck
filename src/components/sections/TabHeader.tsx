@@ -37,9 +37,7 @@ export default function TabHeader({
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const handleBack = () => {
-        const params = new URLSearchParams(searchParams?.toString());
-        params.delete('tab');
-        router.push(`${pathname}?${params.toString()}`, { scroll: false });
+        router.push('/');
     };
 
     // Close search modal on outside click
