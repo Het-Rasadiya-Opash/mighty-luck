@@ -1500,8 +1500,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
                           Withdrawal requested
                         </h3>
-                        <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full text-center">
-                          Your withdrawal request was successfully submitted. Our payments team is now reviewing it
+                        <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full sm:w-[428px] h-[32px] text-center">
+                          Your withdrawal request was successfully submitted.<br />Our payments team is now reviewing it
                         </p>
                       </div>
 
