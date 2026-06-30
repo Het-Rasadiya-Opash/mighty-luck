@@ -367,7 +367,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
               <div className={`flex flex-col items-start gap-[16px] w-full ${innerBoxHeightClass} max-[639px]:flex-1 max-[639px]:min-h-0`}>
                 {/* <div className={`flex flex-col items-start gap-[16px] w-full h-auto ${innerBoxHeightClass}`}> */}
-                <div className="flex flex-row items-center gap-[8px] w-full h-[30px] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                <div className="flex flex-row items-center gap-[8px] w-full h-[30px] shrink-0 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                   <button
                     onClick={() => setActiveTab('deposit')}
                     className={`flex-1 min-w-[80px] min-[375px]:min-w-[85px] min-[425px]:min-w-0 h-full flex items-center justify-center rounded-[6px] transition-colors ${activeTab === 'deposit' ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}>
