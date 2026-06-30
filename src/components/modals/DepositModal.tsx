@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRightLeft, ChevronDown, Crown, Info, X } from "lucide-react";
+import { ArrowRightLeft, ChevronDown, Crown, Info, X, ArrowDownLeft, ArrowUpRight, Gift } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -62,6 +62,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [withdrawAmount, setWithdrawAmount] = useState("100");
   const [withdrawMethod, setWithdrawMethod] = useState("Bitcoin");
   const [withdrawAddress, setWithdrawAddress] = useState("");
+  const [transactionFilter, setTransactionFilter] = useState<'all' | 'deposit' | 'withdraw' | 'bonus'>('all');
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -243,8 +244,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     } else {
       modalHeightClass = 'h-[647px] sm:h-[576px]';
     }
-  } else if (isBonusesTab || isTransactionsTab) {
+  } else if (isBonusesTab) {
     modalHeightClass = 'h-[573px] sm:h-[518px]';
+  } else if (isTransactionsTab) {
+    modalHeightClass = 'h-[724px] sm:h-[669px]';
   } else if (isFiatAddress) {
     modalHeightClass = 'h-[715px] sm:h-[633px]';
   } else if (isFiatPayment) {
@@ -270,8 +273,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     } else {
       outerBoxHeightClass = 'h-[547px] sm:h-[467px]';
     }
-  } else if (isBonusesTab || isTransactionsTab) {
+  } else if (isBonusesTab) {
     outerBoxHeightClass = 'h-[495px] sm:h-[462px]';
+  } else if (isTransactionsTab) {
+    outerBoxHeightClass = 'h-[650px] sm:h-[613px]';
   } else if (isFiatAddress) {
     outerBoxHeightClass = 'h-[637px] sm:h-[503px]';
   } else if (isFiatPayment) {
@@ -297,8 +302,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
     } else {
       innerBoxHeightClass = 'h-[547px] sm:h-[467px]';
     }
-  } else if (isBonusesTab || isTransactionsTab) {
+  } else if (isBonusesTab) {
     innerBoxHeightClass = 'h-[442px] sm:h-[409px]';
+  } else if (isTransactionsTab) {
+    innerBoxHeightClass = 'h-[560px] sm:h-[560px]';
   } else if (isFiatAddress) {
     innerBoxHeightClass = 'h-[500px] sm:h-[450px]';
   } else if (isFiatPayment) {
@@ -1571,19 +1578,175 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   )
                 )}
 
-                {activeTab === 'transactions' && (
-                  <div className="flex flex-col items-center justify-center p-[24px] sm:p-0 gap-[16px] w-full bg-[#0C1F56] sm:bg-transparent rounded-[16px] sm:rounded-none z-20 relative h-[396px] sm:h-full">
-                    <Crown size={48} className="text-[#FFC83D]" fill="currentColor" />
-                    <div className="flex flex-col items-center gap-[8px]">
-                      <h3 className="font-[family-name:var(--font-jost)] font-bold text-[24px] leading-[32px] tracking-[0.02em] text-white">
-                        Coming Soon
-                      </h3>
-                      <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] max-w-[80%]">
-                        This feature is currently under development. Stay tuned for updates!
-                      </p>
+                {activeTab === 'transactions' && (() => {
+                  const transactionList = [
+                    {
+                      id: 1,
+                      type: 'deposit',
+                      title: 'Deposit',
+                      subtitle: 'Bitcoin — Today, 14:32',
+                      amount: '+$100.00',
+                      amountColor: '#00E806',
+                      status: 'Confirming',
+                      statusColor: '#FFBF1F',
+                      statusBg: '#3E2A09'
+                    },
+                    {
+                      id: 2,
+                      type: 'withdraw',
+                      title: 'Wirhdrawal',
+                      subtitle: 'Bitcoin — Today, 10:12',
+                      amount: '-$250.00',
+                      amountColor: '#FFFFFF',
+                      status: 'Pending review',
+                      statusColor: '#FFBF1F',
+                      statusBg: '#3E2A09'
+                    },
+                    {
+                      id: 3,
+                      type: 'deposit',
+                      title: 'Deposit',
+                      subtitle: 'Bitcoin — Yesterday, 19:44',
+                      amount: '+$100.00',
+                      amountColor: '#00E806',
+                      status: 'Completed',
+                      statusColor: '#00E806',
+                      statusBg: '#073208'
+                    },
+                    {
+                      id: 4,
+                      type: 'bonus',
+                      title: 'Bonus',
+                      subtitle: 'RELOAD150 — Yesterday, 19:45',
+                      amount: '+$75.00',
+                      amountColor: '#00E806',
+                      status: 'Active',
+                      statusColor: '#FFFFFF',
+                      statusBg: '#1463FF'
+                    },
+                    {
+                      id: 5,
+                      type: 'withdraw',
+                      title: 'Wirhdrawal',
+                      subtitle: 'Bank Transfer — May 12, 09:18',
+                      amount: '-$500.00',
+                      amountColor: '#FFFFFF',
+                      status: 'Completed',
+                      statusColor: '#00E806',
+                      statusBg: '#073208'
+                    },
+                    {
+                      id: 6,
+                      type: 'deposit',
+                      title: 'Deposit',
+                      subtitle: 'Bitcoin — Yesterday, 19:44',
+                      amount: '+$100.00',
+                      amountColor: '#00E806',
+                      status: 'Completed',
+                      statusColor: '#00E806',
+                      statusBg: '#073208'
+                    }
+                  ];
+
+                  const filteredTransactions = transactionList.filter(tx => {
+                    if (transactionFilter === 'all') return true;
+                    return tx.type === transactionFilter;
+                  });
+
+                  return (
+                    <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[514px] sm:h-[514px] overflow-hidden shrink-0">
+                      {/* Title and subtitle */}
+                      <div className="flex flex-col items-start gap-[4px] w-full sm:w-[428px] shrink-0">
+                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                          Transactions
+                        </span>
+                        <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF]">
+                          Recent wallet activity
+                        </span>
+                      </div>
+
+                      {/* Filters */}
+                      <div className="flex flex-row items-center gap-[8px] w-full sm:w-[428px] h-[30px] shrink-0">
+                        {[
+                          { id: 'all', label: 'All' },
+                          { id: 'deposit', label: 'Deposit' },
+                          { id: 'withdraw', label: 'Withdraw' },
+                          { id: 'bonus', label: 'Bonus' }
+                        ].map((filter) => {
+                          const isActive = transactionFilter === filter.id;
+                          return (
+                            <button
+                              key={filter.id}
+                              onClick={() => setTransactionFilter(filter.id as any)}
+                              className={`flex flex-row justify-center items-center px-[16px] py-[10px] flex-1 h-[30px] rounded-[6px] transition-colors ${
+                                isActive
+                                  ? 'bg-[#1463FF] text-white font-bold'
+                                  : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:bg-[#1A3FA6]'
+                              }`}
+                            >
+                              <span className="font-[family-name:var(--font-manrope)] text-[12px] leading-[16px] tracking-[0.02em]">
+                                {filter.label}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {/* Transaction list */}
+                      <div className="flex flex-col gap-[8px] w-full sm:w-[428px] h-[373px] overflow-y-auto pr-[4px] transaction-list-scrollbar">
+                        {filteredTransactions.map((tx) => (
+                          <div
+                            key={tx.id}
+                            className="flex flex-row justify-between items-center p-[10px_16px_10px_10px] gap-[12px] w-full h-[62px] bg-[#112F82] rounded-[8px] shrink-0"
+                          >
+                            <div className="flex flex-row items-center gap-[12px] flex-grow">
+                              {/* Icon Box */}
+                              <div className="flex flex-col items-center justify-center w-[40px] h-[40px] bg-[#0C1F56] rounded-[8px] shrink-0">
+                                {tx.type === 'deposit' ? (
+                                  <ArrowDownLeft className="w-[16px] h-[16px] text-[#1463FF]" />
+                                ) : tx.type === 'withdraw' ? (
+                                  <ArrowUpRight className="w-[16px] h-[16px] text-[#1463FF]" />
+                                ) : (
+                                  <Gift className="w-[16px] h-[16px] text-[#1463FF]" />
+                                )}
+                              </div>
+                              {/* Text Details */}
+                              <div className="flex flex-col justify-center items-start gap-[4px] flex-grow">
+                                <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                                  {tx.title}
+                                </span>
+                                <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#BBCAF3]">
+                                  {tx.subtitle}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Amount & Status Badge */}
+                            <div className="flex flex-col items-end gap-[4px] shrink-0">
+                              <span
+                                className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] text-right tracking-[0.02em]"
+                                style={{ color: tx.amountColor }}
+                              >
+                                {tx.amount}
+                              </span>
+                              <div
+                                className="flex flex-row justify-center items-center px-[8px] py-[4px] rounded-[6px] h-[22px] shrink-0"
+                                style={{ backgroundColor: tx.statusBg }}
+                              >
+                                <span
+                                  className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em]"
+                                  style={{ color: tx.statusColor }}
+                                >
+                                  {tx.status}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
               </div>
 
               {activeTab === 'deposit' && (

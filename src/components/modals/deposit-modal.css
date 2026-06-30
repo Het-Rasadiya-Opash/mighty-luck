@@ -119,3 +119,17 @@
     gap: 12px !important;
   }
 }
+
+/* Custom scrollbar for transaction list */
+.transaction-list-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.transaction-list-scrollbar::-webkit-scrollbar-track {
+  background: #D2DCF7;
+  border-radius: 100px;
+}
+.transaction-list-scrollbar::-webkit-scrollbar-thumb {
+  background: #1463FF;
+  border-radius: 100px;
+}
