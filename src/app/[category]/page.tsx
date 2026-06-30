@@ -13,6 +13,7 @@ import slotsData from "@/data/slotsData.json";
 import tableGamesData from "@/data/tableGamesData.json";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
+import AboutSection from "@/components/sections/AboutSection";
 
 const categoryConfig: Record<
   string,
@@ -61,6 +62,8 @@ export default async function CategoryPage({
               hideFooter
             />
           )}
+          <AboutSection />
+          <Footer />
         </main>
       </div>
     </Container>
