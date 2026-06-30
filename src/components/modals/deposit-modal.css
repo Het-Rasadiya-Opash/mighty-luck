@@ -97,8 +97,8 @@
     margin-right: 8px !important;
   }
   .deposit-modal-container div[class*="bg-[#1463FF]"].shrink-0 {
-    width: 50px !important;
-    height: 50px !important;
+    width: 35px !important;
+    height: 35px !important;
   }
 
   .deposit-modal-container .grid.grid-cols-2 > div:last-child > div {
