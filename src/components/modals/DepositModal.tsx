@@ -393,7 +393,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 {activeTab === 'deposit' && (
                   <>
                     {isPending ? (
-                      <div className="flex flex-col items-start p-[20px_16px] max-[639px]:pb-[120px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[365px] sm:h-[325px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0">
+                      <div className="flex flex-col items-start p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[365px] sm:h-[325px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0">
                         <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] w-full h-[38px] flex items-center justify-center">
                           Your transaction in progress and pending confirmation from the blockchain.
                         </p>
@@ -461,7 +461,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </div>
                       </div>
                     ) : (
-                      <div className={`flex flex-col items-start p-[16px] max-[639px]:pb-[110px] ${isCountryOpen ? 'max-[639px]:pb-[240px]' : ''} gap-[16px] w-full ${isFiatAddress ? 'h-[454px] sm:h-[404px]' : (isFiatPayment ? 'h-[482px] sm:h-[418px]' : (isFiatSuccess ? 'h-[464px] sm:h-[426px]' : 'h-[412px] sm:h-[375px]'))} bg-[#0C1F56] rounded-[16px] z-20 relative max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0`}>
+                      <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-[454px] sm:h-[404px]' : (isFiatPayment ? 'h-[482px] sm:h-[418px]' : (isFiatSuccess ? 'h-[464px] sm:h-[426px]' : 'h-[412px] sm:h-[375px]'))} bg-[#0C1F56] rounded-[16px] z-20 relative max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0`}>
                         {isFiatSuccess ? (
                           <div className="flex flex-col items-start gap-[16px] w-full h-[394px] sm:h-[394px]">
                             {/* Circle Checkmark Icon with Stroke from Figma Specs (Height 120px) */}
@@ -1749,7 +1749,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
               </div>
 
               {activeTab === 'deposit' && (
-                <div className={`max-[639px]:fixed max-[639px]:bottom-0 max-[639px]:left-0 max-[639px]:right-0 max-[639px]:bg-[#091741] max-[639px]:p-[16px_20px] max-[639px]:border-t max-[639px]:border-[#112F82]/80 max-[639px]:z-50 flex flex-col gap-[12px] items-center z-10 w-full justify-center ${isPending ? 'h-[88px] max-[639px]:h-auto' : ''}`}>
+                <div className={`max-[639px]:w-full max-[639px]:bg-[#091741] max-[639px]:pt-[16px] max-[639px]:z-50 flex flex-col gap-[12px] items-center z-10 w-full justify-center ${isPending ? 'h-[88px] max-[639px]:h-auto' : ''}`}>
                   {isPending ? (
                     <>
                       <button
