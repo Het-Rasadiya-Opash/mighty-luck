@@ -1589,7 +1589,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       amountColor: '#00E806',
                       status: 'Confirming',
                       statusColor: '#FFBF1F',
-                      statusBg: '#3E2A09'
+                      statusBg: '#3E2A09',
+                      icon: '/d-bit-blue.svg'
                     },
                     {
                       id: 2,
@@ -1600,7 +1601,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       amountColor: '#FFFFFF',
                       status: 'Pending review',
                       statusColor: '#FFBF1F',
-                      statusBg: '#3E2A09'
+                      statusBg: '#3E2A09',
+                      icon: '/d-bit-blue.svg'
                     },
                     {
                       id: 3,
@@ -1611,7 +1613,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       amountColor: '#00E806',
                       status: 'Completed',
                       statusColor: '#00E806',
-                      statusBg: '#073208'
+                      statusBg: '#073208',
+                      icon: '/doller.svg'
                     },
                     {
                       id: 4,
@@ -1622,7 +1625,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       amountColor: '#00E806',
                       status: 'Active',
                       statusColor: '#FFFFFF',
-                      statusBg: '#1463FF'
+                      statusBg: '#1463FF',
+                      icon: '/gift-blue.svg'
                     },
                     {
                       id: 5,
@@ -1633,7 +1637,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       amountColor: '#FFFFFF',
                       status: 'Completed',
                       statusColor: '#00E806',
-                      statusBg: '#073208'
+                      statusBg: '#073208',
+                      icon: '/bank.svg'
                     },
                     {
                       id: 6,
@@ -1644,7 +1649,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                       amountColor: '#00E806',
                       status: 'Completed',
                       statusColor: '#00E806',
-                      statusBg: '#073208'
+                      statusBg: '#073208',
+                      icon: '/doller.svg'
                     }
                   ];
 
@@ -1702,13 +1708,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             <div className="flex flex-row items-center gap-[12px] flex-grow">
                               {/* Icon Box */}
                               <div className="flex flex-col items-center justify-center w-[40px] h-[40px] bg-[#0C1F56] rounded-[8px] shrink-0">
-                                {tx.type === 'deposit' ? (
-                                  <ArrowDownLeft className="w-[16px] h-[16px] text-[#1463FF]" />
-                                ) : tx.type === 'withdraw' ? (
-                                  <ArrowUpRight className="w-[16px] h-[16px] text-[#1463FF]" />
-                                ) : (
-                                  <Gift className="w-[16px] h-[16px] text-[#1463FF]" />
-                                )}
+                                <img src={tx.icon} alt={tx.title} className="w-[16px] h-[16px]" />
                               </div>
                               {/* Text Details */}
                               <div className="flex flex-col justify-center items-start gap-[4px] flex-grow">
