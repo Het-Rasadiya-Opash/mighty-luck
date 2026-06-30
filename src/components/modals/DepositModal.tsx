@@ -1120,7 +1120,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
                         >
                           <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#D2DCF7]">
-                            Preview verified state
+                            Preview verified withdrawal
                           </span>
                         </button>
                       </div>
