@@ -17,15 +17,15 @@ function ProviderSectionContent({ hideHeader }: ProviderSectionProps) {
     const router = useRouter();
 
     // Responsive initial count for grid mode: 9 on mobile, 16 on desktop
-    const getGridInitial = () => (typeof window !== 'undefined' && window.innerWidth < 640) ? 9 : 16;
+    const getGridInitial = () => (typeof window !== 'undefined' && window.innerWidth < 640) ? 9 : 14;
     const [gridVisible, setGridVisible] = useState(getGridInitial);
 
     useEffect(() => {
         const handleResize = () => {
             const isMobile = window.innerWidth < 640;
             setGridVisible((prev) => {
-                const newInitial = isMobile ? 9 : 16;
-                return prev <= 16 ? newInitial : prev;
+                const newInitial = isMobile ? 9 : 14;
+                return prev <= 14 ? newInitial : prev;
             });
         };
         window.addEventListener('resize', handleResize);
