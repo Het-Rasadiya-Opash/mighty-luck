@@ -27,7 +27,7 @@ export default function GameGrid({ title, count, games, hideFooter = false }: Ga
     const { status } = useSession();
 
     // Responsive initial count: 9 on mobile, 16 on desktop
-    const getInitialCount = () => (typeof window !== 'undefined' && window.innerWidth < 640) ? 9 : 16;
+    const getInitialCount = () => (typeof window !== 'undefined' && window.innerWidth < 640) ? 9 : 18;
     const [visibleCount, setVisibleCount] = useState(getInitialCount);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -35,9 +35,9 @@ export default function GameGrid({ title, count, games, hideFooter = false }: Ga
         const handleResize = () => {
             const isMobile = window.innerWidth < 640;
             setVisibleCount((prev) => {
-                const newInitial = isMobile ? 9 : 16;
+                const newInitial = isMobile ? 9 : 18;
                 // Only reset if we're still at the initial count threshold
-                return prev <= 16 ? newInitial : prev;
+                return prev <= 18 ? newInitial : prev;
             });
         };
         window.addEventListener('resize', handleResize);
