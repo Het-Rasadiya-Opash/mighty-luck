@@ -58,7 +58,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [promoCode, setPromoCode] = useState('');
   const [isPromoApplied, setIsPromoApplied] = useState(false);
-  const [verificationStep, setVerificationStep] = useState<'start' | 'process' | 'submitted' | 'verified'>('start');
+  const [verificationStep, setVerificationStep] = useState<'start' | 'process' | 'submitted' | 'verified' | 'success'>('start');
+  const [withdrawAmount, setWithdrawAmount] = useState("100");
+  const [withdrawMethod, setWithdrawMethod] = useState("Bitcoin");
+  const [withdrawAddress, setWithdrawAddress] = useState("");
 
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -179,6 +182,9 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       setIsPromoApplied(false);
       setVerificationStep('start');
       setActiveTab('deposit');
+      setWithdrawAmount("100");
+      setWithdrawMethod("Bitcoin");
+      setWithdrawAddress("");
     } else {
       document.body.style.overflow = "unset";
       document.body.classList.remove("hide-mobile-nav");
@@ -232,6 +238,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       modalHeightClass = 'h-[647px] sm:h-[566px]';
     } else if (verificationStep === 'verified') {
       modalHeightClass = 'h-[760px] sm:h-[703px]';
+    } else if (verificationStep === 'success') {
+      modalHeightClass = 'h-[715px] sm:h-[660px]';
     } else {
       modalHeightClass = 'h-[647px] sm:h-[576px]';
     }
@@ -257,6 +265,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       outerBoxHeightClass = 'h-[547px] sm:h-[510px]';
     } else if (verificationStep === 'verified') {
       outerBoxHeightClass = 'h-[670px] sm:h-[647px]';
+    } else if (verificationStep === 'success') {
+      outerBoxHeightClass = 'h-[637px] sm:h-[604px]';
     } else {
       outerBoxHeightClass = 'h-[547px] sm:h-[467px]';
     }
@@ -282,6 +292,8 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
       innerBoxHeightClass = 'h-[547px] sm:h-[457px]';
     } else if (verificationStep === 'verified') {
       innerBoxHeightClass = 'h-[670px] sm:h-[594px]';
+    } else if (verificationStep === 'success') {
+      innerBoxHeightClass = 'h-[551px] sm:h-[551px]';
     } else {
       innerBoxHeightClass = 'h-[547px] sm:h-[467px]';
     }
@@ -1306,7 +1318,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </span>
                       </button>
                     </div>
-                  ) : (
+                  ) : verificationStep === 'verified' ? (
                     /* Withdrawal request view (460x548 in Figma) */
                     <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[548px] overflow-hidden shrink-0">
                       {/* Available balance card (428x79 in Figma) */}
@@ -1353,10 +1365,14 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         <span className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
                           2.Enter withdrawal amount
                         </span>
-                        <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[39px] bg-[#112F82] rounded-[8px]">
-                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
-                            $100
-                          </span>
+                        <div className="flex flex-row items-center px-[16px] py-[10px] gap-[4px] w-full h-[39px] bg-[#112F82] rounded-[8px]">
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] text-white ml-[2px] select-none">$</span>
+                          <input
+                            type="text"
+                            value={withdrawAmount}
+                            onChange={(e) => setWithdrawAmount(e.target.value)}
+                            className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                          />
                         </div>
                       </div>
 
@@ -1396,9 +1412,13 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           3.Enter destination details
                         </span>
                         <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[39px] bg-[#112F82] rounded-[8px]">
-                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#A5B8EF]">
-                            Bitcoin wallet address
-                          </span>
+                          <input
+                            type="text"
+                            placeholder="Bitcoin wallet address"
+                            value={withdrawAddress}
+                            onChange={(e) => setWithdrawAddress(e.target.value)}
+                            className="bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder-[#A5B8EF] w-full"
+                          />
                         </div>
                         <p className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] w-full">
                           Withdrawals may be reviewed by our payments team before processing. Make sure the destination details are correct.
@@ -1407,13 +1427,146 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
                       {/* Request withdrawal CTA (428x50 in Figma) */}
                       <button
-                        onClick={onClose}
+                        onClick={() => {
+                          if (!withdrawAmount || isNaN(parseFloat(withdrawAmount)) || parseFloat(withdrawAmount) <= 0) {
+                            toast.error("Please enter a valid withdrawal amount");
+                            return;
+                          }
+                          if (parseFloat(withdrawAmount) < 50) {
+                            toast.error("Minimum withdrawal is $50");
+                            return;
+                          }
+                          if (parseFloat(withdrawAmount) > 1248.50) {
+                            toast.error("Insufficient balance");
+                            return;
+                          }
+                          if (!withdrawAddress.trim()) {
+                            toast.error("Please enter your Bitcoin wallet address");
+                            return;
+                          }
+                          setVerificationStep('success');
+                        }}
                         className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full sm:w-[428px] h-[50px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0"
                       >
                         <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#1A1404]">
                           Request withdrawal
                         </span>
                       </button>
+                    </div>
+                  ) : (
+                    /* Withdrawal confirmation view (460x505 in Figma) */
+                    <div className="flex flex-col items-center p-[20px_16px] gap-[24px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[505px] overflow-hidden shrink-0">
+                      {/* Top Graphic Frame (428x120 in Figma) */}
+                      <div className="flex flex-row justify-center items-center w-full sm:w-[428px] h-[120px] shrink-0">
+                        <div className="relative w-[120px] h-[120px] flex items-center justify-center shrink-0">
+                          {/* Circular progress track and accent stroke */}
+                          <svg className="w-full h-full rotate-[-90deg]" viewBox="0 0 120 120">
+                            <circle
+                              cx="60"
+                              cy="60"
+                              r="54"
+                              stroke="#112F82"
+                              strokeWidth="4"
+                              fill="transparent"
+                            />
+                            <circle
+                              cx="60"
+                              cy="60"
+                              r="54"
+                              stroke="#1463FF"
+                              strokeWidth="4"
+                              fill="transparent"
+                              strokeDasharray="339.29"
+                              strokeDashoffset="169.65"
+                              strokeLinecap="round"
+                            />
+                          </svg>
+                          {/* Inner filled blue circle with lock icon */}
+                          <div className="absolute w-[70px] h-[70px] bg-[#1463FF] rounded-full flex items-center justify-center shadow-lg">
+                            <img src="/lock.svg" alt="Lock" className="w-[28.8px] h-[28.8px]" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Header and description (428x67 in Figma) */}
+                      <div className="flex flex-col items-center gap-[8px] w-full sm:w-[428px] shrink-0 text-center">
+                        <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
+                          Withdrawal requested
+                        </h3>
+                        <p className="font-[family-name:var(--font-manrope)] font-medium text-[12px] leading-[16px] tracking-[0.02em] text-[#A5B8EF] w-full text-center">
+                          Your withdrawal request was successfully submitted. Our payments team is now reviewing it
+                        </p>
+                      </div>
+
+                      {/* Details Box (428x138 in Figma) */}
+                      <div className="flex flex-col justify-center items-start p-[10px_16px] gap-[8px] w-full sm:w-[428px] h-[138px] bg-[#112F82] rounded-[8px] shrink-0">
+                        <div className="flex flex-row justify-between items-center w-full h-[16px]">
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                            Amount
+                          </span>
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] text-right tracking-[0.02em] text-white">
+                            {isNaN(parseFloat(withdrawAmount)) ? "$100.00" : "$" + parseFloat(withdrawAmount).toFixed(2)}
+                          </span>
+                        </div>
+                        
+                        <div className="w-full border-t border-dashed border-[#193EA5]" />
+
+                        <div className="flex flex-row justify-between items-center w-full h-[16px]">
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                            Method
+                          </span>
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] text-right tracking-[0.02em] text-white">
+                            {withdrawMethod}
+                          </span>
+                        </div>
+
+                        <div className="w-full border-t border-dashed border-[#193EA5]" />
+
+                        <div className="flex flex-row justify-between items-center w-full h-[16px]">
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                            Estimated arrival
+                          </span>
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] text-right tracking-[0.02em] text-white">
+                            1-24 hours
+                          </span>
+                        </div>
+
+                        <div className="w-full border-t border-dashed border-[#193EA5]" />
+
+                        <div className="flex flex-row justify-between items-center w-full h-[22px]">
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#A5B8EF]">
+                            Status
+                          </span>
+                          <div className="flex flex-row justify-center items-center px-[8px] py-[4px] bg-[#0C1F56] rounded-[4px] h-[22px]">
+                            <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#4886FF]">
+                              Pending review
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer & Button (428x76 in Figma) */}
+                      <div className="flex flex-col items-center gap-[12px] w-full sm:w-[428px] shrink-0">
+                        <div className="flex flex-row justify-center items-center gap-[8px] w-full h-[14px]">
+                          <div className="w-[12px] h-[12px] relative flex items-center justify-center shrink-0">
+                            <Info size={12} className="text-[#7795E8]" />
+                          </div>
+                          <span className="font-[family-name:var(--font-manrope)] font-semibold text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                            Having problems? <span className="text-[#FFC83D] cursor-pointer hover:underline">Contact support</span>
+                          </span>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            setVerificationStep('verified');
+                          }}
+                          className="flex flex-row justify-center items-center px-[30px] py-[10px] w-full h-[50px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors rounded-[8px] shrink-0"
+                        >
+                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[16px] leading-[22px] tracking-[0.02em] text-[#D2DCF7]">
+                            Back to withdrawal form
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   )
                 )}
