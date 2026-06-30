@@ -317,7 +317,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
   }
 
   return createPortal(
-    <div className="fixed inset-0 z-40 sm:z-[120] overflow-y-auto top-[50px] sm:top-0">
+    <div className="fixed inset-0 z-40 sm:z-[120] overflow-hidden sm:overflow-y-auto top-[50px] sm:top-0">
       <div
         className="fixed inset-0 top-[50px] sm:top-0 bg-[#091741] sm:bg-[#0C1733]/70 sm:backdrop-blur-[8px]"
         onClick={onClose}
@@ -331,7 +331,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             <X size={24} />
           </button>
 
-          <div className={`relative flex flex-col items-center w-full ${modalHeightClass} pt-[16px] sm:pt-[24px] px-[20px] pb-[40px] sm:pb-[32px] gap-[16px] sm:gap-[24px]`}>
+          <div className={`relative flex flex-col items-center w-full ${modalHeightClass} max-[639px]:max-h-[calc(100vh-50px)] pt-[16px] sm:pt-[24px] px-[20px] pb-[40px] sm:pb-[32px] gap-[16px] sm:gap-[24px]`}>
             <div className="absolute inset-0 bg-[#091741] rounded-t-[30px] sm:rounded-[16px] overflow-hidden pointer-events-none">
               <div className="absolute top-[-125px] sm:top-[-145px] left-[calc(50%-165px)] sm:left-1/2 -translate-x-1/2 w-[174px] sm:w-[173px] h-[176px] sm:h-[173px] bg-[#1463FF] blur-[40px] rounded-full" />
             </div>
@@ -353,7 +353,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
             />
 
             {/* <div className={`flex flex-col items-start gap-[24px] w-full h-auto my-auto py-8 sm:py-0 ${outerBoxHeightClass} z-40`}> */}
-            <div className={`flex flex-col items-start gap-[24px] w-full ${outerBoxHeightClass} max-[639px]:h-0 max-[639px]:flex-1 max-[639px]:overflow-y-auto ${isCountryOpen ? 'max-[639px]:pb-[240px] max-[639px]:relative max-[639px]:z-[60] z-40' : 'max-[639px]:pb-[100px] z-40'} [&::-webkit-scrollbar]:hidden`}>
+            <div className={`flex flex-col items-start gap-[24px] w-full ${outerBoxHeightClass} max-[639px]:flex-1 max-[639px]:min-h-0 z-40`}>
               <div className="flex flex-row justify-start md:justify-center items-start md:items-center gap-[12px] w-full h-[29px]">
                 <div className="flex flex-row items-center gap-[12px] h-[29px]">
                   <div className="relative flex items-center justify-center w-[20px] h-[20px] shrink-0">
@@ -365,7 +365,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </div>
               </div>
 
-              <div className={`flex flex-col items-start gap-[16px] w-full ${innerBoxHeightClass}`}>
+              <div className={`flex flex-col items-start gap-[16px] w-full ${innerBoxHeightClass} max-[639px]:flex-1 max-[639px]:min-h-0`}>
                 {/* <div className={`flex flex-col items-start gap-[16px] w-full h-auto ${innerBoxHeightClass}`}> */}
                 <div className="flex flex-row items-center gap-[8px] w-full h-[30px] overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                   <button
@@ -393,7 +393,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 {activeTab === 'deposit' && (
                   <>
                     {isPending ? (
-                      <div className="flex flex-col items-start p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[365px] sm:h-[325px]">
+                      <div className="flex flex-col items-start p-[20px_16px] max-[639px]:pb-[120px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[365px] sm:h-[325px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0">
                         <p className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] text-center tracking-[0.02em] text-[#A5B8EF] w-full h-[38px] flex items-center justify-center">
                           Your transaction in progress and pending confirmation from the blockchain.
                         </p>
@@ -461,7 +461,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         </div>
                       </div>
                     ) : (
-                      <div className={`flex flex-col items-start p-[16px] gap-[16px] w-full ${isFiatAddress ? 'h-[454px] sm:h-[404px]' : (isFiatPayment ? 'h-[482px] sm:h-[418px]' : (isFiatSuccess ? 'h-[464px] sm:h-[426px]' : 'h-[412px] sm:h-[375px]'))} bg-[#0C1F56] rounded-[16px] z-20 relative`}>
+                      <div className={`flex flex-col items-start p-[16px] max-[639px]:pb-[110px] ${isCountryOpen ? 'max-[639px]:pb-[240px]' : ''} gap-[16px] w-full ${isFiatAddress ? 'h-[454px] sm:h-[404px]' : (isFiatPayment ? 'h-[482px] sm:h-[418px]' : (isFiatSuccess ? 'h-[464px] sm:h-[426px]' : 'h-[412px] sm:h-[375px]'))} bg-[#0C1F56] rounded-[16px] z-20 relative max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0`}>
                         {isFiatSuccess ? (
                           <div className="flex flex-col items-start gap-[16px] w-full h-[394px] sm:h-[394px]">
                             {/* Circle Checkmark Icon with Stroke from Figma Specs (Height 120px) */}
@@ -536,308 +536,308 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                         ) : (
                           <>
                             <div ref={bonusRef} className="relative flex flex-col gap-[8px] w-full z-30">
-                          <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                            {selectedPayment.id === 'fiat' ? 'Select a Bonus' : '1.Select a Bonus'}
-                          </label>
-                          <button
-                            onClick={() => { setIsBonusOpen(!isBonusOpen); setIsPaymentOpen(false); }}
-                            className="flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[50px] sm:h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors border border-[#1463FF] rounded-[8px]"
-                          >
-                            <div className="flex flex-row items-center gap-[12px]">
-                              <div className="w-[16px] h-[16px] flex items-center justify-center shrink-0">
-                                <RenderBonusIcon type={selectedBonus.iconType} className="w-[16px] h-[16px]" color="bg-[#FFC83D]" />
-                              </div>
-                              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
-                                {selectedBonus.title}
-                              </span>
+                              <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                                {selectedPayment.id === 'fiat' ? 'Select a Bonus' : '1.Select a Bonus'}
+                              </label>
+                              <button
+                                onClick={() => { setIsBonusOpen(!isBonusOpen); setIsPaymentOpen(false); }}
+                                className="flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[50px] sm:h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors border border-[#1463FF] rounded-[8px]"
+                              >
+                                <div className="flex flex-row items-center gap-[12px]">
+                                  <div className="w-[16px] h-[16px] flex items-center justify-center shrink-0">
+                                    <RenderBonusIcon type={selectedBonus.iconType} className="w-[16px] h-[16px]" color="bg-[#FFC83D]" />
+                                  </div>
+                                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
+                                    {selectedBonus.title}
+                                  </span>
+                                </div>
+                                <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isBonusOpen ? 'rotate-180' : ''}`} />
+                              </button>
+
+                              {isBonusOpen && (
+                                <div className="absolute top-[80px] sm:top-[66px] left-0 w-full bg-[#112F82] border border-[#1463FF] rounded-[8px] flex flex-col overflow-hidden shadow-xl z-50 h-[244px]">
+                                  <div className="px-[16px] py-[10px] h-[40px] flex items-center bg-[#112F82] border-b border-[#1463FF]/30 rounded-t-[8px]">
+                                    <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white">Choose one bonus on next deposits</span>
+                                  </div>
+
+                                  {bonuses.map((bonus) => {
+                                    const isSelected = selectedBonus.id === bonus.id;
+                                    const isNoBonus = bonus.id === 'no-bonus';
+                                    const optionHeight = isNoBonus ? 'h-[39px]' : 'h-[55px]';
+                                    return (
+                                      <button
+                                        key={bonus.id}
+                                        className={`flex flex-row items-center gap-[12px] px-[16px] py-[10px] text-left transition-colors ${optionHeight} ${isSelected ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}
+                                        onClick={() => { setSelectedBonus(bonus); setIsBonusOpen(false); }}
+                                      >
+                                        <div className="shrink-0 flex items-center justify-center">
+                                          <RenderBonusIcon
+                                            type={bonus.iconType}
+                                            className="w-[16px] h-[16px] transition-colors"
+                                            color={isSelected ? 'bg-[#FFC83D]' : 'bg-[#A5B8EF]'}
+                                          />
+                                        </div>
+                                        <div className="flex flex-col justify-center gap-[2px]">
+                                          <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.title}</span>
+                                          {bonus.desc && (
+                                            <span className={`font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.desc}</span>
+                                          )}
+                                        </div>
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              )}
                             </div>
-                            <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isBonusOpen ? 'rotate-180' : ''}`} />
-                          </button>
 
-                          {isBonusOpen && (
-                            <div className="absolute top-[80px] sm:top-[66px] left-0 w-full bg-[#112F82] border border-[#1463FF] rounded-[8px] flex flex-col overflow-hidden shadow-xl z-50 h-[244px]">
-                              <div className="px-[16px] py-[10px] h-[40px] flex items-center bg-[#112F82] border-b border-[#1463FF]/30 rounded-t-[8px]">
-                                <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white">Choose one bonus on next deposits</span>
-                              </div>
+                            <div ref={paymentRef} className="relative flex flex-col gap-[8px] w-full z-20">
+                              <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                                {selectedPayment.id === 'fiat' ? 'Select a payment method' : '2.Select a payment method'}
+                              </label>
+                              <button
+                                onClick={() => { setIsPaymentOpen(!isPaymentOpen); setIsBonusOpen(false); }}
+                                className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[50px] sm:h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isPaymentOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
+                              >
+                                <div className="flex flex-row items-center gap-[8px] min-w-0">
+                                  {selectedPayment.id === 'crypto' ? (
+                                    <Image src="/d-bit.svg" width={16} height={16} alt={selectedPayment.symbol || 'BTC'} className="shrink-0" />
+                                  ) : (
+                                    <FiatIcons isSelected={true} />
+                                  )}
+                                  <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white shrink-0">
+                                    {selectedPayment.titleClosed}
+                                  </span>
+                                  <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] truncate">
+                                    {selectedPayment.descClosed}
+                                  </span>
+                                </div>
+                                <ChevronDown size={14} strokeWidth={2.5} className={`text-[#A5B8EF] transition-transform ${isPaymentOpen ? 'rotate-180' : ''}`} />
+                              </button>
 
-                              {bonuses.map((bonus) => {
-                                const isSelected = selectedBonus.id === bonus.id;
-                                const isNoBonus = bonus.id === 'no-bonus';
-                                const optionHeight = isNoBonus ? 'h-[39px]' : 'h-[55px]';
-                                return (
-                                  <button
-                                    key={bonus.id}
-                                    className={`flex flex-row items-center gap-[12px] px-[16px] py-[10px] text-left transition-colors ${optionHeight} ${isSelected ? 'bg-[#1463FF]' : 'bg-[#112F82] hover:bg-[#1A3FA6]'}`}
-                                    onClick={() => { setSelectedBonus(bonus); setIsBonusOpen(false); }}
-                                  >
-                                    <div className="shrink-0 flex items-center justify-center">
-                                      <RenderBonusIcon
-                                        type={bonus.iconType}
-                                        className="w-[16px] h-[16px] transition-colors"
-                                        color={isSelected ? 'bg-[#FFC83D]' : 'bg-[#A5B8EF]'}
+                              {isPaymentOpen && (
+                                <div className="absolute top-[74px] sm:top-[63px] left-0 w-full bg-[#112F82] border border-[#1463FF] border-t-0 rounded-b-[8px] flex flex-col overflow-hidden shadow-xl z-50">
+                                  {payments.map((payment) => {
+                                    const isSelected = selectedPayment.id === payment.id;
+                                    return (
+                                      <button
+                                        key={payment.id}
+                                        className={`flex flex-row items-center gap-[12px] px-[16px] py-[12px] text-left transition-colors ${isSelected ? 'bg-[#1463FF]' : 'hover:bg-[#1A3FA6]'}`}
+                                        onClick={() => { setSelectedPayment(payment); setIsPaymentOpen(false); }}
+                                      >
+                                        {payment.id === 'crypto' ? (
+                                          <div className={`flex items-center justify-center shrink-0 ${isSelected ? 'border-[1.5px] border-white rounded-full' : ''}`}>
+                                            <Image src="/d-bit.svg" width={20} height={20} alt={payment.symbol || 'BTC'} className={`shrink-0 transition-all ${isSelected ? '' : 'grayscale opacity-60'}`} />
+                                          </div>
+                                        ) : (
+                                          <FiatIcons className={isSelected ? 'opacity-100' : 'opacity-80'} isSelected={isSelected} />
+                                        )}
+                                        <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>
+                                          {payment.titleExpanded}
+                                        </span>
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              )}
+
+                              {selectedPayment.id === 'crypto' && (
+                                <div className="deposit-warning-message flex flex-row items-start gap-[8px] w-full h-[28px]">
+                                  <div className="flex items-center justify-center w-[12px] h-[12px] shrink-0 mt-[1px]">
+                                    <Image src="/error.svg" width={12} height={12} alt="Info" className="w-[12px] h-[12px]" />
+                                  </div>
+                                  <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
+                                    Only deposit BC via the Bitcoin network. Deposit of other assets or from other networks will be lost.
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+
+                            {selectedPayment.id === 'crypto' ? (
+                              <>
+                                <div className="flex flex-col gap-[8px] w-full">
+                                  <label className="flex items-center w-full h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                                    3.Calculate the amount you want to deposit
+                                  </label>
+                                  <div className="flex flex-row items-center gap-[8px] w-full h-[50px] sm:h-[40px]">
+                                    <div className="flex-1 flex flex-row items-center px-[16px] h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                      <Image src="/d-doller.svg" width={16} height={16} alt="USD" className="shrink-0 mr-[8px]" />
+                                      <input
+                                        type="text"
+                                        defaultValue="100"
+                                        className="bg-transparent border-none outline-none font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
                                       />
                                     </div>
-                                    <div className="flex flex-col justify-center gap-[2px]">
-                                      <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.title}</span>
-                                      {bonus.desc && (
-                                        <span className={`font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>{bonus.desc}</span>
+
+                                    <div className="w-[50px] sm:w-[40px] h-[50px] sm:h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
+                                      <ArrowRightLeft size={16} className="text-white" />
+                                    </div>
+
+                                    <div className="flex-1 flex flex-row items-center px-[16px] h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                      <Image src="/d-bit.svg" width={16} height={16} alt="BTC" className="shrink-0 mr-[8px]" />
+                                      <input
+                                        type="text"
+                                        defaultValue="0.00954"
+                                        className="bg-transparent border-none outline-none font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="flex flex-col gap-[8px] w-full">
+                                  <label className="flex items-center w-full h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
+                                    4.BTC Deposit Address
+                                  </label>
+                                  <div className="flex flex-row items-center justify-between px-[16px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                    <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] truncate mr-[12px]">
+                                      bc1q7ndh47hf93rdhuhef873hheufhe447...
+                                    </span>
+                                    <div className="flex flex-row items-center gap-[12px] shrink-0">
+                                      <button className="text-[#BBCAF3] hover:opacity-80 transition-opacity flex items-center justify-center">
+                                        <Image src="/copy.svg" width={16} height={16} alt="Copy" />
+                                      </button>
+                                      <button className="text-[#BBCAF3] hover:opacity-80 transition-opacity flex items-center justify-center">
+                                        <Image src="/qr.svg" width={16} height={16} alt="QR Code" />
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            ) : fiatStep === 'address' ? (
+                              <div className="flex flex-col gap-[12px] w-full h-[242px] sm:h-auto">
+                                <div className="deposit-address-warning-container flex flex-col gap-[8px] w-full h-[52px] sm:h-auto">
+                                  <div className="flex flex-row items-center gap-[8px] w-full h-[16px]">
+                                    <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
+                                      Enter your address
+                                    </label>
+                                  </div>
+                                  <div className="deposit-warning-message flex flex-row items-start gap-[8px] w-full h-[28px] sm:h-auto">
+                                    <div className="w-[12px] h-[12px] relative mt-[2px]">
+                                      <div className="absolute inset-0 bg-[#7795E8] [mask-image:url('/error.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]" />
+                                    </div>
+                                    <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] flex-1">
+                                      Please fill up your address details before completing your deposit. This information is required for credit card deposits.
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <div className="flex flex-col gap-[12px] w-full h-[174px] sm:h-[144px]">
+                                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                    <input type="text" placeholder="Street" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
+                                  </div>
+
+                                  <div className="grid grid-cols-2 gap-[8px] w-full h-[50px] sm:h-[40px]">
+                                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                      <input type="text" placeholder="City" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
+                                    </div>
+                                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                      <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
+                                    </div>
+                                  </div>
+
+                                  <div className="grid grid-cols-2 gap-[8px] w-full h-[50px] sm:h-[40px]">
+                                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                      <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
+                                    </div>
+                                    <div ref={countryRef} className="relative w-full h-[50px] sm:h-[40px] z-30">
+                                      <div
+                                        onClick={() => setIsCountryOpen(!isCountryOpen)}
+                                        className={`flex flex-row items-center px-[10px] sm:px-[16px] py-[10px] gap-[8px] sm:gap-[10px] w-full h-[50px] sm:h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
+                                      >
+                                        <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
+                                          <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center">
+                                            <img src={selectedCountry.flag} alt={selectedCountry.name} className="w-[20px] h-[20px] object-cover" />
+                                          </div>
+                                        </div>
+                                        <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate min-w-0">{selectedCountry.name}</span>
+                                        <div className="flex flex-col justify-center items-center w-[14px] h-[14px] shrink-0">
+                                          <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
+                                        </div>
+                                      </div>
+
+                                      {isCountryOpen && (
+                                        <div className="absolute top-[100%] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] border-t-0 rounded-b-[8px] z-[60] shadow-lg max-h-[150px] overflow-y-auto [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-[#0C1F56] [&::-webkit-scrollbar-thumb]:bg-[#1A3FA6] [&::-webkit-scrollbar-thumb]:rounded-full [scrollbar-width:thin] [scrollbar-color:#1A3FA6_#0C1F56]">
+                                          {countries.map(country => (
+                                            <button
+                                              key={country.id}
+                                              onClick={() => { setSelectedCountry(country); setIsCountryOpen(false); }}
+                                              className="w-full px-[16px] py-[10px] flex flex-row items-center gap-[10px] hover:bg-[#112F82] transition-colors text-left"
+                                            >
+                                              <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
+                                                <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center">
+                                                  <img src={country.flag} alt={country.name} className="w-[20px] h-[20px] object-cover" />
+                                                </div>
+                                              </div>
+                                              <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate">{country.name}</span>
+                                            </button>
+                                          ))}
+                                        </div>
                                       )}
                                     </div>
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </div>
-
-                        <div ref={paymentRef} className="relative flex flex-col gap-[8px] w-full z-20">
-                          <label className="flex items-center w-full h-[16px] font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                            {selectedPayment.id === 'fiat' ? 'Select a payment method' : '2.Select a payment method'}
-                          </label>
-                          <button
-                            onClick={() => { setIsPaymentOpen(!isPaymentOpen); setIsBonusOpen(false); }}
-                            className={`flex flex-row items-center justify-between px-[16px] py-[10px] w-full h-[50px] sm:h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors ${isPaymentOpen ? 'rounded-t-[8px] border border-[#1463FF] border-b-0' : 'rounded-[8px]'}`}
-                          >
-                            <div className="flex flex-row items-center gap-[8px] min-w-0">
-                              {selectedPayment.id === 'crypto' ? (
-                                <Image src="/d-bit.svg" width={16} height={16} alt={selectedPayment.symbol || 'BTC'} className="shrink-0" />
-                              ) : (
-                                <FiatIcons isSelected={true} />
-                              )}
-                              <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white shrink-0">
-                                {selectedPayment.titleClosed}
-                              </span>
-                              <span className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] truncate">
-                                {selectedPayment.descClosed}
-                              </span>
-                            </div>
-                            <ChevronDown size={14} strokeWidth={2.5} className={`text-[#A5B8EF] transition-transform ${isPaymentOpen ? 'rotate-180' : ''}`} />
-                          </button>
-
-                          {isPaymentOpen && (
-                            <div className="absolute top-[74px] sm:top-[63px] left-0 w-full bg-[#112F82] border border-[#1463FF] border-t-0 rounded-b-[8px] flex flex-col overflow-hidden shadow-xl z-50">
-                              {payments.map((payment) => {
-                                const isSelected = selectedPayment.id === payment.id;
-                                return (
-                                  <button
-                                    key={payment.id}
-                                    className={`flex flex-row items-center gap-[12px] px-[16px] py-[12px] text-left transition-colors ${isSelected ? 'bg-[#1463FF]' : 'hover:bg-[#1A3FA6]'}`}
-                                    onClick={() => { setSelectedPayment(payment); setIsPaymentOpen(false); }}
-                                  >
-                                    {payment.id === 'crypto' ? (
-                                      <div className={`flex items-center justify-center shrink-0 ${isSelected ? 'border-[1.5px] border-white rounded-full' : ''}`}>
-                                        <Image src="/d-bit.svg" width={20} height={20} alt={payment.symbol || 'BTC'} className={`shrink-0 transition-all ${isSelected ? '' : 'grayscale opacity-60'}`} />
+                                  </div>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex flex-col gap-[16px] w-full">
+                                <div className="flex flex-col gap-[8px] w-full h-[74px] sm:h-[64px]">
+                                  <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
+                                    Select an amount
+                                  </label>
+                                  <div className="flex flex-row gap-[8px] w-full h-[50px] sm:h-[40px]">
+                                    {[20, 30, 100].map((amt) => (
+                                      <button
+                                        key={amt}
+                                        onClick={() => setFiatAmount(amt)}
+                                        className={`flex-1 flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors rounded-[8px] ${fiatAmount === amt ? 'bg-[#173EAD] border-[2px] border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
+                                      >
+                                        ${amt}
+                                      </button>
+                                    ))}
+                                    <button
+                                      onClick={() => setFiatAmount('custom')}
+                                      className={`flex-1 flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors rounded-[8px] ${fiatAmount === 'custom' ? 'bg-[#173EAD] border-[2px] border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
+                                    >
+                                      Custom...
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className="flex flex-col gap-[12px] w-full h-[180px] sm:h-[146px]">
+                                  <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
+                                    Enter your payment details
+                                  </label>
+                                  <div className="flex flex-col gap-[12px] w-full h-[112px] sm:h-[92px]">
+                                    <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                      <input type="text" placeholder="Credit Card Number" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
+                                    </div>
+                                    <div className="flex flex-row items-start gap-[8px] w-full h-[50px] sm:h-[40px]">
+                                      <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                        <input type="text" placeholder="Exp." spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
                                       </div>
-                                    ) : (
-                                      <FiatIcons className={isSelected ? 'opacity-100' : 'opacity-80'} isSelected={isSelected} />
-                                    )}
-                                    <span className={`font-[family-name:var(--font-manrope)] font-bold text-[14px] ${isSelected ? 'text-white' : 'text-[#A5B8EF]'}`}>
-                                      {payment.titleExpanded}
-                                    </span>
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          )}
+                                      <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
+                                        <input type="text" placeholder="CCV" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
+                                      </div>
+                                    </div>
+                                  </div>
 
-                          {selectedPayment.id === 'crypto' && (
-                            <div className="deposit-warning-message flex flex-row items-start gap-[8px] w-full h-[28px]">
-                              <div className="flex items-center justify-center w-[12px] h-[12px] shrink-0 mt-[1px]">
-                                <Image src="/error.svg" width={12} height={12} alt="Info" className="w-[12px] h-[12px]" />
-                              </div>
-                              <p className="font-['Manrope'] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8]">
-                                Only deposit BC via the Bitcoin network. Deposit of other assets or from other networks will be lost.
-                              </p>
-                            </div>
-                          )}
-                        </div>
-
-                        {selectedPayment.id === 'crypto' ? (
-                          <>
-                            <div className="flex flex-col gap-[8px] w-full">
-                              <label className="flex items-center w-full h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                                3.Calculate the amount you want to deposit
-                              </label>
-                              <div className="flex flex-row items-center gap-[8px] w-full h-[50px] sm:h-[40px]">
-                                <div className="flex-1 flex flex-row items-center px-[16px] h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                  <Image src="/d-doller.svg" width={16} height={16} alt="USD" className="shrink-0 mr-[8px]" />
-                                  <input
-                                    type="text"
-                                    defaultValue="100"
-                                    className="bg-transparent border-none outline-none font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
-                                  />
-                                </div>
-
-                                <div className="w-[50px] sm:w-[40px] h-[50px] sm:h-[40px] bg-[#1463FF] rounded-[8px] flex flex-col items-center justify-center shrink-0">
-                                  <ArrowRightLeft size={16} className="text-white" />
-                                </div>
-
-                                <div className="flex-1 flex flex-row items-center px-[16px] h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                  <Image src="/d-bit.svg" width={16} height={16} alt="BTC" className="shrink-0 mr-[8px]" />
-                                  <input
-                                    type="text"
-                                    defaultValue="0.00954"
-                                    className="bg-transparent border-none outline-none font-['Manrope'] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white w-full"
-                                  />
+                                  <div className="flex flex-row items-start gap-[8px] w-full h-[28px] sm:h-[14px]">
+                                    <div className="w-[12px] h-[12px] flex items-center justify-center shrink-0 mt-[1px]">
+                                      <Info size={12} className="text-[#7795E8]" />
+                                    </div>
+                                    <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] w-[322px] sm:w-[408px]">
+                                      Warning message about fees or anything else relevant at this stage.
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-
-                            <div className="flex flex-col gap-[8px] w-full">
-                              <label className="flex items-center w-full h-[16px] font-['Manrope'] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3]">
-                                4.BTC Deposit Address
-                              </label>
-                              <div className="flex flex-row items-center justify-between px-[16px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                <span className="font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-[#7795E8] truncate mr-[12px]">
-                                  bc1q7ndh47hf93rdhuhef873hheufhe447...
-                                </span>
-                                <div className="flex flex-row items-center gap-[12px] shrink-0">
-                                  <button className="text-[#BBCAF3] hover:opacity-80 transition-opacity flex items-center justify-center">
-                                    <Image src="/copy.svg" width={16} height={16} alt="Copy" />
-                                  </button>
-                                  <button className="text-[#BBCAF3] hover:opacity-80 transition-opacity flex items-center justify-center">
-                                    <Image src="/qr.svg" width={16} height={16} alt="QR Code" />
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
+                            )}
                           </>
-                        ) : fiatStep === 'address' ? (
-                          <div className="flex flex-col gap-[12px] w-full h-[242px] sm:h-auto">
-                            <div className="deposit-address-warning-container flex flex-col gap-[8px] w-full h-[52px] sm:h-auto">
-                              <div className="flex flex-row items-center gap-[8px] w-full h-[16px]">
-                                <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
-                                  Enter your address
-                                </label>
-                              </div>
-                              <div className="deposit-warning-message flex flex-row items-start gap-[8px] w-full h-[28px] sm:h-auto">
-                                <div className="w-[12px] h-[12px] relative mt-[2px]">
-                                  <div className="absolute inset-0 bg-[#7795E8] [mask-image:url('/error.svg')] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]" />
-                                </div>
-                                <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] flex-1">
-                                  Please fill up your address details before completing your deposit. This information is required for credit card deposits.
-                                </p>
-                              </div>
-                            </div>
-
-                            <div className="flex flex-col gap-[12px] w-full h-[174px] sm:h-[144px]">
-                              <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                <input type="text" placeholder="Street" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
-                              </div>
-
-                              <div className="grid grid-cols-2 gap-[8px] w-full h-[50px] sm:h-[40px]">
-                                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                  <input type="text" placeholder="City" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
-                                </div>
-                                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                  <input type="text" placeholder="Postal Code" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
-                                </div>
-                              </div>
-
-                              <div className="grid grid-cols-2 gap-[8px] w-full h-[50px] sm:h-[40px]">
-                                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                  <input type="text" placeholder="State" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF] min-w-0" />
-                                </div>
-                                <div ref={countryRef} className="relative w-full h-[50px] sm:h-[40px]">
-                                  <div
-                                    onClick={() => setIsCountryOpen(!isCountryOpen)}
-                                    className={`flex flex-row items-center px-[10px] sm:px-[16px] py-[10px] gap-[8px] sm:gap-[10px] w-full h-[50px] sm:h-[40px] bg-[#112F82] hover:bg-[#1A3FA6] transition-colors cursor-pointer ${isCountryOpen ? 'rounded-t-[8px] border border-[#1A3FA6] border-b-0' : 'rounded-[8px]'}`}
-                                  >
-                                    <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
-                                      <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center">
-                                        <img src={selectedCountry.flag} alt={selectedCountry.name} className="w-[20px] h-[20px] object-cover" />
-                                      </div>
-                                    </div>
-                                    <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate min-w-0">{selectedCountry.name}</span>
-                                    <div className="flex flex-col justify-center items-center w-[14px] h-[14px] shrink-0">
-                                      <ChevronDown size={14} className={`text-[#A5B8EF] transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
-                                    </div>
-                                  </div>
-
-                                  {isCountryOpen && (
-                                    <div className="absolute top-[50px] sm:top-[40px] left-0 w-full sm:w-[210px] bg-[#0C1F56] border border-[#1A3FA6] rounded-b-[8px] overflow-hidden z-[60] shadow-lg max-h-[88px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                                      {countries.map(country => (
-                                        <button
-                                          key={country.id}
-                                          onClick={() => { setSelectedCountry(country); setIsCountryOpen(false); }}
-                                          className="w-full px-[16px] py-[10px] flex flex-row items-center gap-[10px] hover:bg-[#112F82] transition-colors text-left"
-                                        >
-                                          <div className="w-[20px] h-[20px] flex items-center justify-center shrink-0">
-                                            <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center">
-                                              <img src={country.flag} alt={country.name} className="w-[20px] h-[20px] object-cover" />
-                                            </div>
-                                          </div>
-                                          <span className="font-[family-name:var(--font-manrope)] font-bold text-[12px] leading-[16px] tracking-[0.02em] text-white flex-1 truncate">{country.name}</span>
-                                        </button>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="flex flex-col gap-[16px] w-full">
-                            <div className="flex flex-col gap-[8px] w-full h-[74px] sm:h-[64px]">
-                              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
-                                Select an amount
-                              </label>
-                              <div className="flex flex-row gap-[8px] w-full h-[50px] sm:h-[40px]">
-                                {[20, 30, 100].map((amt) => (
-                                  <button
-                                    key={amt}
-                                    onClick={() => setFiatAmount(amt)}
-                                    className={`flex-1 flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors rounded-[8px] ${fiatAmount === amt ? 'bg-[#173EAD] border-[2px] border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
-                                  >
-                                    ${amt}
-                                  </button>
-                                ))}
-                                <button
-                                  onClick={() => setFiatAmount('custom')}
-                                  className={`flex-1 flex items-center justify-center font-[family-name:var(--font-manrope)] text-[14px] leading-[19px] tracking-[0.02em] transition-colors rounded-[8px] ${fiatAmount === 'custom' ? 'bg-[#173EAD] border-[2px] border-[#1463FF] text-white font-bold' : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:text-white'}`}
-                                >
-                                  Custom...
-                                </button>
-                              </div>
-                            </div>
-                            <div className="flex flex-col gap-[12px] w-full h-[180px] sm:h-[146px]">
-                              <label className="font-[family-name:var(--font-manrope)] font-semibold text-[12px] leading-[16px] tracking-[0.02em] text-[#BBCAF3] h-[16px]">
-                                Enter your payment details
-                              </label>
-                              <div className="flex flex-col gap-[12px] w-full h-[112px] sm:h-[92px]">
-                                <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] w-full h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                  <input type="text" placeholder="Credit Card Number" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
-                                </div>
-                                <div className="flex flex-row items-start gap-[8px] w-full h-[50px] sm:h-[40px]">
-                                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                    <input type="text" placeholder="Exp." spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
-                                  </div>
-                                  <div className="flex flex-row items-center px-[16px] py-[10px] gap-[12px] flex-1 h-[50px] sm:h-[40px] bg-[#112F82] rounded-[8px]">
-                                    <input type="text" placeholder="CCV" spellCheck="false" className="w-full bg-transparent border-none outline-none font-[family-name:var(--font-manrope)] font-semibold text-[14px] leading-[19px] tracking-[0.02em] text-white placeholder:text-[#A5B8EF]" />
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="flex flex-row items-start gap-[8px] w-full h-[28px] sm:h-[14px]">
-                                <div className="w-[12px] h-[12px] flex items-center justify-center shrink-0 mt-[1px]">
-                                  <Info size={12} className="text-[#7795E8]" />
-                                </div>
-                                <p className="font-[family-name:var(--font-manrope)] font-medium text-[10px] leading-[14px] tracking-[0.02em] text-[#7795E8] w-[322px] sm:w-[408px]">
-                                  Warning message about fees or anything else relevant at this stage.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
                         )}
-                      </>
+                      </div>
                     )}
-                  </div>
+                  </>
                 )}
-              </>
-            )}
 
                 {activeTab === 'bonuses' && (
-                  <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[434px] overflow-hidden">
+                  <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[434px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0 overflow-hidden">
                     {isPromoApplied ? (
                       <>
                         {/* Inner Form Card (428x328 in Figma) */}
@@ -1050,7 +1050,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
                 {activeTab === 'withdraw' && (
                   verificationStep === 'start' ? (
-                    <div className="flex flex-col items-center justify-between p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[421px] overflow-hidden">
+                    <div className="flex flex-col items-center justify-between p-[16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[421px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0 overflow-hidden">
                       {/* Title & Subtitle Frame (428x67 in Figma) */}
                       <div className="flex flex-col items-start gap-[8px] w-full text-center shrink-0">
                         <h3 className="font-[family-name:var(--font-manrope)] font-bold text-[20px] leading-[27px] tracking-[0.02em] text-white w-full text-center">
@@ -1127,7 +1127,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </div>
                   ) : verificationStep === 'process' ? (
                     /* Verification process screen (460x550 in Figma) */
-                    <div className="flex flex-col items-center p-[20px_16px] gap-[20px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[550px] overflow-hidden shrink-0">
+                    <div className="flex flex-col items-center p-[20px_16px] gap-[20px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[550px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0 overflow-hidden shrink-0">
                       {/* Section 1: 1. Complete verification */}
                       <div className="flex flex-col items-start gap-[12px] w-full sm:w-[428px] shrink-0">
                         <div className="flex flex-col items-start gap-[4px] w-full">
@@ -1267,7 +1267,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </div>
                   ) : verificationStep === 'submitted' ? (
                     /* Verification submission screen (460x411 in Figma) */
-                    <div className="flex flex-col items-center justify-between p-[20px_16px] gap-[20px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[411px] overflow-hidden shrink-0">
+                    <div className="flex flex-col items-center justify-between p-[20px_16px] gap-[20px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[411px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0 overflow-hidden shrink-0">
                       {/* Top Graphic Frame (428x120 in Figma) */}
                       <div className="flex flex-row justify-center items-center w-full sm:w-[428px] h-[120px] shrink-0">
                         <div className="relative w-[120px] h-[120px] flex items-center justify-center shrink-0">
@@ -1327,7 +1327,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </div>
                   ) : verificationStep === 'verified' ? (
                     /* Withdrawal request view (460x548 in Figma) */
-                    <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[548px] overflow-hidden shrink-0">
+                    <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[548px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0 overflow-hidden shrink-0">
                       {/* Available balance card (428x79 in Figma) */}
                       <div className="flex flex-row justify-between items-center p-[16px] gap-[20px] w-full sm:w-[428px] h-[79px] bg-[#112F82] rounded-[10px] shrink-0">
                         <div className="flex flex-col items-start gap-[4px] grow">
@@ -1462,7 +1462,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                     </div>
                   ) : (
                     /* Withdrawal confirmation view (460x505 in Figma) */
-                    <div className="flex flex-col items-center p-[20px_16px] gap-[24px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[505px] overflow-hidden shrink-0">
+                    <div className="flex flex-col items-center p-[20px_16px] gap-[24px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-auto sm:h-[505px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0 overflow-hidden shrink-0">
                       {/* Top Graphic Frame (428x120 in Figma) */}
                       <div className="flex flex-row justify-center items-center w-full sm:w-[428px] h-[120px] shrink-0">
                         <div className="relative w-[120px] h-[120px] flex items-center justify-center shrink-0">
@@ -1515,7 +1515,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             {isNaN(parseFloat(withdrawAmount)) ? "$100.00" : "$" + parseFloat(withdrawAmount).toFixed(2)}
                           </span>
                         </div>
-                        
+
                         <div className="w-full border-t border-dashed border-[#193EA5]" />
 
                         <div className="flex flex-row justify-between items-center w-full h-[16px]">
@@ -1660,7 +1660,7 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   });
 
                   return (
-                    <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[514px] sm:h-[514px] overflow-hidden shrink-0">
+                    <div className="flex flex-col items-center p-[20px_16px] gap-[16px] w-full bg-[#0C1F56] rounded-[16px] z-20 relative h-[514px] sm:h-[514px] max-[639px]:flex-1 max-[639px]:overflow-y-auto max-[639px]:min-h-0 overflow-hidden shrink-0">
                       {/* Title and subtitle */}
                       <div className="flex flex-col items-start gap-[4px] w-full sm:w-[428px] shrink-0">
                         <span className="font-[family-name:var(--font-manrope)] font-bold text-[14px] leading-[19px] tracking-[0.02em] text-white">
@@ -1684,11 +1684,10 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                             <button
                               key={filter.id}
                               onClick={() => setTransactionFilter(filter.id as any)}
-                              className={`flex flex-row justify-center items-center px-[16px] py-[10px] flex-1 h-[30px] rounded-[6px] transition-colors ${
-                                isActive
+                              className={`flex flex-row justify-center items-center px-[16px] py-[10px] flex-1 h-[30px] rounded-[6px] transition-colors ${isActive
                                   ? 'bg-[#1463FF] text-white font-bold'
                                   : 'bg-[#112F82] text-[#A5B8EF] font-semibold hover:bg-[#1A3FA6]'
-                              }`}
+                                }`}
                             >
                               <span className="font-[family-name:var(--font-manrope)] text-[12px] leading-[16px] tracking-[0.02em]">
                                 {filter.label}
@@ -1790,13 +1789,11 @@ export function DepositModal({ isOpen, onClose }: DepositModalProps) {
                           router.push('/');
                         }
                       } : handleCompleteDeposit}
-                      className={`flex flex-row justify-center items-center px-[30px] py-[10px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0 ${
-                        isFiatSuccess ? 'w-full sm:w-[460px] h-[50px]' : 'w-full sm:w-[300px] h-[60px] sm:h-[50px]'
-                      }`}
+                      className={`flex flex-row justify-center items-center px-[30px] py-[10px] bg-[#FFC83D] hover:bg-[#F2B926] transition-colors rounded-[8px] shrink-0 ${isFiatSuccess ? 'w-full sm:w-[460px] h-[50px]' : 'w-full sm:w-[300px] h-[60px] sm:h-[50px]'
+                        }`}
                     >
-                      <span className={`font-[family-name:var(--font-manrope)] font-bold text-[#1A1404] ${
-                        isFiatSuccess ? 'text-[16px] leading-[22px] tracking-[0.02em]' : 'text-[16px] sm:text-[14px] leading-[22px] sm:leading-[19px] tracking-[0.02em]'
-                      }`}>
+                      <span className={`font-[family-name:var(--font-manrope)] font-bold text-[#1A1404] ${isFiatSuccess ? 'text-[16px] leading-[22px] tracking-[0.02em]' : 'text-[16px] sm:text-[14px] leading-[22px] sm:leading-[19px] tracking-[0.02em]'
+                        }`}>
                         {selectedPayment.id === 'fiat'
                           ? (fiatStep === 'address' ? 'Continue' : (fiatStep === 'payment' ? `Deposit ${fiatAmount === 'custom' ? '' : '$' + fiatAmount}` : 'Play Now'))
                           : "I've completed my deposit"}
