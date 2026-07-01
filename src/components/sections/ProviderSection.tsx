@@ -67,7 +67,7 @@ function ProviderSectionContent({ hideHeader }: ProviderSectionProps) {
     const progressPercent = Math.min(100, Math.max(5, (displayedProviders.length / (providerData.length || 1)) * 100));
 
     return (
-        <div ref={containerRef} className="flex flex-col gap-4 w-full overflow-hidden">
+        <div ref={containerRef} className="flex flex-col gap-[20px] w-full overflow-hidden">
             {!hideHeader && (
                 <div className="flex flex-row justify-between items-center w-full h-[23px] md:h-[30px]">
                     <div className="flex flex-row items-center gap-[7.2px] md:gap-[12px] h-[23px] md:h-[30px]">
