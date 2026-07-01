@@ -69,7 +69,7 @@ function CollectionSectionContent({ hideHeader }: CollectionSectionProps) {
     const handleNext = () => setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
 
     return (
-        <section ref={containerRef} className="w-full flex flex-col gap-4">
+        <section ref={containerRef} className="w-full flex flex-col gap-[20px]">
             {!hideHeader && (
                 <div className="w-full flex flex-row justify-between items-center h-[23px] md:h-[30px]">
                     <div className="flex flex-row items-center gap-[7.2px] md:gap-[12px] h-[23px] md:h-[30px]">

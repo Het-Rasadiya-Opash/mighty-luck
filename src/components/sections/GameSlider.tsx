@@ -124,7 +124,7 @@ export function GameSliderContent({ id, title, icon, games, viewAllTab }: GameSl
     };
 
     return (
-        <div id={id} ref={containerRef} className="flex flex-col gap-[12px] w-full overflow-hidden">
+        <div id={id} ref={containerRef} className="flex flex-col gap-[20px] w-full overflow-hidden">
             <div className="flex items-center justify-between w-full h-[23px] sm:h-[30px]">
                 <div className="flex items-center gap-[7.2px] sm:gap-[12px] h-[23px] sm:h-[30px]">
                     <div className="flex items-center justify-center w-[18px] h-[18px] sm:w-[30px] sm:h-[30px] shrink-0 [&>img]:w-full [&>img]:h-full [&>img]:object-contain">
